@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chuyên đề: Lipid và Chất béo</title>
+    <style>
+        :root {
+            --primary-color: #d81b60;
+            --secondary-color: #8e24aa;
+            --correct-color: #43a047;
+            --incorrect-color: #e53935;
+            --light-bg: #fce4ec;
+            --border-color: #f8bbd0;
+            --text-color: #212121;
+            --header-font: 'Playfair Display', serif;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Lato', sans-serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            background-color: var(--light-bg);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2, h3 {
+            font-family: var(--header-font);
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        h1 { text-align: center; font-size: 2.5em; margin-bottom: 25px; }
+        h2 { font-size: 1.8em; margin-top: 40px; border-bottom: 3px solid var(--secondary-color); padding-bottom: 10px; }
+        h3 { font-size: 1.4em; color: #ad1457; }
+
+        .collapsible {
+            background-color: #fce4ec;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: 1px solid var(--border-color);
+            text-align: left;
+            outline: none;
+            font-size: 1.2em;
+            font-weight: 700;
+            margin-top: 15px;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .collapsible:hover { background-color: #f8bbd0; }
+        .collapsible::after { content: '\\2795'; font-size: 14px; color: var(--secondary-color); }
+        .collapsible.active::after { content: "\\2796"; }
+
+        .content {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+            background-color: #fff8f9;
+            border: 1px solid var(--border-color);
+            border-top: none;
+            border-radius: 0 0 8px 8px;
+        }
+        .content-inner { padding: 20px 5px; }
+
+        .exercise-block {
+            background-color: #fff;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 25px;
+            margin: 25px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .question-text {
+             font-weight: 700;
+             margin-bottom: 15px;
+             font-size: 1.1em;
+        }
+        
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 10px;
+        }
+        
+        .option {
+            cursor: pointer;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+        .option:hover {
+            background-color: #f3e5f5;
+            border-color: var(--secondary-color);
+        }
+        .option.selected {
+            background-color: #e1bee7;
+            border-color: var(--secondary-color);
+            font-weight: bold;
+        }
+
+        .correct { background-color: #e8f5e9 !important; border-color: var(--correct-color) !important; }
+        .incorrect { background-color: #ffebee !important; border-color: var(--incorrect-color) !important; }
+        
+        .hint {
+            font-weight: normal;
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #fffde7;
+            border-left: 4px solid #fbc02d;
+            border-radius: 4px;
+            display: none;
+        }
+        
+        .solution {
+            display: none;
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #fce4ec;
+            border-left: 4px solid var(--primary-color);
+            border-radius: 4px;
+        }
+
+        .action-button {
+            display: inline-block;
+            padding: 12px 24px;
+            font-size: 1em;
+            font-weight: bold;
+            color: white;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .action-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .self-study-textarea, .short-answer-input {
+            padding: 12px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            width: calc(100% - 26px);
+            font-family: inherit;
+            font-size: 1em;
+            transition: border-color 0.2s;
+        }
+        .self-study-textarea:focus, .short-answer-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+        .self-study-textarea { min-height: 120px; resize: vertical; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>CHUYÊN ĐỀ 1: LIPID VÀ CHẤT BÉO</h1>
+
+    <!-- =============================================================== -->
+    <!-- PHẦN I: KIẾN THỨC CẦN NHỚ -->
+    <!-- =============================================================== -->
+    <h2>I. KIẾN THỨC CẦN NHỚ</h2>
+    <button type="button" class="collapsible">1. Lipid và Chất béo</button>
+    <div class="content">
+        <div class="content-inner">
+            <h3>a. Lipid</h3>
+            <p>Là hợp chất hữu cơ có trong tế bào sống, không tan trong nước nhưng tan trong dung môi hữu cơ. Gồm chất béo, sáp, steroid,...</p>
+            <h3>b. Chất béo</h3>
+            <p>Là triester của glycerol (C₃H₅(OH)₃) và các acid béo. Công thức chung: (RCOO)₃C₃H₅.</p>
+            <p><strong>Ví dụ:</strong> Tristearin ((C₁₇H₃₅COO)₃C₃H₅), Tripalmitin ((C₁₅H₃₁COO)₃C₃H₅).</p>
+        </div>
+    </div>
+    <button type="button" class="collapsible">2. Tính chất hóa học của chất béo</button>
+    <div class="content">
+        <div class="content-inner">
+            <h3>a. Phản ứng thủy phân trong môi trường acid</h3>
+            <p>Khi đun nóng với nước (xúc tác acid), chất béo bị thủy phân tạo ra glycerol và các acid béo.</p>
+            <code>(RCOO)₃C₃H₅ + 3H₂O --(H⁺, t°)--> C₃H₅(OH)₃ + 3RCOOH</code>
+            <h3>b. Phản ứng xà phòng hóa</h3>
+            <p>Khi đun nóng với dung dịch kiềm (NaOH, KOH), chất béo bị thủy phân tạo ra glycerol và muối của các acid béo (xà phòng).</p>
+            <code>(RCOO)₃C₃H₅ + 3NaOH --(t°)--> C₃H₅(OH)₃ + 3RCOONa</code>
+        </div>
+    </div>
+
+    <!-- =============================================================== -->
+    <!-- PHẦN II: BÀI TẬP TỰ LUẬN -->
+    <!-- =============================================================== -->
+    <h2>II. BÀI TẬP TỰ LUẬN</h2>
+    <div class="exercise-block">
+        <p class="question-text">Câu 1. Viết công thức cấu tạo thu gọn của tristearin và tripalmitin.</p>
+        <textarea class="self-study-textarea" placeholder="Viết công thức..."></textarea>
+    </div>
+    <div class="exercise-block">
+        <p class="question-text">Câu 2. Nêu sự khác nhau về trạng thái và thành phần cấu tạo của dầu ăn và mỡ động vật.</p>
+        <textarea class="self-study-textarea" placeholder="Trình bày sự khác nhau..."></textarea>
+    </div>
+    <div class="exercise-block">
+        <p class="question-text">Câu 3. Viết phương trình hóa học của phản ứng xà phòng hóa tristearin ((C₁₇H₃₅COO)₃C₃H₅) bằng dung dịch NaOH.</p>
+        <textarea class="self-study-textarea" placeholder="Viết phương trình..."></textarea>
+    </div>
+
+    <!-- =============================================================== -->
+    <!-- PHẦN III: BÀI TẬP TÍNH TOÁN -->
+    <!-- =============================================================== -->
+    <h2>III. BÀI TẬP TÍNH TOÁN</h2>
+    <div class="exercise-block">
+        <p class="question-text"><strong>Bài 1.</strong> Đun nóng 8.9 gam tristearin ((C₁₇H₃₅COO)₃C₃H₅) với dung dịch NaOH dư. Tính khối lượng glycerol (C₃H₅(OH)₃) thu được. (Cho M<sub>tristearin</sub>=890, M<sub>glycerol</sub>=92).</p>
+        <textarea class="self-study-textarea" placeholder="Nhập lời giải của bạn..."></textarea>
+        <button class="action-button toggle-solution-btn">Xem hướng dẫn giải</button>
+        <div class="solution">
+            <p><strong>Bước 1: Tính số mol tristearin</strong></p>
+            <p>n<sub>tristearin</sub> = m / M = 8.9 / 890 = 0.01 mol</p>
+            <p><strong>Bước 2: Viết phương trình phản ứng xà phòng hóa</strong></p>
+            <p>(C₁₇H₃₅COO)₃C₃H₅ + 3NaOH → C₃H₅(OH)₃ + 3C₁₇H₃₅COONa</p>
+            <p><strong>Bước 3: Tính số mol glycerol theo phương trình</strong></p>
+            <p>Theo phương trình, 1 mol tristearin tạo ra 1 mol glycerol.</p>
+            <p>Vậy, n<sub>glycerol</sub> = n<sub>tristearin</sub> = 0.01 mol</p>
+            <p><strong>Bước 4: Tính khối lượng glycerol</strong></p>
+            <p>m<sub>glycerol</sub> = n * M = 0.01 * 92 = <strong>0.92 gam</strong></p>
+        </div>
+    </div>
+    <div class="exercise-block">
+        <p class="question-text"><strong>Bài 2.</strong> Xà phòng hóa hoàn toàn 17.24 gam chất béo cần vừa đủ 0.06 mol NaOH. Tính khối lượng muối (xà phòng) thu được.</p>
+        <textarea class="self-study-textarea" placeholder="Nhập lời giải của bạn..."></textarea>
+        <button class="action-button toggle-solution-btn">Xem hướng dẫn giải</button>
+        <div class="solution">
+            <p><strong>Bước 1: Viết phương trình tổng quát</strong></p>
+            <p>(RCOO)₃C₃H₅ + 3NaOH → C₃H₅(OH)₃ + 3RCOONa</p>
+            <p><strong>Bước 2: Tính số mol glycerol và chất béo</strong></p>
+            <p>Theo phương trình, n<sub>glycerol</sub> = n<sub>NaOH</sub> / 3 = 0.06 / 3 = 0.02 mol</p>
+            <p>n<sub>chất béo</sub> = n<sub>glycerol</sub> = 0.02 mol</p>
+            <p><strong>Bước 3: Áp dụng định luật bảo toàn khối lượng</strong></p>
+            <p>m<sub>chất béo</sub> + m<sub>NaOH</sub> = m<sub>glycerol</sub> + m<sub>muối</sub></p>
+            <p>17.24 + (0.06 * 40) = (0.02 * 92) + m<sub>muối</sub></p>
+            <p>17.24 + 2.4 = 1.84 + m<sub>muối</sub></p>
+            <p><strong>Bước 4: Tính khối lượng muối</strong></p>
+            <p>m<sub>muối</sub> = 17.24 + 2.4 - 1.84 = <strong>17.8 gam</strong></p>
+        </div>
+    </div>
+
+    <!-- =============================================================== -->
+    <!-- PHẦN IV: BÀI TẬP TRẮC NGHIỆM -->
+    <!-- =============================================================== -->
+    <h2>IV. BÀI TẬP TRẮC NGHIỆM</h2>
+    <div class="exercise-block" id="interactive-quiz">
+        <!-- Questions will be inserted here by JS -->
+    </div>
+    <button class="action-button" onclick="checkAllAnswers()">Kiểm tra đáp án trắc nghiệm</button>
+
+</div>
+
+<script>
+    const quizData = [
+        {
+            type: 'mcq',
+            question: 'Câu 1. Chất béo là triester của glycerol và chất nào sau đây?',
+            options: ['Alcohol', 'Acid béo', 'Amino acid', 'Glucose'],
+            answer: 'Acid béo',
+            hint: 'Theo định nghĩa, chất béo được tạo thành từ glycerol và các acid béo.'
+        },
+        {
+            type: 'mcq',
+            question: 'Câu 2. Phản ứng xà phòng hóa là phản ứng thủy phân chất béo trong môi trường:',
+            options: ['Acid', 'Kiềm', 'Nước', 'Trung tính'],
+            answer: 'Kiềm',
+            hint: 'Phản ứng thủy phân chất béo trong môi trường kiềm (NaOH, KOH) được gọi là phản ứng xà phòng hóa.'
+        },
+        {
+            type: 'mcq',
+            question: 'Câu 3. Xà phòng hóa hoàn toàn 8.9 gam tristearin ((C₁₇H₃₅COO)₃C₃H₅) cần bao nhiêu gam NaOH?',
+            options: ['1.2 gam', '2.4 gam', '0.8 gam', '1.6 gam'],
+            answer: '1.2 gam',
+            hint: 'n(tristearin) = 8.9/890 = 0.01 mol. PTHH: (C₁₇H₃₅COO)₃C₃H₅ + 3NaOH → ... n(NaOH) = 0.01 * 3 = 0.03 mol. m(NaOH) = 0.03 * 40 = 1.2 gam.'
+        },
+        {
+            type: 'tf',
+            question: 'Câu 4. Dầu ăn và mỡ động vật đều không tan trong nước.',
+            answer: true,
+            hint: 'Đúng. Đây là tính chất vật lí chung của chất béo, chúng nhẹ hơn nước và không tan trong nước.'
+        },
+        {
+            type: 'tf',
+            question: 'Câu 5. Thủy phân chất béo trong môi trường acid là phản ứng một chiều.',
+            answer: false,
+            hint: 'Sai. Phản ứng thủy phân chất béo trong môi trường acid là phản ứng thuận nghịch (hai chiều).'
+        },
+        {
+            type: 'sa',
+            question: 'Câu 6. Đun nóng 1 mol chất béo với dung dịch NaOH dư thì thu được bao nhiêu mol glycerol?',
+            answer: '1',
+            hint: 'Theo phương trình phản ứng xà phòng hóa, tỉ lệ mol giữa chất béo và glycerol luôn là 1:1.'
+        },
+        {
+            type: 'sa',
+            question: 'Câu 7. Khối lượng phân tử của glycerol (C₃H₅(OH)₃) là bao nhiêu?',
+            answer: '92',
+            hint: 'M = 12*3 + 1*5 + (16+1)*3 = 92 amu.'
+        }
+    ];
+
+    function renderQuiz() {
+        const container = document.getElementById('interactive-quiz');
+        let html = '';
+        quizData.forEach((item, index) => {
+            html += `<div class="question-block" id="q-${index}">`;
+            html += `<h3 class="question-text">${item.question}</h3>`;
+            if (item.type === 'mcq') {
+                html += '<div class="options-grid">';
+                item.options.forEach(opt => {
+                    html += `<div class="option" onclick="selectOption(this, ${index})">${opt}</div>`;
+                });
+                html += '</div>';
+            } else if (item.type === 'tf') {
+                 html += `<div class="options-grid">
+                            <div class="option" onclick="selectOption(this, ${index})">Đúng</div>
+                            <div class="option" onclick="selectOption(this, ${index})">Sai</div>
+                          </div>`;
+            } else if (item.type === 'sa') {
+                html += `<input type="text" class="short-answer-input" placeholder="Nhập đáp án của bạn (chỉ điền số)...">`;
+            }
+            html += `<div class="hint" id="hint-${index}"></div>`;
+            html += `</div>`;
+        });
+        container.innerHTML = html;
+    }
+
+    let userAnswers = {};
+
+    function selectOption(element, index) {
+        const parent = element.parentElement;
+        Array.from(parent.children).forEach(child => child.classList.remove('selected'));
+        element.classList.add('selected');
+        userAnswers[index] = element.textContent.trim();
+    }
+    
+    function checkAllAnswers() {
+        quizData.forEach((item, index) => {
+            const questionBlock = document.getElementById(`q-${index}`);
+            const hintBox = document.getElementById(`hint-${index}`);
+            let isCorrect = false;
+
+            if (item.type === 'mcq' || item.type === 'tf') {
+                const selectedOption = questionBlock.querySelector('.option.selected');
+                if (selectedOption) {
+                    let answer = userAnswers[index];
+                    if (item.type === 'tf') {
+                        answer = (answer === 'Đúng');
+                    }
+                    if (answer === item.answer) {
+                        isCorrect = true;
+                    }
+                }
+                 if(isCorrect) {
+                    selectedOption.classList.add('correct');
+                } else {
+                    if(selectedOption) selectedOption.classList.add('incorrect');
+                    hintBox.textContent = item.hint;
+                    hintBox.style.display = 'block';
+                }
+            } else if (item.type === 'sa') {
+                const input = questionBlock.querySelector('input');
+                let userAnswer = input.value.trim().toLowerCase();
+                if (userAnswer === item.answer.toLowerCase()) {
+                    isCorrect = true;
+                }
+                 if(isCorrect) {
+                    input.classList.add('correct');
+                } else {
+                    input.classList.add('incorrect');
+                    hintBox.textContent = item.hint;
+                    hintBox.style.display = 'block';
+                }
+            }
+        });
+    }
+
+    // --- Script for Collapsible Sections ---
+    const collapsibles = document.getElementsByClassName("collapsible");
+    for (let i = 0; i < collapsibles.length; i++) {
+        collapsibles[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            const content = this.nextElementSibling;
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+            }
+        });
+    }
+    
+    // --- Script for Toggling Solutions ---
+    function setupSolutionToggles() {
+        const solutionButtons = document.getElementsByClassName("toggle-solution-btn");
+        for (let i = 0; i < solutionButtons.length; i++) {
+            solutionButtons[i].addEventListener("click", function() {
+                const solution = this.nextElementSibling;
+                if (solution.style.display === "block") {
+                    solution.style.display = "none";
+                    this.textContent = "Xem hướng dẫn giải";
+                } else {
+                    solution.style.display = "block";
+                    this.textContent = "Ẩn hướng dẫn giải";
+                }
+            });
+        }
+    }
+
+    window.onload = () => {
+        renderQuiz();
+        setupSolutionToggles();
+    };
+</script>
+
+</body>
+</html>
