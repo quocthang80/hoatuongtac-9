@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 32: Hóa học vỏ Trái Đất và Khai thác tài nguyên</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.7;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 25px auto;
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+        }
+        .header {
+            text-align: center;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            color: #004b23;
+            margin: 0;
+        }
+        h2 {
+            background-color: #006400;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            margin-top: 40px;
+        }
+        h3 {
+            color: #004b23;
+            border-left: 5px solid #38b000;
+            padding-left: 15px;
+        }
+        .knowledge-point {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+        .exercise-block {
+            margin-bottom: 25px;
+            padding: 20px;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            background-color: #ffffff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .question-title {
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-top: 0;
+        }
+        .options label {
+            display: block;
+            margin: 10px 0;
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            border: 1px solid #ddd;
+        }
+        .options label:hover {
+            background-color: #f0fff0;
+            border-color: #70e000;
+        }
+        input[type="radio"] {
+            margin-right: 12px;
+        }
+        .solution, .answer {
+            display: none;
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #f0fdf4;
+            border-left: 5px solid #22c55e;
+            border-radius: 5px;
+        }
+        .btn {
+            background-color: #6c757d;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            margin-top: 10px;
+            transition: background-color 0.3s, transform 0.1s;
+        }
+        .btn:hover {
+            background-color: #5a6268;
+            transform: translateY(-2px);
+        }
+        .button-container {
+            text-align: center;
+            margin-top: 40px;
+        }
+        .check-all-btn {
+            background-color: #008000;
+            font-size: 1.2em;
+            padding: 15px 30px;
+        }
+        .check-all-btn:hover {
+            background-color: #006400;
+        }
+        .correct {
+            background-color: #dcfce7 !important;
+            border-color: #4ade80 !important;
+            color: #15803d;
+        }
+        .incorrect {
+            background-color: #fee2e2 !important;
+            border-color: #f87171 !important;
+            color: #b91c1c;
+        }
+        .feedback {
+            font-weight: bold;
+            margin-left: 15px;
+            color: #15803d;
+        }
+        .chemical-formula {
+            font-family: 'Consolas', 'Courier New', monospace;
+            background-color: #e9ecef;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+            color: #c9184a;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">
+            <h1>BÀI 32: SƠ LƯỢC VỀ HÓA HỌC VỎ TRÁI ĐẤT VÀ KHAI THÁC TÀI NGUYÊN</h1>
+        </div>
+
+        <form id="quiz-form">
+            <h2>PHẦN I: KIẾN THỨC CẦN NHỚ</h2>
+            <div class="knowledge-point"><strong>1. Thành phần vỏ Trái Đất:</strong> Gồm các khoáng chất tạo nên từ các nguyên tố. Hai nguyên tố có hàm lượng lớn nhất là <strong>Oxygen (O)</strong> và <strong>Silicon (Si)</strong>. Các kim loại phổ biến gồm Al, Fe, Ca, Mg,...</div>
+            <div class="knowledge-point"><strong>2. Dạng tồn tại:</strong> Các nguyên tố thường tồn tại ở dạng hợp chất như <strong>oxide</strong> (thạch anh SiO₂, quặng bauxite Al₂O₃) và <strong>muối</strong> (đá vôi CaCO₃). Một số ít tồn tại ở dạng đơn chất (vàng, bạc).</div>
+            <div class="knowledge-point"><strong>3. Tài nguyên từ vỏ Trái Đất:</strong> Gồm <strong>quặng</strong> (cung cấp kim loại), <strong>nhiên liệu hóa thạch</strong> (than, dầu mỏ), và <strong>khoáng sản phi kim loại</strong> (cát, đá vôi).</div>
+            <div class="knowledge-point"><strong>4. Khai thác tài nguyên:</strong> Là quá trình lấy tài nguyên từ vỏ Trái Đất, thường bằng phương pháp khai thác mỏ.</div>
+            <div class="knowledge-point"><strong>5. Phát triển bền vững:</strong> Việc khai thác tài nguyên cần đi đôi với bảo vệ môi trường, tiết kiệm, tái sử dụng và tái chế để đảm bảo sự phát triển lâu dài.</div>
+
+            <h2>PHẦN II: BÀI TẬP TỰ LUẬN TÍNH TOÁN</h2>
+            <div class="exercise-block">
+                <p class="question-title"><b>Bài toán:</b> Quặng bauxite dùng để sản xuất nhôm (Al) có thành phần chính là <span class="chemical-formula">Al₂O₃</span>. Một nhà máy cần sản xuất 10,8 tấn nhôm.
+                <br>a. Viết phương trình hóa học của phản ứng điện phân nóng chảy <span class="chemical-formula">Al₂O₃</span>.
+                <br>b. Tính khối lượng <span class="chemical-formula">Al₂O₃</span> cần dùng, biết hiệu suất của quá trình sản xuất là 90%.
+                <br><i>(Cho: Al=27, O=16)</i></p>
+                <button type="button" class="btn" onclick="toggleElementVisibility(this.nextElementSibling)">Xem hướng dẫn giải</button>
+                <div class="solution">
+                    <p><b>Hướng dẫn giải:</b></p>
+                    <p><b>Bước 1: Viết PTHH và đổi đơn vị.</b></p>
+                    <ul>
+                        <li>Phương trình hóa học: <span class="chemical-formula">2Al₂O₃ --(đpnc, criolit)--> 4Al + 3O₂</span></li>
+                        <li>Đổi khối lượng Al: 10,8 tấn = 10 800 000 gam.</li>
+                    </ul>
+                    <p><b>Bước 2: Tính số mol Al thực tế thu được.</b></p>
+                    <ul>
+                        <li>Số mol Al: <span class="chemical-formula">n<sub>Al</sub> = m / M = 10 800 000 / 27 = 400 000 (mol)</span>.</li>
+                    </ul>
+                    <p><b>Bước 3: Tính khối lượng Al₂O₃ theo lý thuyết.</b></p>
+                    <ul>
+                         <li>Theo PTHH, tỉ lệ mol: n<sub>Al₂O₃</sub> = (2/4) × n<sub>Al</sub> = (1/2) × 400 000 = 200 000 (mol).</li>
+                         <li>Khối lượng mol của Al₂O₃: M = 27×2 + 16×3 = 102 (g/mol).</li>
+                         <li>Khối lượng Al₂O₃ (lý thuyết): m<sub>lt</sub> = 200 000 × 102 = 20 400 000 (gam) = 20,4 (tấn).</li>
+                    </ul>
+                    <p><b>Bước 4: Tính khối lượng Al₂O₃ thực tế cần dùng (Câu b).</b></p>
+                    <ul>
+                         <li>Vì hiệu suất H = 90%, nên lượng thực tế cần dùng sẽ lớn hơn lý thuyết.</li>
+                         <li>m<sub>thực tế</sub> = (m<sub>lý thuyết</sub> / H) × 100% = (20,4 / 90) × 100% ≈ 22,67 (tấn).</li>
+                    </ul>
+                    <p><b>Kết luận:</b> Khối lượng <span class="chemical-formula">Al₂O₃</span> thực tế cần dùng là khoảng <strong>22,67 tấn</strong>.</p>
+                </div>
+            </div>
+            
+            <h2>PHẦN III. CÂU HỎI TỰ LUẬN</h2>
+            <div id="self-study-container"></div>
+
+            <h2>PHẦN IV. CÂU TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN</h2>
+            <div id="mcq-container"></div>
+
+            <div class="button-container">
+                <button type="button" class="btn check-all-btn" onclick="checkMCQ()">Kiểm tra trắc nghiệm</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        const selfStudyData = [
+            { q: "Câu 1. Nêu tên hai nguyên tố hoá học có hàm lượng cao nhất trong vỏ Trái Đất.", a: "Hai nguyên tố có hàm lượng cao nhất là Oxygen và Silicon." },
+            { q: "Câu 2. Kể tên một số dạng tồn tại của các nguyên tố trong vỏ Trái Đất.", a: "Các nguyên tố thường tồn tại ở dạng hợp chất như oxide (SiO₂, Al₂O₃), muối (CaCO₃). Một số ít ở dạng đơn chất (Au, Ag)." },
+            { q: "Câu 3. Kể tên một số loại tài nguyên được khai thác từ vỏ Trái Đất.", a: "Quặng (sắt, bauxite), nhiên liệu hóa thạch (than đá, dầu mỏ), khoáng sản phi kim loại (đá vôi, cát)." },
+            { q: "Câu 4. Nêu một số ứng dụng của đá vôi.", a: "Sản xuất xi măng, vôi sống, làm vật liệu xây dựng, sản xuất thủy tinh." },
+            { q: "Câu 5. Vì sao cần phải khai thác và sử dụng tài nguyên một cách hợp lí?", a: "Vì tài nguyên không phải là vô tận, việc khai thác quá mức sẽ làm cạn kiệt tài nguyên, gây ô nhiễm môi trường và ảnh hưởng đến sự phát triển bền vững." },
+            { q: "Câu 6. Nêu một số biện pháp nhằm khai thác và sử dụng tài nguyên hiệu quả, bền vững.", a: "Sử dụng tiết kiệm, tái sử dụng, tái chế, tìm kiếm vật liệu thay thế, phát triển công nghệ khai thác sạch." },
+            { q: "Câu 7. Nêu một số tác động tiêu cực đến môi trường của việc khai thác tài nguyên.", a: "Gây ô nhiễm không khí (bụi, khí thải), ô nhiễm nước, ô nhiễm đất, phá hủy hệ sinh thái, gây sạt lở đất." },
+            { q: "Câu 8. Vì sao việc sản xuất nhôm từ quặng bauxite lại tiêu tốn nhiều năng lượng?", a: "Vì quá trình điện phân nóng chảy Al₂O₃ đòi hỏi nhiệt độ rất cao và lượng điện năng lớn để phá vỡ liên kết bền vững trong phân tử." },
+            { q: "Câu 9. Vì sao việc tiết kiệm và bảo vệ tài nguyên lại phục vụ cho sự phát triển bền vững?", a: "Vì nó giúp bảo vệ môi trường, tiết kiệm chi phí, đảm bảo nguồn tài nguyên cho các thế hệ tương lai, nâng cao hiệu quả kinh tế." },
+            { q: "Câu 10. Trình bày một số lợi ích của việc khai thác tài nguyên trong vỏ Trái Đất.", a: "Cung cấp vật liệu xây dựng (thép), nguyên liệu cho công nghiệp hóa chất (lưu huỳnh, cát), và nhiên liệu (than, dầu) cho sản xuất và sinh hoạt." },
+            { q: "Câu 11. Vì sao vàng, bạc thường được tìm thấy ở dạng đơn chất trong tự nhiên?", a: "Vì vàng (Au) và bạc (Ag) là các kim loại kém hoạt động hóa học, chúng khó bị oxy hóa và ít tham gia phản ứng với các chất khác trong môi trường." },
+            { q: "Câu 12. Nêu một số ví dụ về việc tái chế kim loại.", a: "Thu gom lon nhôm, sắt thép phế liệu để nấu lại và sản xuất ra các sản phẩm mới." },
+            { q: "Câu 13. Giải thích vì sao cát (SiO₂) là nguyên liệu quan trọng trong ngành sản xuất thuỷ tinh.", a: "Vì thủy tinh có thành phần chính là natri silicat và canxi silicat, được tạo ra bằng cách nấu chảy cát (SiO₂) với soda (Na₂CO₃) và đá vôi (CaCO₃) ở nhiệt độ cao." },
+            { q: "Câu 14. Nêu vai trò của nhiên liệu hoá thạch đối với đời sống và sản xuất.", a: "Cung cấp năng lượng cho các nhà máy điện, phương tiện giao thông, máy móc sản xuất và các hoạt động sinh hoạt hàng ngày (đun nấu, sưởi ấm)." },
+            { q: "Câu 15. Tác động đa chiều của việc khai thác than đá là gì?", a: "Tích cực: Cung cấp nhiên liệu, tạo việc làm, phát triển kinh tế. Tiêu cực: Gây ô nhiễm không khí (bụi, SO₂), ô nhiễm nước, sụt lún đất, ảnh hưởng sức khỏe người lao động." }
+        ];
+
+        const mcqData = [
+            { q: "Câu 1. Nguyên tố nào sau đây có hàm lượng lớn nhất trong vỏ Trái Đất?", o: ["Silicon", "Aluminium", "Iron", "Oxygen"], a: "D" },
+            { q: "Câu 2. Thành phần chính của đá vôi là", o: ["SiO₂", "CaCO₃", "Al₂O₃", "Fe₂O₃"], a: "B" },
+            { q: "Câu 3. Quặng bauxite là nguồn nguyên liệu chính để sản xuất kim loại nào?", o: ["Sắt", "Đồng", "Nhôm", "Kẽm"], a: "C" },
+            { q: "Câu 4. Nhiên liệu nào sau đây không phải là nhiên liệu hóa thạch?", o: ["Than đá", "Dầu mỏ", "Khí thiên nhiên", "Gỗ"], a: "D" },
+            { q: "Câu 5. Phương pháp nào thường được dùng để sản xuất nhôm từ quặng?", o: ["Nhiệt luyện", "Thủy luyện", "Điện phân dung dịch", "Điện phân nóng chảy"], a: "D" },
+            { q: "Câu 6. Việc làm nào sau đây thể hiện việc sử dụng tài nguyên bền vững?", o: ["Khai thác tối đa khoáng sản", "Sử dụng túi nylon một lần", "Tái chế chai nhựa", "Đốt rác thải bừa bãi"], a: "C" },
+            { q: "Câu 7. Kim loại nào sau đây thường được tìm thấy ở dạng đơn chất trong tự nhiên?", o: ["Sắt", "Nhôm", "Vàng", "Natri"], a: "C" },
+            { q: "Câu 8. Tác động tiêu cực nào của việc khai thác mỏ thường ảnh hưởng trực tiếp đến không khí?", o: ["Ô nhiễm nguồn nước ngầm", "Sạt lở đất", "Phát sinh bụi và khí thải", "Suy giảm đa dạng sinh học"], a: "C" },
+            { q: "Câu 9. Vật liệu composite là sự kết hợp của", o: ["Hai kim loại khác nhau", "Kim loại và phi kim", "Vật liệu nền và vật liệu cốt", "Chất dẻo và cao su"], a: "C" },
+            { q: "Câu 10. Nguyên liệu chính để sản xuất thủy tinh là", o: ["Đá vôi", "Quặng sắt", "Cát thạch anh", "Than đá"], a: "C" },
+            { q: "Câu 11. Phát biểu nào sau đây không đúng?", o: ["Tài nguyên khoáng sản là vô tận.", "Cần phải tái chế kim loại để tiết kiệm tài nguyên.", "Khai thác khoáng sản có thể gây ô nhiễm môi trường.", "Silicon là nguyên tố phổ biến thứ hai trong vỏ Trái Đất."], a: "A" },
+            { q: "Câu 12. Việc sử dụng xăng sinh học E5 (chứa ethanol) góp phần", o: ["Tăng lượng phát thải CO₂.", "Giảm sự phụ thuộc vào nhiên liệu hóa thạch.", "Làm cạn kiệt nhanh nguồn dầu mỏ.", "Gây ô nhiễm môi trường nhiều hơn."], a: "B" },
+            { q: "Câu 13. Quá trình nào sau đây không phải là khai thác tài nguyên từ vỏ Trái Đất?", o: ["Khai thác than ở Quảng Ninh", "Khai thác dầu khí ở thềm lục địa", "Sản xuất muối từ nước biển", "Khai thác quặng sắt ở Thái Nguyên"], a: "C" },
+            { q: "Câu 14. “Vàng đen” là tên thường gọi của loại tài nguyên nào?", o: ["Than đá", "Dầu mỏ", "Quặng sắt", "Kim cương"], a: "B" },
+            { q: "Câu 15. Để phát triển bền vững, cần ưu tiên sử dụng nguồn năng lượng nào sau đây?", o: ["Năng lượng từ than đá", "Năng lượng từ dầu mỏ", "Năng lượng hạt nhân", "Năng lượng mặt trời"], a: "D" }
+        ];
+
+        function renderQuiz() {
+            const selfStudyContainer = document.getElementById('self-study-container');
+            selfStudyData.forEach((item, index) => {
+                selfStudyContainer.innerHTML += `<div class="exercise-block"><p class="question-title">${item.q}</p><button type="button" class="btn" onclick="toggleElementVisibility(this.nextElementSibling)">Xem Đáp án</button><div class="answer">${item.a}</div></div>`;
+            });
+            
+            const mcqContainer = document.getElementById('mcq-container');
+            mcqData.forEach((item, index) => {
+                const optionsHTML = item.o.map((opt, i) => `<label><input type="radio" name="q_mcq_${index}" value="${String.fromCharCode(65 + i)}"> ${String.fromCharCode(65 + i)}. ${opt}</label>`).join('');
+                mcqContainer.innerHTML += `<div class="exercise-block" data-answer="${item.a}"><p class="question-title">${item.q}</p><div class="options">${optionsHTML}</div></div>`;
+            });
+        }
+
+        function checkMCQ() {
+            const mcqBlocks = document.querySelectorAll('#mcq-container .exercise-block');
+            mcqBlocks.forEach((block) => {
+                const correctAnswer = block.dataset.answer;
+                const selectedRadio = block.querySelector(`input[type="radio"]:checked`);
+                const options = block.querySelectorAll('.options label');
+                options.forEach(label => {
+                    label.classList.remove('correct', 'incorrect');
+                    const feedback = label.querySelector('.feedback');
+                    if (feedback) feedback.remove();
+                });
+                
+                if (selectedRadio) {
+                    const selectedLabel = selectedRadio.parentElement;
+                    if (selectedRadio.value === correctAnswer) {
+                        selectedLabel.classList.add('correct');
+                    } else {
+                        selectedLabel.classList.add('incorrect');
+                        options.forEach(label => {
+                            if (label.querySelector('input').value === correctAnswer) {
+                                label.innerHTML += ' <span class="feedback">(Đáp án đúng)</span>';
+                            }
+                        });
+                    }
+                }
+            });
+        }
+        
+        function toggleElementVisibility(element) {
+            const button = element.previousElementSibling;
+            if (element.style.display === 'block') {
+                element.style.display = 'none';
+                button.textContent = button.textContent.replace('Ẩn', 'Xem');
+            } else {
+                element.style.display = 'block';
+                button.textContent = button.textContent.replace('Xem', 'Ẩn');
+            }
+        }
+
+        window.onload = renderQuiz;
+    </script>
+</body>
+</html>
