@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chuyển đổi Mol & Khối lượng</title>
+    <style>
+        /* BẮT ĐẦU PHẦN CSS */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding-top: 30px;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 90%;
+            max-width: 700px;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 25px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            text-align: left; /* Align labels to left */
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center content within group */
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        .input-group input[type="text"],
+        .input-group input[type="number"] {
+            width: calc(100% - 22px);
+            max-width: 300px;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1em;
+            text-align: center;
+        }
+
+        .input-group select {
+            margin-bottom: 15px; 
+            padding: 8px; 
+            border-radius: 4px;
+            width: calc(100% - 22px);
+            max-width: 300px;
+            font-size: 1em;
+        }
+
+
+        .input-group button {
+            padding: 10px 25px;
+            background-color: #28a745; /* Green for calculate */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .input-group button:hover {
+            background-color: #218838;
+        }
+
+        .result-display {
+            background-color: #e9e9e9;
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 30px;
+            font-size: 1.2em;
+            min-height: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #ddd;
+        }
+
+        .result-display p {
+            margin: 5px 0;
+        }
+
+        .error-message {
+            color: red;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+            .input-group input,
+            .input-group select {
+                width: 90%;
+            }
+        }
+        /* KẾT THÚC PHẦN CSS */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Chuyển đổi Mol & Khối lượng</h1>
+        <div class="input-group">
+            <label for="formulaInput">Công thức hóa học:</label>
+            <input type="text" id="formulaInput" placeholder="Ví dụ: H2O, Cu(NO3)2, Al2(SO4)3">
+            
+            <label for="valueInput">Giá trị (Mol hoặc Khối lượng):</label>
+            <input type="number" id="valueInput" placeholder="Nhập giá trị số">
+            
+            <label for="conversionType">Chuyển đổi:</label>
+            <select id="conversionType">
+                <option value="molesToMass">Mol → Khối lượng (gam)</option>
+                <option value="massToMoles">Khối lượng (gam) → Mol</option>
+            </select>
+
+            <button id="convertButton">Chuyển đổi</button>
+            <p id="errorMessage" class="error-message"></p>
+        </div>
+
+        <div class="result-display">
+            <p><strong>Khối lượng mol của <span id="displayFormula">...</span>:</strong> <span id="displayMolecularWeight">0.000</span> g/mol</p>
+            <p><strong>Kết quả chuyển đổi:</strong> <span id="conversionResult">0.000</span> <span id="resultUnit"></span></p>
+        </div>
+    </div>
+
+    <script>
+        /* BẮT ĐẦU PHẦN JAVASCRIPT */
+
+        // Khối lượng nguyên tử tương đối của các nguyên tố phổ biến
+        const atomicWeights = {
+            'H': 1.008, 'He': 4.0026, 'Li': 6.94, 'Be': 9.0122, 'B': 10.81, 'C': 12.011, 'N': 14.007,
+            'O': 15.999, 'F': 18.998, 'Ne': 20.180, 'Na': 22.990, 'Mg': 24.305, 'Al': 26.982,
+            'Si': 28.085, 'P': 30.974, 'S': 32.06, 'Cl': 35.45, 'Ar': 39.948, 'K': 39.098,
+            'Ca': 40.078, 'Sc': 44.956, 'Ti': 47.867, 'V': 50.942, 'Cr': 51.996, 'Mn': 54.938,
+            'Fe': 55.845, 'Co': 58.933, 'Ni': 58.693, 'Cu': 63.546, 'Zn': 65.38, 'Ga': 69.723,
+            'Ge': 72.63, 'As': 74.922, 'Se': 78.971, 'Br': 79.904, 'Kr': 83.798, 'Rb': 85.468,
+            'Sr': 87.62, 'Y': 88.906, 'Zr': 91.224, 'Nb': 92.906, 'Mo': 95.96, 'Tc': 98,
+            'Ru': 101.07, 'Rh': 102.91, 'Pd': 106.42, 'Ag': 107.87, 'Cd': 112.41, 'In': 114.82,
+            'Sn': 118.71, 'Sb': 121.76, 'I': 126.90, 'Xe': 131.29, 'Cs': 132.91, 'Ba': 137.33,
+            'La': 138.91, 'Ce': 140.12, 'Pr': 140.91, 'Nd': 144.24, 'Pm': 145, 'Sm': 150.36,
+            'Eu': 151.96, 'Gd': 157.25, 'Tb': 158.93, 'Dy': 162.50, 'Ho': 164.93, 'Er': 167.26,
+            'Tm': 168.93, 'Yb': 173.05, 'Lu': 174.97, 'Hf': 178.49, 'Ta': 180.95, 'W': 183.84,
+            'Re': 186.21, 'Os': 190.23, 'Ir': 192.22, 'Pt': 195.08, 'Au': 196.97, 'Hg': 200.59,
+            'Tl': 204.38, 'Pb': 207.2, 'Bi': 208.98, 'Po': 209, 'At': 210, 'Rn': 222,
+            'Fr': 223, 'Ra': 226, 'Ac': 227, 'Th': 232.04, 'Pa': 231.04, 'U': 238.03,
+        };
+
+        const formulaInput = document.getElementById('formulaInput');
+        const valueInput = document.getElementById('valueInput');
+        const conversionType = document.getElementById('conversionType');
+        const convertButton = document.getElementById('convertButton');
+        const errorMessage = document.getElementById('errorMessage');
+
+        const displayFormula = document.getElementById('displayFormula');
+        const displayMolecularWeight = document.getElementById('displayMolecularWeight');
+        const conversionResult = document.getElementById('conversionResult');
+        const resultUnit = document.getElementById('resultUnit');
+
+        convertButton.addEventListener('click', handleConversion);
+        formulaInput.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                handleConversion();
+            }
+        });
+        valueInput.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                handleConversion();
+            }
+        });
+
+        function showError(message) {
+            errorMessage.textContent = message;
+            displayMolecularWeight.textContent = '0.000';
+            conversionResult.textContent = '0.000';
+            resultUnit.textContent = '';
+        }
+
+        function clearError() {
+            errorMessage.textContent = '';
+        }
+
+        /**
+         * Parses a chemical formula, including basic handling of parentheses.
+         * Returns an object with element counts, or null if parsing fails.
+         * @param {string} formula The chemical formula string (e.g., "H2O", "Cu(NO3)2").
+         * @returns {Object|null} An object mapping element symbols to their counts, or null on error.
+         */
+        function parseFormula(formula) {
+            const elements = {};
+            // Remove all whitespace
+            formula = formula.replace(/\s/g, '');
+
+            // Regular expression to match:
+            // 1. An element symbol (e.g., H, Cl, Fe)
+            // 2. Or a group in parentheses (e.g., (NO3))
+            // Followed by an optional number
+            const partRegex = /([A-Z][a-z]*|\([A-Za-z0-9]+\))(\d*)/g;
+            let match;
+            let remainingFormula = formula; // Use this to track unparsed parts
+
+            // Loop to handle groups in parentheses until no more are found
+            // This is a simple iterative expansion, not a full recursive parser
+            while (remainingFormula.includes('(')) {
+                const groupRegex = /\(([A-Za-z0-9]+)\)(\d*)/;
+                let groupMatch = groupRegex.exec(remainingFormula);
+                if (groupMatch) {
+                    const groupContent = groupMatch[1]; // e.g., NO3
+                    const groupMultiplier = parseInt(groupMatch[2] || '1'); // e.g., 2
+                    
+                    // Replace the grouped content with its expanded form
+                    let expandedContent = '';
+                    // Need to parse the content within the group to expand it
+                    const tempElements = {};
+                    const innerRegex = /([A-Z][a-z]*)(\d*)/g;
+                    let innerMatch;
+                    while ((innerMatch = innerRegex.exec(groupContent)) !== null) {
+                        const elem = innerMatch[1];
+                        const count = parseInt(innerMatch[2] || '1');
+                        tempElements[elem] = (tempElements[elem] || 0) + count;
+                    }
+                    
+                    for (const elem in tempElements) {
+                        expandedContent += elem + (tempElements[elem] * groupMultiplier);
+                    }
+
+                    // Replace the original group with its expanded, non-grouped form
+                    remainingFormula = remainingFormula.replace(groupMatch[0], expandedContent);
+                } else {
+                    // No valid group found but parentheses exist, likely malformed
+                    showError('Lỗi cú pháp: Dấu ngoặc đơn không khớp hoặc công thức không hợp lệ.');
+                    return null;
+                }
+            }
+
+            // Now, parse the formula that has no parentheses (or has been expanded)
+            let currentPosition = 0;
+            while ((match = partRegex.exec(remainingFormula)) !== null) {
+                // Ensure we don't re-process a group if the regex finds it again
+                // (though after expansion, there shouldn't be groups)
+                if (match[1].startsWith('(')) {
+                    showError('Lỗi cú pháp: Vẫn còn dấu ngoặc đơn sau khi xử lý. Công thức không hợp lệ.');
+                    return null;
+                }
+
+                const element = match[1];
+                const count = parseInt(match[2] || '1');
+
+                if (!atomicWeights[element]) {
+                    showError(`Lỗi: Nguyên tố "${element}" không được nhận dạng hoặc không có trong dữ liệu.`);
+                    return null;
+                }
+
+                elements[element] = (elements[element] || 0) + count;
+                currentPosition = partRegex.lastIndex; // Update position
+            }
+
+            // Check if there are any unparsed characters (e.g., invalid symbols)
+            if (currentPosition !== remainingFormula.length) {
+                // This indicates unparsed characters at the end or in between valid parts
+                showError('Lỗi: Công thức hóa học chứa ký tự không hợp lệ hoặc không được phân tích đầy đủ.');
+                return null;
+            }
+            
+            // Check for empty formula after stripping spaces
+            if (Object.keys(elements).length === 0 && formula.length > 0) {
+                 showError('Lỗi: Công thức hóa học không hợp lệ. Không tìm thấy nguyên tố nào.');
+                 return null;
+            }
+
+
+            return elements;
+        }
+
+        function calculateMolecularWeight(formula) {
+            const parsedElements = parseFormula(formula);
+            if (!parsedElements) {
+                return null; // Error already handled by parseFormula
+            }
+
+            let totalMolecularWeight = 0;
+            for (const element in parsedElements) {
+                const count = parsedElements[element];
+                const weight = atomicWeights[element];
+                totalMolecularWeight += (count * weight);
+            }
+            return totalMolecularWeight;
+        }
+
+        function handleConversion() {
+            clearError();
+            const formula = formulaInput.value.trim();
+            const value = parseFloat(valueInput.value);
+            const type = conversionType.value;
+
+            if (!formula) {
+                showError('Vui lòng nhập công thức hóa học.');
+                return;
+            }
+            if (isNaN(value) || value <= 0) {
+                showError('Vui lòng nhập một giá trị số dương hợp lệ.');
+                return;
+            }
+
+            const molecularWeight = calculateMolecularWeight(formula);
+
+            if (molecularWeight === null || molecularWeight === 0) {
+                // Error already handled by calculateMolecularWeight or parseFormula
+                // Do not show a generic error here, as specific errors are handled by parseFormula
+                return; 
+            }
+
+            displayFormula.textContent = formula;
+            displayMolecularWeight.textContent = molecularWeight.toFixed(3);
+
+            let result;
+            let unit;
+
+            if (type === 'molesToMass') {
+                // Khối lượng = Mol * Khối lượng mol
+                result = value * molecularWeight;
+                unit = 'gam';
+            } else if (type === 'massToMoles') {
+                // Mol = Khối lượng / Khối lượng mol
+                result = value / molecularWeight;
+                unit = 'mol';
+            }
+
+            conversionResult.textContent = result.toFixed(3);
+            resultUnit.textContent = unit;
+        }
+
+        // Initial setup
+        clearError();
+        displayFormula.textContent = '...';
+        displayMolecularWeight.textContent = '0.000';
+        conversionResult.textContent = '0.000';
+        resultUnit.textContent = '';
+
+
+        /* KẾT THÚC PHẦN JAVASCRIPT */
+    </script>
+</body>
+</html>
