@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Phân Biệt Hợp Chất Vô Cơ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .compound-card {
+            transition: all 0.3s ease;
+            cursor: grab;
+        }
+        .compound-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        .drop-zone {
+            transition: all 0.3s ease;
+            min-height: 120px;
+        }
+        .drop-zone.drag-over {
+            background-color: #e0f2fe;
+            border-color: #0284c7;
+            transform: scale(1.02);
+        }
+        .correct-drop {
+            animation: correctPulse 0.6s ease-in-out;
+        }
+        .wrong-drop {
+            animation: wrongShake 0.5s ease-in-out;
+        }
+        @keyframes correctPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        @keyframes wrongShake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+        .celebration {
+            animation: celebrate 1s ease-in-out;
+        }
+        @keyframes celebrate {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            25% { transform: scale(1.1) rotate(-5deg); }
+            75% { transform: scale(1.1) rotate(5deg); }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-gray-800 mb-2">🧪 Game Phân Biệt Hợp Chất Vô Cơ</h1>
+            <p class="text-lg text-gray-600">Kéo thả các hợp chất vào đúng nhóm của chúng!</p>
+        </div>
+
+        <!-- Score and Progress -->
+        <div class="flex justify-center items-center gap-8 mb-8">
+            <div class="bg-white rounded-lg px-6 py-3 shadow-md">
+                <span class="text-sm font-medium text-gray-600">Điểm số:</span>
+                <span id="score" class="text-2xl font-bold text-green-600 ml-2">0</span>
+            </div>
+            <div class="bg-white rounded-lg px-6 py-3 shadow-md">
+                <span class="text-sm font-medium text-gray-600">Còn lại:</span>
+                <span id="remaining" class="text-2xl font-bold text-blue-600 ml-2">12</span>
+            </div>
+            <button id="newGame" class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-lg font-medium transition-colors">
+                🎮 Game Mới
+            </button>
+        </div>
+
+        <!-- Game Board -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- Compounds to Sort -->
+            <div class="bg-white rounded-xl shadow-lg p-6">
+                <h2 class="text-xl font-semibold text-gray-800 mb-4 text-center">🧬 Hợp Chất Cần Phân Loại</h2>
+                <div id="compounds" class="grid grid-cols-2 gap-3">
+                    <!-- Compounds will be generated here -->
+                </div>
+            </div>
+
+            <!-- Drop Zones -->
+            <div class="space-y-4">
+                <!-- Oxide -->
+                <div class="drop-zone bg-white rounded-xl shadow-lg p-4 border-2 border-dashed border-gray-300" data-type="oxide">
+                    <div class="text-center mb-3">
+                        <h3 class="text-lg font-semibold text-orange-600">🔥 OXIDE</h3>
+                        <p class="text-sm text-gray-600">Hợp chất của kim loại/phi kim với oxy</p>
+                        <p class="text-xs text-gray-500">Ví dụ: Na₂O, SO₂, CO₂</p>
+                    </div>
+                    <div class="compounds-dropped min-h-[60px] flex flex-wrap gap-2"></div>
+                </div>
+
+                <!-- Acid -->
+                <div class="drop-zone bg-white rounded-xl shadow-lg p-4 border-2 border-dashed border-gray-300" data-type="acid">
+                    <div class="text-center mb-3">
+                        <h3 class="text-lg font-semibold text-red-600">🍋 ACID</h3>
+                        <p class="text-sm text-gray-600">Hợp chất có khả năng cho proton H⁺</p>
+                        <p class="text-xs text-gray-500">Ví dụ: HCl, H₂SO₄, HNO₃</p>
+                    </div>
+                    <div class="compounds-dropped min-h-[60px] flex flex-wrap gap-2"></div>
+                </div>
+
+                <!-- Base -->
+                <div class="drop-zone bg-white rounded-xl shadow-lg p-4 border-2 border-dashed border-gray-300" data-type="base">
+                    <div class="text-center mb-3">
+                        <h3 class="text-lg font-semibold text-blue-600">🧼 BASE</h3>
+                        <p class="text-sm text-gray-600">Hợp chất có khả năng nhận proton H⁺</p>
+                        <p class="text-xs text-gray-500">Ví dụ: NaOH, Ca(OH)₂, Fe(OH)₃</p>
+                    </div>
+                    <div class="compounds-dropped min-h-[60px] flex flex-wrap gap-2"></div>
+                </div>
+
+                <!-- Salt -->
+                <div class="drop-zone bg-white rounded-xl shadow-lg p-4 border-2 border-dashed border-gray-300" data-type="salt">
+                    <div class="text-center mb-3">
+                        <h3 class="text-lg font-semibold text-purple-600">🧂 MUỐI</h3>
+                        <p class="text-sm text-gray-600">Hợp chất ion từ cation và anion</p>
+                        <p class="text-xs text-gray-500">Ví dụ: NaCl, CaCO₃, K₂SO₄</p>
+                    </div>
+                    <div class="compounds-dropped min-h-[60px] flex flex-wrap gap-2"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Feedback Message -->
+        <div id="feedback" class="fixed top-4 right-4 p-4 rounded-lg shadow-lg transform translate-x-full transition-transform duration-300">
+        </div>
+    </div>
+
+    <script>
+        class ChemistryGame {
+            constructor() {
+                this.score = 0;
+                this.compounds = [
+                    // Oxides
+                    { formula: 'Na₂O', name: 'Natri oxide', type: 'oxide' },
+                    { formula: 'SO₂', name: 'Lưu huỳnh dioxide', type: 'oxide' },
+                    { formula: 'CO₂', name: 'Carbon dioxide', type: 'oxide' },
+                    
+                    // Acids
+                    { formula: 'HCl', name: 'Axit clohidric', type: 'acid' },
+                    { formula: 'H₂SO₄', name: 'Axit sunfuric', type: 'acid' },
+                    { formula: 'HNO₃', name: 'Axit nitric', type: 'acid' },
+                    
+                    // Bases
+                    { formula: 'NaOH', name: 'Natri hidroxit', type: 'base' },
+                    { formula: 'Ca(OH)₂', name: 'Canxi hidroxit', type: 'base' },
+                    { formula: 'Fe(OH)₃', name: 'Sắt(III) hidroxit', type: 'base' },
+                    
+                    // Salts
+                    { formula: 'NaCl', name: 'Natri clorua', type: 'salt' },
+                    { formula: 'CaCO₃', name: 'Canxi cacbonat', type: 'salt' },
+                    { formula: 'K₂SO₄', name: 'Kali sunfat', type: 'salt' }
+                ];
+                
+                this.currentCompounds = [];
+                this.init();
+            }
+
+            init() {
+                this.setupEventListeners();
+                this.newGame();
+            }
+
+            setupEventListeners() {
+                document.getElementById('newGame').addEventListener('click', () => this.newGame());
+                
+                // Setup drop zones
+                document.querySelectorAll('.drop-zone').forEach(zone => {
+                    zone.addEventListener('dragover', this.handleDragOver.bind(this));
+                    zone.addEventListener('drop', this.handleDrop.bind(this));
+                    zone.addEventListener('dragleave', this.handleDragLeave.bind(this));
+                });
+            }
+
+            newGame() {
+                this.score = 0;
+                this.currentCompounds = [...this.compounds].sort(() => Math.random() - 0.5);
+                this.updateScore();
+                this.renderCompounds();
+                this.clearDropZones();
+            }
+
+            renderCompounds() {
+                const container = document.getElementById('compounds');
+                container.innerHTML = '';
+                
+                this.currentCompounds.forEach((compound, index) => {
+                    const card = document.createElement('div');
+                    card.className = 'compound-card bg-gradient-to-r from-gray-50 to-gray-100 p-4 rounded-lg border-2 border-gray-200 text-center';
+                    card.draggable = true;
+                    card.dataset.type = compound.type;
+                    card.dataset.index = index;
+                    
+                    card.innerHTML = `
+                        <div class="text-lg font-bold text-gray-800">${compound.formula}</div>
+                        <div class="text-xs text-gray-600 mt-1">${compound.name}</div>
+                    `;
+                    
+                    card.addEventListener('dragstart', this.handleDragStart.bind(this));
+                    container.appendChild(card);
+                });
+            }
+
+            clearDropZones() {
+                document.querySelectorAll('.compounds-dropped').forEach(zone => {
+                    zone.innerHTML = '';
+                });
+            }
+
+            handleDragStart(e) {
+                e.dataTransfer.setData('text/plain', e.target.dataset.index);
+                e.target.style.opacity = '0.5';
+            }
+
+            handleDragOver(e) {
+                e.preventDefault();
+                e.currentTarget.classList.add('drag-over');
+            }
+
+            handleDragLeave(e) {
+                e.currentTarget.classList.remove('drag-over');
+            }
+
+            handleDrop(e) {
+                e.preventDefault();
+                const dropZone = e.currentTarget;
+                dropZone.classList.remove('drag-over');
+                
+                const compoundIndex = e.dataTransfer.getData('text/plain');
+                const compound = this.currentCompounds[compoundIndex];
+                const targetType = dropZone.dataset.type;
+                
+                if (compound.type === targetType) {
+                    this.handleCorrectDrop(dropZone, compound, compoundIndex);
+                } else {
+                    this.handleWrongDrop(dropZone, compound);
+                }
+            }
+
+            handleCorrectDrop(dropZone, compound, compoundIndex) {
+                this.score += 10;
+                this.updateScore();
+                
+                // Add compound to drop zone
+                const compoundElement = document.createElement('div');
+                compoundElement.className = 'bg-green-100 border border-green-300 rounded px-2 py-1 text-sm';
+                compoundElement.innerHTML = `<span class="font-medium">${compound.formula}</span>`;
+                dropZone.querySelector('.compounds-dropped').appendChild(compoundElement);
+                
+                // Remove from original position
+                const originalCard = document.querySelector(`[data-index="${compoundIndex}"]`);
+                originalCard.remove();
+                
+                // Remove from current compounds
+                this.currentCompounds.splice(compoundIndex, 1);
+                this.reindexCards();
+                
+                // Visual feedback
+                dropZone.classList.add('correct-drop');
+                setTimeout(() => dropZone.classList.remove('correct-drop'), 600);
+                
+                this.showFeedback('Chính xác! +10 điểm', 'success');
+                
+                // Check if game completed
+                if (this.currentCompounds.length === 0) {
+                    this.gameCompleted();
+                }
+            }
+
+            handleWrongDrop(dropZone, compound) {
+                this.score = Math.max(0, this.score - 5);
+                this.updateScore();
+                
+                // Visual feedback
+                dropZone.classList.add('wrong-drop');
+                setTimeout(() => dropZone.classList.remove('wrong-drop'), 500);
+                
+                this.showFeedback('Sai rồi! -5 điểm', 'error');
+                
+                // Reset dragged element opacity
+                setTimeout(() => {
+                    document.querySelectorAll('.compound-card').forEach(card => {
+                        card.style.opacity = '1';
+                    });
+                }, 100);
+            }
+
+            reindexCards() {
+                document.querySelectorAll('.compound-card').forEach((card, index) => {
+                    card.dataset.index = index;
+                });
+            }
+
+            updateScore() {
+                document.getElementById('score').textContent = this.score;
+                document.getElementById('remaining').textContent = this.currentCompounds.length;
+            }
+
+            showFeedback(message, type) {
+                const feedback = document.getElementById('feedback');
+                feedback.className = `fixed top-4 right-4 p-4 rounded-lg shadow-lg transform transition-transform duration-300 ${
+                    type === 'success' ? 'bg-green-500 text-white' : 'bg-red-500 text-white'
+                }`;
+                feedback.textContent = message;
+                feedback.style.transform = 'translateX(0)';
+                
+                setTimeout(() => {
+                    feedback.style.transform = 'translateX(100%)';
+                }, 2000);
+            }
+
+            gameCompleted() {
+                setTimeout(() => {
+                    const finalScore = this.score;
+                    let message = '';
+                    
+                    if (finalScore >= 100) {
+                        message = `🎉 Xuất sắc! Bạn đã đạt ${finalScore} điểm!\nBạn đã thành thạo việc phân biệt các hợp chất vô cơ!`;
+                    } else if (finalScore >= 60) {
+                        message = `👏 Tốt lắm! Bạn đã đạt ${finalScore} điểm!\nHãy thử lại để đạt điểm cao hơn!`;
+                    } else {
+                        message = `💪 Bạn đã đạt ${finalScore} điểm!\nHãy ôn tập thêm và thử lại nhé!`;
+                    }
+                    
+                    alert(message);
+                }, 1000);
+            }
+        }
+
+        // Start the game
+        document.addEventListener('DOMContentLoaded', () => {
+            new ChemistryGame();
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97493c7f70ea5d38',t:'MTc1NjEwNTQ3Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
