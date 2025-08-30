@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chuyên đề: Ôn tập chương 8</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.7;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #343a40;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 25px auto;
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+        h1, h2, h3 {
+            color: #005f73;
+        }
+        h1 {
+            text-align: center;
+            color: #c9184a;
+            border-bottom: 4px solid #ff758f;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+        }
+        h2 {
+            background-color: #0077b6;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            margin-top: 40px;
+        }
+        h3 {
+            color: #023e8a;
+            border-left: 5px solid #0096c7;
+            padding-left: 15px;
+        }
+        .section {
+            margin-bottom: 35px;
+        }
+        .knowledge-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-top: 20px;
+        }
+        .knowledge-card {
+            border: 1px solid #dee2e6;
+            border-radius: 10px;
+            padding: 20px;
+            background-color: #fdfdff;
+        }
+        .knowledge-card h4 {
+            margin-top: 0;
+            color: #003049;
+            border-bottom: 2px solid #e9ecef;
+            padding-bottom: 8px;
+        }
+        .knowledge-card ul {
+            padding-left: 20px;
+            list-style-type: '→ ';
+        }
+        .exercise-block {
+            margin-bottom: 25px;
+            padding: 20px;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            background-color: #ffffff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .exercise-block p.question-title {
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-top: 0;
+        }
+        .options label {
+            display: block;
+            margin: 10px 0;
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            border: 1px solid #ddd;
+        }
+        .options label:hover {
+            background-color: #eaf4f4;
+            border-color: #0096c7;
+        }
+        .options input[type="radio"] {
+            margin-right: 12px;
+        }
+        .solution, .answer {
+            display: none;
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #e9f5db;
+            border-left: 5px solid #7cb518;
+            border-radius: 5px;
+        }
+        .btn {
+            background-color: #6c757d;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            margin-top: 10px;
+            transition: background-color 0.3s, transform 0.1s;
+        }
+        .btn:hover {
+            background-color: #5a6268;
+            transform: translateY(-2px);
+        }
+        .button-container {
+            text-align: center;
+            margin-top: 25px;
+        }
+        .check-all-btn {
+            background-color: #fca311;
+        }
+        .check-all-btn:hover {
+            background-color: #e85d04;
+        }
+        .correct {
+            background-color: #d1f7c4 !important;
+            border-color: #4caf50 !important;
+            color: #1b5e20;
+        }
+        .incorrect {
+            background-color: #ffcdd2 !important;
+            border-color: #f44336 !important;
+            color: #b71c1c;
+        }
+        .feedback {
+            font-weight: bold;
+            margin-left: 15px;
+        }
+        .chemical-formula {
+            font-family: 'Consolas', 'Courier New', monospace;
+            background-color: #e9ecef;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+            color: #c9184a;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>ÔN TẬP CHƯƠNG 8: ETHYLIC ALCOHOL VÀ ACETIC ACID</h1>
+
+        <div class="section" id="ly-thuyet">
+            <h2>A. HỆ THỐNG HÓA KIẾN THỨC</h2>
+            <div class="knowledge-grid">
+                <div class="knowledge-card">
+                    <h4>ETHYLIC ALCOHOL</h4>
+                    <ul>
+                        <li><strong>Công thức:</strong> <span class="chemical-formula">C₂H₅OH</span></li>
+                        <li><strong>Tính chất vật lí:</strong> Chất lỏng, không màu, tan vô hạn trong nước, nhẹ hơn nước, sôi ở 78,3°C.</li>
+                        <li><strong>Tính chất hóa học:</strong>
+                            <ul>
+                                <li>Phản ứng cháy: <span class="chemical-formula">C₂H₅OH + 3O₂ → 2CO₂ + 3H₂O</span></li>
+                                <li>Phản ứng với Na: <span class="chemical-formula">2C₂H₅OH + 2Na → 2C₂H₅ONa + H₂</span></li>
+                            </ul>
+                        </li>
+                         <li><strong>Điều chế:</strong> Lên men tinh bột, hoặc cộng nước vào ethylene.</li>
+                         <li><strong>Ứng dụng:</strong> Nhiên liệu (xăng E5), dung môi, đồ uống, sát khuẩn.</li>
+                    </ul>
+                </div>
+                <div class="knowledge-card">
+                    <h4>ACETIC ACID</h4>
+                    <ul>
+                        <li><strong>Công thức:</strong> <span class="chemical-formula">CH₃COOH</span></li>
+                        <li><strong>Tính chất vật lí:</strong> Chất lỏng, không màu, vị chua, mùi gắt, tan vô hạn trong nước, nặng hơn nước, sôi ở 118°C.</li>
+                        <li><strong>Tính chất hóa học:</strong>
+                            <ul>
+                                <li>Tính acid đầy đủ (làm quỳ tím hóa đỏ, tác dụng với base, oxide base, kim loại, muối).</li>
+                                <li>Phản ứng este hóa với alcohol: <span class="chemical-formula">CH₃COOH + C₂H₅OH ⇌ CH₃COOC₂H₅ + H₂O</span></li>
+                            </ul>
+                        </li>
+                        <li><strong>Điều chế:</strong> Lên men ethylic alcohol.</li>
+                        <li><strong>Ứng dụng:</strong> Sản xuất giấm ăn, dược phẩm, tơ sợi, chất dẻo.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section" id="bai-tap">
+            <h2>B. BÀI TẬP VẬN DỤNG</h2>
+
+            <h3>I. Tự luận tính toán (Có hướng dẫn giải)</h3>
+            <div class="exercise-block">
+                <p class="question-title"><b>Bài toán:</b> Đốt cháy hoàn toàn 9,2 gam ethylic alcohol (<span class="chemical-formula">C₂H₅OH</span>).
+                <br>a. Viết phương trình hóa học.
+                <br>b. Tính thể tích khí CO₂ sinh ra ở điều kiện chuẩn (25°C, 1 bar).
+                <br>c. Tính thể tích không khí cần dùng cho phản ứng trên, biết oxygen chiếm 20% thể tích không khí.
+                <br><i>(Cho: C=12, H=1, O=16. Thể tích mol khí ở đkc là 24,79 L/mol)</i></p>
+                <button class="btn" onclick="toggleElementVisibility(this.nextElementSibling)">Xem hướng dẫn giải</button>
+                <div class="solution">
+                    <p><b>Hướng dẫn giải:</b></p>
+                    <p><b>Bước 1: Viết PTHH và tính số mol C₂H₅OH.</b></p>
+                    <ul>
+                        <li>Phương trình hóa học: <span class="chemical-formula">C₂H₅OH + 3O₂ → 2CO₂ + 3H₂O</span> (điều kiện: t°)</li>
+                        <li>Khối lượng mol của C₂H₅OH: M = 12×2 + 1×6 + 16 = 46 (g/mol).</li>
+                        <li>Số mol C₂H₅OH: <span class="chemical-formula">n = m / M = 9,2 / 46 = 0,2 (mol)</span>.</li>
+                    </ul>
+                    <p><b>Bước 2: Tính thể tích CO₂ (Câu b).</b></p>
+                    <ul>
+                        <li>Theo PTHH, tỉ lệ mol: 1 mol C₂H₅OH tạo ra 2 mol CO₂.</li>
+                        <li>Số mol CO₂: <span class="chemical-formula">n<sub>CO₂</sub> = 2 × n<sub>C₂H₅OH</sub> = 2 × 0,2 = 0,4 (mol)</span>.</li>
+                        <li>Thể tích khí CO₂ (đkc): <span class="chemical-formula">V = n × 24,79 = 0,4 × 24,79 = 9,916 (lít)</span>.</li>
+                    </ul>
+                    <p><b>Bước 3: Tính thể tích không khí (Câu c).</b></p>
+                    <ul>
+                         <li>Theo PTHH, tỉ lệ mol: 1 mol C₂H₅OH cần 3 mol O₂.</li>
+                         <li>Số mol O₂: <span class="chemical-formula">n<sub>O₂</sub> = 3 × n<sub>C₂H₅OH</sub> = 3 × 0,2 = 0,6 (mol)</span>.</li>
+                         <li>Thể tích khí O₂ (đkc): <span class="chemical-formula">V<sub>O₂</sub> = 0,6 × 24,79 = 14,874 (lít)</span>.</li>
+                         <li>Vì oxygen chiếm 20% thể tích không khí, nên:</li>
+                         <li>V<sub>không khí</sub> = V<sub>O₂</sub> / 20% = 14,874 / 0,2 = 74,37 (lít).</li>
+                    </ul>
+                    <p><b>Kết luận:</b> b) V<sub>CO₂</sub> = <strong>9,916 lít</strong>; c) V<sub>không khí</sub> = <strong>74,37 lít</strong>.</p>
+                </div>
+            </div>
+            
+            <h3>II. Bài tập trắc nghiệm tổng hợp</h3>
+            <div id="quiz-container">
+                <div class="exercise-block" data-correct="B"><p class="question-title">Câu 1. Xăng E5 là hỗn hợp của xăng và ethylic alcohol theo tỉ lệ thể tích tương ứng là</p><div class="options"><label><input type="radio" name="q1" value="A"> A. 92:8.</label><label><input type="radio" name="q1" value="B"> B. 95:5.</label><label><input type="radio" name="q1" value="C"> C. 90:10.</label><label><input type="radio" name="q1" value="D"> D. 5:95.</label></div></div>
+                <div class="exercise-block" data-correct="B"><p class="question-title">Câu 2. Để loại bỏ lớp cặn CaCO₃ trong ấm đun nước, người ta có thể dùng</p><div class="options"><label><input type="radio" name="q2" value="A"> A. cồn 70°.</label><label><input type="radio" name="q2" value="B"> B. giấm ăn.</label><label><input type="radio" name="q2" value="C"> C. nước vôi trong.</label><label><input type="radio" name="q2" value="D"> D. nước muối.</label></div></div>
+                <div class="exercise-block" data-correct="C"><p class="question-title">Câu 3. Chất nào sau đây tác dụng được với Na?</p><div class="options"><label><input type="radio" name="q3" value="A"> A. CH₃-O-CH₃.</label><label><input type="radio" name="q3" value="B"> B. CH₃-CH₃.</label><label><input type="radio" name="q3" value="C"> C. CH₃-CH₂-OH.</label><label><input type="radio" name="q3" value="D"> D. CH₂=CH₂.</label></div></div>
+                <div class="exercise-block" data-correct="A"><p class="question-title">Câu 4. Phản ứng giữa ethylic alcohol và acetic acid được gọi là phản ứng</p><div class="options"><label><input type="radio" name="q4" value="A"> A. este hóa.</label><label><input type="radio" name="q4" value="B"> B. xà phòng hóa.</label><label><input type="radio" name="q4" value="C"> C. trùng hợp.</label><label><input type="radio" name="q4" value="D"> D. trung hòa.</label></div></div>
+                <div class="exercise-block" data-correct="D"><p class="question-title">Câu 5. Dãy chất nào sau đây đều tác dụng được với dung dịch acetic acid?</p><div class="options"><label><input type="radio" name="q5" value="A"> A. Na, NaCl, C₂H₅OH.</label><label><input type="radio" name="q5" value="B"> B. Cu, CuO, Ba(OH)₂.</label><label><input type="radio" name="q5" value="C"> C. Mg, HCl, Na₂SO₄.</label><label><input type="radio" name="q5" value="D"> D. Zn, KOH, Na₂CO₃.</label></div></div>
+                <div class="exercise-block" data-correct="B"><p class="question-title">Câu 6. Độ cồn là</p><div class="options"><label><input type="radio" name="q6" value="A"> A. số gam ethylic alcohol có trong 100 gam dung dịch.</label><label><input type="radio" name="q6" value="B"> B. số ml ethylic alcohol có trong 100 ml dung dịch.</label><label><input type="radio" name="q6" value="C"> C. số mol ethylic alcohol có trong 1 lít dung dịch.</label><label><input type="radio" name="q6" value="D"> D. khối lượng riêng của dung dịch alcohol.</label></div></div>
+                <div class="exercise-block" data-correct="A"><p class="question-title">Câu 7. Trong y tế, cồn được dùng để sát trùng vết thương. Đây là ứng dụng tính chất nào của ethylic alcohol?</p><div class="options"><label><input type="radio" name="q7" value="A"> A. Sát khuẩn.</label><label><input type="radio" name="q7" value="B"> B. Gây mê.</label><label><input type="radio" name="q7" value="C"> C. Dung môi.</label><label><input type="radio" name="q7" value="D"> D. Nhiên liệu.</label></div></div>
+                <div class="exercise-block" data-correct="C"><p class="question-title">Câu 8. Sản phẩm của phản ứng lên men glucose là</p><div class="options"><label><input type="radio" name="q8" value="A"> A. acetic acid.</label><label><input type="radio" name="q8" value="B"> B. ethylic alcohol và oxygen.</label><label><input type="radio" name="q8" value="C"> C. ethylic alcohol và carbon dioxide.</label><label><input type="radio" name="q8" value="D"> D. acetic acid và carbon dioxide.</label></div></div>
+                <div class="exercise-block" data-correct="D"><p class="question-title">Câu 9. Giấm ăn là dung dịch acetic acid có nồng độ</p><div class="options"><label><input type="radio" name="q9" value="A"> A. 1% - 2%.</label><label><input type="radio" name="q9" value="B"> B. 98% - 100%.</label><label><input type="radio" name="q9" value="C"> C. 10% - 15%.</label><label><input type="radio" name="q9" value="D"> D. 2% - 5%.</label></div></div>
+                <div class="exercise-block" data-correct="B"><p class="question-title">Câu 10. Khi cho Na vào dung dịch ethylic alcohol, Na sẽ phản ứng với chất nào trước?</p><div class="options"><label><input type="radio" name="q10" value="A"> A. Ethylic alcohol.</label><label><input type="radio" name="q10" value="B"> B. Nước.</label><label><input type="radio" name="q10" value="C"> C. Cả hai cùng lúc.</label><label><input type="radio" name="q10" value="D"> D. Không phản ứng.</label></div></div>
+                <div class="exercise-block" data-correct="A"><p class="question-title">Câu 11. Cặp chất nào sau đây có thể tồn tại trong cùng một dung dịch mà không phản ứng với nhau?</p><div class="options"><label><input type="radio" name="q11" value="A"> A. C₂H₅OH và HCl.</label><label><input type="radio" name="q11" value="B"> B. CH₃COOH và NaOH.</label><label><input type="radio" name="q11" value="C"> C. CH₃COOH và CaCO₃.</label><label><input type="radio" name="q11" value="D"> D. C₂H₅OH và Na.</label></div></div>
+                <div class="exercise-block" data-correct="D"><p class="question-title">Câu 12. Để pha 500 ml cồn 70°, thể tích ethylic alcohol nguyên chất cần dùng là</p><div class="options"><label><input type="radio" name="q12" value="A"> A. 70 ml.</label><label><input type="radio" name="q12" value="B"> B. 500 ml.</label><label><input type="radio" name="q12" value="C"> C. 430 ml.</label><label><input type="radio" name="q12" value="D"> D. 350 ml.</label></div></div>
+                <div class="exercise-block" data-correct="C"><p class="question-title">Câu 13. Công thức của ethyl acetate, sản phẩm của phản ứng este hóa giữa ethylic alcohol và acetic acid là</p><div class="options"><label><input type="radio" name="q13" value="A"> A. C₂H₅COOH.</label><label><input type="radio" name="q13" value="B"> B. CH₃COH.</label><label><input type="radio" name="q13" value="C"> C. CH₃COOC₂H₅.</label><label><input type="radio" name="q13" value="D"> D. C₂H₅OCH₃.</label></div></div>
+                <div class="exercise-block" data-correct="B"><p class="question-title">Câu 14. Phát biểu nào sau đây là sai?</p><div class="options"><label><input type="radio" name="q14" value="A"> A. Ethylic alcohol nhẹ hơn nước.</label><label><input type="radio" name="q14" value="B"> B. Acetic acid là một base yếu.</label><label><input type="radio" name="q14" value="C"> C. Ethylic alcohol có thể được điều chế từ tinh bột.</label><label><input type="radio" name="q14" value="D"> D. Acetic acid có trong giấm ăn.</label></div></div>
+                <div class="exercise-block" data-correct="A"><p class="question-title">Câu 15. Một chai rượu ghi 45°. Điều này có nghĩa là</p><div class="options"><label><input type="radio" name="q15" value="A"> A. trong 100 ml rượu có 45 ml ethylic alcohol nguyên chất.</label><label><input type="radio" name="q15" value="B"> B. trong 100 gam rượu có 45 gam ethylic alcohol.</label><label><input type="radio" name="q15" value="C"> C. nhiệt độ sôi của rượu là 45°C.</label><label><input type="radio" name="q15" value="D"> D. nồng độ mol của rượu là 45M.</label></div></div>
+            </div>
+            <div class="button-container">
+                <button class="btn check-all-btn" onclick="checkAllMCQ()">Kiểm tra Trắc nghiệm</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleElementVisibility(element) {
+            const button = element.previousElementSibling;
+            if (element.style.display === 'block') {
+                element.style.display = 'none';
+                button.textContent = 'Xem Đáp án/Hướng dẫn';
+            } else {
+                element.style.display = 'block';
+                button.textContent = 'Ẩn Đáp án/Hướng dẫn';
+            }
+        }
+
+        function checkAllMCQ() {
+            const questions = document.querySelectorAll('#quiz-container .exercise-block');
+            questions.forEach((q, index) => {
+                const correctAnswer = q.dataset.correct;
+                const options = q.querySelectorAll('.options label');
+                const selectedRadio = q.querySelector(`input[name="q${index + 1}"]:checked`);
+
+                options.forEach(label => {
+                    label.classList.remove('correct', 'incorrect');
+                    const feedbackSpan = label.querySelector('.feedback');
+                    if (feedbackSpan) feedbackSpan.remove();
+                });
+
+                if (selectedRadio) {
+                    const selectedLabel = selectedRadio.parentElement;
+                    if (selectedRadio.value === correctAnswer) {
+                        selectedLabel.classList.add('correct');
+                    } else {
+                        selectedLabel.classList.add('incorrect');
+                        options.forEach(label => {
+                            if (label.querySelector('input').value === correctAnswer) {
+                                label.innerHTML += ' <span class="feedback">(Đáp án đúng)</span>';
+                            }
+                        });
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>
