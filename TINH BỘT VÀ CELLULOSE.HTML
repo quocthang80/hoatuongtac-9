@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chuyên đề: Tinh bột và Cellulose</title>
+    <style>
+        :root {
+            --primary-color: #4caf50;
+            --secondary-color: #ff9800;
+            --correct-color: #43a047;
+            --incorrect-color: #e53935;
+            --light-bg: #f1f8e9;
+            --border-color: #dcedc8;
+            --text-color: #212121;
+            --header-font: 'Merriweather', serif;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Lato:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Lato', sans-serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            background-color: var(--light-bg);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2, h3 {
+            font-family: var(--header-font);
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        h1 { text-align: center; font-size: 2.5em; margin-bottom: 25px; }
+        h2 { font-size: 1.8em; margin-top: 40px; border-bottom: 3px solid var(--secondary-color); padding-bottom: 10px; }
+        h3 { font-size: 1.4em; color: #33691e; }
+
+        .collapsible {
+            background-color: #f9fbe7;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: 1px solid var(--border-color);
+            text-align: left;
+            outline: none;
+            font-size: 1.2em;
+            font-weight: 700;
+            margin-top: 15px;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .collapsible:hover { background-color: #f0f4c3; }
+        .collapsible::after { content: '\\2795'; font-size: 14px; color: var(--secondary-color); }
+        .collapsible.active::after { content: "\\2796"; }
+
+        .content {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+            background-color: #fafafa;
+            border: 1px solid var(--border-color);
+            border-top: none;
+            border-radius: 0 0 8px 8px;
+        }
+        .content-inner { padding: 20px 5px; }
+
+        .exercise-block {
+            background-color: #fff;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 25px;
+            margin: 25px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .question-text {
+             font-weight: 700;
+             margin-bottom: 15px;
+             font-size: 1.1em;
+        }
+        
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 10px;
+        }
+        
+        .option {
+            cursor: pointer;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+        .option:hover {
+            background-color: #fff3e0;
+            border-color: var(--secondary-color);
+        }
+        .option.selected {
+            background-color: #ffe0b2;
+            border-color: var(--secondary-color);
+            font-weight: bold;
+        }
+
+        .correct { background-color: #e8f5e9 !important; border-color: var(--correct-color) !important; }
+        .incorrect { background-color: #ffebee !important; border-color: var(--incorrect-color) !important; }
+        
+        .hint {
+            font-weight: normal;
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #fffde7;
+            border-left: 4px solid #fbc02d;
+            border-radius: 4px;
+            display: none;
+        }
+        
+        .solution {
+            display: none;
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #f1f8e9;
+            border-left: 4px solid var(--correct-color);
+            border-radius: 4px;
+        }
+
+        .action-button {
+            display: inline-block;
+            padding: 12px 24px;
+            font-size: 1em;
+            font-weight: bold;
+            color: white;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .action-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .self-study-textarea, .short-answer-input {
+            padding: 12px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            width: calc(100% - 26px);
+            font-family: inherit;
+            font-size: 1em;
+            transition: border-color 0.2s;
+        }
+        .self-study-textarea:focus, .short-answer-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+        .self-study-textarea { min-height: 120px; resize: vertical; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>CHUYÊN ĐỀ 3: TINH BỘT VÀ CELLULOSE</h1>
+
+    <!-- =============================================================== -->
+    <!-- PHẦN I: KIẾN THỨC CẦN NHỚ -->
+    <!-- =============================================================== -->
+    <h2>I. KIẾN THỨC CẦN NHỚ</h2>
+    <button type="button" class="collapsible">1. Tinh bột (Starch)</button>
+    <div class="content">
+        <div class="content-inner">
+            <h3>Công thức, TCVL và Trạng thái tự nhiên</h3>
+            <ul>
+                <li><strong>Công thức chung:</strong> (C₆H₁₀O₅)ₙ</li>
+                <li><strong>Tính chất vật lí:</strong> Chất rắn, dạng bột, màu trắng, không tan trong nước lạnh, tan một phần trong nước nóng tạo hồ tinh bột.</li>
+                <li><strong>Trạng thái tự nhiên:</strong> Có nhiều trong các loại củ, quả, hạt như gạo, ngô, khoai, sắn.</li>
+            </ul>
+            <h3>Tính chất hóa học</h3>
+            <ul>
+                <li><strong>Phản ứng thủy phân:</strong> Bị thủy phân trong môi trường acid hoặc enzyme tạo thành glucose. <br><code>(C₆H₁₀O₅)ₙ + nH₂O --(H⁺, t°)--> nC₆H₁₂O₆</code></li>
+                <li><strong>Phản ứng màu với iodine:</strong> Hồ tinh bột tác dụng với dung dịch iodine tạo hợp chất màu xanh tím đặc trưng.</li>
+            </ul>
+        </div>
+    </div>
+    <button type="button" class="collapsible">2. Cellulose</button>
+    <div class="content">
+        <div class="content-inner">
+            <h3>Công thức, TCVL và Trạng thái tự nhiên</h3>
+            <ul>
+                <li><strong>Công thức chung:</strong> (C₆H₁₀O₅)ₙ</li>
+                <li><strong>Tính chất vật lí:</strong> Chất rắn, dạng sợi, màu trắng, không tan trong nước và hầu hết dung môi hữu cơ.</li>
+                <li><strong>Trạng thái tự nhiên:</strong> Là thành phần chính tạo nên màng tế bào thực vật, có nhiều trong gỗ, tre, bông nõn.</li>
+            </ul>
+            <h3>Tính chất hóa học</h3>
+            <ul>
+                <li><strong>Phản ứng thủy phân:</strong> Tương tự tinh bột, cellulose bị thủy phân trong môi trường acid tạo thành glucose. <br><code>(C₆H₁₀O₅)ₙ + nH₂O --(H⁺, t°)--> nC₆H₁₂O₆</code></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- =============================================================== -->
+    <!-- PHẦN II: BÀI TẬP TỰ LUẬN -->
+    <!-- =============================================================== -->
+    <h2>II. BÀI TẬP TỰ LUẬN</h2>
+    <div class="exercise-block">
+        <p class="question-text">Câu 1. Nêu những tính chất vật lí giống và khác nhau giữa tinh bột và cellulose.</p>
+        <textarea class="self-study-textarea" placeholder="Trình bày sự giống và khác nhau..."></textarea>
+    </div>
+    <div class="exercise-block">
+        <p class="question-text">Câu 2. Viết phương trình hóa học của các phản ứng sau:</p>
+        <p>(a) Thủy phân tinh bột.</p>
+        <p>(b) Thủy phân cellulose.</p>
+        <p>(c) Sơ đồ chuyển hóa: Tinh bột → Glucose → Ethylic alcohol.</p>
+        <textarea class="self-study-textarea" placeholder="Viết các phương trình..."></textarea>
+    </div>
+    <div class="exercise-block">
+        <p class="question-text">Câu 3. Giải thích tại sao khi nhai kĩ cơm, bánh mì,... lại thấy có vị ngọt.</p>
+        <textarea class="self-study-textarea" placeholder="Giải thích hiện tượng..."></textarea>
+    </div>
+
+    <!-- =============================================================== -->
+    <!-- PHẦN III: BÀI TẬP TÍNH TOÁN -->
+    <!-- =============================================================== -->
+    <h2>III. BÀI TẬP TÍNH TOÁN</h2>
+    <div class="exercise-block">
+        <p class="question-text"><strong>Bài 1.</strong> Thủy phân hoàn toàn 32.4 gam tinh bột ((C₆H₁₀O₅)ₙ) trong môi trường acid. Tính khối lượng glucose (C₆H₁₂O₆) thu được. (Cho C=12, H=1, O=16).</p>
+        <textarea class="self-study-textarea" placeholder="Nhập lời giải của bạn..."></textarea>
+        <button class="action-button toggle-solution-btn">Xem hướng dẫn giải</button>
+        <div class="solution">
+            <p><strong>Bước 1: Viết phương trình phản ứng</strong></p>
+            <p>(C₆H₁₀O₅)ₙ + nH₂O → nC₆H₁₂O₆</p>
+            <p>Ta có thể viết gọn: C₆H₁₀O₅ → C₆H₁₂O₆ (vì n được triệt tiêu)</p>
+            <p><strong>Bước 2: Tính số mol tinh bột (tính theo mắt xích C₆H₁₀O₅)</strong></p>
+            <p>M<sub>C₆H₁₀O₅</sub> = 162 g/mol</p>
+            <p>n<sub>C₆H₁₀O₅</sub> = m / M = 32.4 / 162 = 0.2 mol</p>
+            <p><strong>Bước 3: Tính số mol glucose theo phương trình</strong></p>
+            <p>Theo phương trình, 1 mol C₆H₁₀O₅ tạo ra 1 mol C₆H₁₂O₆.</p>
+            <p>Vậy, n<sub>glucose</sub> = n<sub>C₆H₁₀O₅</sub> = 0.2 mol</p>
+            <p><strong>Bước 4: Tính khối lượng glucose</strong></p>
+            <p>M<sub>glucose</sub> = 180 g/mol</p>
+            <p>m<sub>glucose</sub> = n * M = 0.2 * 180 = <strong>36 gam</strong></p>
+        </div>
+    </div>
+    <div class="exercise-block">
+        <p class="question-text"><strong>Bài 2.</strong> Từ 1 tấn tinh bột chứa 20% tạp chất trơ, người ta có thể sản xuất được bao nhiêu kg glucose nếu hiệu suất của quá trình thủy phân là 75%?</p>
+        <textarea class="self-study-textarea" placeholder="Nhập lời giải của bạn..."></textarea>
+        <button class="action-button toggle-solution-btn">Xem hướng dẫn giải</button>
+        <div class="solution">
+            <p><strong>Bước 1: Tính khối lượng tinh bột nguyên chất</strong></p>
+            <p>1 tấn = 1000 kg</p>
+            <p>Khối lượng tạp chất = 1000 * 20% = 200 kg</p>
+            <p>m<sub>tinh bột nguyên chất</sub> = 1000 - 200 = 800 kg</p>
+            <p><strong>Bước 2: Viết sơ đồ phản ứng</strong></p>
+            <p>(C₆H₁₀O₅)ₙ → nC₆H₁₂O₆</p>
+            <p>Khối lượng mol: 162n → 180n</p>
+            <p><strong>Bước 3: Tính khối lượng glucose theo lý thuyết</strong></p>
+            <p>Theo sơ đồ, 162n kg tinh bột tạo ra 180n kg glucose.</p>
+            <p>Vậy, 800 kg tinh bột tạo ra: m<sub>glucose (lý thuyết)</sub> = (800 * 180n) / 162n = 888.89 kg</p>
+            <p><strong>Bước 4: Tính khối lượng glucose thực tế (tính cả hiệu suất)</strong></p>
+            <p>m<sub>glucose (thực tế)</sub> = m<sub>lý thuyết</sub> * Hiệu suất = 888.89 * 75% = <strong>666.67 kg</strong></p>
+        </div>
+    </div>
+
+    <!-- =============================================================== -->
+    <!-- PHẦN IV: BÀI TẬP TRẮC NGHIỆM -->
+    <!-- =============================================================== -->
+    <h2>IV. BÀI TẬP TRẮC NGHIỆM</h2>
+    <div class="exercise-block" id="interactive-quiz">
+        <!-- Questions will be inserted here by JS -->
+    </div>
+    <button class="action-button" onclick="checkAllAnswers()">Kiểm tra đáp án trắc nghiệm</button>
+
+</div>
+
+<script>
+    const quizData = [
+        // MCQ
+        {
+            type: 'mcq',
+            question: 'Câu 1. Công thức chung của tinh bột và cellulose là:',
+            options: ['C₆H₁₂O₆', '(C₆H₁₀O₅)ₙ', 'C₁₂H₂₂O₁₁', '(C₅H₈O₄)ₙ'],
+            answer: '(C₆H₁₀O₅)ₙ',
+            hint: 'Cả hai đều là polysaccharide được tạo thành từ nhiều mắt xích C₆H₁₀O₅.'
+        },
+        {
+            type: 'mcq',
+            question: 'Câu 2. Phản ứng nào sau đây dùng để nhận biết hồ tinh bột?',
+            options: ['Phản ứng với dung dịch AgNO₃/NH₃', 'Phản ứng với Cu(OH)₂', 'Phản ứng với dung dịch iodine', 'Phản ứng thủy phân'],
+            answer: 'Phản ứng với dung dịch iodine',
+            hint: 'Hồ tinh bột tạo phức màu xanh tím đặc trưng với dung dịch iodine.'
+        },
+        {
+            type: 'mcq',
+            question: 'Câu 3. Thủy phân 16.2 gam tinh bột thu được m gam glucose. Giá trị của m là:',
+            options: ['16.2g', '18g', '9g', '36g'],
+            answer: '18g',
+            hint: 'n(tinh bột) = 16.2/162 = 0.1 mol. n(glucose) = n(tinh bột) = 0.1 mol. m(glucose) = 0.1 * 180 = 18 gam.'
+        },
+        {
+            type: 'mcq',
+            question: 'Câu 4. Cellulose được ứng dụng để sản xuất:',
+            options: ['Đường ăn', 'Xà phòng', 'Tơ sợi và giấy', 'Chất dẻo PE'],
+            answer: 'Tơ sợi và giấy',
+            hint: 'Cellulose là thành phần chính của gỗ (dùng làm giấy) và sợi bông (dùng trong dệt may).'
+        },
+        {
+            type: 'mcq',
+            question: 'Câu 5. Cấu trúc mạch của cellulose có dạng:',
+            options: ['Mạch thẳng, không phân nhánh', 'Mạch phân nhánh', 'Mạch vòng', 'Mạch xoắn lò xo'],
+            answer: 'Mạch thẳng, không phân nhánh',
+            hint: 'Cellulose có cấu trúc mạch thẳng, không phân nhánh, tạo thành các sợi dài. Tinh bột có cả dạng mạch không phân nhánh (amylose) và phân nhánh (amylopectin).'
+        },
+        // True/False
+        {
+            type: 'tf',
+            question: 'Câu 6. Cellulose tan tốt trong nước nóng.',
+            answer: false,
+            hint: 'Sai. Cellulose không tan trong nước, kể cả nước nóng.'
+        },
+        {
+            type: 'tf',
+            question: 'Câu 7. Cơ thể người có thể tiêu hóa được cả tinh bột và cellulose.',
+            answer: false,
+            hint: 'Sai. Cơ thể người chỉ có enzyme để thủy phân tinh bột, không thể tiêu hóa cellulose.'
+        },
+        {
+            type: 'tf',
+            question: 'Câu 8. Nhỏ dung dịch iodine vào một mẩu cellulose sẽ thấy xuất hiện màu xanh tím.',
+            answer: false,
+            hint: 'Sai. Chỉ có tinh bột mới có phản ứng màu với iodine, cellulose thì không.'
+        },
+        {
+            type: 'tf',
+            question: 'Câu 9. Cellulose đóng vai trò là chất xơ trong chế độ ăn uống của con người.',
+            answer: true,
+            hint: 'Đúng. Mặc dù không tiêu hóa được, cellulose (chất xơ) rất quan trọng cho hệ tiêu hóa.'
+        },
+        {
+            type: 'tf',
+            question: 'Câu 10. Mắt xích trong phân tử tinh bột và cellulose đều là C₆H₁₀O₅.',
+            answer: true,
+            hint: 'Đúng. Cả hai đều có cùng công thức mắt xích nhưng khác nhau về cấu trúc và cách liên kết.'
+        },
+        // Short Answer
+        {
+            type: 'sa',
+            question: 'Câu 11. Sản phẩm cuối cùng của quá trình thủy phân tinh bột là gì?',
+            answer: 'glucose',
+            hint: 'Tinh bột là một polymer của glucose.'
+        },
+        {
+            type: 'sa',
+            question: 'Câu 12. Chất nào có nhiều trong sợi bông?',
+            answer: 'cellulose',
+            hint: 'Sợi bông chứa gần 98% cellulose.'
+        },
+        {
+            type: 'sa',
+            question: 'Câu 13. Enzyme trong nước bọt có khả năng thủy phân tinh bột tên là gì?',
+            answer: 'amylase',
+            hint: 'Enzyme này bắt đầu quá trình tiêu hóa tinh bột ngay trong khoang miệng.'
+        },
+        {
+            type: 'sa',
+            question: 'Câu 14. Thành phần chính của gỗ là gì?',
+            answer: 'cellulose',
+            hint: 'Cellulose chiếm khoảng 40-50% khối lượng gỗ khô.'
+        },
+        {
+            type: 'sa',
+            question: 'Câu 15. Nhỏ vài giọt iodine vào một lát khoai lang sẽ thấy xuất hiện màu gì?',
+            answer: 'xanh tím',
+            hint: 'Khoai lang chứa nhiều tinh bột, do đó sẽ có phản ứng màu đặc trưng với iodine.'
+        }
+    ];
+
+    function renderQuiz() {
+        const container = document.getElementById('interactive-quiz');
+        let html = '';
+        quizData.forEach((item, index) => {
+            html += `<div class="question-block" id="q-${index}">`;
+            html += `<h3 class="question-text">${item.question}</h3>`;
+            if (item.type === 'mcq') {
+                html += '<div class="options-grid">';
+                item.options.forEach(opt => {
+                    html += `<div class="option" onclick="selectOption(this, ${index})">${opt}</div>`;
+                });
+                html += '</div>';
+            } else if (item.type === 'tf') {
+                 html += `<div class="options-grid">
+                            <div class="option" onclick="selectOption(this, ${index})">Đúng</div>
+                            <div class="option" onclick="selectOption(this, ${index})">Sai</div>
+                          </div>`;
+            } else if (item.type === 'sa') {
+                html += `<input type="text" class="short-answer-input" placeholder="Nhập đáp án của bạn...">`;
+            }
+            html += `<div class="hint" id="hint-${index}"></div>`;
+            html += `</div>`;
+        });
+        container.innerHTML = html;
+    }
+
+    let userAnswers = {};
+
+    function selectOption(element, index) {
+        const parent = element.parentElement;
+        Array.from(parent.children).forEach(child => child.classList.remove('selected'));
+        element.classList.add('selected');
+        userAnswers[index] = element.textContent.trim();
+    }
+    
+    function checkAllAnswers() {
+        quizData.forEach((item, index) => {
+            const questionBlock = document.getElementById(`q-${index}`);
+            const hintBox = document.getElementById(`hint-${index}`);
+            let isCorrect = false;
+
+            if (item.type === 'mcq' || item.type === 'tf') {
+                const selectedOption = questionBlock.querySelector('.option.selected');
+                if (selectedOption) {
+                    let answer = userAnswers[index];
+                    if (item.type === 'tf') {
+                        answer = (answer === 'Đúng');
+                    }
+                    if (answer === item.answer) {
+                        isCorrect = true;
+                    }
+                }
+                 if(isCorrect) {
+                    selectedOption.classList.add('correct');
+                } else {
+                    if(selectedOption) selectedOption.classList.add('incorrect');
+                    hintBox.textContent = item.hint;
+                    hintBox.style.display = 'block';
+                }
+            } else if (item.type === 'sa') {
+                const input = questionBlock.querySelector('input');
+                let userAnswer = input.value.trim().toLowerCase();
+                if (userAnswer === item.answer.toLowerCase()) {
+                    isCorrect = true;
+                }
+                 if(isCorrect) {
+                    input.classList.add('correct');
+                } else {
+                    input.classList.add('incorrect');
+                    hintBox.textContent = item.hint;
+                    hintBox.style.display = 'block';
+                }
+            }
+        });
+    }
+
+    // --- Script for Collapsible Sections ---
+    const collapsibles = document.getElementsByClassName("collapsible");
+    for (let i = 0; i < collapsibles.length; i++) {
+        collapsibles[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            const content = this.nextElementSibling;
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+            }
+        });
+    }
+    
+    // --- Script for Toggling Solutions ---
+    function setupSolutionToggles() {
+        const solutionButtons = document.getElementsByClassName("toggle-solution-btn");
+        for (let i = 0; i < solutionButtons.length; i++) {
+            solutionButtons[i].addEventListener("click", function() {
+                const solution = this.nextElementSibling;
+                if (solution.style.display === "block") {
+                    solution.style.display = "none";
+                    this.textContent = "Xem hướng dẫn giải";
+                } else {
+                    solution.style.display = "block";
+                    this.textContent = "Ẩn hướng dẫn giải";
+                }
+            });
+        }
+    }
+
+    window.onload = () => {
+        renderQuiz();
+        setupSolutionToggles();
+    };
+</script>
+
+</body>
+</html>
