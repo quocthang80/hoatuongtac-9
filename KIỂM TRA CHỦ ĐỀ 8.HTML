@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đề kiểm tra định kì - Hóa học 9</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.7;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f5f7;
+            color: #3d3d3d;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 25px auto;
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+        .header {
+            text-align: center;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            color: #b80c09;
+            margin: 0;
+        }
+        .student-info {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            font-size: 1.1em;
+        }
+        .student-info input {
+            border: none;
+            border-bottom: 1px dotted #333;
+            width: 250px;
+            font-size: 1em;
+        }
+        h2 {
+            background-color: #007f5f;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            margin-top: 40px;
+        }
+        .exercise-block {
+            margin-bottom: 25px;
+            padding: 20px;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            background-color: #ffffff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .question-title {
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-top: 0;
+        }
+        .options label {
+            display: block;
+            margin: 10px 0;
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            border: 1px solid #ddd;
+        }
+        .options label:hover {
+            background-color: #eaf4f4;
+            border-color: #0096c7;
+        }
+        input[type="radio"], input[type="checkbox"] {
+            margin-right: 12px;
+        }
+        input[type="text"] {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100px;
+        }
+        .solution {
+            display: none;
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #e9f5db;
+            border-left: 5px solid #7cb518;
+            border-radius: 5px;
+        }
+        .btn {
+            background-color: #6c757d;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            margin-top: 10px;
+            transition: background-color 0.3s, transform 0.1s;
+        }
+        .btn:hover {
+            background-color: #5a6268;
+            transform: translateY(-2px);
+        }
+        .button-container {
+            text-align: center;
+            margin-top: 40px;
+        }
+        .check-all-btn {
+            background-color: #d62828;
+            font-size: 1.2em;
+            padding: 15px 30px;
+        }
+        .check-all-btn:hover {
+            background-color: #b80c09;
+        }
+        .correct {
+            background-color: #d1f7c4 !important;
+            border-color: #4caf50 !important;
+            color: #1b5e20;
+        }
+        .incorrect {
+            background-color: #ffcdd2 !important;
+            border-color: #f44336 !important;
+            color: #b71c1c;
+        }
+        .feedback {
+            font-weight: bold;
+            margin-left: 15px;
+            color: #1b5e20;
+        }
+        .chemical-formula {
+            font-family: 'Consolas', 'Courier New', monospace;
+            background-color: #e9ecef;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+            color: #c9184a;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">
+            <h1>ĐỀ KIỂM TRA ĐỊNH KÌ MÔN: HÓA HỌC – LỚP 9</h1>
+            <p><strong>Thời gian làm bài: 45 phút</strong></p>
+            <div class="student-info">
+                <span><strong>Học sinh:</strong> <input type="text"></span>
+                <span><strong>Lớp:</strong> <input type="text"></span>
+            </div>
+        </div>
+
+        <form id="quiz-form">
+            <h2>PHẦN I: TỰ LUẬN TÍNH TOÁN (Bổ sung)</h2>
+            <div class="exercise-block">
+                <p class="question-title"><b>Bài toán:</b> Hòa tan hoàn toàn 6 gam Magnesium (Mg) vào dung dịch acetic acid (<span class="chemical-formula">CH₃COOH</span>) dư.
+                <br>a. Viết phương trình hóa học của phản ứng.
+                <br>b. Tính thể tích khí H₂ thoát ra (ở đkc 25°C, 1 bar).
+                <br>c. Tính khối lượng muối magnesium acetate (<span class="chemical-formula">(CH₃COO)₂Mg</span>) thu được.
+                <br><i>(Cho: Mg=24, C=12, H=1, O=16. Thể tích mol khí ở đkc là 24,79 L/mol)</i></p>
+                <button type="button" class="btn" onclick="toggleElementVisibility(this.nextElementSibling)">Xem hướng dẫn giải</button>
+                <div class="solution">
+                    <p><b>Hướng dẫn giải:</b></p>
+                    <p><b>Bước 1: Viết PTHH và tính số mol Mg.</b></p>
+                    <ul>
+                        <li>Phương trình hóa học: <span class="chemical-formula">Mg + 2CH₃COOH → (CH₃COO)₂Mg + H₂</span></li>
+                        <li>Số mol Mg: <span class="chemical-formula">n<sub>Mg</sub> = m / M = 6 / 24 = 0,25 (mol)</span>.</li>
+                    </ul>
+                    <p><b>Bước 2: Tính thể tích H₂ (Câu b).</b></p>
+                    <ul>
+                        <li>Theo PTHH, tỉ lệ mol: n<sub>H₂</sub> = n<sub>Mg</sub> = 0,25 (mol).</li>
+                        <li>Thể tích khí H₂ (đkc): <span class="chemical-formula">V = n × 24,79 = 0,25 × 24,79 = 6,1975 (lít)</span>.</li>
+                    </ul>
+                    <p><b>Bước 3: Tính khối lượng muối (Câu c).</b></p>
+                    <ul>
+                         <li>Theo PTHH, tỉ lệ mol: n<sub>muối</sub> = n<sub>Mg</sub> = 0,25 (mol).</li>
+                         <li>Khối lượng mol của (CH₃COO)₂Mg: M = (12×2+1×3+16×2)×2 + 24 = 142 (g/mol).</li>
+                         <li>Khối lượng muối: m<sub>muối</sub> = 0,25 × 142 = 35,5 (gam).</li>
+                    </ul>
+                    <p><b>Kết luận:</b> b) V<sub>H₂</sub> = <strong>6,1975 lít</strong>; c) m<sub>muối</sub> = <strong>35,5 gam</strong>.</p>
+                </div>
+            </div>
+
+            <h2>PHẦN II. CÂU TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN</h2>
+            <div id="mcq-container">
+                <!-- Questions 1-18 from the document -->
+            </div>
+
+            <h2>PHẦN III. CÂU TRẮC NGHIỆM ĐÚNG/SAI</h2>
+            <div id="tf-container">
+                <!-- Questions 1-6 from the document -->
+            </div>
+
+            <h2>PHẦN IV. CÂU TRẮC NGHIỆM YÊU CẦU TRẢ LỜI NGẮN</h2>
+            <div id="sa-container">
+                <!-- Questions 1-6 from the document -->
+            </div>
+
+            <div class="button-container">
+                <button type="button" class="btn check-all-btn" onclick="checkAllAnswers()">Kiểm tra toàn bộ bài</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        const mcqData = [
+            { q: "Câu 1. Công thức cấu tạo của ethylic alcohol là", o: ["CH₂ – CH₃ – OH", "CH₃ – O – CH₃", "CH₂ – CH₂ – OH₂", "CH₃ – CH₂ – OH"], a: "D" },
+            { q: "Câu 2. Nhóm nào sau đây gây nên tính chất đặc trưng của ethylic alcohol?", o: ["Nhóm CH₃-", "Nhóm CH₃ – CH₂-", "Nhóm -OH", "Cả phân tử"], a: "C" },
+            { q: "Câu 3. Ethylic alcohol tác dụng được với chất nào sau đây?", o: ["Na", "NaOH", "NaCl", "Na₂CO₃"], a: "A" },
+            { q: "Câu 4. Trong phản ứng cháy của ethylic alcohol, chất nào trong không khí sẽ phản ứng với ethylic alcohol?", o: ["Hydrogen", "Oxygen", "Nitrogen", "Hơi nước"], a: "B" },
+            { q: "Câu 5. Công thức phân tử của acetic acid là", o: ["CH₄O", "C₂H₄O₂", "C₂H₆O", "C₂H₄O"], a: "B" },
+            { q: "Câu 6. Acetic acid không tác dụng được với chất nào sau đây?", o: ["Mg", "MgO", "Mg(OH)₂", "MgSO₄"], a: "D" },
+            { q: "Câu 7. Giấm ăn là dung dịch acetic acid có nồng độ", o: ["1% - 2%", "2% - 5%", "5% - 8%", "8% - 10%"], a: "B" },
+            { q: "Câu 8. Cho mẩu giấy quỳ tím vào dung dịch acetic acid, giấy quỳ tím", o: ["chuyển sang màu đỏ.", "chuyển sang màu xanh.", "không đổi màu.", "mất màu."], a: "A" },
+            { q: "Câu 9. Phản ứng giữa acetic acid và ethylic alcohol được gọi là phản ứng", o: ["trung hòa", "xà phòng hóa", "trùng hợp", "ester hóa"], a: "D" },
+            { q: "Câu 10. Để pha 200 ml cồn 90°, thể tích ethylic alcohol nguyên chất cần dùng là", o: ["90 ml", "110 ml", "180 ml", "200 ml"], a: "C" },
+            { q: "Câu 11. Cho 60 gam acetic acid tác dụng với 100 gam ethylic alcohol thu được 55 gam ethyl acetate. Hiệu suất của phản ứng ester hóa là", o: ["62,5%", "55%", "80%", "75%"], a: "A" },
+            { q: "Câu 12. Phát biểu nào sau đây không đúng?", o: ["Độ cồn là số ml ethylic alcohol nguyên chất có trong 100 ml dung dịch.", "Ethylic alcohol nhẹ hơn nước, tan vô hạn trong nước.", "Acetic acid là chất lỏng, không màu, vị chua, tan vô hạn trong nước.", "Ethylic alcohol được dùng để sản xuất giấm ăn bằng phương pháp tổng hợp."], a: "D" },
+            { q: "Câu 13. Cặp chất nào sau đây có thể tồn tại trong cùng một dung dịch mà không phản ứng với nhau?", o: ["C₂H₅OH, Na", "CH₃COOH, NaOH", "CH₃COOH, CaCO₃", "C₂H₅OH, HCl"], a: "D" },
+            { q: "Câu 14. Cho 10 ml ethylic alcohol 92° tác dụng hết với Na. Biết khối lượng riêng của ethylic alcohol nguyên chất là 0,8 g/ml. Thể tích khí H₂ (đkc) thu được là", o: ["1,9832 lít", "3,9664 lít", "4,48 lít", "2,24 lít"], a: "A" },
+            { q: "Câu 15. Dãy các chất được sắp xếp theo chiều nhiệt độ sôi tăng dần là", o: ["CH₃COOH, C₂H₅OH, CH₃OCH₃", "CH₃OCH₃, CH₃COOH, C₂H₅OH", "CH₃OCH₃, C₂H₅OH, CH₃COOH", "C₂H₅OH, CH₃OCH₃, CH₃COOH"], a: "C" },
+            { q: "Câu 16. Để phân biệt dung dịch ethylic alcohol và dung dịch acetic acid, ta có thể dùng", o: ["Na", "quỳ tím", "dung dịch NaOH", "dung dịch NaCl"], a: "B" },
+            { q: "Câu 17. Sản phẩm của phản ứng giữa acetic acid và magnesium oxide là", o: ["(CH₃COO)₂Mg và H₂", "(CH₃COO)₂Mg và H₂O", "CH₃COOMg và H₂O", "Không phản ứng"], a: "B" },
+            { q: "Câu 18. Phương pháp nào sau đây thường được dùng để điều chế ethylic alcohol trong công nghiệp thực phẩm?", o: ["Lên men tinh bột", "Cộng nước vào ethylene", "Thủy phân chất béo", "Oxi hóa methane"], a: "A" }
+        ];
+
+        const tfData = [
+            { q: "Câu 1. Ethylic alcohol có tính acid.", a: false },
+            { q: "Câu 2. Acetic acid là một acid hữu cơ mạnh.", a: false },
+            { q: "Câu 3. Ethylic alcohol và acetic acid đều tan tốt trong nước.", a: true },
+            { q: "Câu 4. Có thể dùng Na để phân biệt ethylic alcohol nguyên chất và dung dịch cồn 45°.", a: false },
+            { q: "Câu 5. Phản ứng ester hóa giữa acetic acid và ethylic alcohol luôn có hiệu suất nhỏ hơn 100%.", a: true },
+            { q: "Câu 6. Phản ứng ester hóa giữa acetic acid và ethylic alcohol thường dùng xúc tác là H₂SO₄ đặc.", a: true }
+        ];
+
+        const saData = [
+            { q: "Câu 1. Phân tử acetic acid có bao nhiêu nguyên tử hydrogen?", a: "4" },
+            { q: "Câu 2. Cho các chất: CH₃-OH, CH₃–O–CH₃, CH₃–CH₂–CH₃, CH₃–CH₂–OH. Có bao nhiêu chất tác dụng được với Na giải phóng khí H₂?", a: "2" },
+            { q: "Câu 3. Trong các chất sau: Mg, MgO, CuO, KOH, Na₂SO₄, Na₂SO₃. Có bao nhiêu chất tác dụng được với dung dịch acetic acid?", a: "5" },
+            { q: "Câu 4. Cho acetic acid, ethylic alcohol lần lượt tác dụng với Na, NaOH, Na₂CO₃. Có bao nhiêu trường hợp xảy ra phản ứng?", a: "4" },
+            { q: "Câu 5. Cho các phát biểu về ethylic alcohol: ... Có bao nhiêu phát biểu sai trong các phát biểu trên?", a: "2" },
+            { q: "Câu 6. Ethylic alcohol được điều chế bằng cách lên men tinh bột theo sơ đồ ... Hiệu suất cả quá trình là 80%. Khối lượng tinh bột cần dùng để điều chế 10 lít cồn 46° là bao nhiêu kg?", a: "9" }
+        ];
+
+        function renderQuiz() {
+            const mcqContainer = document.getElementById('mcq-container');
+            mcqData.forEach((item, index) => {
+                const optionsHTML = item.o.map((opt, i) => `<label><input type="radio" name="q_mcq_${index}" value="${String.fromCharCode(65 + i)}"> ${String.fromCharCode(65 + i)}. ${opt}</label>`).join('');
+                mcqContainer.innerHTML += `<div class="exercise-block" data-answer="${item.a}"><p class="question-title">${item.q}</p><div class="options">${optionsHTML}</div></div>`;
+            });
+
+            const tfContainer = document.getElementById('tf-container');
+            tfData.forEach((item, index) => {
+                const optionsHTML = `<label><input type="radio" name="q_tf_${index}" value="true"> Đúng</label><label><input type="radio" name="q_tf_${index}" value="false"> Sai</label>`;
+                tfContainer.innerHTML += `<div class="exercise-block" data-answer="${item.a}"><p class="question-title">${item.q}</p><div class="options">${optionsHTML}</div></div>`;
+            });
+
+            const saContainer = document.getElementById('sa-container');
+            saData.forEach((item, index) => {
+                saContainer.innerHTML += `<div class="exercise-block" data-answer="${item.a}"><p class="question-title">${item.q}</p><label>Trả lời: <input type="text" name="q_sa_${index}"></label></div>`;
+            });
+        }
+
+        function checkAllAnswers() {
+            // Check MCQ
+            const mcqBlocks = document.querySelectorAll('#mcq-container .exercise-block');
+            mcqBlocks.forEach((block, index) => {
+                const correctAnswer = block.dataset.answer;
+                const selectedRadio = block.querySelector(`input[name="q_mcq_${index}"]:checked`);
+                const options = block.querySelectorAll('.options label');
+                options.forEach(label => label.classList.remove('correct', 'incorrect'));
+                
+                if (selectedRadio) {
+                    const selectedLabel = selectedRadio.parentElement;
+                    if (selectedRadio.value === correctAnswer) {
+                        selectedLabel.classList.add('correct');
+                    } else {
+                        selectedLabel.classList.add('incorrect');
+                        options.forEach(label => {
+                            if (label.querySelector('input').value === correctAnswer) {
+                                label.innerHTML += ' <span class="feedback">(Đáp án đúng)</span>';
+                            }
+                        });
+                    }
+                }
+            });
+
+            // Check True/False
+            const tfBlocks = document.querySelectorAll('#tf-container .exercise-block');
+            tfBlocks.forEach((block, index) => {
+                const correctAnswer = block.dataset.answer;
+                const selectedRadio = block.querySelector(`input[name="q_tf_${index}"]:checked`);
+                 const options = block.querySelectorAll('.options label');
+                options.forEach(label => label.classList.remove('correct', 'incorrect'));
+
+                if (selectedRadio) {
+                    const selectedLabel = selectedRadio.parentElement;
+                    if (selectedRadio.value === correctAnswer) {
+                        selectedLabel.classList.add('correct');
+                    } else {
+                        selectedLabel.classList.add('incorrect');
+                         options.forEach(label => {
+                            if (label.querySelector('input').value === correctAnswer) {
+                                label.innerHTML += ' <span class="feedback">(Đáp án đúng)</span>';
+                            }
+                        });
+                    }
+                }
+            });
+
+            // Check Short Answer
+            const saBlocks = document.querySelectorAll('#sa-container .exercise-block');
+            saBlocks.forEach((block, index) => {
+                const correctAnswer = block.dataset.answer;
+                const input = block.querySelector(`input[name="q_sa_${index}"]`);
+                input.classList.remove('correct', 'incorrect');
+                if (input.value.trim() === correctAnswer) {
+                    input.classList.add('correct');
+                } else {
+                    input.classList.add('incorrect');
+                    const feedback = document.createElement('span');
+                    feedback.className = 'feedback';
+                    feedback.textContent = ` (Đáp án đúng: ${correctAnswer})`;
+                    if (!input.nextElementSibling) {
+                         input.parentElement.appendChild(feedback);
+                    }
+                }
+            });
+        }
+        
+        function toggleElementVisibility(element) {
+            const button = element.previousElementSibling;
+            if (element.style.display === 'block') {
+                element.style.display = 'none';
+                button.textContent = 'Xem hướng dẫn giải';
+            } else {
+                element.style.display = 'block';
+                button.textContent = 'Ẩn hướng dẫn giải';
+            }
+        }
+
+        window.onload = renderQuiz;
+    </script>
+</body>
+</html>
