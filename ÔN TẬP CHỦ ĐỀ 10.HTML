@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ôn tập chủ đề 10: Vỏ Trái Đất và Môi trường</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.7;
+            margin: 0;
+            padding: 0;
+            background-color: #fdfdfd;
+            color: #333;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 25px auto;
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+        }
+        .header {
+            text-align: center;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            color: #03045e;
+            margin: 0;
+        }
+        h2 {
+            background-color: #0077b6;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            margin-top: 40px;
+        }
+        h3 {
+            color: #023e8a;
+            border-left: 5px solid #00b4d8;
+            padding-left: 15px;
+        }
+        .knowledge-point {
+            background-color: #f1faee;
+            border: 1px solid #e9ecef;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+        .exercise-block {
+            margin-bottom: 25px;
+            padding: 20px;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            background-color: #ffffff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .question-title {
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-top: 0;
+        }
+        .options label {
+            display: block;
+            margin: 10px 0;
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            border: 1px solid #ddd;
+        }
+        .options label:hover {
+            background-color: #eaf4f4;
+            border-color: #a8dadc;
+        }
+        input[type="radio"] {
+            margin-right: 12px;
+        }
+        textarea.user-answer {
+            width: calc(100% - 24px);
+            min-height: 100px;
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 1em;
+            resize: vertical;
+        }
+        .solution, .answer {
+            display: none;
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #f0fdf4;
+            border-left: 5px solid #22c55e;
+            border-radius: 5px;
+        }
+        .btn {
+            background-color: #6c757d;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            margin-top: 10px;
+            transition: background-color 0.3s, transform 0.1s;
+        }
+        .btn:hover {
+            background-color: #5a6268;
+            transform: translateY(-2px);
+        }
+        .button-container {
+            text-align: center;
+            margin-top: 40px;
+        }
+        .check-all-btn {
+            background-color: #0096c7;
+            font-size: 1.2em;
+            padding: 15px 30px;
+        }
+        .check-all-btn:hover {
+            background-color: #0077b6;
+        }
+        .correct {
+            background-color: #dcfce7 !important;
+            border-color: #4ade80 !important;
+            color: #15803d;
+        }
+        .incorrect {
+            background-color: #fee2e2 !important;
+            border-color: #f87171 !important;
+            color: #b91c1c;
+        }
+        .feedback {
+            font-weight: bold;
+            margin-left: 15px;
+            color: #15803d;
+        }
+        .chemical-formula {
+            font-family: 'Consolas', 'Courier New', monospace;
+            background-color: #e9ecef;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+            color: #c9184a;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">
+            <h1>ÔN TẬP CHỦ ĐỀ 10: VỎ TRÁI ĐẤT, TÀI NGUYÊN VÀ MÔI TRƯỜNG</h1>
+        </div>
+
+        <form id="quiz-form">
+            <h2>PHẦN I: KIẾN THỨC CẦN NHỚ</h2>
+            <div class="knowledge-point"><strong>1. Vỏ Trái Đất và Tài nguyên:</strong> Vỏ Trái Đất chứa các khoáng sản (quặng, đá vôi) và nhiên liệu hóa thạch (than, dầu mỏ). Việc khai thác tài nguyên mang lại lợi ích kinh tế nhưng cần phải hợp lí để tránh cạn kiệt và ô nhiễm môi trường.</div>
+            <div class="knowledge-point"><strong>2. Công nghệ Silicate:</strong> Chế biến các hợp chất của Silicon, bao gồm sản xuất xi măng, thủy tinh, đồ gốm từ các nguyên liệu như đá vôi, cát, đất sét.</div>
+            <div class="knowledge-point"><strong>3. Chu trình Carbon và Sự ấm lên toàn cầu:</strong> Đốt cháy nhiên liệu hóa thạch giải phóng lượng lớn <span class="chemical-formula">CO₂</span>, làm tăng hiệu ứng nhà kính và gây ra biến đổi khí hậu. Cần giảm phát thải và chuyển sang năng lượng sạch để phát triển bền vững.</div>
+            
+            <h2>PHẦN II: BÀI TẬP TỰ LUẬN TÍNH TOÁN</h2>
+            <div class="exercise-block">
+                <p class="question-title"><b>Bài toán:</b> Người ta dùng 1 tấn quặng hematite chứa 80% <span class="chemical-formula">Fe₂O₃</span> để luyện gang.
+                <br>a. Viết phương trình hóa học chính xảy ra trong lò cao.
+                <br>b. Tính khối lượng sắt (Fe) tối đa có thể thu được, biết hiệu suất của cả quá trình là 95%.
+                <br><i>(Cho: Fe=56, O=16)</i></p>
+                <button type="button" class="btn" onclick="toggleElementVisibility(this.nextElementSibling)">Xem hướng dẫn giải</button>
+                <div class="solution">
+                    <p><b>Hướng dẫn giải:</b></p>
+                    <p><b>Bước 1: Viết PTHH và tính khối lượng Fe₂O₃ nguyên chất.</b></p>
+                    <ul>
+                        <li>Phương trình hóa học: <span class="chemical-formula">Fe₂O₃ + 3CO --(t°)--> 2Fe + 3CO₂</span></li>
+                        <li>Khối lượng Fe₂O₃ nguyên chất: <span class="chemical-formula">m<sub>Fe₂O₃</sub> = 1000 kg × 80% = 800 kg</span>.</li>
+                    </ul>
+                    <p><b>Bước 2: Tính khối lượng Fe thu được theo lý thuyết.</b></p>
+                    <ul>
+                        <li>Khối lượng mol: M<sub>Fe₂O₃</sub> = 160 g/mol; M<sub>Fe</sub> = 56 g/mol.</li>
+                        <li>Theo PTHH, cứ 160 kg Fe₂O₃ tạo ra 2×56 = 112 kg Fe.</li>
+                        <li>Vậy, 800 kg Fe₂O₃ sẽ tạo ra (lý thuyết): <span class="chemical-formula">m<sub>Fe (lt)</sub> = (800 × 112) / 160 = 560 kg</span>.</li>
+                    </ul>
+                    <p><b>Bước 3: Tính khối lượng Fe thực tế thu được (Câu b).</b></p>
+                    <ul>
+                         <li>Khối lượng Fe thực tế thu được với hiệu suất 95%:</li>
+                         <li><span class="chemical-formula">m<sub>Fe (tt)</sub> = m<sub>Fe (lt)</sub> × H% = 560 × 95% = 532 kg</span>.</li>
+                    </ul>
+                    <p><b>Kết luận:</b> Khối lượng sắt tối đa có thể thu được là <strong>532 kg</strong>.</p>
+                </div>
+            </div>
+            
+            <h2>PHẦN III. CÂU HỎI TỰ LUẬN</h2>
+            <div id="self-study-container"></div>
+
+            <h2>PHẦN IV. CÂU TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN</h2>
+            <div id="mcq-container"></div>
+
+            <div class="button-container">
+                <button type="button" class="btn check-all-btn" onclick="checkMCQ()">Kiểm tra trắc nghiệm</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        const selfStudyData = [
+            { q: "Câu 1. Bằng những con đường nào mà carbon đã đi từ môi trường bên ngoài vào cơ thể sinh vật, trao đổi và trở lại môi trường?", a: "Carbon (dưới dạng CO₂) đi vào cơ thể thực vật qua quá trình quang hợp. Động vật ăn thực vật để lấy carbon. Carbon trở lại môi trường qua quá trình hô hấp của sinh vật, sự phân hủy xác sinh vật, và việc đốt cháy nhiên liệu hóa thạch." },
+            { q: "Câu 2. Người ta đã căn cứ vào tính chất vật lí và tính chất hoá học nào của than để sử dụng than trong thực tế đời sống? Nêu ví dụ.", a: "Tính chất hóa học: Khả năng cháy, tỏa nhiều nhiệt (dùng làm nhiên liệu). Tính chất vật lí: Khả năng hấp phụ của than hoạt tính (dùng để lọc nước, khử mùi)." },
+            { q: "Câu 3. Sự ấm lên toàn cầu là gì? Có ý kiến cho rằng: 'Biến đổi khí hậu hiện nay là do các hoạt động của con người gây ra'. Theo em, ý kiến này có đúng không? Vì sao?", a: "Sự ấm lên toàn cầu là sự gia tăng nhiệt độ trung bình của Trái Đất. Ý kiến trên là đúng, vì các hoạt động của con người, đặc biệt là việc đốt cháy nhiên liệu hóa thạch, đã làm tăng nồng độ khí nhà kính (CO₂) trong khí quyển, gây ra biến đổi khí hậu." }
+        ];
+
+        const mcqData = [
+            { q: "Câu 1. Các nhà máy sản xuất gang thép được xây dựng gần các nơi có mỏ quặng sắt vì lí do", o: ["xây dựng nhà máy chỉ phù hợp tại mỏ quặng.", "không thể bảo quản được quặng sắt lâu dài.", "để giảm chi phí sản xuất và thuận tiện cho quá trình vận chuyển.", "giúp bảo quản quặng sắt được lâu hơn."], a: "C" },
+            { q: "Câu 2. Điều nào sau đây không phải lợi ích của việc khai thác tài nguyên khoáng sản từ vỏ Trái Đất?", o: ["Gây ra ô nhiễm môi trường.", "Thu hút nhà đầu tư nước ngoài.", "Tạo nguồn thu nhập cho người lao động.", "Góp phần thúc đẩy tăng trưởng kinh tế."], a: "A" },
+            { q: "Câu 3. Nếu không có những giải pháp phù hợp cho việc khai thác tài nguyên, hậu quả trong tương lai sẽ là", o: ["Môi trường bị ô nhiễm.", "Ảnh hưởng tiêu cực đến phát triển kinh tế - xã hội.", "Đa dạng sinh học suy giảm, nguy cơ mất cân bằng sinh thái.", "Tất cả các phương án trên."], a: "D" },
+            { q: "Câu 4. Việc làm nào sau đây không phải là giải pháp tiết kiệm và bảo vệ nguồn tài nguyên bền vững?", o: ["Nghiêm cấm khai thác tài nguyên, khoáng sản.", "Đề ra các biện pháp phục hồi môi trường sau khai thác.", "Sử dụng tiết kiệm và tái chế vật liệu.", "Tìm kiếm các nguồn năng lượng thay thế."], a: "A" },
+            { q: "Câu 5. Nguyên tố kim loại phổ biến nhất trong vỏ Trái Đất là", o: ["Sắt (Fe)", "Silicon (Si)", "Nhôm (Al)", "Oxygen (O)"], a: "C" },
+            { q: "Câu 6. Thành phần chính của đá vôi là", o: ["SiO₂", "CaCO₃", "Al₂O₃", "Fe₂O₃"], a: "B" },
+            { q: "Câu 7. Quặng bauxite là nguồn nguyên liệu chính để sản xuất kim loại nào?", o: ["Sắt", "Đồng", "Nhôm", "Kẽm"], a: "C" },
+            { q: "Câu 8. Nguyên liệu chính để sản xuất thủy tinh là", o: ["Đất sét, đá vôi, soda", "Cát thạch anh, đá vôi, soda", "Cát thạch anh, đất sét, soda", "Đá vôi, thạch cao, cát"], a: "B" },
+            { q: "Câu 9. Clinker là sản phẩm trung gian trong quá trình sản xuất", o: ["Thủy tinh", "Đồ gốm", "Xi măng", "Vôi sống"], a: "C" },
+            { q: "Câu 10. Nguyên liệu chính để sản xuất đồ gốm, sứ là", o: ["Đá vôi và cao lanh", "Cát và đất sét", "Đất sét và cao lanh", "Thạch anh và đá vôi"], a: "C" },
+            { q: "Câu 11. Nhiên liệu nào sau đây không phải là nhiên liệu hóa thạch?", o: ["Than đá", "Dầu mỏ", "Gỗ", "Khí thiên nhiên"], a: "C" },
+            { q: "Câu 12. Thành phần chính của khí thiên nhiên là", o: ["Ethane", "Propane", "Methane", "Butane"], a: "C" },
+            { q: "Câu 13. “Vàng đen” là tên thường gọi của loại tài nguyên nào?", o: ["Than đá", "Dầu mỏ", "Quặng sắt", "Kim cương"], a: "B" },
+            { q: "Câu 14. Khí nào sau đây là nguyên nhân chính gây ra hiệu ứng nhà kính?", o: ["O₂", "N₂", "CO₂", "H₂"], a: "C" },
+            { q: "Câu 15. Hoạt động nào của con người làm tăng nồng độ CO₂ trong khí quyển nhiều nhất?", o: ["Hô hấp", "Quang hợp", "Đốt cháy nhiên liệu hóa thạch", "Phân hủy chất hữu cơ"], a: "C" },
+            { q: "Câu 16. Hậu quả trực tiếp của sự ấm lên toàn cầu là gì?", o: ["Băng tan ở hai cực", "Tầng ozone bị thủng", "Mưa acid", "Ô nhiễm nguồn nước"], a: "A" },
+            { q: "Câu 17. Biện pháp nào sau đây giúp giảm thiểu hiệu ứng nhà kính?", o: ["Sử dụng nhiều túi nylon", "Chặt phá rừng bừa bãi", "Tăng cường trồng cây xanh", "Sử dụng phương tiện cá nhân thay vì công cộng"], a: "C" },
+            { q: "Câu 18. Trong chu trình carbon, quá trình nào giúp chuyển hóa CO₂ thành hợp chất hữu cơ?", o: ["Hô hấp", "Đốt cháy", "Phân hủy", "Quang hợp"], a: "D" },
+            { q: "Câu 19. Phát biểu nào sau đây không đúng?", o: ["Tài nguyên khoáng sản là vô tận.", "Sử dụng năng lượng gió giúp giảm phát thải khí nhà kính.", "Hiệu ứng nhà kính là một quá trình tự nhiên cần thiết cho sự sống.", "Hoạt động của con người làm gia tăng hiệu ứng nhà kính."], a: "A" },
+            { q: "Câu 20. Ngày Trái Đất được tổ chức hàng năm nhằm mục đích gì?", o: ["Kỷ niệm ngày khám phá ra Trái Đất", "Nâng cao nhận thức về các vấn đề môi trường", "Khuyến khích du lịch khám phá", "Tổ chức các cuộc thi thể thao"], a: "B" }
+        ];
+
+        function renderQuiz() {
+            const selfStudyContainer = document.getElementById('self-study-container');
+            selfStudyData.forEach((item) => {
+                selfStudyContainer.innerHTML += `<div class="exercise-block"><p class="question-title">${item.q}</p><textarea class="user-answer" placeholder="Nhập câu trả lời của bạn..."></textarea><button type="button" class="btn" onclick="toggleElementVisibility(this.nextElementSibling)">Xem Gợi ý</button><div class="answer">${item.a}</div></div>`;
+            });
+            
+            const mcqContainer = document.getElementById('mcq-container');
+            mcqData.forEach((item, index) => {
+                const optionsHTML = item.o.map((opt, i) => `<label><input type="radio" name="q_mcq_${index}" value="${String.fromCharCode(65 + i)}"> ${String.fromCharCode(65 + i)}. ${opt}</label>`).join('');
+                mcqContainer.innerHTML += `<div class="exercise-block" data-answer="${item.a}"><p class="question-title">${item.q}</p><div class="options">${optionsHTML}</div></div>`;
+            });
+        }
+
+        function checkMCQ() {
+            const mcqBlocks = document.querySelectorAll('#mcq-container .exercise-block');
+            mcqBlocks.forEach((block) => {
+                const correctAnswer = block.dataset.answer;
+                const selectedRadio = block.querySelector(`input[type="radio"]:checked`);
+                const options = block.querySelectorAll('.options label');
+                options.forEach(label => {
+                    label.classList.remove('correct', 'incorrect');
+                    const feedback = label.querySelector('.feedback');
+                    if (feedback) feedback.remove();
+                });
+                
+                if (selectedRadio) {
+                    const selectedLabel = selectedRadio.parentElement;
+                    if (selectedRadio.value === correctAnswer) {
+                        selectedLabel.classList.add('correct');
+                    } else {
+                        selectedLabel.classList.add('incorrect');
+                        options.forEach(label => {
+                            if (label.querySelector('input').value === correctAnswer) {
+                                label.innerHTML += ' <span class="feedback">(Đáp án đúng)</span>';
+                            }
+                        });
+                    }
+                }
+            });
+        }
+        
+        function toggleElementVisibility(element) {
+            const button = element.previousElementSibling;
+            if (element.style.display === 'block') {
+                element.style.display = 'none';
+                button.textContent = button.textContent.replace('Ẩn', 'Xem');
+            } else {
+                element.style.display = 'block';
+                button.textContent = button.textContent.replace('Xem', 'Ẩn');
+            }
+        }
+
+        window.onload = renderQuiz;
+    </script>
+</body>
+</html>
