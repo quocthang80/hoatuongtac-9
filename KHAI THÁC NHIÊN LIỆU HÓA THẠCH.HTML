@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 34: Nhiên liệu hóa thạch và Chu trình Carbon</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.7;
+            margin: 0;
+            padding: 0;
+            background-color: #fdfdfd;
+            color: #333;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 25px auto;
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+        }
+        .header {
+            text-align: center;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            color: #1d3557;
+            margin: 0;
+        }
+        h2 {
+            background-color: #457b9d;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            margin-top: 40px;
+        }
+        h3 {
+            color: #1d3557;
+            border-left: 5px solid #a8dadc;
+            padding-left: 15px;
+        }
+        .knowledge-point {
+            background-color: #f1faee;
+            border: 1px solid #e9ecef;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+        .exercise-block {
+            margin-bottom: 25px;
+            padding: 20px;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            background-color: #ffffff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .question-title {
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-top: 0;
+        }
+        .options label {
+            display: block;
+            margin: 10px 0;
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            border: 1px solid #ddd;
+        }
+        .options label:hover {
+            background-color: #eaf4f4;
+            border-color: #a8dadc;
+        }
+        input[type="radio"] {
+            margin-right: 12px;
+        }
+        .solution, .answer {
+            display: none;
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #f0fdf4;
+            border-left: 5px solid #22c55e;
+            border-radius: 5px;
+        }
+        .btn {
+            background-color: #6c757d;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            margin-top: 10px;
+            transition: background-color 0.3s, transform 0.1s;
+        }
+        .btn:hover {
+            background-color: #5a6268;
+            transform: translateY(-2px);
+        }
+        .button-container {
+            text-align: center;
+            margin-top: 40px;
+        }
+        .check-all-btn {
+            background-color: #e63946;
+            font-size: 1.2em;
+            padding: 15px 30px;
+        }
+        .check-all-btn:hover {
+            background-color: #d62828;
+        }
+        .correct {
+            background-color: #dcfce7 !important;
+            border-color: #4ade80 !important;
+            color: #15803d;
+        }
+        .incorrect {
+            background-color: #fee2e2 !important;
+            border-color: #f87171 !important;
+            color: #b91c1c;
+        }
+        .feedback {
+            font-weight: bold;
+            margin-left: 15px;
+            color: #15803d;
+        }
+        .chemical-formula {
+            font-family: 'Consolas', 'Courier New', monospace;
+            background-color: #e9ecef;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+            color: #c9184a;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">
+            <h1>BÀI 34: NHIÊN LIỆU HÓA THẠCH, CHU TRÌNH CARBON VÀ SỰ ẤM LÊN TOÀN CẦU</h1>
+        </div>
+
+        <form id="quiz-form">
+            <h2>PHẦN I: KIẾN THỨC CẦN NHỚ</h2>
+            <div class="knowledge-point"><strong>1. Nhiên liệu hóa thạch:</strong> Gồm than đá, dầu mỏ, khí thiên nhiên. Được tạo thành từ xác sinh vật bị chôn vùi hàng triệu năm. Là nguồn năng lượng hữu hạn và khi đốt cháy phát thải nhiều <span class="chemical-formula">CO₂</span>.</div>
+            <div class="knowledge-point"><strong>2. Nguồn Carbon:</strong> Carbon tồn tại trong khí quyển (<span class="chemical-formula">CO₂</span>), trong vỏ Trái Đất (đá vôi, nhiên liệu hóa thạch), và trong sinh vật sống.</div>
+            <div class="knowledge-point"><strong>3. Chu trình Carbon:</strong> Là sự trao đổi carbon liên tục giữa khí quyển, đại dương, đất liền và sinh vật thông qua các quá trình như quang hợp, hô hấp, phân hủy và đốt cháy nhiên liệu.</div>
+            <div class="knowledge-point"><strong>4. Sự ấm lên toàn cầu:</strong> Do sự gia tăng nồng độ các khí nhà kính (chủ yếu là <span class="chemical-formula">CO₂</span>) trong khí quyển, làm tăng hiệu ứng nhà kính. Hậu quả là biến đổi khí hậu, băng tan, nước biển dâng, thời tiết cực đoan.</div>
+            <div class="knowledge-point"><strong>5. Giải pháp:</strong> Giảm sử dụng nhiên liệu hóa thạch, tăng cường sử dụng năng lượng sạch (mặt trời, gió), trồng cây gây rừng, sử dụng tiết kiệm và hiệu quả năng lượng.</div>
+
+            <h2>PHẦN II: BÀI TẬP TỰ LUẬN TÍNH TOÁN</h2>
+            <div class="exercise-block">
+                <p class="question-title"><b>Bài toán:</b> Đốt cháy hoàn toàn 1,2 kg than đá chứa 90% carbon, còn lại là tạp chất không cháy.
+                <br>a. Viết phương trình hóa học của phản ứng cháy.
+                <br>b. Tính thể tích khí <span class="chemical-formula">CO₂</span> sinh ra (ở đkc 25°C, 1 bar).
+                <br><i>(Cho: C=12, O=16. Thể tích mol khí ở đkc là 24,79 L/mol)</i></p>
+                <button type="button" class="btn" onclick="toggleElementVisibility(this.nextElementSibling)">Xem hướng dẫn giải</button>
+                <div class="solution">
+                    <p><b>Hướng dẫn giải:</b></p>
+                    <p><b>Bước 1: Viết PTHH và tính khối lượng Carbon nguyên chất.</b></p>
+                    <ul>
+                        <li>Phương trình hóa học: <span class="chemical-formula">C + O₂ --(t°)--> CO₂</span></li>
+                        <li>Khối lượng Carbon nguyên chất trong 1,2 kg than đá: <span class="chemical-formula">m<sub>C</sub> = 1,2 kg × 90% = 1,08 kg = 1080 gam</span>.</li>
+                    </ul>
+                    <p><b>Bước 2: Tính số mol Carbon.</b></p>
+                    <ul>
+                        <li>Số mol C: <span class="chemical-formula">n<sub>C</sub> = m / M = 1080 / 12 = 90 (mol)</span>.</li>
+                    </ul>
+                    <p><b>Bước 3: Tính thể tích CO₂ (Câu b).</b></p>
+                    <ul>
+                         <li>Theo PTHH, tỉ lệ mol: n<sub>CO₂</sub> = n<sub>C</sub> = 90 (mol).</li>
+                         <li>Thể tích khí CO₂ (đkc): <span class="chemical-formula">V = n × 24,79 = 90 × 24,79 = 2231,1 (lít)</span>.</li>
+                    </ul>
+                    <p><b>Kết luận:</b> Thể tích <span class="chemical-formula">CO₂</span> sinh ra là <strong>2231,1 lít</strong>.</p>
+                </div>
+            </div>
+            
+            <h2>PHẦN III. CÂU HỎI TỰ LUẬN</h2>
+            <div id="self-study-container"></div>
+
+            <h2>PHẦN IV. CÂU TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN</h2>
+            <div id="mcq-container"></div>
+
+            <div class="button-container">
+                <button type="button" class="btn check-all-btn" onclick="checkMCQ()">Kiểm tra trắc nghiệm</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        const selfStudyData = [
+            { q: "Câu 1. Kể tên các loại nhiên liệu hóa thạch.", a: "Than đá, dầu mỏ, và khí thiên nhiên." },
+            { q: "Câu 2. Nêu một số lợi ích và tác hại của việc sử dụng nhiên liệu hóa thạch.", a: "Lợi ích: Cung cấp nguồn năng lượng lớn, giá thành tương đối rẻ. Tác hại: Gây ô nhiễm không khí, là nguyên nhân chính gây hiệu ứng nhà kính, nguồn tài nguyên không tái tạo và đang cạn kiệt." },
+            { q: "Câu 3. Nêu một số giải pháp để hạn chế việc sử dụng nhiên liệu hóa thạch.", a: "Tăng cường sử dụng các nguồn năng lượng tái tạo (mặt trời, gió), sử dụng phương tiện giao thông công cộng, tiết kiệm điện, nâng cao hiệu quả sử dụng năng lượng." },
+            { q: "Câu 4. Carbon có ở đâu trong tự nhiên?", a: "Trong khí quyển (CO₂), trong vỏ Trái Đất (đá vôi, than đá, dầu mỏ), trong các cơ thể sống (hợp chất hữu cơ)." },
+            { q: "Câu 5. Trình bày sơ lược về chu trình carbon trong tự nhiên.", a: "CO₂ trong khí quyển được thực vật hấp thụ qua quang hợp. Động vật ăn thực vật. Khi sinh vật chết đi, bị phân hủy, carbon trở lại đất và khí quyển. Đốt cháy nhiên liệu hóa thạch cũng giải phóng CO₂ vào khí quyển." },
+            { q: "Câu 6. Nêu nguyên nhân, hậu quả và biện pháp giảm thiểu sự ấm lên toàn cầu.", a: "Nguyên nhân: Tăng nồng độ khí nhà kính (CO₂). Hậu quả: Biến đổi khí hậu, băng tan, nước biển dâng. Biện pháp: Giảm phát thải khí nhà kính, trồng cây, sử dụng năng lượng sạch." },
+            { q: "Câu 7. Vì sao việc trồng nhiều cây xanh lại góp phần làm giảm hiệu ứng nhà kính?", a: "Vì cây xanh thực hiện quá trình quang hợp, hấp thụ khí CO₂ từ khí quyển và giải phóng khí O₂, giúp làm giảm nồng độ khí nhà kính." },
+            { q: "Câu 8. Kể tên một số nguồn năng lượng sạch có thể thay thế nhiên liệu hóa thạch.", a: "Năng lượng mặt trời, năng lượng gió, năng lượng thủy điện, năng lượng địa nhiệt, năng lượng sinh học." },
+            { q: "Câu 9. Vì sao dầu mỏ được gọi là 'vàng đen'?", a: "Vì dầu mỏ là một nguồn tài nguyên vô cùng quý giá, là nguyên liệu cho nhiều ngành công nghiệp (nhiên liệu, hóa chất, dược phẩm) và có giá trị kinh tế rất cao." },
+            { q: "Câu 10. Giải thích tại sao nói nhiên liệu hóa thạch là nguồn tài nguyên không tái tạo.", a: "Vì chúng được hình thành trong hàng trăm triệu năm từ xác sinh vật. Tốc độ khai thác và sử dụng của con người nhanh hơn rất nhiều so với tốc độ hình thành của chúng." },
+            { q: "Câu 11. Hiệu ứng nhà kính là gì?", a: "Là hiệu ứng giữ lại nhiệt của Trái Đất do các khí nhà kính trong khí quyển hấp thụ bức xạ hồng ngoại từ bề mặt Trái Đất phát ra, làm cho hành tinh ấm lên." },
+            { q: "Câu 12. Nêu một số ví dụ về tác động của biến đổi khí hậu ở Việt Nam.", a: "Hạn hán và xâm nhập mặn ở Đồng bằng sông Cửu Long, các cơn bão mạnh và lũ lụt bất thường ở miền Trung, thời tiết nắng nóng kỷ lục." },
+            { q: "Câu 13. Vai trò của đại dương trong chu trình carbon là gì?", a: "Đại dương hấp thụ một lượng lớn CO₂ từ khí quyển, đóng vai trò là một 'bể chứa' carbon khổng lồ, giúp điều hòa khí hậu." },
+            { q: "Câu 14. Tại sao việc đi bộ, đi xe đạp hoặc sử dụng phương tiện công cộng lại góp phần bảo vệ môi trường?", a: "Vì nó làm giảm số lượng phương tiện cá nhân lưu thông, từ đó giảm lượng nhiên liệu hóa thạch bị đốt cháy và giảm phát thải khí CO₂ cũng như các chất gây ô nhiễm khác." },
+            { q: "Câu 15. Là một học sinh, em có thể làm gì để góp phần giảm thiểu sự ấm lên toàn cầu?", a: "Tiết kiệm điện, nước; hạn chế sử dụng đồ nhựa dùng một lần; đi bộ hoặc đi xe đạp khi có thể; tham gia trồng cây; tuyên truyền cho gia đình và bạn bè cùng thực hiện." }
+        ];
+
+        const mcqData = [
+            { q: "Câu 1. Nhiên liệu nào sau đây là nhiên liệu hóa thạch?", o: ["Củi", "Than đá", "Ethanol", "Khí biogas"], a: "B" },
+            { q: "Câu 2. Khí nào sau đây là nguyên nhân chính gây ra hiệu ứng nhà kính?", o: ["O₂", "N₂", "CO₂", "H₂"], a: "C" },
+            { q: "Câu 3. Hoạt động nào của con người làm tăng nồng độ CO₂ trong khí quyển nhiều nhất?", o: ["Hô hấp", "Quang hợp", "Đốt cháy nhiên liệu hóa thạch", "Phân hủy chất hữu cơ"], a: "C" },
+            { q: "Câu 4. Nguồn năng lượng nào sau đây được coi là năng lượng sạch?", o: ["Than đá", "Dầu mỏ", "Năng lượng mặt trời", "Khí tự nhiên"], a: "C" },
+            { q: "Câu 5. Chu trình carbon mô tả sự trao đổi của nguyên tố carbon giữa các thành phần nào?", o: ["Khí quyển và đại dương", "Đất liền và sinh vật", "Khí quyển và sinh vật", "Tất cả các thành phần trên"], a: "D" },
+            { q: "Câu 6. Hậu quả trực tiếp của sự ấm lên toàn cầu là gì?", o: ["Băng tan ở hai cực", "Tầng ozone bị thủng", "Mưa acid", "Ô nhiễm nguồn nước"], a: "A" },
+            { q: "Câu 7. Biện pháp nào hiệu quả nhất để giảm lượng khí thải CO₂ từ các nhà máy công nghiệp?", o: ["Trồng cây xanh xung quanh nhà máy", "Sử dụng công nghệ xử lí khí thải", "Xây ống khói cao hơn", "Di dời nhà máy ra xa khu dân cư"], a: "B" },
+            { q: "Câu 8. Trong chu trình carbon, quá trình nào giúp chuyển hóa CO₂ thành hợp chất hữu cơ?", o: ["Hô hấp", "Đốt cháy", "Phân hủy", "Quang hợp"], a: "D" },
+            { q: "Câu 9. Phát biểu nào sau đây không đúng?", o: ["Nhiên liệu hóa thạch là nguồn tài nguyên vô tận.", "Sử dụng năng lượng gió giúp giảm phát thải khí nhà kính.", "Hiệu ứng nhà kính là một quá trình tự nhiên cần thiết cho sự sống.", "Hoạt động của con người làm gia tăng hiệu ứng nhà kính."], a: "A" },
+            { q: "Câu 10. “Vàng đen” là tên thường gọi của loại nhiên liệu nào?", o: ["Than đá", "Dầu mỏ", "Uranium", "Vàng"], a: "B" },
+            { q: "Câu 11. Việc gia tăng nhiệt độ Trái Đất có thể dẫn đến hiện tượng thời tiết nào sau đây?", o: ["Các cơn bão mạnh hơn", "Hạn hán kéo dài", "Lũ lụt nghiêm trọng", "Tất cả các hiện tượng trên"], a: "D" },
+            { q: "Câu 12. Thành phần chính của khí thiên nhiên là", o: ["Ethane", "Propane", "Methane", "Butane"], a: "C" },
+            { q: "Câu 13. Nguồn carbon lớn nhất trên Trái Đất được lưu trữ ở đâu?", o: ["Khí quyển", "Sinh vật sống", "Đại dương", "Nhiên liệu hóa thạch"], a: "C" },
+            { q: "Câu 14. Hành động nào sau đây không góp phần vào việc giảm thiểu biến đổi khí hậu?", o: ["Tắt các thiết bị điện khi không sử dụng", "Sử dụng túi nylon thay cho túi vải", "Phân loại rác tại nguồn", "Tái chế giấy"], a: "B" },
+            { q: "Câu 15. Ngày Trái Đất được tổ chức hàng năm nhằm mục đích gì?", o: ["Kỷ niệm ngày khám phá ra Trái Đất", "Nâng cao nhận thức về các vấn đề môi trường", "Khuyến khích du lịch khám phá", "Tổ chức các cuộc thi thể thao"], a: "B" }
+        ];
+
+        function renderQuiz() {
+            const selfStudyContainer = document.getElementById('self-study-container');
+            selfStudyData.forEach((item) => {
+                selfStudyContainer.innerHTML += `<div class="exercise-block"><p class="question-title">${item.q}</p><button type="button" class="btn" onclick="toggleElementVisibility(this.nextElementSibling)">Xem Đáp án</button><div class="answer">${item.a}</div></div>`;
+            });
+            
+            const mcqContainer = document.getElementById('mcq-container');
+            mcqData.forEach((item, index) => {
+                const optionsHTML = item.o.map((opt, i) => `<label><input type="radio" name="q_mcq_${index}" value="${String.fromCharCode(65 + i)}"> ${String.fromCharCode(65 + i)}. ${opt}</label>`).join('');
+                mcqContainer.innerHTML += `<div class="exercise-block" data-answer="${item.a}"><p class="question-title">${item.q}</p><div class="options">${optionsHTML}</div></div>`;
+            });
+        }
+
+        function checkMCQ() {
+            const mcqBlocks = document.querySelectorAll('#mcq-container .exercise-block');
+            mcqBlocks.forEach((block) => {
+                const correctAnswer = block.dataset.answer;
+                const selectedRadio = block.querySelector(`input[type="radio"]:checked`);
+                const options = block.querySelectorAll('.options label');
+                options.forEach(label => {
+                    label.classList.remove('correct', 'incorrect');
+                    const feedback = label.querySelector('.feedback');
+                    if (feedback) feedback.remove();
+                });
+                
+                if (selectedRadio) {
+                    const selectedLabel = selectedRadio.parentElement;
+                    if (selectedRadio.value === correctAnswer) {
+                        selectedLabel.classList.add('correct');
+                    } else {
+                        selectedLabel.classList.add('incorrect');
+                        options.forEach(label => {
+                            if (label.querySelector('input').value === correctAnswer) {
+                                label.innerHTML += ' <span class="feedback">(Đáp án đúng)</span>';
+                            }
+                        });
+                    }
+                }
+            });
+        }
+        
+        function toggleElementVisibility(element) {
+            const button = element.previousElementSibling;
+            if (element.style.display === 'block') {
+                element.style.display = 'none';
+                button.textContent = button.textContent.replace('Ẩn', 'Xem');
+            } else {
+                element.style.display = 'block';
+                button.textContent = button.textContent.replace('Xem', 'Ẩn');
+            }
+        }
+
+        window.onload = renderQuiz;
+    </script>
+</body>
+</html>
