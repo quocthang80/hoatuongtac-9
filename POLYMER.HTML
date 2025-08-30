@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chuyên đề 5: Polymer</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.7;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f9fc;
+            color: #333;
+        }
+        .container {
+            max-width: 950px;
+            margin: 25px auto;
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2, h3 {
+            color: #005f73;
+        }
+        h1 {
+            text-align: center;
+            color: #d62828;
+            border-bottom: 4px solid #f77f00;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+        }
+        h2 {
+            background-color: #0a9396;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            margin-top: 40px;
+        }
+        h3 {
+            color: #0077b6;
+            border-left: 5px solid #00b4d8;
+            padding-left: 15px;
+        }
+        .section {
+            margin-bottom: 35px;
+        }
+        ul {
+            list-style-type: '➤ ';
+            padding-left: 25px;
+        }
+        .exercise-block {
+            margin-bottom: 25px;
+            padding: 20px;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            background-color: #ffffff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .exercise-block p.question-title {
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-top: 0;
+        }
+        .options label {
+            display: block;
+            margin: 10px 0;
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            border: 1px solid #ddd;
+        }
+        .options label:hover {
+            background-color: #edf6f9;
+            border-color: #00b4d8;
+        }
+        .options input[type="radio"] {
+            margin-right: 12px;
+        }
+        .solution, .answer {
+            display: none;
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #e9f5db;
+            border-left: 5px solid #7cb518;
+            border-radius: 5px;
+        }
+        .btn {
+            background-color: #6c757d;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            margin-top: 10px;
+            transition: background-color 0.3s, transform 0.1s;
+        }
+        .btn:hover {
+            background-color: #5a6268;
+            transform: translateY(-2px);
+        }
+        .button-container {
+            text-align: center;
+            margin-top: 25px;
+        }
+        .check-all-btn {
+            background-color: #fca311;
+        }
+        .check-all-btn:hover {
+            background-color: #e85d04;
+        }
+        .correct {
+            background-color: #d1f7c4 !important;
+            border-color: #4caf50 !important;
+            color: #1b5e20;
+        }
+        .incorrect {
+            background-color: #ffcdd2 !important;
+            border-color: #f44336 !important;
+            color: #b71c1c;
+        }
+        .feedback {
+            font-weight: bold;
+            margin-left: 15px;
+        }
+        .chemical-formula {
+            font-family: 'Consolas', 'Courier New', monospace;
+            background-color: #e9ecef;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+            color: #c9184a;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>CHUYÊN ĐỀ 5: POLYMER</h1>
+
+        <div class="section" id="ly-thuyet">
+            <h2>A. KIẾN THỨC CẦN NHỚ</h2>
+            <h3>I. Khái niệm, cấu tạo và phân loại</h3>
+            <ul>
+                <li><strong>Polymer:</strong> Là những chất có khối lượng phân tử rất lớn, do nhiều đơn vị nhỏ (gọi là <strong>mắt xích</strong>) liên kết với nhau.</li>
+                <li><strong>Monomer:</strong> Là các phân tử nhỏ ban đầu tạo nên polymer.</li>
+                <li><strong>Cấu trúc mạch:</strong> Mạch không phân nhánh (PE, PVC), mạch phân nhánh (amylopectin), và mạng không gian (cao su lưu hóa).</li>
+                <li><strong>Phân loại:</strong> Polymer thiên nhiên (tinh bột, tơ tằm) và polymer tổng hợp (PE, nylon).</li>
+            </ul>
+
+            <h3>II. Tính chất và ứng dụng của một số vật liệu polymer</h3>
+            <ul>
+                <li><strong>Chất dẻo:</strong> Vật liệu polymer có tính dẻo. Ví dụ: PE, PP, PVC. Dùng làm túi, chai lọ, ống nước.</li>
+                <li><strong>Tơ:</strong> Polymer có cấu trúc mạch thẳng, có thể kéo dài thành sợi. Ví dụ: tơ tằm, tơ nylon. Dùng trong ngành dệt may.</li>
+                <li><strong>Cao su:</strong> Vật liệu polymer có tính đàn hồi. Ví dụ: cao su thiên nhiên, cao su buna. Dùng làm lốp xe, găng tay.</li>
+                <li><strong>Vật liệu composite:</strong> Vật liệu tổ hợp từ vật liệu nền (thường là polymer) và vật liệu cốt (sợi, hạt) để tăng cường tính năng.</li>
+            </ul>
+             <h3>III. Vấn đề ô nhiễm môi trường</h3>
+            <p>Việc sử dụng rộng rãi các sản phẩm từ polymer tổng hợp khó phân hủy (như túi nylon, chai nhựa) đang gây ra ô nhiễm môi trường nghiêm trọng. Cần thực hiện các biện pháp giảm thiểu, tái sử dụng và tái chế.</p>
+        </div>
+
+        <div class="section" id="bai-tap">
+            <h2>B. BÀI TẬP VẬN DỤNG</h2>
+
+            <h3>I. Tự luận tính toán (Có hướng dẫn giải)</h3>
+            <div class="exercise-block">
+                <p class="question-title"><b>Bài toán:</b> Phân tử khối trung bình của một mẫu poli(vinyl clorua) (PVC) là 75000 amu. Hãy xác định hệ số polime hóa (số mắt xích) trung bình của mẫu PVC này.
+                <br><i>(Cho nguyên tử khối: C=12, H=1, Cl=35.5)</i></p>
+                <button class="btn" onclick="toggleElementVisibility(this.nextElementSibling)">Xem hướng dẫn giải</button>
+                <div class="solution">
+                    <p><b>Hướng dẫn giải:</b></p>
+                    <p><b>Bước 1: Xác định monomer và mắt xích của PVC.</b></p>
+                    <ul>
+                        <li>Monomer tạo ra PVC là vinyl clorua, có công thức là <span class="chemical-formula">CH₂=CHCl</span>.</li>
+                        <li>Khi trùng hợp, mắt xích tương ứng trong chuỗi polymer là <span class="chemical-formula">(-CH₂-CHCl-)</span>.</li>
+                    </ul>
+                    <p><b>Bước 2: Tính khối lượng phân tử của một mắt xích.</b></p>
+                    <ul>
+                        <li>Khối lượng phân tử của mắt xích <span class="chemical-formula">(-CH₂-CHCl-)</span> là:</li>
+                        <li>M<sub>mắt xích</sub> = (12 × 2) + (1 × 3) + 35.5 = 24 + 3 + 35.5 = 62.5 (amu).</li>
+                    </ul>
+                    <p><b>Bước 3: Tính hệ số polime hóa (n).</b></p>
+                    <ul>
+                        <li>Hệ số polime hóa (n) là số mắt xích trung bình trong một phân tử polymer.</li>
+                        <li>Công thức: n = M<sub>polymer</sub> / M<sub>mắt xích</sub></li>
+                        <li>Thay số: n = 75000 / 62.5 = 1200.</li>
+                    </ul>
+                    <p><b>Kết luận:</b> Hệ số polime hóa trung bình của mẫu PVC này là <strong>1200</strong>.</p>
+                </div>
+            </div>
+
+            <h3>II. Tự luận trả lời câu hỏi</h3>
+            <div class="exercise-block">
+                <p class="question-title">Câu 1. Cho các polymer: polyethylene, cellulose, amylopectin, PVC, cao su lưu hóa. Hãy phân loại chúng theo cấu trúc mạch polymer.</p>
+                <button class="btn" onclick="toggleElementVisibility(this.nextElementSibling)">Xem Đáp án</button>
+                <div class="answer">
+                    <strong>Đáp án:</strong><br>
+                    <ul>
+                        <li><strong>Mạch không phân nhánh:</strong> polyethylene, cellulose, PVC.</li>
+                        <li><strong>Mạch phân nhánh:</strong> amylopectin (thành phần của tinh bột).</li>
+                        <li><strong>Mạng không gian:</strong> cao su lưu hóa.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="exercise-block">
+                <p class="question-title">Câu 2. Viết phương trình hóa học của phản ứng điều chế poly(vinyl chloride) (PVC) từ vinyl chloride (CH₂=CHCl) và Teflon từ tetrafluoroethylene (CF₂=CF₂).</p>
+                <button class="btn" onclick="toggleElementVisibility(this.nextElementSibling)">Xem Đáp án</button>
+                <div class="answer">
+                    <strong>Đáp án:</strong><br>
+                    <ul>
+                        <li><strong>Điều chế PVC:</strong><br>
+                        <span class="chemical-formula">nCH₂=CHCl → (-CH₂-CHCl-)ₙ</span> (xt, t°, p)</li>
+                        <li><strong>Điều chế Teflon:</strong><br>
+                        <span class="chemical-formula">nCF₂=CF₂ → (-CF₂-CF₂-)ₙ</span> (xt, t°, p)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>III. Bài tập trắc nghiệm</h3>
+            <div id="quiz-container">
+                <div class="exercise-block" data-correct="D"><p class="question-title">Câu 1. Polymer là những chất</p><div class="options"><label><input type="radio" name="q1" value="A"> A. có khối lượng phân tử rất lớn do nhiều nguyên tử liên kết với nhau.</label><label><input type="radio" name="q1" value="B"> B. có số lượng nguyên tử rất lớn liên kết với nhau.</label><label><input type="radio" name="q1" value="C"> C. có tính chất hóa học tương tự monomer tạo ra nó.</label><label><input type="radio" name="q1" value="D"> D. có khối lượng phân tử rất lớn, gồm nhiều mắt xích liên kết với nhau.</label></div></div>
+                <div class="exercise-block" data-correct="C"><p class="question-title">Câu 2. Chất nào sau đây là polymer thiên nhiên?</p><div class="options"><label><input type="radio" name="q2" value="A"> A. Polyethylene.</label><label><input type="radio" name="q2" value="B"> B. Nylon-6,6.</label><label><input type="radio" name="q2" value="C"> C. Tinh bột.</label><label><input type="radio" name="q2" value="D"> D. PVC.</label></div></div>
+                <div class="exercise-block" data-correct="A"><p class="question-title">Câu 3. Phản ứng hóa học nào được dùng để điều chế PE từ ethylene?</p><div class="options"><label><input type="radio" name="q3" value="A"> A. Trùng hợp.</label><label><input type="radio" name="q3" value="B"> B. Trùng ngưng.</label><label><input type="radio" name="q3" value="C"> C. Thủy phân.</label><label><input type="radio" name="q3" value="D"> D. Xà phòng hóa.</label></div></div>
+                <div class="exercise-block" data-correct="B"><p class="question-title">Câu 4. Monomer của cao su thiên nhiên là</p><div class="options"><label><input type="radio" name="q4" value="A"> A. buta-1,3-diene.</label><label><input type="radio" name="q4" value="B"> B. isoprene.</label><label><input type="radio" name="q4" value="C"> C. ethylene.</label><label><input type="radio" name="q4" value="D"> D. styrene.</label></div></div>
+                <div class="exercise-block" data-correct="D"><p class="question-title">Câu 5. Polymer nào sau đây được dùng làm lớp chống dính cho xoong, chảo?</p><div class="options"><label><input type="radio" name="q5" value="A"> A. PE.</label><label><input type="radio" name="q5" value="B"> B. PVC.</label><label><input type="radio" name="q5" value="C"> C. PP.</label><label><input type="radio" name="q5" value="D"> D. Teflon (PTFE).</label></div></div>
+                <div class="exercise-block" data-correct="A"><p class="question-title">Câu 6. Tính chất đặc trưng nhất của cao su là</p><div class="options"><label><input type="radio" name="q6" value="A"> A. tính đàn hồi.</label><label><input type="radio" name="q6" value="B"> B. tính dẻo.</label><label><input type="radio" name="q6" value="C"> C. tính dẫn điện.</label><label><input type="radio" name="q6" value="D"> D. tính tan trong nước.</label></div></div>
+                <div class="exercise-block" data-correct="C"><p class="question-title">Câu 7. Tơ nào sau đây thuộc loại tơ tổng hợp?</p><div class="options"><label><input type="radio" name="q7" value="A"> A. Tơ tằm.</label><label><input type="radio" name="q7" value="B"> B. Sợi bông.</label><label><input type="radio" name="q7" value="C"> C. Tơ capron.</label><label><input type="radio" name="q7" value="D"> D. Tơ visco.</label></div></div>
+                <div class="exercise-block" data-correct="B"><p class="question-title">Câu 8. Quá trình kết hợp nhiều phân tử nhỏ (monomer) thành phân tử lớn (polymer) đồng thời giải phóng các phân tử nhỏ khác (như nước) được gọi là phản ứng</p><div class="options"><label><input type="radio" name="q8" value="A"> A. trùng hợp.</label><label><input type="radio" name="q8" value="B"> B. trùng ngưng.</label><label><input type="radio" name="q8" value="C"> C. cracking.</label><label><input type="radio" name="q8" value="D"> D. este hóa.</label></div></div>
+                <div class="exercise-block" data-correct="D"><p class="question-title">Câu 9. Vật liệu composite có ưu điểm gì so với vật liệu ban đầu?</p><div class="options"><label><input type="radio" name="q9" value="A"> A. Nhẹ hơn.</label><label><input type="radio" name="q9" value="B"> B. Bền hơn.</label><label><input type="radio" name="q9" value="C"> C. Chịu nhiệt tốt hơn.</label><label><input type="radio" name="q9" value="D"> D. Tất cả các ưu điểm trên.</label></div></div>
+                <div class="exercise-block" data-correct="A"><p class="question-title">Câu 10. Cao su lưu hóa có cấu trúc mạch ở dạng nào?</p><div class="options"><label><input type="radio" name="q10" value="A"> A. Mạng không gian.</label><label><input type="radio" name="q10" value="B"> B. Mạch phân nhánh.</label><label><input type="radio" name="q10" value="C"> C. Mạch không phân nhánh.</label><label><input type="radio" name="q10" value="D"> D. Mạch vòng.</label></div></div>
+                <div class="exercise-block" data-correct="C"><p class="question-title">Câu 11. Dãy gồm các chất đều có khả năng tham gia phản ứng trùng hợp là</p><div class="options"><label><input type="radio" name="q11" value="A"> A. metan, etilen, butan.</label><label><input type="radio" name="q11" value="B"> B. benzen, toluen, stiren.</label><label><input type="radio" name="q11" value="C"> C. etilen, propilen, vinyl clorua.</label><label><input type="radio" name="q11" value="D"> D. axetilen, propan, but-1-en.</label></div></div>
+                <div class="exercise-block" data-correct="B"><p class="question-title">Câu 12. "Thủy tinh hữu cơ" plexiglas là tên thương mại của polymer nào?</p><div class="options"><label><input type="radio" name="q12" value="A"> A. Polyethylene.</label><label><input type="radio" name="q12" value="B"> B. Poli(metyl metacrylat).</label><label><input type="radio" name="q12" value="C"> C. Poly(vinyl clorua).</label><label><input type="radio" name="q12" value="D"> D. Polystyren.</label></div></div>
+                <div class="exercise-block" data-correct="D"><p class="question-title">Câu 13. Sợi bông và tơ tằm có thể phân biệt bằng cách</p><div class="options"><label><input type="radio" name="q13" value="A"> A. thử tính tan trong nước.</label><label><input type="radio" name="q13" value="B"> B. thử tính tan trong cồn.</label><label><input type="radio" name="q13" value="C"> C. thử độ mềm mại.</label><label><input type="radio" name="q13" value="D"> D. đốt trên ngọn lửa.</label></div></div>
+                <div class="exercise-block" data-correct="A"><p class="question-title">Câu 14. Polyme nào sau đây có chứa nguyên tố nitrogen?</p><div class="options"><label><input type="radio" name="q14" value="A"> A. Nilon-6.</label><label><input type="radio" name="q14" value="B"> B. Tinh bột.</label><label><input type="radio" name="q14" value="C"> C. Cao su buna.</label><label><input type="radio" name="q14" value="D"> D. Polyethylene.</label></div></div>
+                <div class="exercise-block" data-correct="C"><p class="question-title">Câu 15. Việc sử dụng vật liệu polymer nào gây ra ô nhiễm "trắng"?</p><div class="options"><label><input type="radio" name="q15" value="A"> A. Tơ tằm.</label><label><input type="radio" name="q15" value="B"> B. Cao su thiên nhiên.</label><label><input type="radio" name="q15" value="C"> C. Túi nylon.</label><label><input type="radio" name="q15" value="D"> D. Gỗ.</label></div></div>
+            </div>
+            <div class="button-container">
+                <button class="btn check-all-btn" onclick="checkAllMCQ()">Kiểm tra Trắc nghiệm</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleElementVisibility(element) {
+            const button = element.previousElementSibling;
+            if (element.style.display === 'block') {
+                element.style.display = 'none';
+                button.textContent = 'Xem Đáp án/Hướng dẫn';
+            } else {
+                element.style.display = 'block';
+                button.textContent = 'Ẩn Đáp án/Hướng dẫn';
+            }
+        }
+
+        function checkAllMCQ() {
+            const questions = document.querySelectorAll('#quiz-container .exercise-block');
+            questions.forEach((q, index) => {
+                const correctAnswer = q.dataset.correct;
+                const options = q.querySelectorAll('.options label');
+                const selectedRadio = q.querySelector(`input[name="q${index + 1}"]:checked`);
+
+                options.forEach(label => {
+                    label.classList.remove('correct', 'incorrect');
+                    const feedbackSpan = label.querySelector('.feedback');
+                    if (feedbackSpan) feedbackSpan.remove();
+                });
+
+                if (selectedRadio) {
+                    const selectedLabel = selectedRadio.parentElement;
+                    if (selectedRadio.value === correctAnswer) {
+                        selectedLabel.classList.add('correct');
+                    } else {
+                        selectedLabel.classList.add('incorrect');
+                        options.forEach(label => {
+                            if (label.querySelector('input').value === correctAnswer) {
+                                label.innerHTML += ' <span class="feedback">(Đáp án đúng)</span>';
+                            }
+                        });
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>
