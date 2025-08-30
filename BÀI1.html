@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chuyên đề: Tính chất chung của Kim loại (Tổng hợp)</title>
+    <style>
+        /* --- General Styling & Variables --- */
+        :root {
+            --primary-color: #0056b3;
+            --secondary-color: #28a745;
+            --accent-color: #ffc107;
+            --light-bg: #f8f9fa;
+            --border-color: #dee2e6;
+            --text-color: #212529;
+            --correct-color: #28a745;
+            --incorrect-color: #dc3545;
+            --header-font: 'Merriweather', serif;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Roboto:wght@400;500&display=swap');
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.7;
+            color: var(--text-color);
+            background-color: var(--light-bg);
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 20px auto;
+            padding: 25px;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        /* --- Typography --- */
+        h1, h2, h3 {
+            font-family: var(--header-font);
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        h1 {
+            text-align: center;
+            border-bottom: 3px solid var(--primary-color);
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+            font-size: 2.4em;
+        }
+
+        h2 {
+            background-color: #e9f5ff;
+            padding: 12px 18px;
+            border-left: 5px solid var(--primary-color);
+            border-radius: 5px;
+            margin-top: 35px;
+            font-size: 1.8em;
+        }
+        
+        h3 {
+            font-size: 1.5em;
+            margin-top: 30px;
+            color: #1a237e;
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 8px;
+        }
+
+        code, .chemical-equation {
+            font-family: Consolas, "Courier New", monospace;
+            background-color: #eef;
+            padding: 3px 7px;
+            border-radius: 5px;
+            font-size: 0.95em;
+        }
+        
+        .chemical-equation {
+            display: block;
+            margin: 10px 0;
+            padding: 10px;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        /* --- Collapsible Sections for Theory --- */
+        .collapsible {
+            background-color: #f1f1f1;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-top: 15px;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .collapsible:hover {
+            background-color: #ddd;
+        }
+
+        .collapsible::after {
+            content: '\\2795'; /* Plus sign */
+            font-size: 14px;
+            color: #555;
+        }
+
+        .collapsible.active::after {
+            content: "\\2796"; /* Minus sign */
+        }
+
+        .content {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+            background-color: #fafafa;
+            border: 1px solid var(--border-color);
+            border-top: none;
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+        }
+        
+        .content-inner {
+            padding: 20px 0;
+        }
+
+        /* --- Exercise & Quiz Blocks --- */
+        .exercise-block {
+            background-color: #fff;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 25px;
+            margin: 25px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        
+        .question-text {
+             font-weight: bold;
+             margin-bottom: 15px;
+             font-size: 1.1em;
+        }
+        
+        .quiz-options .quiz-option, .tf-options .tf-option, .option {
+            margin: 10px 0;
+            cursor: pointer;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+        
+        .quiz-options .quiz-option:hover, .tf-options .tf-option:hover, .option:hover {
+            background-color: #f0f8ff;
+            border-color: var(--primary-color);
+        }
+
+        .quiz-option.selected, .tf-option.selected, .option.selected { 
+            background-color: #e0e0ff;
+            border-color: var(--primary-color);
+            font-weight: bold;
+        }
+        .quiz-option.correct, .tf-option.correct, .option.correct { 
+            background-color: #d4edda !important; 
+            color: #155724 !important; 
+            border-color: #c3e6cb !important; 
+        }
+        .quiz-option.incorrect, .tf-option.incorrect, .option.incorrect { 
+            background-color: #f8d7da !important; 
+            color: #721c24 !important; 
+            border-color: #f5c6cb !important; 
+        }
+        
+        .tf-options {
+            display: flex;
+            gap: 15px;
+        }
+        .tf-options .tf-option {
+            flex-grow: 1;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 10px;
+        }
+
+        /* --- Buttons & Inputs --- */
+        .action-button {
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            margin-top: 15px;
+            transition: background-color 0.2s, transform 0.1s, box-shadow 0.2s;
+            background: linear-gradient(45deg, var(--primary-color), #007bff);
+        }
+        
+        .action-button:hover { 
+            opacity: 0.9; 
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        .action-button:active { transform: translateY(1px); }
+
+        .btn-check { background-color: var(--primary-color); }
+        .btn-show-answer, .toggle-solution-btn { background: linear-gradient(45deg, var(--secondary-color), #20c997); }
+
+        .result-message {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            display: none;
+        }
+        
+        .solution, .answer {
+            display: none;
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #e9f7ef;
+            border-left: 4px solid var(--secondary-color);
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>CHUYÊN ĐỀ: TÍNH CHẤT CHUNG CỦA KIM LOẠI</h1>
+
+    <!-- =============================================================== -->
+    <!-- PHẦN I: KIẾN THỨC CẦN NHỚ -->
+    <!-- =============================================================== -->
+    <h2>I. KIẾN THỨC CẦN NHỚ</h2>
+    <button type="button" class="collapsible active">1. Tính chất vật lí của kim loại</button>
+    <div class="content" style="max-height: 1000px;">
+        <div class="content-inner">
+            <h4>a. Tính chất vật lí chung</h4>
+            <p>Các tính chất vật lí chung của kim loại gây nên bởi sự có mặt của các electron tự do trong mạng tinh thể kim loại.</p>
+            <ul>
+                <li><strong>Tính dẻo:</strong> Kim loại có thể bị biến dạng khi tác dụng của lực nhưng không bị phá vỡ. Dễ rèn, dát mỏng, kéo sợi. Vàng (Au) là kim loại dẻo nhất.</li>
+                <li><strong>Tính dẫn điện:</strong> Dẫn điện tốt. Khả năng dẫn điện giảm dần theo thứ tự: Ag > Cu > Au > Al > Fe.</li>
+                <li><strong>Tính dẫn nhiệt:</strong> Dẫn nhiệt tốt. Các kim loại dẫn điện tốt thường cũng dẫn nhiệt tốt.</li>
+                <li><strong>Ánh kim:</strong> Bề mặt kim loại có vẻ sáng lấp lánh do khả năng phản xạ tốt các tia sáng nhìn thấy được.</li>
+            </ul>
+            <h4>b. Tính chất vật lí riêng</h4>
+            <p>Các tính chất này không do electron tự do gây ra mà phụ thuộc vào các yếu tố khác như khối lượng nguyên tử, bán kính nguyên tử, kiểu mạng tinh thể...</p>
+            <ul>
+                <li><strong>Nhiệt độ nóng chảy:</strong> Rất khác nhau. Thấp nhất là Thủy ngân (Hg: -39°C). Cao nhất là Wolfram (W: 3410°C).</li>
+                <li><strong>Khối lượng riêng:</strong> Nhẹ nhất là Liti (Li: 0.5 g/cm³). Nặng nhất là Osmi (Os: 22.6 g/cm³).</li>
+                <li><strong>Tính cứng:</strong> Mềm nhất là các kim loại kiềm (Na, K). Cứng nhất là Crom (Cr), có thể rạch được thủy tinh.</li>
+            </ul>
+        </div>
+    </div>
+    <button type="button" class="collapsible">2. Tính chất hóa học của kim loại</button>
+    <div class="content">
+        <div class="content-inner">
+            <p><i>Đặc trưng chung của kim loại là <strong>tính khử</strong> (dễ nhường electron để tạo ion dương): M → M<sup>n+</sup> + ne</i></p>
+            <h4>a. Tác dụng với phi kim</h4>
+            <p><strong>Với oxygen:</strong> Hầu hết kim loại (trừ Au, Pt, Ag) phản ứng với oxygen tạo oxide.</p>
+            <div class="chemical-equation">2Mg + O₂ → 2MgO</div>
+            <p><strong>Với các phi kim khác (Cl₂, S...):</strong> Nhiều kim loại phản ứng trực tiếp với phi kim khác tạo thành muối.</p>
+            <div class="chemical-equation">2Fe + 3Cl₂ → 2FeCl₃</div>
+            <div class="chemical-equation">Hg + S → HgS</div>
+            <h4>b. Tác dụng với dung dịch acid</h4>
+            <p><strong>Với dung dịch HCl, H₂SO₄ loãng:</strong> Các kim loại đứng trước H trong dãy hoạt động hóa học tác dụng với acid tạo muối và giải phóng khí H₂.</p>
+            <div class="chemical-equation">Fe + 2HCl → FeCl₂ + H₂↑</div>
+            <p><strong>Với dung dịch HNO₃, H₂SO₄ đặc:</strong> Hầu hết kim loại (trừ Au, Pt) tác dụng với các acid này tạo muối, nước và sản phẩm khử (ví dụ: NO, NO₂, SO₂...).</p>
+            <div class="chemical-equation">Cu + 4HNO₃(đặc) → Cu(NO₃)₂ + 2NO₂↑ + 2H₂O</div>
+            <h4>c. Tác dụng với nước</h4>
+            <p><strong>Kim loại mạnh (K, Na, Ca, Ba...):</strong> Tác dụng với nước ở nhiệt độ thường tạo dung dịch base và giải phóng H₂.</p>
+            <div class="chemical-equation">2Na + 2H₂O → 2NaOH + H₂↑</div>
+            <p><strong>Kim loại trung bình (Mg, Al, Zn, Fe...):</strong> Tác dụng với hơi nước ở nhiệt độ cao.</p>
+            <div class="chemical-equation">3Fe + 4H₂O (hơi) ⇌ Fe₃O₄ + 4H₂↑ (t° < 570°C)</div>
+            <h4>d. Tác dụng với dung dịch muối</h4>
+            <p>Kim loại mạnh hơn (trừ các kim loại tan trong nước như K, Na, Ca, Ba) đẩy kim loại yếu hơn ra khỏi dung dịch muối của nó.</p>
+            <div class="chemical-equation">Fe + CuSO₄ → FeSO₄ + Cu</div>
+        </div>
+    </div>
+
+    <!-- =============================================================== -->
+    <!-- PHẦN II: BÀI TẬP VẬN DỤNG -->
+    <!-- =============================================================== -->
+    <h2>II. BÀI TẬP VẬN DỤNG</h2>
+
+    <!-- Dạng 1: Tự luận tính toán -->
+    <h3>Dạng 1: Tự luận tính toán (Có hướng dẫn giải)</h3>
+    <div class="exercise-block">
+        <p class="question-text"><b>Bài toán:</b> Cho 10 gam hỗn hợp gồm Fe và Cu tác dụng với dung dịch H₂SO₄ loãng, dư. Sau khi phản ứng xảy ra hoàn toàn, thu được 2,479 lít khí H₂ (ở 25°C, 1 bar), dung dịch X và m gam chất rắn không tan.</p>
+        <p>a. Viết phương trình hóa học của phản ứng xảy ra.</p>
+        <p>b. Tính giá trị của m.</p>
+        <p>c. Tính thành phần phần trăm theo khối lượng của mỗi kim loại trong hỗn hợp ban đầu.</p>
+        <button class="action-button toggle-solution-btn">Xem hướng dẫn giải</button>
+        <div class="solution">
+            <p><b>Hướng dẫn giải:</b></p>
+            <p><b>Bước 1: Phân tích và viết phương trình hóa học.</b></p>
+            <ul>
+                <li>Trong hai kim loại Fe và Cu, chỉ có Fe đứng trước H trong dãy hoạt động hóa học nên chỉ Fe tác dụng với H₂SO₄ loãng.</li>
+                <li>Cu không phản ứng, do đó chất rắn không tan chính là Cu.</li>
+                <li>Phương trình hóa học: Fe + H₂SO₄ → FeSO₄ + H₂↑</li>
+            </ul>
+            <p><b>Bước 2: Tính số mol H₂.</b></p>
+            <div class="chemical-equation">n<sub>H₂</sub> = V / 24,79 = 2,479 / 24,79 = 0,1 (mol)</div>
+            <p><b>Bước 3: Dựa vào phương trình hóa học để tính số mol và khối lượng Fe.</b></p>
+            <ul>
+                <li>Theo PTHH: n<sub>Fe</sub> = n<sub>H₂</sub> = 0,1 (mol)</li>
+                <li>Khối lượng của Fe: m<sub>Fe</sub> = n<sub>Fe</sub> × M<sub>Fe</sub> = 0,1 × 56 = 5,6 (gam)</li>
+            </ul>
+            <p><b>Bước 4: Tính khối lượng Cu (giá trị m) và phần trăm khối lượng.</b></p>
+            <ul>
+                <li>Khối lượng của Cu: m<sub>Cu</sub> = m<sub>hỗn hợp</sub> - m<sub>Fe</sub> = 10 - 5,6 = 4,4 (gam).</li>
+                <li>Vậy giá trị của m là 4,4 gam.</li>
+                <li>Thành phần phần trăm khối lượng của Fe: %m<sub>Fe</sub> = (5,6 / 10) × 100% = 56%</li>
+                <li>Thành phần phần trăm khối lượng của Cu: %m<sub>Cu</sub> = 100% - 56% = 44%</li>
+            </ul>
+             <p><b>Đáp số:</b> a) Fe + H₂SO₄ → FeSO₄ + H₂; b) m = 4,4g; c) %Fe = 56%, %Cu = 44%.</p>
+        </div>
+    </div>
+
+    <!-- Dạng 2: Trắc nghiệm nhiều lựa chọn -->
+    <h3>Dạng 2: Trắc nghiệm - Nhận biết & Thông hiểu</h3>
+    <div class="exercise-block" id="mcq-container">
+        <p class="question-text">Câu 1. Kim loại nào sau đây dẻo nhất?</p>
+        <div class="quiz-options" data-answer="A">
+            <div class="quiz-option" onclick="selectOption(this)">A. Vàng</div>
+            <div class="quiz-option" onclick="selectOption(this)">B. Bạc</div>
+            <div class="quiz-option" onclick="selectOption(this)">C. Đồng</div>
+            <div class="quiz-option" onclick="selectOption(this)">D. Nhôm</div>
+        </div>
+        <hr>
+        <p class="question-text">Câu 2. Ở điều kiện thường, kim loại nào sau đây ở trạng thái lỏng?</p>
+        <div class="quiz-options" data-answer="C">
+            <div class="quiz-option" onclick="selectOption(this)">A. Natri</div>
+            <div class="quiz-option" onclick="selectOption(this)">B. Sắt</div>
+            <div class="quiz-option" onclick="selectOption(this)">C. Thủy ngân</div>
+            <div class="quiz-option" onclick="selectOption(this)">D. Canxi</div>
+        </div>
+        <hr>
+        <p class="question-text">Câu 3. Kim loại nào sau đây có nhiệt độ nóng chảy cao nhất?</p>
+        <div class="quiz-options" data-answer="D">
+            <div class="quiz-option" onclick="selectOption(this)">A. Sắt</div>
+            <div class="quiz-option" onclick="selectOption(this)">B. Đồng</div>
+            <div class="quiz-option" onclick="selectOption(this)">C. Chì</div>
+            <div class="quiz-option" onclick="selectOption(this)">D. Vonfram</div>
+        </div>
+        <hr>
+        <p class="question-text">Câu 4. Kim loại nào sau đây nhẹ nhất (có khối lượng riêng nhỏ nhất)?</p>
+        <div class="quiz-options" data-answer="A">
+            <div class="quiz-option" onclick="selectOption(this)">A. Liti</div>
+            <div class="quiz-option" onclick="selectOption(this)">B. Nhôm</div>
+            <div class="quiz-option" onclick="selectOption(this)">C. Magie</div>
+            <div class="quiz-option" onclick="selectOption(this)">D. Natri</div>
+        </div>
+        <hr>
+        <p class="question-text">Câu 5. Cặp kim loại nào sau đây bền trong không khí và nước do có màng oxit bảo vệ?</p>
+        <div class="quiz-options" data-answer="B">
+            <div class="quiz-option" onclick="selectOption(this)">A. Fe, Al</div>
+            <div class="quiz-option" onclick="selectOption(this)">B. Al, Cr</div>
+            <div class="quiz-option" onclick="selectOption(this)">C. Cu, Cr</div>
+            <div class="quiz-option" onclick="selectOption(this)">D. Fe, Cr</div>
+        </div>
+        <button class="action-button btn-check" onclick="checkMCQ()">Kiểm tra Dạng 2</button>
+    </div>
+
+    <!-- Dạng 3: Trắc nghiệm Đúng/Sai -->
+    <h3>Dạng 3: Trắc nghiệm - Đúng/Sai</h3>
+    <div class="exercise-block" id="tf-container">
+        <p class="question-text">Câu 1. Tất cả các kim loại đều tác dụng với nước ở nhiệt độ thường.</p>
+        <div class="tf-options" data-answer="Sai">
+            <div class="tf-option" onclick="selectTF(this)">Đúng</div>
+            <div class="tf-option" onclick="selectTF(this)">Sai</div>
+        </div>
+        <div class="answer"><b>Giải thích:</b> Chỉ có các kim loại kiềm (Na, K,...) và một số kim loại kiềm thổ (Ca, Ba,...) mới tác dụng với nước ở nhiệt độ thường.</div>
+        <hr>
+        <p class="question-text">Câu 2. Crom là kim loại cứng nhất trong tất cả các kim loại.</p>
+        <div class="tf-options" data-answer="Đúng">
+            <div class="tf-option" onclick="selectTF(this)">Đúng</div>
+            <div class="tf-option" onclick="selectTF(this)">Sai</div>
+        </div>
+         <div class="answer"><b>Giải thích:</b> Đúng, Crom (Cr) là kim loại cứng nhất, có thể rạch được thủy tinh.</div>
+        <hr>
+        <p class="question-text">Câu 3. Bạc (Ag) dẫn điện tốt hơn Đồng (Cu).</p>
+        <div class="tf-options" data-answer="Đúng">
+            <div class="tf-option" onclick="selectTF(this)">Đúng</div>
+            <div class="tf-option" onclick="selectTF(this)">Sai</div>
+        </div>
+         <div class="answer"><b>Giải thích:</b> Thứ tự dẫn điện là Ag > Cu > Au > Al > Fe.</div>
+        <hr>
+        <p class="question-text">Câu 4. Cho Sắt (Fe) vào dung dịch Sắt(III) clorua (FeCl₃) sẽ không xảy ra phản ứng.</p>
+        <div class="tf-options" data-answer="Sai">
+            <div class="tf-option" onclick="selectTF(this)">Đúng</div>
+            <div class="tf-option" onclick="selectTF(this)">Sai</div>
+        </div>
+         <div class="answer"><b>Giải thích:</b> Có xảy ra phản ứng theo quy tắc alpha: Fe + 2Fe³⁺ → 3Fe²⁺.</div>
+        <hr>
+        <p class="question-text">Câu 5. Tất cả các kim loại đều có ánh kim.</p>
+        <div class="tf-options" data-answer="Đúng">
+            <div class="tf-option" onclick="selectTF(this)">Đúng</div>
+            <div class="tf-option" onclick="selectTF(this)">Sai</div>
+        </div>
+         <div class="answer"><b>Giải thích:</b> Ánh kim là một trong bốn tính chất vật lí chung của kim loại.</div>
+        <button class="action-button btn-check" onclick="checkTF()">Kiểm tra Dạng 3</button>
+        <button class="action-button btn-show-answer" onclick="showAllAnswers('tf-container')">Hiện giải thích</button>
+    </div>
+
+    <!-- Dạng 4: Trắc nghiệm củng cố -->
+    <h3>Dạng 4: Trắc nghiệm - Củng cố kiến thức tổng hợp</h3>
+    <div class="exercise-block" id="dynamic-quiz-container">
+        <!-- Quiz questions will be rendered here by JavaScript -->
+    </div>
+    <button class="action-button" onclick="checkDynamicQuiz()">Kiểm tra Dạng 4</button>
+    <button class="action-button btn-show-answer" onclick="showAllSolutions()">Hiện tất cả đáp án</button>
+
+</div>
+
+<script>
+    // --- Data for Dynamic Quiz (Dạng 4) ---
+    const quizData = [
+        {
+            question: "Dãy kim loại nào sau đây được sắp xếp theo chiều hoạt động hóa học giảm dần?",
+            options: [
+                "K, Mg, Cu, Al, Zn",
+                "K, Al, Mg, Zn, Cu",
+                "K, Mg, Al, Zn, Cu",
+                "Mg, K, Al, Zn, Cu"
+            ],
+            answer: "K, Mg, Al, Zn, Cu",
+            hint: "Hãy nhớ lại dãy hoạt động hóa học của kim loại: K, Na, Ca, Mg, Al, Zn, Fe, Ni, Sn, Pb, H, Cu, Hg, Ag, Pt, Au."
+        },
+        {
+            question: "Cho kim loại Sắt (Fe) lần lượt tác dụng với các dung dịch: HCl, CuSO₄, MgCl₂. Số trường hợp xảy ra phản ứng là:",
+            options: ["1", "2", "3", "0"],
+            answer: "2",
+            hint: "Sắt đứng trước H và Cu nhưng đứng sau Mg trong dãy hoạt động hóa học. Do đó Fe phản ứng với HCl và CuSO₄."
+        },
+        {
+            question: "Tính chất vật lí nào sau đây KHÔNG phải là tính chất chung của kim loại?",
+            options: ["Tính dẻo", "Tính cứng", "Tính dẫn điện", "Ánh kim"],
+            answer: "Tính cứng",
+            hint: "Tính cứng là một tính chất vật lí riêng, thay đổi trong một khoảng rất rộng tùy thuộc vào kim loại."
+        },
+        {
+            question: "Dung dịch FeSO₄ có lẫn tạp chất CuSO₄. Có thể dùng kim loại nào sau đây để loại bỏ CuSO₄?",
+            options: ["Mg", "Fe", "Ag", "Cu"],
+            answer: "Fe",
+            hint: "Dùng kim loại đứng trước Cu nhưng không phản ứng với FeSO₄. Dùng chính Fe là tối ưu nhất: Fe + CuSO₄ → FeSO₄ + Cu."
+        },
+        {
+            question: "Cho phương trình hóa học: 2Fe + 6H₂SO₄(đặc, nóng) → Fe₂(SO₄)₃ + 3SO₂ + 6H₂O. Tỉ lệ số nguyên tử Fe bị oxi hóa và số phân tử H₂SO₄ bị khử là:",
+            options: ["1 : 3", "2 : 3", "1 : 6", "2 : 6"],
+            answer: "2 : 3",
+            hint: "2 nguyên tử Fe bị oxi hóa (nhường e). 3 phân tử H₂SO₄ bị khử (nhận e để tạo SO₂). Tỉ lệ là 2:3."
+        },
+        {
+            question: "Ngâm một lá kẽm trong 100 ml dung dịch AgNO₃ 0,1M. Sau khi phản ứng kết thúc, khối lượng bạc bám vào lá kẽm là:",
+            options: ["1,08 gam", "2,16 gam", "0,54 gam", "10,8 gam"],
+            answer: "1,08 gam",
+            hint: "PTHH: Zn + 2AgNO₃ → Zn(NO₃)₂ + 2Ag. n(AgNO₃) = 0.1 * 0.1 = 0.01 mol. Theo PTHH, n(Ag) = n(AgNO₃) = 0.01 mol. Vậy m(Ag) = 0.01 * 108 = 1.08 gam."
+        }
+    ];
+
+    // --- Script for Collapsible Sections ---
+    const collapsibles = document.getElementsByClassName("collapsible");
+    for (let i = 0; i < collapsibles.length; i++) {
+        collapsibles[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            const content = this.nextElementSibling;
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+            }
+        });
+    }
+
+    // --- Script for Multiple Choice Questions (Dạng 2) ---
+    function selectOption(element) {
+        const parent = element.parentElement;
+        const options = parent.querySelectorAll('.quiz-option');
+        options.forEach(opt => opt.classList.remove('selected'));
+        element.classList.add('selected');
+    }
+
+    function checkMCQ() {
+        const questions = document.querySelectorAll('#mcq-container .quiz-options');
+        questions.forEach(q => {
+            const correctAnswer = q.dataset.answer;
+            const options = q.querySelectorAll('.quiz-option');
+            options.forEach((opt, index) => {
+                const optionLetter = String.fromCharCode(65 + index); // A, B, C, D
+                opt.classList.remove('correct', 'incorrect');
+                if (opt.classList.contains('selected')) {
+                    if (optionLetter === correctAnswer) {
+                        opt.classList.add('correct');
+                    } else {
+                        opt.classList.add('incorrect');
+                    }
+                }
+            });
+        });
+    }
+
+    // --- Script for True/False Questions (Dạng 3) ---
+    function selectTF(element) {
+        const parent = element.parentElement;
+        const options = parent.querySelectorAll('.tf-option');
+        options.forEach(opt => opt.classList.remove('selected'));
+        element.classList.add('selected');
+    }
+
+    function checkTF() {
+        const questions = document.querySelectorAll('#tf-container .tf-options');
+        questions.forEach(q => {
+            const correctAnswer = q.dataset.answer;
+            const options = q.querySelectorAll('.tf-option');
+            options.forEach(opt => {
+                opt.classList.remove('correct', 'incorrect');
+                if (opt.classList.contains('selected')) {
+                    if (opt.textContent === correctAnswer) {
+                        opt.classList.add('correct');
+                    } else {
+                        opt.classList.add('incorrect');
+                    }
+                }
+            });
+        });
+    }
+
+    function showAllAnswers(containerId) {
+        const container = document.getElementById(containerId);
+        const answers = container.querySelectorAll('.answer');
+        answers.forEach(answer => {
+            answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+        });
+    }
+
+    // --- Script for Dynamic Quiz (Dạng 4) ---
+    function renderQuiz() {
+        const quizContainer = document.getElementById('dynamic-quiz-container');
+        let quizHTML = '';
+        quizData.forEach((item, index) => {
+            quizHTML += `
+                <div class="quiz-item" data-answer="${item.answer}">
+                    <p class="question-text">Câu ${index + 1}. ${item.question}</p>
+                    <div class="options-grid">
+                        ${item.options.map(option => `<div class="option" onclick="selectDynamicOption(this)">${option}</div>`).join('')}
+                    </div>
+                    <div class="solution"><b>Đáp án đúng:</b> ${item.answer}<br><i><b>Giải thích:</b> ${item.hint}</i></div>
+                </div>
+                ${index < quizData.length - 1 ? '<hr>' : ''}
+            `;
+        });
+        quizContainer.innerHTML = quizHTML;
+    }
+
+    function selectDynamicOption(element) {
+        const parent = element.closest('.options-grid');
+        parent.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
+        element.classList.add('selected');
+    }
+
+    function checkDynamicQuiz() {
+        const quizItems = document.querySelectorAll('#dynamic-quiz-container .quiz-item');
+        quizItems.forEach(item => {
+            const correctAnswer = item.dataset.answer;
+            const options = item.querySelectorAll('.option');
+            options.forEach(opt => {
+                opt.classList.remove('correct', 'incorrect');
+                if (opt.classList.contains('selected')) {
+                    if (opt.textContent === correctAnswer) {
+                         opt.classList.add('correct');
+                    } else {
+                        opt.classList.add('incorrect');
+                    }
+                }
+            });
+        });
+    }
+    
+    function showAllSolutions() {
+        const solutions = document.querySelectorAll('#dynamic-quiz-container .solution');
+        solutions.forEach(solution => {
+            const item = solution.closest('.quiz-item');
+            const correctAnswer = item.dataset.answer;
+            item.querySelectorAll('.option').forEach(opt => {
+                opt.classList.remove('correct', 'incorrect', 'selected');
+                if (opt.textContent === correctAnswer) {
+                    opt.classList.add('correct');
+                }
+            });
+            solution.style.display = 'block';
+        });
+    }
+
+    // --- Script for Toggling Calculation Solution (Dạng 1) ---
+    function setupSolutionToggles() {
+        const solutionButtons = document.getElementsByClassName("toggle-solution-btn");
+        for (let i = 0; i < solutionButtons.length; i++) {
+            solutionButtons[i].addEventListener("click", function() {
+                const solution = this.nextElementSibling;
+                if (solution.style.display === "block") {
+                    solution.style.display = "none";
+                    this.textContent = "Xem hướng dẫn giải";
+                } else {
+                    solution.style.display = "block";
+                    this.textContent = "Ẩn hướng dẫn giải";
+                }
+            });
+        }
+    }
+
+    // --- Run scripts on page load ---
+    window.onload = () => {
+        renderQuiz();
+        setupSolutionToggles();
+    };
+</script>
+
+</body>
+</html>
