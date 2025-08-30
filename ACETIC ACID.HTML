@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chuyên đề 2: Acetic Acid</title>
+    <style>
+        :root {
+            --primary-color: #2962ff;
+            --secondary-color: #00bfa5;
+            --correct-color: #00c853;
+            --incorrect-color: #d50000;
+            --light-bg: #f5f7fa;
+            --border-color: #e0e0e0;
+            --text-color: #212121;
+            --header-font: 'Roboto Slab', serif;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700&family=Roboto:wght@400;500&display=swap');
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            background-color: var(--light-bg);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2, h3 {
+            font-family: var(--header-font);
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        h1 { text-align: center; font-size: 2.5em; margin-bottom: 25px; }
+        h2 { font-size: 1.8em; margin-top: 40px; border-bottom: 3px solid var(--secondary-color); padding-bottom: 10px; }
+        h3 { font-size: 1.4em; color: #333; }
+
+        .collapsible {
+            background-color: #f1f8e9;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: 1px solid #c5e1a5;
+            text-align: left;
+            outline: none;
+            font-size: 1.2em;
+            font-weight: 500;
+            margin-top: 15px;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .collapsible:hover { background-color: #dcedc8; }
+        .collapsible::after { content: '\\2795'; font-size: 14px; color: var(--secondary-color); }
+        .collapsible.active::after { content: "\\2796"; }
+
+        .content {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+            background-color: #fafafa;
+            border: 1px solid var(--border-color);
+            border-top: none;
+            border-radius: 0 0 8px 8px;
+        }
+        .content-inner { padding: 20px 5px; }
+
+        .exercise-block {
+            background-color: #fff;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 25px;
+            margin: 25px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .question-text {
+             font-weight: 500;
+             margin-bottom: 15px;
+             font-size: 1.1em;
+        }
+        
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 10px;
+        }
+        
+        .option {
+            cursor: pointer;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+        .option:hover {
+            background-color: #e3f2fd;
+            border-color: var(--primary-color);
+        }
+        .option.selected {
+            background-color: #bbdefb;
+            border-color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .correct { background-color: #e8f5e9 !important; border-color: var(--correct-color) !important; }
+        .incorrect { background-color: #ffebee !important; border-color: var(--incorrect-color) !important; }
+        
+        .hint {
+            font-weight: normal;
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #fff9c4;
+            border-left: 4px solid #fdd835;
+            border-radius: 4px;
+            display: none;
+        }
+        
+        .solution {
+            display: none;
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #e3f2fd;
+            border-left: 4px solid var(--primary-color);
+            border-radius: 4px;
+        }
+
+        .action-button {
+            display: inline-block;
+            padding: 12px 24px;
+            font-size: 1em;
+            font-weight: bold;
+            color: white;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .action-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .self-study-textarea, .short-answer-input {
+            padding: 12px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            width: calc(100% - 26px);
+            font-family: inherit;
+            font-size: 1em;
+            transition: border-color 0.2s;
+        }
+        .self-study-textarea:focus, .short-answer-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+        .self-study-textarea { min-height: 120px; resize: vertical; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>CHUYÊN ĐỀ 2: ACETIC ACID</h1>
+
+    <!-- =============================================================== -->
+    <!-- PHẦN I: KIẾN THỨC CẦN NHỚ -->
+    <!-- =============================================================== -->
+    <h2>I. KIẾN THỨC CẦN NHỚ</h2>
+    <button type="button" class="collapsible">1. Công thức, cấu tạo và tính chất vật lí</button>
+    <div class="content">
+        <div class="content-inner">
+            <h3>Công thức và đặc điểm cấu tạo</h3>
+            <ul>
+                <li><strong>Công thức phân tử:</strong> C₂H₄O₂</li>
+                <li><strong>Công thức cấu tạo:</strong> CH₃-COOH</li>
+                <li><strong>Đặc điểm:</strong> Trong phân tử có nhóm -COOH (nhóm carboxyl) làm cho phân tử có tính acid.</li>
+            </ul>
+            <h3>Tính chất vật lí</h3>
+            <ul>
+                <li>Là chất lỏng, không màu, vị chua, mùi đặc trưng.</li>
+                <li>Tan vô hạn trong nước.</li>
+                <li>Nhiệt độ sôi: 118°C.</li>
+                <li>Giấm ăn là dung dịch acetic acid nồng độ 2-5%.</li>
+            </ul>
+        </div>
+    </div>
+    <button type="button" class="collapsible">2. Tính chất hóa học</button>
+    <div class="content">
+        <div class="content-inner">
+            <h3>a. Tính acid</h3>
+            <p>Acetic acid mang đầy đủ tính chất của một acid yếu:</p>
+            <ul>
+                <li>Làm quỳ tím hóa đỏ.</li>
+                <li>Tác dụng với kim loại đứng trước H: <br><code>2CH₃COOH + Mg → (CH₃COO)₂Mg + H₂</code></li>
+                <li>Tác dụng với basic oxide: <br><code>2CH₃COOH + CuO → (CH₃COO)₂Cu + H₂O</code></li>
+                <li>Tác dụng với base: <br><code>CH₃COOH + NaOH → CH₃COONa + H₂O</code></li>
+                <li>Tác dụng với muối của acid yếu hơn: <br><code>2CH₃COOH + CaCO₃ → (CH₃COO)₂Ca + CO₂ + H₂O</code></li>
+            </ul>
+            <h3>b. Phản ứng ester hóa</h3>
+            <p>Tác dụng với alcohol (có H₂SO₄ đặc, t°) tạo ra ester và nước.</p>
+            <code>CH₃COOH + C₂H₅OH ⇌ CH₃COOC₂H₅ + H₂O</code>
+        </div>
+    </div>
+
+    <!-- =============================================================== -->
+    <!-- PHẦN II: BÀI TẬP TỰ LUẬN -->
+    <!-- =============================================================== -->
+    <h2>II. BÀI TẬP TỰ LUẬN</h2>
+    <div class="exercise-block">
+        <p class="question-text">Câu 1. Viết phương trình hóa học xảy ra khi cho acetic acid lần lượt tác dụng với Na, Cu, MgO, NaOH, Na₂CO₃, Na₂SO₄ (nếu có).</p>
+        <textarea class="self-study-textarea" placeholder="Viết các phương trình..."></textarea>
+    </div>
+    <div class="exercise-block">
+        <p class="question-text">Câu 2. Giải thích tại sao có thể dùng giấm ăn để loại bỏ lớp cặn vôi (CaCO₃) trong ấm đun nước.</p>
+        <textarea class="self-study-textarea" placeholder="Giải thích và viết phương trình..."></textarea>
+    </div>
+    <div class="exercise-block">
+        <p class="question-text">Câu 3. Nêu phương pháp hóa học để phân biệt hai dung dịch không màu: acetic acid và ethylic alcohol.</p>
+        <textarea class="self-study-textarea" placeholder="Trình bày phương pháp..."></textarea>
+    </div>
+
+    <!-- =============================================================== -->
+    <!-- PHẦN III: BÀI TẬP TÍNH TOÁN -->
+    <!-- =============================================================== -->
+    <h2>III. BÀI TẬP TÍNH TOÁN</h2>
+    <div class="exercise-block">
+        <p class="question-text"><strong>Bài 1.</strong> Đốt cháy hoàn toàn 12 gam acetic acid (CH₃COOH). Tính thể tích khí oxygen cần dùng ở điều kiện chuẩn (25°C, 1 bar). (Cho C=12, H=1, O=16)</p>
+        <textarea class="self-study-textarea" placeholder="Nhập lời giải của bạn..."></textarea>
+        <button class="action-button toggle-solution-btn">Xem hướng dẫn giải</button>
+        <div class="solution">
+            <p><strong>Bước 1: Tính số mol CH₃COOH</strong></p>
+            <p>M<sub>CH₃COOH</sub> = 12 + 1*3 + 12 + 16 + 16 + 1 = 60 g/mol</p>
+            <p>n<sub>CH₃COOH</sub> = m / M = 12 / 60 = 0.2 mol</p>
+            <p><strong>Bước 2: Viết phương trình phản ứng cháy</strong></p>
+            <p>CH₃COOH + 2O₂ → 2CO₂ + 2H₂O</p>
+            <p><strong>Bước 3: Tính số mol O₂ theo phương trình</strong></p>
+            <p>Theo phương trình, 1 mol CH₃COOH cần 2 mol O₂.</p>
+            <p>Vậy, 0.2 mol CH₃COOH cần: n<sub>O₂</sub> = 0.2 * 2 = 0.4 mol</p>
+            <p><strong>Bước 4: Tính thể tích O₂</strong></p>
+            <p>V<sub>O₂</sub> = n * 24.79 = 0.4 * 24.79 = <strong>9.916 lít</strong></p>
+        </div>
+    </div>
+    <div class="exercise-block">
+        <p class="question-text"><strong>Bài 2.</strong> Cho 100 gam dung dịch CH₃COOH 12% tác dụng vừa đủ với dung dịch NaHCO₃ 8.4%. Tính thể tích khí CO₂ thu được ở điều kiện chuẩn (25°C, 1 bar).</p>
+        <textarea class="self-study-textarea" placeholder="Nhập lời giải của bạn..."></textarea>
+        <button class="action-button toggle-solution-btn">Xem hướng dẫn giải</button>
+        <div class="solution">
+            <p><strong>Bước 1: Tính khối lượng và số mol CH₃COOH</strong></p>
+            <p>m<sub>CH₃COOH</sub> = (100 * 12) / 100 = 12 gam</p>
+            <p>n<sub>CH₃COOH</sub> = 12 / 60 = 0.2 mol</p>
+            <p><strong>Bước 2: Viết phương trình phản ứng</strong></p>
+            <p>CH₃COOH + NaHCO₃ → CH₃COONa + CO₂↑ + H₂O</p>
+            <p><strong>Bước 3: Tính số mol CO₂ theo phương trình</strong></p>
+            <p>Theo phương trình, tỉ lệ mol là 1:1. Vậy n<sub>CO₂</sub> = n<sub>CH₃COOH</sub> = 0.2 mol</p>
+            <p><strong>Bước 4: Tính thể tích CO₂</strong></p>
+            <p>V<sub>CO₂</sub> = n * 24.79 = 0.2 * 24.79 = <strong>4.958 lít</strong></p>
+        </div>
+    </div>
+    <div class="exercise-block">
+        <p class="question-text"><strong>Bài 3.</strong> Cho 11.5 gam ethylic alcohol tác dụng với lượng dư acetic acid (có H₂SO₄ đặc làm xúc tác). Tính khối lượng ethyl acetate thu được, biết hiệu suất phản ứng là 80%.</p>
+        <textarea class="self-study-textarea" placeholder="Nhập lời giải của bạn..."></textarea>
+        <button class="action-button toggle-solution-btn">Xem hướng dẫn giải</button>
+        <div class="solution">
+            <p><strong>Bước 1: Tính số mol C₂H₅OH</strong></p>
+            <p>n<sub>C₂H₅OH</sub> = 11.5 / 46 = 0.25 mol</p>
+            <p><strong>Bước 2: Viết phương trình phản ứng ester hóa</strong></p>
+            <p>CH₃COOH + C₂H₅OH ⇌ CH₃COOC₂H₅ + H₂O</p>
+            <p><strong>Bước 3: Tính số mol ester theo lý thuyết</strong></p>
+            <p>Theo phương trình, 1 mol C₂H₅OH → 1 mol CH₃COOC₂H₅.</p>
+            <p>Vậy, 0.25 mol C₂H₅OH → n<sub>ester (lý thuyết)</sub> = 0.25 mol</p>
+            <p><strong>Bước 4: Tính khối lượng ester thực tế (tính cả hiệu suất)</strong></p>
+            <p>M<sub>CH₃COOC₂H₅</sub> = 88 g/mol</p>
+            <p>m<sub>ester (thực tế)</sub> = n<sub>lý thuyết</sub> * M * Hiệu suất = 0.25 * 88 * 0.8 = <strong>17.6 gam</strong></p>
+        </div>
+    </div>
+
+
+    <!-- =============================================================== -->
+    <!-- PHẦN IV: BÀI TẬP TRẮC NGHIỆM -->
+    <!-- =============================================================== -->
+    <h2>IV. BÀI TẬP TRẮC NGHIỆM</h2>
+    <div class="exercise-block" id="interactive-quiz">
+        <!-- Questions will be inserted here by JS -->
+    </div>
+    <button class="action-button" onclick="checkAllAnswers()">Kiểm tra đáp án trắc nghiệm</button>
+
+</div>
+
+<script>
+    const quizData = [
+        {
+            type: 'mcq',
+            question: 'Câu 1. Dung dịch acetic acid không tác dụng được với chất nào sau đây?',
+            options: ['Zn', 'NaOH', 'Cu', 'CaCO₃'],
+            answer: 'Cu',
+            hint: 'Acetic acid là một acid, nó không tác dụng với các kim loại đứng sau H trong dãy hoạt động hóa học như Cu.'
+        },
+        {
+            type: 'mcq',
+            question: 'Câu 2. Phản ứng giữa acetic acid và ethylic alcohol được gọi là phản ứng gì?',
+            options: ['Trung hòa', 'Thế', 'Cộng', 'Ester hóa'],
+            answer: 'Ester hóa',
+            hint: 'Phản ứng giữa acid carboxylic và alcohol tạo ra ester và nước được gọi là phản ứng ester hóa.'
+        },
+        {
+            type: 'mcq',
+            question: 'Câu 3. Để trung hòa 6 gam CH₃COOH cần dùng bao nhiêu gam NaOH?',
+            options: ['4g', '8g', '6g', '10g'],
+            answer: '4g',
+            hint: 'n(CH₃COOH) = 6/60 = 0.1 mol. PTHH: CH₃COOH + NaOH -> CH₃COONa + H₂O. n(NaOH) = 0.1 mol. m(NaOH) = 0.1 * 40 = 4g.'
+        },
+        {
+            type: 'tf',
+            question: 'Câu 4. Acetic acid tác dụng với ethylic alcohol tạo thành muối.',
+            answer: false,
+            hint: 'Sai. Phản ứng này tạo ra ester (ethyl acetate) và nước, không phải muối.'
+        },
+        {
+            type: 'tf',
+            question: 'Câu 5. Phản ứng ester hóa giữa acetic acid và ethylic alcohol thường dùng xúc tác là H₂SO₄ đặc.',
+            answer: true,
+            hint: 'Đúng. H₂SO₄ đặc vừa làm xúc tác, vừa hút nước để chuyển dịch cân bằng theo chiều thuận, tăng hiệu suất tạo ester.'
+        },
+        {
+            type: 'sa',
+            question: 'Câu 6. Cho 6 gam acetic acid tác dụng với Mg dư. Thể tích khí H₂ (điều kiện chuẩn) thu được là bao nhiêu lít?',
+            answer: '1.2395',
+            hint: 'n(CH₃COOH) = 0.1 mol. PTHH: 2CH₃COOH + Mg -> (CH₃COO)₂Mg + H₂. n(H₂) = 0.05 mol. V(H₂) = 0.05 * 24.79 = 1.2395 lít.'
+        },
+        {
+            type: 'sa',
+            question: 'Câu 7. Trong giấm ăn, nồng độ acetic acid thường là bao nhiêu phần trăm?',
+            answer: '2-5%',
+            hint: 'Đây là nồng độ an toàn để sử dụng trong thực phẩm.'
+        }
+    ];
+
+    function renderQuiz() {
+        const container = document.getElementById('interactive-quiz');
+        let html = '';
+        quizData.forEach((item, index) => {
+            html += `<div class="question-block" id="q-${index}">`;
+            html += `<h3 class="question-text">${item.question}</h3>`;
+            if (item.type === 'mcq') {
+                html += '<div class="options-grid">';
+                item.options.forEach(opt => {
+                    html += `<div class="option" onclick="selectOption(this, ${index})">${opt}</div>`;
+                });
+                html += '</div>';
+            } else if (item.type === 'tf') {
+                 html += `<div class="options-grid">
+                            <div class="option" onclick="selectOption(this, ${index})">Đúng</div>
+                            <div class="option" onclick="selectOption(this, ${index})">Sai</div>
+                          </div>`;
+            } else if (item.type === 'sa') {
+                html += `<input type="text" class="short-answer-input" placeholder="Nhập đáp án của bạn (chỉ điền số hoặc khoảng)...">`;
+            }
+            html += `<div class="hint" id="hint-${index}"></div>`;
+            html += `</div>`;
+        });
+        container.innerHTML = html;
+    }
+
+    let userAnswers = {};
+
+    function selectOption(element, index) {
+        const parent = element.parentElement;
+        Array.from(parent.children).forEach(child => child.classList.remove('selected'));
+        element.classList.add('selected');
+        userAnswers[index] = element.textContent.trim();
+    }
+    
+    function checkAllAnswers() {
+        quizData.forEach((item, index) => {
+            const questionBlock = document.getElementById(`q-${index}`);
+            const hintBox = document.getElementById(`hint-${index}`);
+            let isCorrect = false;
+
+            if (item.type === 'mcq' || item.type === 'tf') {
+                const selectedOption = questionBlock.querySelector('.option.selected');
+                if (selectedOption) {
+                    let answer = userAnswers[index];
+                    if (item.type === 'tf') {
+                        answer = (answer === 'Đúng');
+                    }
+                    if (answer === item.answer) {
+                        isCorrect = true;
+                    }
+                }
+                 if(isCorrect) {
+                    selectedOption.classList.add('correct');
+                } else {
+                    if(selectedOption) selectedOption.classList.add('incorrect');
+                    hintBox.textContent = item.hint;
+                    hintBox.style.display = 'block';
+                }
+            } else if (item.type === 'sa') {
+                const input = questionBlock.querySelector('input');
+                let userAnswer = input.value.trim().toLowerCase();
+                if (userAnswer === item.answer.toLowerCase()) {
+                    isCorrect = true;
+                }
+                 if(isCorrect) {
+                    input.classList.add('correct');
+                } else {
+                    input.classList.add('incorrect');
+                    hintBox.textContent = item.hint;
+                    hintBox.style.display = 'block';
+                }
+            }
+        });
+    }
+
+    // --- Script for Collapsible Sections ---
+    const collapsibles = document.getElementsByClassName("collapsible");
+    for (let i = 0; i < collapsibles.length; i++) {
+        collapsibles[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            const content = this.nextElementSibling;
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+            }
+        });
+    }
+    
+    // --- Script for Toggling Solutions ---
+    function setupSolutionToggles() {
+        const solutionButtons = document.getElementsByClassName("toggle-solution-btn");
+        for (let i = 0; i < solutionButtons.length; i++) {
+            solutionButtons[i].addEventListener("click", function() {
+                const solution = this.nextElementSibling;
+                if (solution.style.display === "block") {
+                    solution.style.display = "none";
+                    this.textContent = "Xem hướng dẫn giải";
+                } else {
+                    solution.style.display = "block";
+                    this.textContent = "Ẩn hướng dẫn giải";
+                }
+            });
+        }
+    }
+
+    window.onload = () => {
+        renderQuiz();
+        setupSolutionToggles();
+    };
+</script>
+
+</body>
+</html>
