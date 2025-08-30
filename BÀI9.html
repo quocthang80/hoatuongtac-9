@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chuyên đề 3: Alkene</title>
+    <style>
+        :root {
+            --primary-color: #2e7d32;
+            --secondary-color: #00897b;
+            --correct-color: #43a047;
+            --incorrect-color: #e53935;
+            --light-bg: #e8f5e9;
+            --border-color: #c8e6c9;
+            --text-color: #212121;
+            --header-font: 'Lora', serif;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Lora:wght@700&family=Source+Sans+Pro:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            background-color: var(--light-bg);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2, h3 {
+            font-family: var(--header-font);
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        h1 { text-align: center; font-size: 2.5em; margin-bottom: 25px; }
+        h2 { font-size: 1.8em; margin-top: 40px; border-bottom: 3px solid var(--secondary-color); padding-bottom: 10px; }
+        h3 { font-size: 1.4em; color: #1b5e20; }
+
+        .collapsible {
+            background-color: #f1f8e9;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: 1px solid var(--border-color);
+            text-align: left;
+            outline: none;
+            font-size: 1.2em;
+            font-weight: 700;
+            margin-top: 15px;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .collapsible:hover { background-color: #dcedc8; }
+        .collapsible::after { content: '\\2795'; font-size: 14px; color: var(--secondary-color); }
+        .collapsible.active::after { content: "\\2796"; }
+
+        .content {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+            background-color: #fafafa;
+            border: 1px solid var(--border-color);
+            border-top: none;
+            border-radius: 0 0 8px 8px;
+        }
+        .content-inner { padding: 20px 5px; }
+
+        .exercise-block {
+            background-color: #fff;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 25px;
+            margin: 25px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .question-text {
+             font-weight: 700;
+             margin-bottom: 15px;
+             font-size: 1.1em;
+        }
+        
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 10px;
+        }
+        
+        .option {
+            cursor: pointer;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+        .option:hover {
+            background-color: #e0f2f1;
+            border-color: var(--secondary-color);
+        }
+        .option.selected {
+            background-color: #b2dfdb;
+            border-color: var(--secondary-color);
+            font-weight: bold;
+        }
+
+        .correct { background-color: #e8f5e9 !important; border-color: var(--correct-color) !important; }
+        .incorrect { background-color: #ffebee !important; border-color: var(--incorrect-color) !important; }
+        
+        .hint {
+            font-weight: normal;
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #fffde7;
+            border-left: 4px solid #fbc02d;
+            border-radius: 4px;
+            display: none;
+        }
+        
+        .solution {
+            display: none;
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #e8f5e9;
+            border-left: 4px solid var(--correct-color);
+            border-radius: 4px;
+        }
+
+        .action-button {
+            display: inline-block;
+            padding: 12px 24px;
+            font-size: 1em;
+            font-weight: bold;
+            color: white;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .action-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .self-study-textarea, .short-answer-input {
+            padding: 12px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            width: calc(100% - 26px);
+            font-family: inherit;
+            font-size: 1em;
+            transition: border-color 0.2s;
+        }
+        .self-study-textarea:focus, .short-answer-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+        .self-study-textarea { min-height: 120px; resize: vertical; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>CHUYÊN ĐỀ 3: ALKENE</h1>
+
+    <!-- =============================================================== -->
+    <!-- PHẦN I: KIẾN THỨC CẦN NHỚ -->
+    <!-- =============================================================== -->
+    <h2>I. KIẾN THỨC CẦN NHỚ</h2>
+    <button type="button" class="collapsible">1. Khái niệm, cấu tạo và danh pháp</button>
+    <div class="content">
+        <div class="content-inner">
+            <h3>Khái niệm</h3>
+            <p>Alkene là những hydrocarbon mạch hở, trong phân tử có chứa một liên kết đôi C=C. Công thức chung là <strong>CₙH₂ₙ (n ≥ 2)</strong>.</p>
+            <h3>Cấu tạo và Danh pháp</h3>
+            <p>Tên của alkene = Tên alkane tương ứng (đổi đuôi 'ane' thành 'ene').</p>
+            <ul>
+                <li><strong>C₂H₄:</strong> Ethene (Ethylene)</li>
+                <li><strong>C₃H₆:</strong> Propene</li>
+                <li><strong>C₄H₈:</strong> Butene</li>
+            </ul>
+        </div>
+    </div>
+    <button type="button" class="collapsible">2. Tính chất hóa học</button>
+    <div class="content">
+        <div class="content-inner">
+            <h3>a. Phản ứng cộng (Phản ứng đặc trưng)</h3>
+            <p>Liên kết đôi C=C trong alkene kém bền, dễ bị đứt ra để tham gia phản ứng cộng.</p>
+            <ul>
+                <li><strong>Cộng hydrogen (H₂):</strong> <code>CH₂=CH₂ + H₂ --(Ni, t°)--> CH₃-CH₃</code></li>
+                <li><strong>Cộng bromine (Br₂):</strong> Alkene làm mất màu dung dịch bromine. Đây là phản ứng dùng để nhận biết alkene. <br><code>CH₂=CH₂ + Br₂ → CH₂Br-CH₂Br</code></li>
+            </ul>
+            <h3>b. Phản ứng trùng hợp</h3>
+            <p>Ở điều kiện thích hợp (nhiệt độ, áp suất, xúc tác), các phân tử alkene có thể kết hợp với nhau tạo thành phân tử có khối lượng rất lớn gọi là polymer.</p>
+            <code>nCH₂=CH₂ --(t°, p, xt)--> (-CH₂-CH₂-)ₙ (Polyethylene - PE)</code>
+            <h3>c. Phản ứng cháy</h3>
+            <p>Alkene cháy hoàn toàn tạo CO₂ và H₂O, tỏa nhiều nhiệt.</p>
+            <code>C₂H₄ + 3O₂ → 2CO₂ + 2H₂O</code>
+        </div>
+    </div>
+
+    <!-- =============================================================== -->
+    <!-- PHẦN II: BÀI TẬP TỰ LUẬN -->
+    <!-- =============================================================== -->
+    <h2>II. BÀI TẬP TỰ LUẬN</h2>
+    <div class="exercise-block">
+        <p class="question-text">Câu 1. Viết công thức cấu tạo của các alkene có công thức phân tử C₃H₆ và C₄H₈.</p>
+        <textarea class="self-study-textarea" placeholder="Viết các công thức cấu tạo..."></textarea>
+    </div>
+    <div class="exercise-block">
+        <p class="question-text">Câu 2. Hoàn thành các phương trình phản ứng sau:</p>
+        <p>(a) CH₂=CH-CH₃ + Br₂ → ?</p>
+        <p>(b) Trùng hợp propene (C₃H₆)</p>
+        <p>(c) C₄H₈ + O₂ → ? + ?</p>
+        <textarea class="self-study-textarea" placeholder="Hoàn thành các phương trình..."></textarea>
+    </div>
+     <div class="exercise-block">
+        <p class="question-text">Câu 3. Bằng phương pháp hóa học, hãy phân biệt hai khí riêng biệt không màu là methane (CH₄) và ethylene (C₂H₄).</p>
+        <textarea class="self-study-textarea" placeholder="Trình bày phương pháp nhận biết..."></textarea>
+    </div>
+
+    <!-- =============================================================== -->
+    <!-- PHẦN III: BÀI TẬP TÍNH TOÁN -->
+    <!-- =============================================================== -->
+    <h2>III. BÀI TẬP TÍNH TOÁN</h2>
+    <div class="exercise-block">
+        <p class="question-text"><strong>Bài 1.</strong> Đốt cháy hoàn toàn 5.6 gam ethylene (C₂H₄). Tính thể tích khí CO₂ thu được ở điều kiện chuẩn (25°C, 1 bar). (Cho C=12, H=1).</p>
+        <textarea class="self-study-textarea" placeholder="Nhập lời giải của bạn..."></textarea>
+        <button class="action-button toggle-solution-btn">Xem hướng dẫn giải</button>
+        <div class="solution">
+            <p><strong>Bước 1: Tính số mol C₂H₄</strong></p>
+            <p>M<sub>C₂H₄</sub> = 12*2 + 1*4 = 28 g/mol</p>
+            <p>n<sub>C₂H₄</sub> = m / M = 5.6 / 28 = 0.2 mol</p>
+            <p><strong>Bước 2: Viết phương trình phản ứng cháy</strong></p>
+            <p>C₂H₄ + 3O₂ → 2CO₂ + 2H₂O</p>
+            <p><strong>Bước 3: Tính số mol CO₂ theo phương trình</strong></p>
+            <p>Theo phương trình, 1 mol C₂H₄ tạo ra 2 mol CO₂.</p>
+            <p>Vậy, 0.2 mol C₂H₄ tạo ra: n<sub>CO₂</sub> = 0.2 * 2 = 0.4 mol</p>
+            <p><strong>Bước 4: Tính thể tích CO₂</strong></p>
+            <p>V<sub>CO₂</sub> = n * 24.79 = 0.4 * 24.79 = <strong>9.916 lít</strong></p>
+        </div>
+    </div>
+    <div class="exercise-block">
+        <p class="question-text"><strong>Bài 2.</strong> Dẫn 4.958 lít khí ethylene (ở điều kiện chuẩn) vào dung dịch bromine dư. Tính khối lượng bromine (Br₂) đã tham gia phản ứng. (Cho Br=80).</p>
+        <textarea class="self-study-textarea" placeholder="Nhập lời giải của bạn..."></textarea>
+        <button class="action-button toggle-solution-btn">Xem hướng dẫn giải</button>
+        <div class="solution">
+            <p><strong>Bước 1: Tính số mol C₂H₄</strong></p>
+            <p>n<sub>C₂H₄</sub> = V / 24.79 = 4.958 / 24.79 = 0.2 mol</p>
+            <p><strong>Bước 2: Viết phương trình phản ứng cộng</strong></p>
+            <p>C₂H₄ + Br₂ → C₂H₄Br₂</p>
+            <p><strong>Bước 3: Tính số mol Br₂ theo phương trình</strong></p>
+            <p>Theo phương trình, tỉ lệ mol là 1:1. Vậy n<sub>Br₂</sub> = n<sub>C₂H₄</sub> = 0.2 mol</p>
+            <p><strong>Bước 4: Tính khối lượng Br₂</strong></p>
+            <p>M<sub>Br₂</sub> = 80 * 2 = 160 g/mol</p>
+            <p>m<sub>Br₂</sub> = n * M = 0.2 * 160 = <strong>32 gam</strong></p>
+        </div>
+    </div>
+
+    <!-- =============================================================== -->
+    <!-- PHẦN IV: BÀI TẬP TRẮC NGHIỆM -->
+    <!-- =============================================================== -->
+    <h2>IV. BÀI TẬP TRẮC NGHIỆM</h2>
+    <div class="exercise-block" id="interactive-quiz">
+        <!-- Questions will be inserted here by JS -->
+    </div>
+    <button class="action-button" onclick="checkAllAnswers()">Kiểm tra đáp án trắc nghiệm</button>
+
+</div>
+
+<script>
+    const quizData = [
+        {
+            type: 'mcq',
+            question: 'Câu 1. Công thức chung của alkene là:',
+            options: ['CₙH₂ₙ (n≥2)', 'CₙH₂ₙ₊₂ (n≥1)', 'CₙH₂ₙ₋₂ (n≥2)', 'CₙH₂ₙ₊₁OH (n≥1)'],
+            answer: 'CₙH₂ₙ (n≥2)',
+            hint: 'Alkene là hydrocarbon không no, mạch hở, có một liên kết đôi, công thức CₙH₂ₙ.'
+        },
+        {
+            type: 'mcq',
+            question: 'Câu 2. Phản ứng nào dùng để nhận biết ethylene?',
+            options: ['Phản ứng cháy', 'Phản ứng với dung dịch bromine', 'Phản ứng thế với chlorine', 'Phản ứng với nước'],
+            answer: 'Phản ứng với dung dịch bromine',
+            hint: 'Ethylene (và các alkene khác) có khả năng làm mất màu nâu đỏ của dung dịch bromine.'
+        },
+        {
+            type: 'mcq',
+            question: 'Câu 3. Đốt cháy hoàn toàn 4.2 gam propene (C₃H₆), khối lượng nước thu được là:',
+            options: ['5.4 gam', '3.6 gam', '7.2 gam', '1.8 gam'],
+            answer: '5.4 gam',
+            hint: 'n(C₃H₆) = 4.2/42 = 0.1 mol. PTHH: 2C₃H₆ + 9O₂ → 6CO₂ + 6H₂O. n(H₂O) = 0.1 * 3 = 0.3 mol. m(H₂O) = 0.3 * 18 = 5.4 gam.'
+        },
+        {
+            type: 'tf',
+            question: 'Câu 4. Trong phân tử ethylene, hai nguyên tử carbon liên kết với nhau bằng một liên kết đôi.',
+            answer: true,
+            hint: 'Đúng. Liên kết đôi C=C là đặc điểm cấu tạo quan trọng nhất của alkene.'
+        },
+        {
+            type: 'tf',
+            question: 'Câu 5. Phản ứng trùng hợp ethylene tạo ra cao su buna.',
+            answer: false,
+            hint: 'Sai. Trùng hợp ethylene tạo ra polyethylene (nhựa PE). Cao su buna được tạo từ buta-1,3-diene.'
+        },
+        {
+            type: 'sa',
+            question: 'Câu 6. Dẫn 2.479 lít khí ethylene (đkc) vào dung dịch bromine dư. Khối lượng bromine đã phản ứng là bao nhiêu gam?',
+            answer: '16',
+            hint: 'n(C₂H₄) = 2.479/24.79 = 0.1 mol. n(Br₂) = n(C₂H₄) = 0.1 mol. m(Br₂) = 0.1 * 160 = 16 gam.'
+        },
+        {
+            type: 'sa',
+            question: 'Câu 7. Tên của sản phẩm khi cho propene (CH₂=CH-CH₃) tác dụng với H₂ (xúc tác Ni, t°) là gì?',
+            answer: 'propane',
+            hint: 'Phản ứng cộng H₂ vào alkene sẽ bẻ gãy liên kết đôi và tạo ra alkane tương ứng.'
+        }
+    ];
+
+    function renderQuiz() {
+        const container = document.getElementById('interactive-quiz');
+        let html = '';
+        quizData.forEach((item, index) => {
+            html += `<div class="question-block" id="q-${index}">`;
+            html += `<h3 class="question-text">${item.question}</h3>`;
+            if (item.type === 'mcq') {
+                html += '<div class="options-grid">';
+                item.options.forEach(opt => {
+                    html += `<div class="option" onclick="selectOption(this, ${index})">${opt}</div>`;
+                });
+                html += '</div>';
+            } else if (item.type === 'tf') {
+                 html += `<div class="options-grid">
+                            <div class="option" onclick="selectOption(this, ${index})">Đúng</div>
+                            <div class="option" onclick="selectOption(this, ${index})">Sai</div>
+                          </div>`;
+            } else if (item.type === 'sa') {
+                html += `<input type="text" class="short-answer-input" placeholder="Nhập đáp án của bạn (chỉ điền số)...">`;
+            }
+            html += `<div class="hint" id="hint-${index}"></div>`;
+            html += `</div>`;
+        });
+        container.innerHTML = html;
+    }
+
+    let userAnswers = {};
+
+    function selectOption(element, index) {
+        const parent = element.parentElement;
+        Array.from(parent.children).forEach(child => child.classList.remove('selected'));
+        element.classList.add('selected');
+        userAnswers[index] = element.textContent.trim();
+    }
+    
+    function checkAllAnswers() {
+        quizData.forEach((item, index) => {
+            const questionBlock = document.getElementById(`q-${index}`);
+            const hintBox = document.getElementById(`hint-${index}`);
+            let isCorrect = false;
+
+            if (item.type === 'mcq' || item.type === 'tf') {
+                const selectedOption = questionBlock.querySelector('.option.selected');
+                if (selectedOption) {
+                    let answer = userAnswers[index];
+                    if (item.type === 'tf') {
+                        answer = (answer === 'Đúng');
+                    }
+                    if (answer === item.answer) {
+                        isCorrect = true;
+                    }
+                }
+                 if(isCorrect) {
+                    selectedOption.classList.add('correct');
+                } else {
+                    if(selectedOption) selectedOption.classList.add('incorrect');
+                    hintBox.textContent = item.hint;
+                    hintBox.style.display = 'block';
+                }
+            } else if (item.type === 'sa') {
+                const input = questionBlock.querySelector('input');
+                let userAnswer = input.value.trim().toLowerCase();
+                if (userAnswer === item.answer.toLowerCase()) {
+                    isCorrect = true;
+                }
+                 if(isCorrect) {
+                    input.classList.add('correct');
+                } else {
+                    input.classList.add('incorrect');
+                    hintBox.textContent = item.hint;
+                    hintBox.style.display = 'block';
+                }
+            }
+        });
+    }
+
+    // --- Script for Collapsible Sections ---
+    const collapsibles = document.getElementsByClassName("collapsible");
+    for (let i = 0; i < collapsibles.length; i++) {
+        collapsibles[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            const content = this.nextElementSibling;
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+            }
+        });
+    }
+    
+    // --- Script for Toggling Solutions ---
+    function setupSolutionToggles() {
+        const solutionButtons = document.getElementsByClassName("toggle-solution-btn");
+        for (let i = 0; i < solutionButtons.length; i++) {
+            solutionButtons[i].addEventListener("click", function() {
+                const solution = this.nextElementSibling;
+                if (solution.style.display === "block") {
+                    solution.style.display = "none";
+                    this.textContent = "Xem hướng dẫn giải";
+                } else {
+                    solution.style.display = "block";
+                    this.textContent = "Ẩn hướng dẫn giải";
+                }
+            });
+        }
+    }
+
+    window.onload = () => {
+        renderQuiz();
+        setupSolutionToggles();
+    };
+</script>
+
+</body>
+</html>
