@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chuyên đề: Glucose và Saccharose</title>
+    <style>
+        :root {
+            --primary-color: #8e24aa;
+            --secondary-color: #00acc1;
+            --correct-color: #43a047;
+            --incorrect-color: #e53935;
+            --light-bg: #f3e5f5;
+            --border-color: #e1bee7;
+            --text-color: #212121;
+            --header-font: 'Merriweather', serif;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Lato:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Lato', sans-serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            background-color: var(--light-bg);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2, h3 {
+            font-family: var(--header-font);
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        h1 { text-align: center; font-size: 2.5em; margin-bottom: 25px; }
+        h2 { font-size: 1.8em; margin-top: 40px; border-bottom: 3px solid var(--secondary-color); padding-bottom: 10px; }
+        h3 { font-size: 1.4em; color: #4a148c; }
+
+        .collapsible {
+            background-color: #ede7f6;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: 1px solid var(--border-color);
+            text-align: left;
+            outline: none;
+            font-size: 1.2em;
+            font-weight: 700;
+            margin-top: 15px;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .collapsible:hover { background-color: #d1c4e9; }
+        .collapsible::after { content: '\\2795'; font-size: 14px; color: var(--secondary-color); }
+        .collapsible.active::after { content: "\\2796"; }
+
+        .content {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+            background-color: #fafafa;
+            border: 1px solid var(--border-color);
+            border-top: none;
+            border-radius: 0 0 8px 8px;
+        }
+        .content-inner { padding: 20px 5px; }
+
+        .exercise-block {
+            background-color: #fff;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 25px;
+            margin: 25px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .question-text {
+             font-weight: 700;
+             margin-bottom: 15px;
+             font-size: 1.1em;
+        }
+        
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 10px;
+        }
+        
+        .option {
+            cursor: pointer;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+        .option:hover {
+            background-color: #e0f7fa;
+            border-color: var(--secondary-color);
+        }
+        .option.selected {
+            background-color: #b2ebf2;
+            border-color: var(--secondary-color);
+            font-weight: bold;
+        }
+
+        .correct { background-color: #e8f5e9 !important; border-color: var(--correct-color) !important; }
+        .incorrect { background-color: #ffebee !important; border-color: var(--incorrect-color) !important; }
+        
+        .hint {
+            font-weight: normal;
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #fffde7;
+            border-left: 4px solid #fbc02d;
+            border-radius: 4px;
+            display: none;
+        }
+        
+        .solution {
+            display: none;
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #e0f2f1;
+            border-left: 4px solid var(--secondary-color);
+            border-radius: 4px;
+        }
+
+        .action-button {
+            display: inline-block;
+            padding: 12px 24px;
+            font-size: 1em;
+            font-weight: bold;
+            color: white;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .action-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .self-study-textarea, .short-answer-input {
+            padding: 12px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            width: calc(100% - 26px);
+            font-family: inherit;
+            font-size: 1em;
+            transition: border-color 0.2s;
+        }
+        .self-study-textarea:focus, .short-answer-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+        .self-study-textarea { min-height: 120px; resize: vertical; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>CHUYÊN ĐỀ: GLUCOSE VÀ SACCHAROSE</h1>
+
+    <!-- =============================================================== -->
+    <!-- PHẦN I: KIẾN THỨC CẦN NHỚ -->
+    <!-- =============================================================== -->
+    <h2>I. KIẾN THỨC CẦN NHỚ</h2>
+    <button type="button" class="collapsible">1. Khái niệm Carbohydrate</button>
+    <div class="content">
+        <div class="content-inner">
+            <p>Carbohydrate là hợp chất hữu cơ chứa các nguyên tố C, H, O và thường có công thức chung là <strong>Cₙ(H₂O)ₘ</strong>.</p>
+            <ul>
+                <li><strong>Ví dụ:</strong> Glucose (C₆H₁₂O₆), Saccharose (C₁₂H₂₂O₁₁), Tinh bột ((C₆H₁₀O₅)ₙ).</li>
+            </ul>
+        </div>
+    </div>
+    <button type="button" class="collapsible">2. Glucose (C₆H₁₂O₆)</button>
+    <div class="content">
+        <div class="content-inner">
+            <h3>Tính chất vật lí</h3>
+            <ul>
+                <li>Là chất rắn, dạng tinh thể, không màu, vị ngọt, tan tốt trong nước.</li>
+                <li>Có nhiều trong quả nho chín (còn gọi là đường nho), mật ong, trong máu người (nồng độ ~0.1%).</li>
+            </ul>
+            <h3>Tính chất hóa học</h3>
+            <ul>
+                <li><strong>Phản ứng tráng bạc:</strong> Tác dụng với dung dịch AgNO₃/NH₃ tạo lớp bạc kim loại. <br><code>C₆H₁₂O₆ + Ag₂O --(NH₃)--> C₆H₁₂O₇ + 2Ag↓</code></li>
+                <li><strong>Phản ứng lên men rượu:</strong> Dưới tác dụng của enzyme, glucose chuyển hóa thành ethylic alcohol và khí carbon dioxide. <br><code>C₆H₁₂O₆ --(enzyme)--> 2C₂H₅OH + 2CO₂↑</code></li>
+            </ul>
+        </div>
+    </div>
+    <button type="button" class="collapsible">3. Saccharose (C₁₂H₂₂O₁₁)</button>
+    <div class="content">
+        <div class="content-inner">
+            <h3>Tính chất vật lí</h3>
+            <ul>
+                <li>Là chất rắn, dạng tinh thể, không màu, vị ngọt, tan tốt trong nước.</li>
+                <li>Có nhiều trong cây mía, củ cải đường, hoa thốt nốt.</li>
+            </ul>
+            <h3>Tính chất hóa học</h3>
+            <ul>
+                <li><strong>Phản ứng thủy phân:</strong> Trong môi trường acid, saccharose bị thủy phân tạo thành glucose và fructose. <br><code>C₁₂H₂₂O₁₁ + H₂O --(H⁺, t°)--> C₆H₁₂O₆ (glucose) + C₆H₁₂O₆ (fructose)</code></li>
+                <li>Saccharose <strong>không có</strong> phản ứng tráng bạc.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- =============================================================== -->
+    <!-- PHẦN II: BÀI TẬP TỰ LUẬN -->
+    <!-- =============================================================== -->
+    <h2>II. BÀI TẬP TỰ LUẬN</h2>
+    <div class="exercise-block">
+        <p class="question-text">Câu 1. Chọn các từ thích hợp (glucose, saccharose, fructose) để điền vào chỗ trống:</p>
+        <p>(a) ___ tan tốt trong nước, là nguồn năng lượng chính cho tế bào.</p>
+        <p>(b) ___ có nhiều trong cây mía, khi vào cơ thể sẽ chuyển hóa thành ___ và fructose.</p>
+        <p>(c) Mía có nhiều ___, còn quả nho chín có nhiều ___.</p>
+        <textarea class="self-study-textarea" placeholder="Nhập câu trả lời..."></textarea>
+    </div>
+    <div class="exercise-block">
+        <p class="question-text">Câu 2. Giải thích tại sao khi pha nước chanh đá, nên hòa tan đường vào nước trước rồi mới cho đá vào.</p>
+        <textarea class="self-study-textarea" placeholder="Giải thích hiện tượng..."></textarea>
+    </div>
+    <div class="exercise-block">
+        <p class="question-text">Câu 3. Viết các phương trình hóa học minh họa các quá trình sau:</p>
+        <p>(a) Chuyển hóa glucose thành ethylic alcohol.</p>
+        <p>(b) Chuyển hóa saccharose thành glucose và fructose.</p>
+        <textarea class="self-study-textarea" placeholder="Viết các phương trình..."></textarea>
+    </div>
+    <div class="exercise-block">
+        <p class="question-text">Câu 4. Hoàn thành sơ đồ chuyển hóa sau: <br>
+        Saccharose --(1)--> Glucose --(2)--> Ethylic alcohol --(3)--> Acetic acid --(4)--> Ethyl acetate</p>
+        <textarea class="self-study-textarea" placeholder="Viết 4 phương trình hóa học..."></textarea>
+    </div>
+    <div class="exercise-block">
+        <p class="question-text">Câu 5. Bằng phương pháp hóa học, hãy nhận biết 2 dung dịch không màu riêng biệt: glucose và saccharose.</p>
+        <textarea class="self-study-textarea" placeholder="Trình bày phương pháp..."></textarea>
+    </div>
+
+    <!-- =============================================================== -->
+    <!-- PHẦN III: BÀI TẬP TÍNH TOÁN -->
+    <!-- =============================================================== -->
+    <h2>III. BÀI TẬP TÍNH TOÁN</h2>
+    <div class="exercise-block">
+        <p class="question-text"><strong>Bài 1.</strong> Cho dung dịch chứa 18 gam glucose tham gia phản ứng tráng bạc hoàn toàn. Tính khối lượng bạc (Ag) kim loại thu được. (Cho M<sub>glucose</sub> = 180, M<sub>Ag</sub> = 108).</p>
+        <textarea class="self-study-textarea" placeholder="Nhập lời giải của bạn..."></textarea>
+        <button class="action-button toggle-solution-btn">Xem hướng dẫn giải</button>
+        <div class="solution">
+            <p><strong>Bước 1: Tính số mol glucose</strong></p>
+            <p>n<sub>glucose</sub> = m / M = 18 / 180 = 0.1 mol</p>
+            <p><strong>Bước 2: Viết phương trình phản ứng tráng bạc</strong></p>
+            <p>C₆H₁₂O₆ + Ag₂O → C₆H₁₂O₇ + 2Ag↓</p>
+            <p><strong>Bước 3: Tính số mol Ag theo phương trình</strong></p>
+            <p>Theo phương trình, 1 mol glucose tạo ra 2 mol Ag.</p>
+            <p>Vậy, 0.1 mol glucose tạo ra: n<sub>Ag</sub> = 0.1 * 2 = 0.2 mol</p>
+            <p><strong>Bước 4: Tính khối lượng Ag</strong></p>
+            <p>m<sub>Ag</sub> = n * M = 0.2 * 108 = <strong>21.6 gam</strong></p>
+        </div>
+    </div>
+    <div class="exercise-block">
+        <p class="question-text"><strong>Bài 2.</strong> Lên men m gam glucose để điều chế ethylic alcohol, thu được 8.96 lít khí CO₂ (đktc). Tính giá trị của m, biết hiệu suất của quá trình lên men là 80%.</p>
+        <textarea class="self-study-textarea" placeholder="Nhập lời giải của bạn..."></textarea>
+        <button class="action-button toggle-solution-btn">Xem hướng dẫn giải</button>
+        <div class="solution">
+            <p><strong>Bước 1: Tính số mol CO₂</strong></p>
+            <p>n<sub>CO₂</sub> = V / 22.4 = 8.96 / 22.4 = 0.4 mol</p>
+            <p><strong>Bước 2: Viết phương trình phản ứng lên men</strong></p>
+            <p>C₆H₁₂O₆ --(enzyme)--> 2C₂H₅OH + 2CO₂↑</p>
+            <p><strong>Bước 3: Tính số mol glucose theo lý thuyết</strong></p>
+            <p>Theo phương trình, 2 mol CO₂ được tạo ra từ 1 mol glucose.</p>
+            <p>Vậy, 0.4 mol CO₂ được tạo ra từ: n<sub>glucose (lý thuyết)</sub> = 0.4 / 2 = 0.2 mol</p>
+            <p><strong>Bước 4: Tính khối lượng glucose thực tế cần dùng (tính cả hiệu suất)</strong></p>
+            <p>Vì hiệu suất là 80%, lượng glucose thực tế cần dùng sẽ lớn hơn lý thuyết.</p>
+            <p>n<sub>glucose (thực tế)</sub> = n<sub>glucose (lý thuyết)</sub> / Hiệu suất = 0.2 / 0.8 = 0.25 mol</p>
+            <p>m = n * M = 0.25 * 180 = <strong>45 gam</strong></p>
+        </div>
+    </div>
+
+    <!-- =============================================================== -->
+    <!-- PHẦN IV: BÀI TẬP TRẮC NGHIỆM -->
+    <!-- =============================================================== -->
+    <h2>IV. BÀI TẬP TRẮC NGHIỆM</h2>
+    <div class="exercise-block" id="interactive-quiz">
+        <!-- Questions will be inserted here by JS -->
+    </div>
+    <button class="action-button" onclick="checkAllAnswers()">Kiểm tra đáp án trắc nghiệm</button>
+
+</div>
+
+<script>
+    const quizData = [
+        {
+            type: 'mcq',
+            question: 'Câu 1. Chất nào sau đây có phản ứng tráng bạc?',
+            options: ['Saccharose', 'Tinh bột', 'Glucose', 'Cellulose'],
+            answer: 'Glucose',
+            hint: 'Glucose có nhóm chức aldehyde (-CHO) trong cấu trúc dạng mạch hở, nên có khả năng tham gia phản ứng tráng bạc.'
+        },
+        {
+            type: 'mcq',
+            question: 'Câu 2. Thủy phân saccharose trong môi trường acid thu được sản phẩm là:',
+            options: ['Chỉ glucose', 'Chỉ fructose', 'Glucose và fructose', 'Không phản ứng'],
+            answer: 'Glucose và fructose',
+            hint: 'Saccharose là một disaccharide, được cấu tạo từ một gốc glucose và một gốc fructose liên kết với nhau.'
+        },
+        {
+            type: 'mcq',
+            question: 'Câu 3. Nguồn nguyên liệu chính để sản xuất đường saccharose trong công nghiệp là:',
+            options: ['Quả nho', 'Cây mía', 'Mật ong', 'Thân tre'],
+            answer: 'Cây mía',
+            hint: 'Cây mía và củ cải đường là hai nguồn cung cấp saccharose dồi dào và phổ biến nhất.'
+        },
+        {
+            type: 'tf',
+            question: 'Câu 4. Glucose và saccharose đều là chất rắn, vị ngọt và tan tốt trong nước.',
+            answer: true,
+            hint: 'Đúng. Đây là tính chất vật lí chung của cả hai loại đường này.'
+        },
+        {
+            type: 'tf',
+            question: 'Câu 5. Có thể dùng dung dịch AgNO₃/NH₃ để phân biệt glucose và saccharose.',
+            answer: true,
+            hint: 'Đúng. Glucose cho kết tủa bạc (phản ứng tráng bạc), còn saccharose thì không có hiện tượng.'
+        },
+        {
+            type: 'sa',
+            question: 'Câu 6. Trong máu người, nồng độ glucose được duy trì ổn định ở khoảng bao nhiêu phần trăm?',
+            answer: '0.1%',
+            hint: 'Việc duy trì nồng độ glucose trong máu ở mức ổn định là rất quan trọng cho hoạt động của cơ thể.'
+        },
+        {
+            type: 'sa',
+            question: 'Câu 7. Phản ứng lên men glucose tạo ra hai sản phẩm là ethylic alcohol và khí gì?',
+            answer: 'carbon dioxide',
+            hint: 'Khí này có công thức hóa học là CO₂.'
+        },
+         {
+            type: 'sa',
+            question: 'Câu 8. Đường nho là tên gọi khác của chất nào?',
+            answer: 'glucose',
+            hint: 'Chất này có rất nhiều trong quả nho chín.'
+        }
+    ];
+
+    function renderQuiz() {
+        const container = document.getElementById('interactive-quiz');
+        let html = '';
+        quizData.forEach((item, index) => {
+            html += `<div class="question-block" id="q-${index}">`;
+            html += `<h3 class="question-text">${item.question}</h3>`;
+            if (item.type === 'mcq') {
+                html += '<div class="options-grid">';
+                item.options.forEach(opt => {
+                    html += `<div class="option" onclick="selectOption(this, ${index})">${opt}</div>`;
+                });
+                html += '</div>';
+            } else if (item.type === 'tf') {
+                 html += `<div class="options-grid">
+                            <div class="option" onclick="selectOption(this, ${index})">Đúng</div>
+                            <div class="option" onclick="selectOption(this, ${index})">Sai</div>
+                          </div>`;
+            } else if (item.type === 'sa') {
+                html += `<input type="text" class="short-answer-input" placeholder="Nhập đáp án của bạn...">`;
+            }
+            html += `<div class="hint" id="hint-${index}"></div>`;
+            html += `</div>`;
+        });
+        container.innerHTML = html;
+    }
+
+    let userAnswers = {};
+
+    function selectOption(element, index) {
+        const parent = element.parentElement;
+        Array.from(parent.children).forEach(child => child.classList.remove('selected'));
+        element.classList.add('selected');
+        userAnswers[index] = element.textContent.trim();
+    }
+    
+    function checkAllAnswers() {
+        quizData.forEach((item, index) => {
+            const questionBlock = document.getElementById(`q-${index}`);
+            const hintBox = document.getElementById(`hint-${index}`);
+            let isCorrect = false;
+
+            if (item.type === 'mcq' || item.type === 'tf') {
+                const selectedOption = questionBlock.querySelector('.option.selected');
+                if (selectedOption) {
+                    let answer = userAnswers[index];
+                    if (item.type === 'tf') {
+                        answer = (answer === 'Đúng');
+                    }
+                    if (answer === item.answer) {
+                        isCorrect = true;
+                    }
+                }
+                 if(isCorrect) {
+                    selectedOption.classList.add('correct');
+                } else {
+                    if(selectedOption) selectedOption.classList.add('incorrect');
+                    hintBox.textContent = item.hint;
+                    hintBox.style.display = 'block';
+                }
+            } else if (item.type === 'sa') {
+                const input = questionBlock.querySelector('input');
+                let userAnswer = input.value.trim().toLowerCase();
+                if (userAnswer === item.answer.toLowerCase() || (item.answer === 'carbon dioxide' && userAnswer === 'co2')) {
+                    isCorrect = true;
+                }
+                 if(isCorrect) {
+                    input.classList.add('correct');
+                } else {
+                    input.classList.add('incorrect');
+                    hintBox.textContent = item.hint;
+                    hintBox.style.display = 'block';
+                }
+            }
+        });
+    }
+
+    // --- Script for Collapsible Sections ---
+    const collapsibles = document.getElementsByClassName("collapsible");
+    for (let i = 0; i < collapsibles.length; i++) {
+        collapsibles[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            const content = this.nextElementSibling;
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+            }
+        });
+    }
+
+    // --- Script for Toggling Solutions ---
+    function setupSolutionToggles() {
+        const solutionButtons = document.getElementsByClassName("toggle-solution-btn");
+        for (let i = 0; i < solutionButtons.length; i++) {
+            solutionButtons[i].addEventListener("click", function() {
+                const solution = this.nextElementSibling;
+                if (solution.style.display === "block") {
+                    solution.style.display = "none";
+                    this.textContent = "Xem hướng dẫn giải";
+                } else {
+                    solution.style.display = "block";
+                    this.textContent = "Ẩn hướng dẫn giải";
+                }
+            });
+        }
+    }
+
+    window.onload = () => {
+        renderQuiz();
+        setupSolutionToggles();
+    };
+</script>
+
+</body>
+</html>
