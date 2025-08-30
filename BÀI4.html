@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chuyên đề 4: Sự khác nhau cơ bản giữa Phi kim và Kim loại</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0 auto;
+            max-width: 900px;
+            padding: 20px;
+            background-color: #f4f7f6;
+            color: #333;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        h1, h2, h3, h4 {
+            color: #0056b3;
+            border-bottom: 2px solid #eef2f5;
+            padding-bottom: 10px;
+        }
+        h1 {
+            text-align: center;
+            color: #d9534f;
+        }
+        .section-title {
+            background-color: #1e88e5;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        .knowledge-section ul {
+            list-style-type: square;
+            padding-left: 20px;
+        }
+        .knowledge-section li {
+            margin-bottom: 8px;
+        }
+        .question, .self-study-question, .exercise-block {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #fdfdfd;
+        }
+        .question p, .self-study-question p, .exercise-block p {
+            font-weight: bold;
+            margin-top: 0;
+        }
+        .options label {
+            display: block;
+            margin: 5px 0;
+            padding: 8px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .options label:hover {
+            background-color: #e9ecef;
+        }
+        input[type="radio"], input[type="text"], input[type="number"] {
+            margin-right: 10px;
+        }
+        input[type="number"] {
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        textarea.user-answer {
+            width: 98%;
+            min-height: 80px;
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 15px;
+            resize: vertical;
+        }
+        .hint-button, .toggle-solution-btn {
+            background-color: #ffc107;
+            color: #212529;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .hint, .solution {
+            background-color: #e2f0d9;
+            border: 1px solid #b7d1a5;
+            padding: 15px;
+            margin-top: 10px;
+            border-radius: 5px;
+            display: none;
+        }
+        .button-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+        button {
+            padding: 12px 25px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            margin: 5px;
+            color: white;
+            transition: opacity 0.3s;
+        }
+        button:hover {
+            opacity: 0.85;
+        }
+        #checkBtn { background-color: #28a745; }
+        #showAnswersBtn { background-color: #17a2b8; }
+        #resetBtn { background-color: #dc3545; }
+        .feedback {
+            margin-top: 10px;
+            font-weight: bold;
+            padding: 8px;
+            border-radius: 5px;
+        }
+        .correct {
+            color: #155724;
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+        }
+        .incorrect {
+            color: #721c24;
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+        }
+        #answer-key {
+            margin-top: 30px;
+            background-color: #fffbe6;
+            border: 1px dashed #ffeeba;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        td:first-child {
+            font-weight: bold;
+        }
+        .chemical-equation {
+            font-family: Consolas, "Courier New", monospace;
+            background-color: #eef;
+            padding: 3px 7px;
+            border-radius: 5px;
+            font-size: 0.95em;
+            display: inline-block;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>CHUYÊN ĐỀ 4. SỰ KHÁC NHAU CƠ BẢN GIỮA PHI KIM VÀ KIM LOẠI</h1>
+
+        <div class="knowledge-section">
+            <h2 class="section-title">A. KIẾN THỨC CẦN NHỚ</h2>
+            <h3>I. Ứng dụng của một số phi kim quan trọng</h3>
+            <ul>
+                <li><strong>Carbon (C):</strong>
+                    <ul>
+                        <li><strong>Kim cương:</strong> Dùng làm đồ trang sức, mũi khoan, dao cắt kính do có độ cứng rất cao.</li>
+                        <li><strong>Than chì:</strong> Dùng làm điện cực, ruột bút chì, chất bôi trơn do mềm và dẫn được điện.</li>
+                        <li><strong>Than hoạt tính:</strong> Dùng trong mặt nạ phòng độc, lõi lọc nước để khử mùi, khử độc do có khả năng hấp phụ tốt.</li>
+                    </ul>
+                </li>
+                <li><strong>Lưu huỳnh (Sulfur - S):</strong>
+                    <ul>
+                        <li>Dùng để lưu hóa cao su, giúp cao su bền và đàn hồi hơn.</li>
+                        <li>Là nguyên liệu quan trọng để sản xuất sulfuric acid (H₂SO₄).</li>
+                        <li>Dùng để sản xuất diêm, thuốc súng, thuốc trừ sâu.</li>
+                    </ul>
+                </li>
+                <li><strong>Chlorine (Cl₂):</strong>
+                    <ul>
+                        <li>Dùng để khử trùng nước sinh hoạt, nước bể bơi.</li>
+                        <li>Sản xuất chất tẩy trắng như nước Javen.</li>
+                        <li>Sản xuất nhựa PVC (Polyvinyl chloride), một loại nhựa rất phổ biến.</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h3>II. Sự khác nhau giữa phi kim và kim loại</h3>
+            <p>Dưới đây là bảng tóm tắt những khác biệt cơ bản về tính chất vật lí và hóa học giữa kim loại và phi kim.</p>
+            <table>
+                 <thead>
+                    <tr>
+                        <th>Tiêu chí so sánh</th>
+                        <th>Kim loại</th>
+                        <th>Phi kim</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="3" style="background-color: #e9ecef; text-align:center; font-weight:bold;">1. SỰ KHÁC NHAU VỀ TÍNH CHẤT VẬT LÍ</td>
+                    </tr>
+                    <tr>
+                        <td>Trạng thái (ở điều kiện thường)</td>
+                        <td>Hầu hết ở thể rắn (trừ thủy ngân - Hg ở thể lỏng).</td>
+                        <td>Tồn tại ở cả ba thể: rắn (C, S, P), lỏng (Br₂), và khí (O₂, N₂, Cl₂).</td>
+                    </tr>
+                    <tr>
+                        <td>Tính dẫn điện và dẫn nhiệt</td>
+                        <td>Dẫn điện, dẫn nhiệt tốt.</td>
+                        <td>Thường không dẫn điện, dẫn nhiệt (trừ than chì).</td>
+                    </tr>
+                    <tr>
+                        <td>Tính dẻo (khả năng biến dạng)</td>
+                        <td>Có tính dẻo, dễ dát mỏng và kéo thành sợi.</td>
+                        <td>Không có tính dẻo, giòn và dễ vỡ.</td>
+                    </tr>
+                    <tr>
+                        <td>Nhiệt độ nóng chảy & nhiệt độ sôi</td>
+                        <td>Thường cao.</td>
+                        <td>Thường thấp hơn kim loại.</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" style="background-color: #e9ecef; text-align:center; font-weight:bold;">2. SỰ KHÁC NHAU VỀ TÍNH CHẤT HÓA HỌC</td>
+                    </tr>
+                    <tr>
+                        <td>Xu hướng cho/nhận electron</td>
+                        <td>Dễ <strong>nhường</strong> electron để tạo thành ion dương (cation).</td>
+                        <td>Dễ <strong>nhận</strong> electron để tạo thành ion âm (anion).</td>
+                    </tr>
+                    <tr>
+                        <td>Phản ứng với oxygen</td>
+                        <td>Tạo thành <strong>oxide base</strong> (ví dụ: 4Na + O₂ → 2Na₂O). Một số tạo oxide lưỡng tính (Al₂O₃).</td>
+                        <td>Tạo thành <strong>oxide acid</strong> (ví dụ: S + O₂ → SO₂).</td>
+                    </tr>
+                     <tr>
+                        <td>Loại liên kết đặc trưng</td>
+                        <td>Liên kết kim loại trong đơn chất. Liên kết ion khi tác dụng với phi kim.</td>
+                        <td>Liên kết cộng hóa trị trong đơn chất và khi tác dụng với phi kim khác. Liên kết ion khi tác dụng với kim loại mạnh.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h2 class="section-title">B. BÀI TẬP VẬN DỤNG</h2>
+        
+        <h3>I. Tự luận tính toán (Có hướng dẫn giải)</h3>
+        <div class="exercise-block">
+            <p><b>Bài toán 1:</b> Đun nóng hỗn hợp gồm 5,6 gam bột sắt (Fe) và 1,6 gam bột lưu huỳnh (S) trong điều kiện không có không khí, thu được chất rắn A.
+            <br>a. Viết phương trình hóa học của phản ứng.
+            <br>b. Xác định chất nào còn dư sau phản ứng và khối lượng dư là bao nhiêu?
+            <br>c. Tính khối lượng chất rắn A thu được.
+            <br><i>(Cho biết: Fe = 56, S = 32)</i></p>
+            <button class="toggle-solution-btn">Xem hướng dẫn giải</button>
+            <div class="solution">
+                <p><b>Hướng dẫn giải:</b></p>
+                <p><b>Bước 1: Viết phương trình hóa học.</b></p>
+                <ul>
+                    <li>Sắt (kim loại) tác dụng với lưu huỳnh (phi kim) ở nhiệt độ cao.</li>
+                    <li>Phương trình hóa học: <span class="chemical-equation">Fe + S → FeS</span> (điều kiện: t°)</li>
+                </ul>
+                <p><b>Bước 2: Tính số mol của các chất ban đầu.</b></p>
+                <ul>
+                    <li>Số mol của Fe: <span class="chemical-equation">n<sub>Fe</sub> = m / M = 5,6 / 56 = 0,1 (mol)</span></li>
+                    <li>Số mol của S: <span class="chemical-equation">n<sub>S</sub> = m / M = 1,6 / 32 = 0,05 (mol)</span></li>
+                </ul>
+                <p><b>Bước 3: Lập tỉ lệ, xác định chất dư và tính toán theo chất hết.</b></p>
+                <ul>
+                    <li>Tỉ lệ mol theo PTHH là 1 Fe : 1 S.</li>
+                    <li>So sánh tỉ lệ mol thực tế: <span class="chemical-equation">n<sub>Fe</sub>/1 = 0,1</span> và <span class="chemical-equation">n<sub>S</sub>/1 = 0,05</span>.</li>
+                    <li>Vì 0,1 > 0,05 nên Fe dư, S phản ứng hết. Mọi tính toán sẽ dựa vào số mol của S.</li>
+                    <li>Số mol Fe phản ứng: n<sub>Fe (pư)</sub> = n<sub>S</sub> = 0,05 (mol).</li>
+                    <li>Số mol Fe còn dư: n<sub>Fe (dư)</sub> = 0,1 - 0,05 = 0,05 (mol).</li>
+                    <li>Khối lượng Fe dư: m<sub>Fe (dư)</sub> = 0,05 × 56 = 2,8 (gam).</li>
+                </ul>
+                <p><b>Bước 4: Tính khối lượng chất rắn A.</b></p>
+                <ul>
+                    <li>Chất rắn A gồm FeS tạo thành và Fe dư.</li>
+                    <li>Số mol FeS tạo thành: n<sub>FeS</sub> = n<sub>S</sub> = 0,05 (mol).</li>
+                    <li>Khối lượng FeS: m<sub>FeS</sub> = 0,05 × (56 + 32) = 0,05 × 88 = 4,4 (gam).</li>
+                    <li>Khối lượng chất rắn A: m<sub>A</sub> = m<sub>FeS</sub> + m<sub>Fe (dư)</sub> = 4,4 + 2,8 = 7,2 (gam).</li>
+                    <li><i>(Cách khác: Áp dụng định luật bảo toàn khối lượng: m<sub>A</sub> = m<sub>Fe</sub> + m<sub>S</sub> = 5,6 + 1,6 = 7,2 gam)</i></li>
+                </ul>
+                 <p><b>Đáp số:</b> a) Fe + S → FeS; b) Fe dư 2,8g; c) m<sub>A</sub> = 7,2g.</p>
+            </div>
+        </div>
+        <div class="exercise-block">
+            <p><b>Bài toán 2:</b> Đốt cháy hoàn toàn 6,2 gam photpho (P) trong bình chứa khí oxygen (O₂) dư, thu được chất rắn X.
+            <br>a. Viết phương trình hóa học.
+            <br>b. Tính khối lượng chất rắn X thu được.
+            <br>c. Hòa tan toàn bộ X vào nước dư, thu được dung dịch Y. Viết PTHH và cho biết dung dịch Y làm quỳ tím đổi màu gì?
+            <br><i>(Cho biết: P = 31, O = 16)</i></p>
+            <button class="toggle-solution-btn">Xem hướng dẫn giải</button>
+            <div class="solution">
+                <p><b>Hướng dẫn giải:</b></p>
+                <p><b>Bước 1: Viết phương trình hóa học của phản ứng cháy.</b></p>
+                <ul>
+                    <li>Photpho (phi kim) cháy trong oxygen tạo ra diphosphorus pentoxide (oxide acid).</li>
+                    <li>Phương trình hóa học: <span class="chemical-equation">4P + 5O₂ → 2P₂O₅</span> (điều kiện: t°)</li>
+                </ul>
+                <p><b>Bước 2: Tính số mol P và khối lượng sản phẩm X (P₂O₅).</b></p>
+                <ul>
+                    <li>Số mol của P: <span class="chemical-equation">n<sub>P</sub> = m / M = 6,2 / 31 = 0,2 (mol)</span></li>
+                    <li>Theo PTHH, số mol P₂O₅: <span class="chemical-equation">n<sub>P₂O₅</sub> = (2/4) * n<sub>P</sub> = (1/2) * 0,2 = 0,1 (mol)</span></li>
+                    <li>Khối lượng chất rắn X (P₂O₅): <span class="chemical-equation">m<sub>X</sub> = n × M = 0,1 × (31×2 + 16×5) = 0,1 × 142 = 14,2 (gam)</span></li>
+                </ul>
+                <p><b>Bước 3: Viết PTHH hòa tan X vào nước và xác định tính chất dung dịch Y.</b></p>
+                <ul>
+                    <li>P₂O₅ là oxide acid, tác dụng với nước tạo ra acid tương ứng là phosphoric acid (H₃PO₄).</li>
+                    <li>Phương trình hóa học: <span class="chemical-equation">P₂O₅ + 3H₂O → 2H₃PO₄</span></li>
+                    <li>Dung dịch Y chứa H₃PO₄ là một acid, do đó sẽ làm quỳ tím chuyển sang màu <strong>đỏ</strong>.</li>
+                </ul>
+                 <p><b>Đáp số:</b> a) 4P + 5O₂ → 2P₂O₅; b) m<sub>X</sub> = 14,2g; c) P₂O₅ + 3H₂O → 2H₃PO₄, dung dịch làm quỳ tím hóa đỏ.</p>
+            </div>
+        </div>
+        
+        <h3>II. Tự luận trả lời câu hỏi</h3>
+        <div class="self-study-question">
+            <p>Câu 1. Hãy liệt kê các ứng dụng của carbon, lưu huỳnh và chlorine trong đời sống.</p>
+            <textarea class="user-answer" placeholder="Nhập câu trả lời của bạn..."></textarea>
+            <button class="hint-button">Xem Gợi ý</button>
+            <div class="hint">
+                <strong>Gợi ý:</strong><br>
+                - <strong>Carbon:</strong> Kim cương (làm đồ trang sức, mũi khoan), than chì (làm điện cực, ruột bút chì, chất bôi trơn), than hoạt tính (mặt nạ phòng độc, lõi lọc nước).<br>
+                - <strong>Lưu huỳnh:</strong> Lưu hóa cao su, sản xuất sulfuric acid (H₂SO₄), sản xuất diêm, thuốc súng, dược phẩm.<br>
+                - <strong>Chlorine:</strong> Khử trùng nước sinh hoạt, nước bể bơi; sản xuất chất tẩy trắng (nước Javen); sản xuất nhựa PVC, sản xuất hydrochloric acid (HCl).
+            </div>
+        </div>
+
+        <div class="self-study-question">
+            <p>Câu 2. Cho các vật thể: đinh sắt, dây đồng, mẩu than đá, mẩu ruột bút chì. Dự đoán hiện tượng khi dùng búa đập lên bề mặt các vật thể đó? Giải thích.</p>
+            <textarea class="user-answer" placeholder="Nhập câu trả lời của bạn..."></textarea>
+            <button class="hint-button">Xem Gợi ý</button>
+            <div class="hint">
+                <strong>Gợi ý:</strong><br>
+                - <strong>Đinh sắt, dây đồng:</strong> Chúng sẽ bị bẹp ra, biến dạng nhưng không vỡ. Vì sắt và đồng là kim loại, có <strong>tính dẻo</strong>.<br>
+                - <strong>Mẩu than đá, mẩu ruột bút chì:</strong> Chúng sẽ bị vỡ vụn thành các mảnh nhỏ. Vì than và ruột bút chì (than chì) là phi kim, có <strong>tính giòn</strong>.
+            </div>
+        </div>
+        
+        <div class="self-study-question">
+            <p>Câu 3. Tại sao người ta thường dùng kim loại để làm dây dẫn điện, nhưng lại dùng nhựa (một chất có bản chất phi kim) để làm vỏ bọc dây điện?</p>
+            <textarea class="user-answer" placeholder="Nhập câu trả lời của bạn..."></textarea>
+            <button class="hint-button">Xem Gợi ý</button>
+            <div class="hint">
+                <strong>Gợi ý:</strong><br>
+                Dựa vào sự khác biệt về tính dẫn điện giữa kim loại và phi kim. Kim loại có tính <strong>dẫn điện tốt</strong> nên được dùng làm lõi dây dẫn. Nhựa là phi kim, có tính <strong>cách điện tốt</strong>, nên được dùng làm vỏ bọc để đảm bảo an toàn, ngăn ngừa điện giật.
+            </div>
+        </div>
+
+        <h2 class="section-title">C. BÀI TẬP TRẮC NGHIỆM TƯƠNG TÁC</h2>
+        <form id="quiz-form">
+            <h3>Mức độ BIẾT</h3>
+            <div class="question" id="q1">
+                <p>Câu 1. Nguyên tố nào sau đây là phi kim?</p>
+                <div class="options">
+                    <label><input type="radio" name="q1" value="A"> A. Sodium.</label>
+                    <label><input type="radio" name="q1" value="B"> B. Magnesium.</label>
+                    <label><input type="radio" name="q1" value="C"> C. Carbon.</label>
+                    <label><input type="radio" name="q1" value="D"> D. Copper.</label>
+                </div>
+                <div class="feedback"></div>
+            </div>
+            <div class="question" id="q2">
+                <p>Câu 2. Ở điều kiện thường, phi kim nào sau đây tồn tại ở trạng thái lỏng?</p>
+                <div class="options">
+                    <label><input type="radio" name="q2" value="A"> A. Chlorine.</label>
+                    <label><input type="radio" name="q2" value="B"> B. Bromine.</label>
+                    <label><input type="radio" name="q2" value="C"> C. Iodine.</label>
+                    <label><input type="radio" name="q2" value="D"> D. Sulfur.</label>
+                </div>
+                <div class="feedback"></div>
+            </div>
+            <div class="question" id="q3">
+                <p>Câu 3. Ứng dụng nào sau đây không phải của than chì?</p>
+                <div class="options">
+                    <label><input type="radio" name="q3" value="A"> A. Điện cực.</label>
+                    <label><input type="radio" name="q3" value="B"> B. Chất bôi trơn.</label>
+                    <label><input type="radio" name="q3" value="C"> C. Đồ trang sức.</label>
+                    <label><input type="radio" name="q3" value="D"> D. Ruột bút chì.</label>
+                </div>
+                <div class="feedback"></div>
+            </div>
+            <div class="question" id="q4">
+                <p>Câu 4. Trong các phản ứng hóa học, các kim loại có xu hướng</p>
+                <div class="options">
+                    <label><input type="radio" name="q4" value="A"> A. nhận electron.</label>
+                    <label><input type="radio" name="q4" value="B"> B. tạo thành ion âm.</label>
+                    <label><input type="radio" name="q4" value="C"> C. tạo thành ion dương.</label>
+                    <label><input type="radio" name="q4" value="D"> D. nhường proton.</label>
+                </div>
+                <div class="feedback"></div>
+            </div>
+            
+            <h3>Mức độ HIỂU</h3>
+            <div class="question" id="q5">
+                 <p>Câu 5. Phát biểu nào sau đây là đúng?</p>
+                 <div class="options">
+                     <label><input type="radio" name="q5" value="A"> A. Kim cương dùng làm nhiên liệu.</label>
+                     <label><input type="radio" name="q5" value="B"> B. Than chì được dùng làm mũi khoan.</label>
+                     <label><input type="radio" name="q5" value="C"> C. Than gỗ mới điều chế có tính hấp phụ cao gọi là than hoạt tính.</label>
+                     <label><input type="radio" name="q5" value="D"> D. Than cốc dùng để khử mùi, mặt nạ phòng độc.</label>
+                 </div>
+                 <div class="feedback"></div>
+            </div>
+            <div class="question" id="q6">
+                 <p>Câu 6. Phát biểu nào sau đây không đúng?</p>
+                 <div class="options">
+                     <label><input type="radio" name="q6" value="A"> A. Kim loại dẫn điện, dẫn nhiệt tốt hơn phi kim.</label>
+                     <label><input type="radio" name="q6" value="B"> B. Kim loại thường có nhiệt độ nóng chảy cao hơn phi kim.</label>
+                     <label><input type="radio" name="q6" value="C"> C. Kim loại thường có khối lượng riêng thấp hơn phi kim.</label>
+                     <label><input type="radio" name="q6" value="D"> D. Ở điều kiện thường, hầu hết các kim loại ở trạng thái rắn (trừ thủy ngân ở trạng thái lỏng).</label>
+                 </div>
+                 <div class="feedback"></div>
+            </div>
+            <div class="question" id="q7">
+                 <p>Câu 7. Một nguyên tố X có 6 electron ở lớp ngoài cùng. Khi tham gia phản ứng hóa học, X có xu hướng nào sau đây?</p>
+                 <div class="options">
+                     <label><input type="radio" name="q7" value="A"> A. Nhường 6 electron.</label>
+                     <label><input type="radio" name="q7" value="B"> B. Nhận 2 electron.</label>
+                     <label><input type="radio" name="q7" value="C"> C. Nhường 2 electron.</label>
+                     <label><input type="radio" name="q7" value="D"> D. Nhận 6 electron.</label>
+                 </div>
+                 <div class="feedback"></div>
+            </div>
+
+            <h3>Mức độ VẬN DỤNG</h3>
+            <div class="question" id="q8">
+                <p>Câu 8. Cho các phát biểu sau: <br>
+                (a) Carbon, lưu huỳnh, sodium là các phi kim quan trọng. <br>
+                (b) Chlorine được sử dụng để xử lí nước sinh hoạt. <br>
+                (c) Ở điều kiện thường, thủy ngân là kim loại ở trạng thái lỏng. <br>
+                (d) Các phi kim thường dẫn điện, dẫn nhiệt tốt hơn kim loại. <br>
+                (e) Kim loại có xu hướng nhường electron, phi kim có xu hướng nhận electron. <br>
+                Số phát biểu đúng là</p>
+                <div class="options">
+                    <label><input type="radio" name="q8" value="A"> A. 2.</label>
+                    <label><input type="radio" name="q8" value="B"> B. 3.</label>
+                    <label><input type="radio" name="q8" value="C"> C. 4.</label>
+                    <label><input type="radio" name="q8" value="D"> D. 5.</label>
+                </div>
+                <div class="feedback"></div>
+            </div>
+            <div class="question" id="q9">
+                <p>Câu 9. Cho khí CO₂ từ từ đến dư vào dung dịch Ca(OH)₂. Hiện tượng quan sát được là:</p>
+                <div class="options">
+                    <label><input type="radio" name="q9" value="A"> A. Có kết tủa trắng ngay lập tức.</label>
+                    <label><input type="radio" name="q9" value="B"> B. Không có hiện tượng gì.</label>
+                    <label><input type="radio" name="q9" value="C"> C. Ban đầu có kết tủa trắng, sau đó kết tủa tan dần.</label>
+                    <label><input type="radio" name="q9" value="D"> D. Ban đầu không có kết tủa, sau đó xuất hiện kết tủa trắng.</label>
+                </div>
+                <div class="feedback"></div>
+            </div>
+
+            <h3>Trắc nghiệm trả lời ngắn (Điền số)</h3>
+            <div class="question" id="q10">
+                <p>Câu 10. Cho các chất: Na₂O, CO, Al₂O₃, CO₂, SO₂, Fe₃O₄. Có bao nhiêu oxide acid trong dãy trên?</p>
+                <label>Trả lời: <input type="number" name="q10"></label>
+                <div class="feedback"></div>
+            </div>
+            <div class="question" id="q11">
+                <p>Câu 11. Cho các nguyên tố sau: Fe, P, Cl, Ca, C, S, K. Có bao nhiêu nguyên tố là phi kim?</p>
+                <label>Trả lời: <input type="number" name="q11"></label>
+                <div class="feedback"></div>
+            </div>
+        </form>
+
+        <div class="button-container">
+            <button id="checkBtn" type="button">Kiểm tra Trắc nghiệm</button>
+            <button id="showAnswersBtn" type="button">Xem đáp án Trắc nghiệm</button>
+            <button id="resetBtn" type="button">Làm lại Trắc nghiệm</button>
+        </div>
+
+        <div id="answer-key" style="display:none;">
+            <h3>HƯỚNG DẪN ĐÁP ÁN TRẮC NGHIỆM</h3>
+            <ul>
+                <li><strong>Câu 1: C.</strong> Carbon là phi kim. Sodium, Magnesium, Copper là kim loại.</li>
+                <li><strong>Câu 2: B.</strong> Bromine (Br₂) là phi kim duy nhất ở thể lỏng trong điều kiện thường.</li>
+                <li><strong>Câu 3: C.</strong> Đồ trang sức là ứng dụng của kim cương, không phải than chì.</li>
+                <li><strong>Câu 4: C.</strong> Kim loại có xu hướng nhường electron (mất e) để tạo thành ion dương.</li>
+                <li><strong>Câu 5: C.</strong> Than gỗ mới điều chế có diện tích bề mặt lớn, khả năng hấp phụ cao, gọi là than hoạt tính.</li>
+                <li><strong>Câu 6: C.</strong> Sai. Kim loại thường có khối lượng riêng lớn hơn phi kim (trừ các kim loại kiềm...).</li>
+                <li><strong>Câu 7: B.</strong> Nguyên tố có 6 electron lớp ngoài cùng (phi kim) có xu hướng nhận thêm 2 electron để đạt cấu hình bền vững 8 electron.</li>
+                <li><strong>Câu 8: B.</strong> Các phát biểu đúng là (b), (c), (e). Phát biểu (a) sai vì sodium là kim loại. Phát biểu (d) sai vì phi kim dẫn điện, dẫn nhiệt kém. Vậy có 3 phát biểu đúng.</li>
+                <li><strong>Câu 9: C.</strong> Phản ứng: CO₂ + Ca(OH)₂ → CaCO₃↓ (kết tủa trắng). Sau đó, khi CO₂ dư: CaCO₃ + CO₂ + H₂O → Ca(HCO₃)₂ (dung dịch tan).</li>
+                <li><strong>Câu 10: 2.</strong> Các oxide acid là oxide của phi kim: CO₂, SO₂.</li>
+                <li><strong>Câu 11: 4.</strong> Các nguyên tố phi kim là: P, Cl, C, S.</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // --- Logic for Multiple Choice Quiz ---
+        const answers = {
+            q1: 'C', q2: 'B', q3: 'C', q4: 'C',
+            q5: 'C', q6: 'C', q7: 'B',
+            q8: 'B', q9: 'C',
+            q10: '2', q11: '4'
+        };
+
+        const checkBtn = document.getElementById('checkBtn');
+        const showAnswersBtn = document.getElementById('showAnswersBtn');
+        const resetBtn = document.getElementById('resetBtn');
+        const quizForm = document.getElementById('quiz-form');
+        const answerKey = document.getElementById('answer-key');
+
+        checkBtn.addEventListener('click', () => {
+            Object.keys(answers).forEach(key => {
+                const questionDiv = document.getElementById(key);
+                if (!questionDiv) return;
+                const feedbackDiv = questionDiv.querySelector('.feedback');
+                
+                const radioInput = questionDiv.querySelector(`input[name="${key}"]:checked`);
+                const textInput = questionDiv.querySelector(`input[type="number"][name="${key}"]`);
+
+                let userAnswer = null;
+                if (radioInput) {
+                    userAnswer = radioInput.value;
+                } else if (textInput) {
+                    userAnswer = textInput.value;
+                }
+
+                if (userAnswer === null || userAnswer === '') {
+                    feedbackDiv.style.display = 'block';
+                    feedbackDiv.textContent = 'Bạn chưa chọn đáp án!';
+                    feedbackDiv.className = 'feedback';
+                } else if (userAnswer === answers[key]) {
+                    feedbackDiv.style.display = 'block';
+                    feedbackDiv.textContent = 'Chính xác!';
+                    feedbackDiv.className = 'feedback correct';
+                } else {
+                    feedbackDiv.style.display = 'block';
+                    feedbackDiv.textContent = `Sai rồi! Đáp án đúng là ${answers[key]}.`;
+                    feedbackDiv.className = 'feedback incorrect';
+                }
+            });
+        });
+
+        resetBtn.addEventListener('click', () => {
+            quizForm.reset();
+            document.querySelectorAll('.feedback').forEach(div => {
+                div.style.display = 'none';
+                div.textContent = '';
+                div.className = 'feedback';
+            });
+            answerKey.style.display = 'none';
+            showAnswersBtn.textContent = 'Xem đáp án Trắc nghiệm';
+        });
+
+        showAnswersBtn.addEventListener('click', () => {
+            if (answerKey.style.display === 'none') {
+                answerKey.style.display = 'block';
+                showAnswersBtn.textContent = 'Ẩn đáp án Trắc nghiệm';
+            } else {
+                answerKey.style.display = 'none';
+                showAnswersBtn.textContent = 'Xem đáp án Trắc nghiệm';
+            }
+        });
+
+        // --- Logic for Self-Study Questions (Hints) & Calculation Solution ---
+        function setupToggleButtons(selector) {
+            const buttons = document.querySelectorAll(selector);
+            buttons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const contentDiv = button.nextElementSibling;
+                    if (contentDiv.style.display === 'block') {
+                        contentDiv.style.display = 'none';
+                        button.textContent = button.classList.contains('hint-button') ? 'Xem Gợi ý' : 'Xem hướng dẫn giải';
+                    } else {
+                        contentDiv.style.display = 'block';
+                        button.textContent = button.classList.contains('hint-button') ? 'Ẩn Gợi ý' : 'Ẩn hướng dẫn giải';
+                    }
+                });
+            });
+        }
+
+        // Initialize all toggle buttons on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            setupToggleButtons('.hint-button');
+            setupToggleButtons('.toggle-solution-btn');
+        });
+    </script>
+</body>
+</html>
