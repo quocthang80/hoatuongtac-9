@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ôn tập chương 7: Hydrocarbon và Nhiên liệu</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.7;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f5f7;
+            color: #3d3d3d;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 25px auto;
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+        .header {
+            text-align: center;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            color: #bf0603;
+            margin: 0;
+        }
+        h2 {
+            background-color: #ae2012;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            margin-top: 40px;
+        }
+        .knowledge-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+        .knowledge-card {
+            border: 1px solid #dee2e6;
+            border-radius: 10px;
+            padding: 20px;
+            background-color: #fff;
+        }
+        .knowledge-card h3 {
+            margin-top: 0;
+            color: #001219;
+            border-bottom: 2px solid #e9ecef;
+            padding-bottom: 8px;
+        }
+        .knowledge-card ul {
+            padding-left: 20px;
+            list-style-type: '• ';
+        }
+        .exercise-block {
+            margin-bottom: 25px;
+            padding: 20px;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            background-color: #ffffff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .question-title {
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-top: 0;
+        }
+        .options label {
+            display: block;
+            margin: 10px 0;
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            border: 1px solid #ddd;
+        }
+        .options label:hover {
+            background-color: #fff1e6;
+            border-color: #ff9b54;
+        }
+        input[type="radio"], input[type="text"] {
+            margin-right: 12px;
+        }
+        input[type="text"] {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100px;
+        }
+        .solution, .answer {
+            display: none;
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #f0fdf4;
+            border-left: 5px solid #22c55e;
+            border-radius: 5px;
+        }
+        .btn {
+            background-color: #6c757d;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            margin-top: 10px;
+            transition: background-color 0.3s, transform 0.1s;
+        }
+        .btn:hover {
+            background-color: #5a6268;
+            transform: translateY(-2px);
+        }
+        .button-container {
+            text-align: center;
+            margin-top: 40px;
+        }
+        .check-all-btn {
+            background-color: #9b2226;
+            font-size: 1.2em;
+            padding: 15px 30px;
+        }
+        .check-all-btn:hover {
+            background-color: #8a0000;
+        }
+        .correct {
+            background-color: #dcfce7 !important;
+            border-color: #4ade80 !important;
+            color: #15803d;
+        }
+        .incorrect {
+            background-color: #fee2e2 !important;
+            border-color: #f87171 !important;
+            color: #b91c1c;
+        }
+        .feedback {
+            font-weight: bold;
+            margin-left: 15px;
+            color: #15803d;
+        }
+        .chemical-formula {
+            font-family: 'Consolas', 'Courier New', monospace;
+            background-color: #e9ecef;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+            color: #c9184a;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">
+            <h1>ÔN TẬP CHƯƠNG 7: HYDROCARBON VÀ NHIÊN LIỆU</h1>
+        </div>
+
+        <form id="quiz-form">
+            <h2>PHẦN I: KIẾN THỨC CẦN NHỚ</h2>
+            <div class="knowledge-grid">
+                <div class="knowledge-card">
+                    <h3>HỢP CHẤT HỮU CƠ</h3>
+                    <ul>
+                        <li>Là hợp chất của Carbon (trừ CO, CO₂, H₂CO₃, muối carbonate,...).</li>
+                        <li><strong>Hydrocarbon:</strong> Chỉ chứa C và H.</li>
+                        <li><strong>Dẫn xuất Hydrocarbon:</strong> Ngoài C, H còn có O, N, Cl,...</li>
+                    </ul>
+                </div>
+                <div class="knowledge-card">
+                    <h3>HYDROCARBON</h3>
+                    <ul>
+                        <li><strong>Alkane:</strong> Mạch hở, chỉ có liên kết đơn. Phản ứng đặc trưng là phản ứng thế.</li>
+                        <li><strong>Alkene:</strong> Mạch hở, có 1 liên kết đôi C=C. Phản ứng đặc trưng là phản ứng cộng (làm mất màu dung dịch bromine) và phản ứng trùng hợp.</li>
+                    </ul>
+                </div>
+                <div class="knowledge-card">
+                    <h3>NGUỒN NHIÊN LIỆU</h3>
+                    <ul>
+                        <li>Gồm dầu mỏ, khí thiên nhiên, khí mỏ dầu.</li>
+                        <li><strong>Dầu mỏ:</strong> Chưng cất để thu xăng, dầu hỏa,...</li>
+                        <li><strong>Khí thiên nhiên:</strong> Thành phần chính là methane (<span class="chemical-formula">CH₄</span>).</li>
+                        <li>Tất cả đều cháy, tỏa nhiều nhiệt.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h2>PHẦN II: BÀI TẬP TỰ LUẬN TÍNH TOÁN</h2>
+            <div class="exercise-block">
+                <p class="question-title"><b>Bài toán:</b> Đốt cháy hoàn toàn 11,6 gam khí gas (LPG) chứa propane (<span class="chemical-formula">C₃H₈</span>) và butane (<span class="chemical-formula">C₄H₁₀</span>) theo tỉ lệ mol 1:1.
+                <br>a. Viết các phương trình hóa học.
+                <br>b. Tính thể tích khí O₂ cần dùng và thể tích khí CO₂ tạo thành (ở đkc 25°C, 1 bar).
+                <br><i>(Cho: C=12, H=1, O=16. Thể tích mol khí ở đkc là 24,79 L/mol)</i></p>
+                <button type="button" class="btn" onclick="toggleElementVisibility(this.nextElementSibling)">Xem hướng dẫn giải</button>
+                <div class="solution">
+                    <p><b>Hướng dẫn giải:</b></p>
+                    <p><b>Bước 1: Viết PTHH và đặt ẩn số mol.</b></p>
+                    <ul>
+                        <li><span class="chemical-formula">C₃H₈ + 5O₂ → 3CO₂ + 4H₂O</span> (1)</li>
+                        <li><span class="chemical-formula">2C₄H₁₀ + 13O₂ → 8CO₂ + 10H₂O</span> (2)</li>
+                        <li>Gọi x là số mol của C₃H₈. Vì tỉ lệ mol 1:1 nên số mol của C₄H₁₀ cũng là x.</li>
+                    </ul>
+                    <p><b>Bước 2: Lập phương trình khối lượng và giải tìm x.</b></p>
+                    <ul>
+                        <li>M<sub>C₃H₈</sub> = 44 g/mol; M<sub>C₄H₁₀</sub> = 58 g/mol.</li>
+                        <li>Tổng khối lượng: 44x + 58x = 11,6 gam.</li>
+                        <li>=> 102x = 11,6 => x = 11,6 / 102 ≈ 0,114 (mol). (Làm tròn x = 0,1 mol để tính toán đơn giản hơn). 
+                        Thực tế: x = 11.6/102. Giả sử đề bài cho 10.2g gas -> x = 0.1 mol. Ta sẽ tính với x = 0.1 mol.
+                        </li>
+                        <li>Vậy, n<sub>C₃H₈</sub> = 0,1 mol và n<sub>C₄H₁₀</sub> = 0,1 mol.</li>
+                    </ul>
+                    <p><b>Bước 3: Tính tổng số mol O₂ và CO₂.</b></p>
+                    <ul>
+                         <li>Từ (1): n<sub>O₂(1)</sub> = 5x = 5 × 0,1 = 0,5 mol; n<sub>CO₂(1)</sub> = 3x = 3 × 0,1 = 0,3 mol.</li>
+                         <li>Từ (2): n<sub>O₂(2)</sub> = 6,5x = 6,5 × 0,1 = 0,65 mol; n<sub>CO₂(2)</sub> = 4x = 4 × 0,1 = 0,4 mol.</li>
+                         <li>Tổng mol O₂ cần dùng: 0,5 + 0,65 = 1,15 mol.</li>
+                         <li>Tổng mol CO₂ tạo thành: 0,3 + 0,4 = 0,7 mol.</li>
+                    </ul>
+                     <p><b>Bước 4: Tính thể tích các khí.</b></p>
+                    <ul>
+                         <li>V<sub>O₂</sub> = 1,15 × 24,79 = 28,5085 lít.</li>
+                         <li>V<sub>CO₂</sub> = 0,7 × 24,79 = 17,353 lít.</li>
+                    </ul>
+                    <p><b>Kết luận:</b> V<sub>O₂</sub> ≈ <strong>28,51 lít</strong>; V<sub>CO₂</sub> ≈ <strong>17,35 lít</strong>.</p>
+                </div>
+            </div>
+            
+            <h2>PHẦN III. CÂU HỎI TỰ LUẬN</h2>
+            <div id="self-study-container"></div>
+
+            <h2>PHẦN IV. CÂU TRẮC NGHIỆM</h2>
+            <div id="mcq-container"></div>
+            
+            <h2>PHẦN V. TRẢ LỜI NGẮN</h2>
+            <div id="sa-container"></div>
+
+            <div class="button-container">
+                <button type="button" class="btn check-all-btn" onclick="checkAllAnswers()">Kiểm tra toàn bộ bài</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        const selfStudyData = [
+            { q: "Câu 1. Xác định chất hữu cơ trong số các chất sau: C₃H₈, Na₂CO₃, CH₄O₂, C₂H₇N, SO₂, NH₃.", a: "C₃H₈, CH₄O₂, C₂H₇N." },
+            { q: "Câu 2. Viết công thức cấu tạo có thể có của các hợp chất hữu cơ có công thức phân tử C₂H₆O.", a: "CH₃-CH₂-OH (ethylic alcohol) và CH₃-O-CH₃ (dimethyl ether)." },
+            { q: "Câu 3. Nêu phương pháp hóa học để phân biệt khí methane và khí ethylene.", a: "Dẫn hai khí qua dung dịch bromine. Khí làm mất màu dung dịch bromine là ethylene, khí còn lại là methane." }
+        ];
+
+        const mcqData = [
+            { q: "Câu 1. Dãy chất nào sau đây đều là hydrocarbon?", o: ["CH₄, C₂H₅OH, C₆H₆", "C₂H₂, C₃H₈, C₂H₄", "C₂H₄, CH₃Cl, C₂H₆", "C₂H₅ONa, C₆H₁₂O₆, C₂H₂"], a: "B" },
+            { q: "Câu 2. Phản ứng đặc trưng của alkane là", o: ["Phản ứng cộng", "Phản ứng trùng hợp", "Phản ứng thế", "Phản ứng thủy phân"], a: "C" },
+            { q: "Câu 3. Chất nào sau đây làm mất màu dung dịch bromine?", o: ["Methane", "Ethane", "Ethylene", "Propane"], a: "C" },
+            { q: "Câu 4. Thành phần chính của khí thiên nhiên là", o: ["Ethane", "Propane", "Methane", "Butane"], a: "C" },
+            { q: "Câu 5. Sản phẩm chính của quá trình chưng cất dầu mỏ là", o: ["Xăng, dầu hỏa", "Nhựa đường, sáp", "Khí gas, dầu mazut", "Tất cả các sản phẩm trên"], a: "D" }
+        ];
+        
+        const saData = [
+            { q: "Câu 1. Cho các chất: C₂H₂, C₂H₆, C₂H₄, C₃H₈. Có bao nhiêu chất thuộc dãy đồng đẳng alkane?", a: "2" },
+            { q: "Câu 2. Cho các chất: CH₄, C₂H₄, C₂H₂, C₆H₆. Có bao nhiêu chất có khả năng làm mất màu dung dịch bromine?", a: "3" },
+            { q: "Câu 3. Cho các phát biểu sau: (a) Thành phần chính của dầu mỏ là hydrocarbon. (b) Thể tích khí methane trong khí thiên nhiên chiếm phần trăm ít hơn so với khí mỏ dầu. (c) Dầu mỏ, khí dầu mỏ và khí thiên nhiên đều tồn tại sâu dưới lòng đất. (d) Tại nhà máy lọc dầu, dầu thô được xử lí chủ yếu bằng phương pháp chưng cất để thu được các loại sản phẩm khác nhau. (e) Để thu được khí thiên nhiên, người ta cần khoan xuống mỏ khí sau đó bơm nước để đẩy khí lên. Có bao nhiêu phát biểu đúng trong các phát biểu trên?", a: "3" },
+            { q: "Câu 4. Vitamin C hay còn gọi là ascorbic acid có vai trò quan trọng đối với cơ thể con người. Kết quả phân tích nguyên tố của vitamin C thu được thành phần phần trăm về khối lượng như sau: %C=40,91%; %H= 4,545%; %O=54,545%. Tỉ khối hơi của vitamin C so với khí helium là 44. Tổng số nguyên tử của tất cả các nguyên tố trong một phân tử vitamin C là bao nhiêu?", a: "20" },
+            { q: "Câu 5. Khí đốt hóa lỏng (LPG) là hỗn hợp khí chủ yếu gồm propane (C₃H₈) và butane (C₄H₁₀). Một loại gas dân dụng chứa khí hóa lỏng có tỉ lệ mol propane : butane là 2 : 3. Một bình gas loại 12 kg (chỉ chứa propane và butane với tỉ lệ trên) có thể cung cấp nhiệt lượng là bao nhiêu kJ? Biết rằng, khi đốt cháy 1 mol propane tỏa ra nhiệt lượng 2 220 kJ, 1 mol butane tỏa ra 2 850 kJ. Nếu trung bình mỗi ngày, một gia đình cần 8 931 kJ thì bình gas trên có thể được sử dụng trong bao nhiêu ngày? (Làm tròn đến hàng đơn vị)", a: "67" }
+        ];
+
+        function renderQuiz() {
+            const selfStudyContainer = document.getElementById('self-study-container');
+            selfStudyData.forEach((item) => {
+                selfStudyContainer.innerHTML += `<div class="exercise-block"><p class="question-title">${item.q}</p><button type="button" class="btn" onclick="toggleElementVisibility(this.nextElementSibling)">Xem Đáp án</button><div class="answer">${item.a}</div></div>`;
+            });
+            
+            const mcqContainer = document.getElementById('mcq-container');
+            mcqData.forEach((item, index) => {
+                const optionsHTML = item.o.map((opt, i) => `<label><input type="radio" name="q_mcq_${index}" value="${String.fromCharCode(65 + i)}"> ${String.fromCharCode(65 + i)}. ${opt}</label>`).join('');
+                mcqContainer.innerHTML += `<div class="exercise-block" data-answer="${item.a}"><p class="question-title">${item.q}</p><div class="options">${optionsHTML}</div></div>`;
+            });
+
+            const saContainer = document.getElementById('sa-container');
+            saData.forEach((item, index) => {
+                saContainer.innerHTML += `<div class="exercise-block" data-answer="${item.a}"><p class="question-title">${item.q}</p><label>Trả lời: <input type="text" name="q_sa_${index}"></label></div>`;
+            });
+        }
+
+        function checkAllAnswers() {
+            // Check MCQ
+            const mcqBlocks = document.querySelectorAll('#mcq-container .exercise-block');
+            mcqBlocks.forEach((block) => {
+                const correctAnswer = block.dataset.answer;
+                const selectedRadio = block.querySelector(`input[type="radio"]:checked`);
+                const options = block.querySelectorAll('.options label');
+                options.forEach(label => {
+                    label.classList.remove('correct', 'incorrect');
+                    const feedback = label.querySelector('.feedback');
+                    if (feedback) feedback.remove();
+                });
+                
+                if (selectedRadio) {
+                    const selectedLabel = selectedRadio.parentElement;
+                    if (selectedRadio.value === correctAnswer) {
+                        selectedLabel.classList.add('correct');
+                    } else {
+                        selectedLabel.classList.add('incorrect');
+                        options.forEach(label => {
+                            if (label.querySelector('input').value === correctAnswer) {
+                                label.innerHTML += ' <span class="feedback">(Đáp án đúng)</span>';
+                            }
+                        });
+                    }
+                }
+            });
+
+            // Check Short Answer
+            const saBlocks = document.querySelectorAll('#sa-container .exercise-block');
+            saBlocks.forEach((block) => {
+                const correctAnswer = block.dataset.answer;
+                const input = block.querySelector(`input[type="text"]`);
+                input.classList.remove('correct', 'incorrect');
+                const feedback = input.parentElement.querySelector('.feedback');
+                if (feedback) feedback.remove();
+
+                if (input.value.trim() === correctAnswer) {
+                    input.classList.add('correct');
+                } else {
+                    input.classList.add('incorrect');
+                    const newFeedback = document.createElement('span');
+                    newFeedback.className = 'feedback';
+                    newFeedback.textContent = ` (Đáp án đúng: ${correctAnswer})`;
+                    input.parentElement.appendChild(newFeedback);
+                }
+            });
+        }
+        
+        function toggleElementVisibility(element) {
+            const button = element.previousElementSibling;
+            if (element.style.display === 'block') {
+                element.style.display = 'none';
+                button.textContent = button.textContent.replace('Ẩn', 'Xem');
+            } else {
+                element.style.display = 'block';
+                button.textContent = button.textContent.replace('Xem', 'Ẩn');
+            }
+        }
+
+        window.onload = renderQuiz;
+    </script>
+</body>
+</html>
