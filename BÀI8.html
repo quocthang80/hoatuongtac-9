@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chuyên đề 2: Alkane</title>
+    <style>
+        :root {
+            --primary-color: #1e88e5;
+            --secondary-color: #5e35b1;
+            --correct-color: #43a047;
+            --incorrect-color: #e53935;
+            --light-bg: #e3f2fd;
+            --border-color: #bbdefb;
+            --text-color: #212121;
+            --header-font: 'Playfair Display', serif;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Lato', sans-serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            background-color: var(--light-bg);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2, h3 {
+            font-family: var(--header-font);
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        h1 { text-align: center; font-size: 2.5em; margin-bottom: 25px; }
+        h2 { font-size: 1.8em; margin-top: 40px; border-bottom: 3px solid var(--secondary-color); padding-bottom: 10px; }
+        h3 { font-size: 1.4em; color: #1565c0; }
+
+        .collapsible {
+            background-color: #e8eaf6;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: 1px solid var(--border-color);
+            text-align: left;
+            outline: none;
+            font-size: 1.2em;
+            font-weight: 700;
+            margin-top: 15px;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .collapsible:hover { background-color: #c5cae9; }
+        .collapsible::after { content: '\\2795'; font-size: 14px; color: var(--secondary-color); }
+        .collapsible.active::after { content: "\\2796"; }
+
+        .content {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+            background-color: #fafafa;
+            border: 1px solid var(--border-color);
+            border-top: none;
+            border-radius: 0 0 8px 8px;
+        }
+        .content-inner { padding: 20px 5px; }
+
+        .exercise-block {
+            background-color: #fff;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 25px;
+            margin: 25px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .question-text {
+             font-weight: 700;
+             margin-bottom: 15px;
+             font-size: 1.1em;
+        }
+        
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 10px;
+        }
+        
+        .option {
+            cursor: pointer;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+        .option:hover {
+            background-color: #e3f2fd;
+            border-color: var(--primary-color);
+        }
+        .option.selected {
+            background-color: #bbdefb;
+            border-color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .correct { background-color: #e8f5e9 !important; border-color: var(--correct-color) !important; }
+        .incorrect { background-color: #ffebee !important; border-color: var(--incorrect-color) !important; }
+        
+        .hint {
+            font-weight: normal;
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #fffde7;
+            border-left: 4px solid #fbc02d;
+            border-radius: 4px;
+            display: none;
+        }
+        
+        .solution {
+            display: none;
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #f1f8e9;
+            border-left: 4px solid var(--correct-color);
+            border-radius: 4px;
+        }
+
+        .action-button {
+            display: inline-block;
+            padding: 12px 24px;
+            font-size: 1em;
+            font-weight: bold;
+            color: white;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .action-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .self-study-textarea, .short-answer-input {
+            padding: 12px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            width: calc(100% - 26px);
+            font-family: inherit;
+            font-size: 1em;
+            transition: border-color 0.2s;
+        }
+        .self-study-textarea:focus, .short-answer-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+        .self-study-textarea { min-height: 120px; resize: vertical; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>CHUYÊN ĐỀ 2: ALKANE</h1>
+
+    <!-- =============================================================== -->
+    <!-- PHẦN I: KIẾN THỨC CẦN NHỚ -->
+    <!-- =============================================================== -->
+    <h2>I. KIẾN THỨC CẦN NHỚ</h2>
+    <button type="button" class="collapsible">1. Khái niệm, cấu tạo và danh pháp</button>
+    <div class="content">
+        <div class="content-inner">
+            <h3>Khái niệm</h3>
+            <p>Alkane là những hydrocarbon mạch hở, chỉ chứa các liên kết đơn (C-C, C-H) trong phân tử. Công thức chung là <strong>CₙH₂ₙ₊₂ (n ≥ 1)</strong>.</p>
+            <h3>Cấu tạo và Danh pháp</h3>
+            <p>Tên của alkane = Phần nền (chỉ số C) + ane.</p>
+            <ul>
+                <li><strong>CH₄:</strong> Methane</li>
+                <li><strong>C₂H₆:</strong> Ethane</li>
+                <li><strong>C₃H₈:</strong> Propane</li>
+                <li><strong>C₄H₁₀:</strong> Butane</li>
+            </ul>
+        </div>
+    </div>
+    <button type="button" class="collapsible">2. Phản ứng cháy</button>
+    <div class="content">
+        <div class="content-inner">
+            <p>Tất cả alkane khi đốt cháy hoàn toàn đều tạo thành CO₂ và H₂O, tỏa nhiều nhiệt, do đó được dùng làm nhiên liệu.</p>
+            <p><strong>Phương trình tổng quát:</strong></p>
+            <code>2CₙH₂ₙ₊₂ + (3n+1)O₂ → 2nCO₂ + 2(n+1)H₂O</code>
+            <p><strong>Ví dụ:</strong></p>
+            <code>CH₄ + 2O₂ → CO₂ + 2H₂O</code>
+        </div>
+    </div>
+
+    <!-- =============================================================== -->
+    <!-- PHẦN II: BÀI TẬP TỰ LUẬN -->
+    <!-- =============================================================== -->
+    <h2>II. BÀI TẬP TỰ LUẬN</h2>
+    <div class="exercise-block">
+        <p class="question-text">Câu 1. Viết công thức cấu tạo của các alkane có công thức phân tử C₄H₁₀ và C₅H₁₂.</p>
+        <textarea class="self-study-textarea" placeholder="Viết các công thức cấu tạo..."></textarea>
+    </div>
+    <div class="exercise-block">
+        <p class="question-text">Câu 2. Hoàn thành các phương trình phản ứng cháy sau:</p>
+        <p>(a) C₃H₈ + O₂ → ? + ?</p>
+        <p>(b) C₅H₁₂ + O₂ → ? + ?</p>
+        <textarea class="self-study-textarea" placeholder="Hoàn thành và cân bằng các phương trình..."></textarea>
+    </div>
+
+    <!-- =============================================================== -->
+    <!-- PHẦN III: BÀI TẬP TÍNH TOÁN -->
+    <!-- =============================================================== -->
+    <h2>III. BÀI TẬP TÍNH TOÁN</h2>
+    <div class="exercise-block">
+        <p class="question-text"><strong>Bài 1.</strong> Đốt cháy hoàn toàn 4.4 gam propane (C₃H₈). Tính thể tích khí CO₂ thu được ở điều kiện chuẩn (25°C, 1 bar). (Cho C=12, H=1).</p>
+        <textarea class="self-study-textarea" placeholder="Nhập lời giải của bạn..."></textarea>
+        <button class="action-button toggle-solution-btn">Xem hướng dẫn giải</button>
+        <div class="solution">
+            <p><strong>Bước 1: Tính số mol C₃H₈</strong></p>
+            <p>M<sub>C₃H₈</sub> = 12*3 + 1*8 = 44 g/mol</p>
+            <p>n<sub>C₃H₈</sub> = m / M = 4.4 / 44 = 0.1 mol</p>
+            <p><strong>Bước 2: Viết phương trình phản ứng cháy</strong></p>
+            <p>C₃H₈ + 5O₂ → 3CO₂ + 4H₂O</p>
+            <p><strong>Bước 3: Tính số mol CO₂ theo phương trình</strong></p>
+            <p>Theo phương trình, 1 mol C₃H₈ tạo ra 3 mol CO₂.</p>
+            <p>Vậy, 0.1 mol C₃H₈ tạo ra: n<sub>CO₂</sub> = 0.1 * 3 = 0.3 mol</p>
+            <p><strong>Bước 4: Tính thể tích CO₂</strong></p>
+            <p>V<sub>CO₂</sub> = n * 24.79 = 0.3 * 24.79 = <strong>7.437 lít</strong></p>
+        </div>
+    </div>
+    <div class="exercise-block">
+        <p class="question-text"><strong>Bài 2.</strong> Để đốt cháy hoàn toàn 1 lít khí methane (CH₄) cần bao nhiêu lít khí oxygen ở cùng điều kiện nhiệt độ và áp suất?</p>
+        <textarea class="self-study-textarea" placeholder="Nhập lời giải của bạn..."></textarea>
+        <button class="action-button toggle-solution-btn">Xem hướng dẫn giải</button>
+        <div class="solution">
+            <p><strong>Bước 1: Viết phương trình phản ứng cháy</strong></p>
+            <p>CH₄(k) + 2O₂(k) → CO₂(k) + 2H₂O(h)</p>
+            <p><strong>Bước 2: Dựa vào tỉ lệ thể tích</strong></p>
+            <p>Ở cùng điều kiện nhiệt độ và áp suất, tỉ lệ về số mol cũng là tỉ lệ về thể tích.</p>
+            <p>Theo phương trình, 1 thể tích CH₄ cần 2 thể tích O₂.</p>
+            <p>Vậy, để đốt cháy 1 lít CH₄ cần <strong>2 lít O₂</strong>.</p>
+        </div>
+    </div>
+
+    <!-- =============================================================== -->
+    <!-- PHẦN IV: BÀI TẬP TRẮC NGHIỆM -->
+    <!-- =============================================================== -->
+    <h2>IV. BÀI TẬP TRẮC NGHIỆM</h2>
+    <div class="exercise-block" id="interactive-quiz">
+        <!-- Questions will be inserted here by JS -->
+    </div>
+    <button class="action-button" onclick="checkAllAnswers()">Kiểm tra đáp án trắc nghiệm</button>
+
+</div>
+
+<script>
+    const quizData = [
+        {
+            type: 'mcq',
+            question: 'Câu 1. Công thức chung của alkane là:',
+            options: ['CₙH₂ₙ (n≥2)', 'CₙH₂ₙ₊₂ (n≥1)', 'CₙH₂ₙ₋₂ (n≥2)', 'CₙH₂ₙ₊₁OH (n≥1)'],
+            answer: 'CₙH₂ₙ₊₂ (n≥1)',
+            hint: 'Alkane là hydrocarbon no, mạch hở, có công thức tổng quát là CₙH₂ₙ₊₂.'
+        },
+        {
+            type: 'mcq',
+            question: 'Câu 2. Phản ứng đặc trưng của alkane là:',
+            options: ['Phản ứng cộng', 'Phản ứng trùng hợp', 'Phản ứng thế', 'Phản ứng thủy phân'],
+            answer: 'Phản ứng thế',
+            hint: 'Do chỉ chứa liên kết đơn bền vững, alkane khó tham gia phản ứng cộng mà đặc trưng là phản ứng thế nguyên tử H.'
+        },
+        {
+            type: 'mcq',
+            question: 'Câu 3. Đốt cháy hoàn toàn 2.2 gam propane (C₃H₈), thể tích CO₂ thu được ở điều kiện chuẩn (25°C, 1 bar) là:',
+            options: ['3.7185 lít', '4.958 lít', '2.479 lít', '7.437 lít'],
+            answer: '3.7185 lít',
+            hint: 'n(C₃H₈) = 2.2/44 = 0.05 mol. PTHH: C₃H₈ + 5O₂ → 3CO₂ + 4H₂O. n(CO₂) = 0.05 * 3 = 0.15 mol. V(CO₂) = 0.15 * 24.79 = 3.7185 lít.'
+        },
+        {
+            type: 'tf',
+            question: 'Câu 4. Methane (CH₄) là thành phần chính của khí thiên nhiên.',
+            answer: true,
+            hint: 'Đúng. Khí thiên nhiên chứa khoảng 75-90% methane.'
+        },
+        {
+            type: 'tf',
+            question: 'Câu 5. Tất cả các alkane đều là chất khí ở điều kiện thường.',
+            answer: false,
+            hint: 'Sai. Chỉ các alkane từ C1 đến C4 là chất khí. Từ C5 trở đi là chất lỏng hoặc rắn.'
+        },
+        {
+            type: 'sa',
+            question: 'Câu 6. Đốt cháy hoàn toàn 1 mol butane (C₄H₁₀) cần bao nhiêu mol O₂?',
+            answer: '6.5',
+            hint: 'PTHH: C₄H₁₀ + 13/2 O₂ → 4CO₂ + 5H₂O. Vậy cần 13/2 = 6.5 mol O₂.'
+        },
+        {
+            type: 'sa',
+            question: 'Câu 7. Trong phân tử propane (C₃H₈) có bao nhiêu liên kết đơn C-H?',
+            answer: '8',
+            hint: 'Công thức cấu tạo là CH₃-CH₂-CH₃. Có 3+2+3 = 8 nguyên tử H, tương ứng với 8 liên kết C-H.'
+        }
+    ];
+
+    function renderQuiz() {
+        const container = document.getElementById('interactive-quiz');
+        let html = '';
+        quizData.forEach((item, index) => {
+            html += `<div class="question-block" id="q-${index}">`;
+            html += `<h3 class="question-text">${item.question}</h3>`;
+            if (item.type === 'mcq') {
+                html += '<div class="options-grid">';
+                item.options.forEach(opt => {
+                    html += `<div class="option" onclick="selectOption(this, ${index})">${opt}</div>`;
+                });
+                html += '</div>';
+            } else if (item.type === 'tf') {
+                 html += `<div class="options-grid">
+                            <div class="option" onclick="selectOption(this, ${index})">Đúng</div>
+                            <div class="option" onclick="selectOption(this, ${index})">Sai</div>
+                          </div>`;
+            } else if (item.type === 'sa') {
+                html += `<input type="text" class="short-answer-input" placeholder="Nhập đáp án của bạn (chỉ điền số)...">`;
+            }
+            html += `<div class="hint" id="hint-${index}"></div>`;
+            html += `</div>`;
+        });
+        container.innerHTML = html;
+    }
+
+    let userAnswers = {};
+
+    function selectOption(element, index) {
+        const parent = element.parentElement;
+        Array.from(parent.children).forEach(child => child.classList.remove('selected'));
+        element.classList.add('selected');
+        userAnswers[index] = element.textContent.trim();
+    }
+    
+    function checkAllAnswers() {
+        quizData.forEach((item, index) => {
+            const questionBlock = document.getElementById(`q-${index}`);
+            const hintBox = document.getElementById(`hint-${index}`);
+            let isCorrect = false;
+
+            if (item.type === 'mcq' || item.type === 'tf') {
+                const selectedOption = questionBlock.querySelector('.option.selected');
+                if (selectedOption) {
+                    let answer = userAnswers[index];
+                    if (item.type === 'tf') {
+                        answer = (answer === 'Đúng');
+                    }
+                    if (answer === item.answer) {
+                        isCorrect = true;
+                    }
+                }
+                 if(isCorrect) {
+                    selectedOption.classList.add('correct');
+                } else {
+                    if(selectedOption) selectedOption.classList.add('incorrect');
+                    hintBox.textContent = item.hint;
+                    hintBox.style.display = 'block';
+                }
+            } else if (item.type === 'sa') {
+                const input = questionBlock.querySelector('input');
+                let userAnswer = input.value.trim().toLowerCase();
+                if (userAnswer === item.answer.toLowerCase()) {
+                    isCorrect = true;
+                }
+                 if(isCorrect) {
+                    input.classList.add('correct');
+                } else {
+                    input.classList.add('incorrect');
+                    hintBox.textContent = item.hint;
+                    hintBox.style.display = 'block';
+                }
+            }
+        });
+    }
+
+    // --- Script for Collapsible Sections ---
+    const collapsibles = document.getElementsByClassName("collapsible");
+    for (let i = 0; i < collapsibles.length; i++) {
+        collapsibles[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            const content = this.nextElementSibling;
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+            }
+        });
+    }
+    
+    // --- Script for Toggling Solutions ---
+    function setupSolutionToggles() {
+        const solutionButtons = document.getElementsByClassName("toggle-solution-btn");
+        for (let i = 0; i < solutionButtons.length; i++) {
+            solutionButtons[i].addEventListener("click", function() {
+                const solution = this.nextElementSibling;
+                if (solution.style.display === "block") {
+                    solution.style.display = "none";
+                    this.textContent = "Xem hướng dẫn giải";
+                } else {
+                    solution.style.display = "block";
+                    this.textContent = "Ẩn hướng dẫn giải";
+                }
+            });
+        }
+    }
+
+    window.onload = () => {
+        renderQuiz();
+        setupSolutionToggles();
+    };
+</script>
+
+</body>
+</html>
