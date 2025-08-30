@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 33: Khai thác đá vôi và Công nghệ Silicate</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.7;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #343a40;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 25px auto;
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+        .header {
+            text-align: center;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            color: #4a4e69;
+            margin: 0;
+        }
+        h2 {
+            background-color: #52796f;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            margin-top: 40px;
+        }
+        h3 {
+            color: #354f52;
+            border-left: 5px solid #84a98c;
+            padding-left: 15px;
+        }
+        .knowledge-point {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+        .exercise-block {
+            margin-bottom: 25px;
+            padding: 20px;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            background-color: #ffffff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .question-title {
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-top: 0;
+        }
+        .options label {
+            display: block;
+            margin: 10px 0;
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            border: 1px solid #ddd;
+        }
+        .options label:hover {
+            background-color: #eaf4f4;
+            border-color: #84a98c;
+        }
+        input[type="radio"] {
+            margin-right: 12px;
+        }
+        .solution, .answer {
+            display: none;
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #f0fdf4;
+            border-left: 5px solid #22c55e;
+            border-radius: 5px;
+        }
+        .btn {
+            background-color: #6c757d;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            margin-top: 10px;
+            transition: background-color 0.3s, transform 0.1s;
+        }
+        .btn:hover {
+            background-color: #5a6268;
+            transform: translateY(-2px);
+        }
+        .button-container {
+            text-align: center;
+            margin-top: 40px;
+        }
+        .check-all-btn {
+            background-color: #354f52;
+            font-size: 1.2em;
+            padding: 15px 30px;
+        }
+        .check-all-btn:hover {
+            background-color: #2f3e46;
+        }
+        .correct {
+            background-color: #dcfce7 !important;
+            border-color: #4ade80 !important;
+            color: #15803d;
+        }
+        .incorrect {
+            background-color: #fee2e2 !important;
+            border-color: #f87171 !important;
+            color: #b91c1c;
+        }
+        .feedback {
+            font-weight: bold;
+            margin-left: 15px;
+            color: #15803d;
+        }
+        .chemical-formula {
+            font-family: 'Consolas', 'Courier New', monospace;
+            background-color: #e9ecef;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+            color: #c9184a;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">
+            <h1>BÀI 33: KHAI THÁC ĐÁ VÔI VÀ CÔNG NGHỆ SILICATE</h1>
+        </div>
+
+        <form id="quiz-form">
+            <h2>PHẦN I: KIẾN THỨC CẦN NHỚ</h2>
+            <div class="knowledge-point"><strong>1. Đá vôi:</strong> Thành phần chính là <span class="chemical-formula">CaCO₃</span>. Nung đá vôi thu được vôi sống (<span class="chemical-formula">CaO</span>). Cho vôi sống tác dụng với nước được vôi tôi (<span class="chemical-formula">Ca(OH)₂</span>). Ứng dụng trong xây dựng, nông nghiệp, công nghiệp.</div>
+            <div class="knowledge-point"><strong>2. Công nghệ Silicate:</strong> Là ngành công nghiệp chế biến các hợp chất của silicon.
+                <ul>
+                    <li><strong>Sản xuất xi măng:</strong> Nguyên liệu chính là đá vôi, đất sét. Clinker là sản phẩm trung gian.</li>
+                    <li><strong>Sản xuất thủy tinh:</strong> Nguyên liệu chính là cát thạch anh (<span class="chemical-formula">SiO₂</span>), đá vôi, soda (<span class="chemical-formula">Na₂CO₃</span>).</li>
+                    <li><strong>Sản xuất đồ gốm:</strong> Nguyên liệu chính là đất sét và cao lanh.</li>
+                </ul>
+            </div>
+
+            <h2>PHẦN II: BÀI TẬP TỰ LUẬN TÍNH TOÁN</h2>
+            <div class="exercise-block">
+                <p class="question-title"><b>Bài toán:</b> Nung 1 tấn đá vôi chứa 90% <span class="chemical-formula">CaCO₃</span>, thu được 459 kg vôi sống (<span class="chemical-formula">CaO</span>).
+                <br>a. Viết phương trình hóa học của phản ứng nung vôi.
+                <br>b. Tính hiệu suất của phản ứng.
+                <br><i>(Cho: Ca=40, C=12, O=16)</i></p>
+                <button type="button" class="btn" onclick="toggleElementVisibility(this.nextElementSibling)">Xem hướng dẫn giải</button>
+                <div class="solution">
+                    <p><b>Hướng dẫn giải:</b></p>
+                    <p><b>Bước 1: Viết PTHH và tính khối lượng CaCO₃ nguyên chất.</b></p>
+                    <ul>
+                        <li>Phương trình hóa học: <span class="chemical-formula">CaCO₃ --(t°)--> CaO + CO₂</span></li>
+                        <li>Khối lượng CaCO₃ nguyên chất trong 1 tấn đá vôi: <span class="chemical-formula">m<sub>CaCO₃</sub> = 1000 kg × 90% = 900 kg</span>.</li>
+                    </ul>
+                    <p><b>Bước 2: Tính khối lượng CaO thu được theo lý thuyết.</b></p>
+                    <ul>
+                        <li>Khối lượng mol: M<sub>CaCO₃</sub> = 100 g/mol; M<sub>CaO</sub> = 56 g/mol.</li>
+                        <li>Theo PTHH, cứ 100 kg CaCO₃ tạo ra 56 kg CaO.</li>
+                        <li>Vậy, 900 kg CaCO₃ sẽ tạo ra: <span class="chemical-formula">m<sub>CaO (lý thuyết)</sub> = (900 × 56) / 100 = 504 kg</span>.</li>
+                    </ul>
+                    <p><b>Bước 3: Tính hiệu suất phản ứng (Câu b).</b></p>
+                    <ul>
+                         <li>Khối lượng CaO thực tế thu được là 459 kg.</li>
+                         <li>Hiệu suất phản ứng: H% = (m<sub>thực tế</sub> / m<sub>lý thuyết</sub>) × 100%</li>
+                         <li><span class="chemical-formula">H% = (459 / 504) × 100% ≈ 91,07%</span>.</li>
+                    </ul>
+                    <p><b>Kết luận:</b> Hiệu suất của phản ứng là khoảng <strong>91,07%</strong>.</p>
+                </div>
+            </div>
+            
+            <h2>PHẦN III. CÂU HỎI TỰ LUẬN</h2>
+            <div id="self-study-container"></div>
+
+            <h2>PHẦN IV. CÂU TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN</h2>
+            <div id="mcq-container"></div>
+
+            <div class="button-container">
+                <button type="button" class="btn check-all-btn" onclick="checkMCQ()">Kiểm tra trắc nghiệm</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        const selfStudyData = [
+            { q: "Câu 1. Nêu một số ứng dụng của đá vôi trong đời sống và sản xuất.", a: "Làm vật liệu xây dựng, sản xuất xi măng, vôi sống, sản xuất thủy tinh, làm chất độn trong công nghiệp cao su, nhựa." },
+            { q: "Câu 2. Trình bày các công đoạn chính để sản xuất xi măng.", a: "Nghiền nhỏ đá vôi và đất sét, trộn với các phụ gia theo tỉ lệ, nung hỗn hợp ở nhiệt độ cao (1400-1500°C) để tạo clinker, sau đó nghiền clinker và trộn với thạch cao để được xi măng." },
+            { q: "Câu 3. Kể tên các nguyên liệu chính để sản xuất thủy tinh.", a: "Cát thạch anh (SiO₂), đá vôi (CaCO₃), và soda (Na₂CO₃)." },
+            { q: "Câu 4. Nêu các giai đoạn chính để sản xuất đồ gốm.", a: "Nghiền và trộn nguyên liệu (đất sét, cao lanh), tạo hình, sấy khô, và nung ở nhiệt độ cao." },
+            { q: "Câu 5. Vì sao cần khai thác đá vôi một cách hợp lí?", a: "Vì khai thác quá mức sẽ làm cạn kiệt tài nguyên, phá hủy cảnh quan thiên nhiên, gây ô nhiễm môi trường (bụi, tiếng ồn) và ảnh hưởng đến hệ sinh thái." },
+            { q: "Câu 6. Giải thích vì sao gạch và ngói sau khi nung thường có màu đỏ.", a: "Trong đất sét có chứa một lượng nhỏ oxit sắt (thường là Fe₂O₃). Ở nhiệt độ cao khi nung, Fe₂O₃ tạo ra màu đỏ đặc trưng cho gạch ngói." },
+            { q: "Câu 7. Nêu một số sản phẩm làm từ gốm mà em biết.", a: "Bát, đĩa, ấm chén, lọ hoa, gạch ốp lát, sứ vệ sinh,..." },
+            { q: "Câu 8. Vì sao vôi tôi (Ca(OH)₂) lại được sử dụng để khử chua đất trồng trọt?", a: "Vì đất chua có tính acid. Vôi tôi là một base, khi bón vào đất sẽ xảy ra phản ứng trung hòa, làm giảm độ acid của đất." },
+            { q: "Câu 9. Liệt kê các ứng dụng của cát, đất sét trong đời sống và trong sản xuất.", a: "Cát dùng làm vật liệu xây dựng, sản xuất thủy tinh. Đất sét dùng làm gạch, ngói, đồ gốm, xi măng." },
+            { q: "Câu 10. Nêu một số biện pháp nhằm khai thác và sử dụng tài nguyên hiệu quả, bền vững.", a: "Sử dụng tiết kiệm, tái sử dụng, tái chế, tìm kiếm vật liệu thay thế, phục hồi môi trường sau khai thác." },
+            { q: "Câu 11. Nêu một số tác động tiêu cực đến môi trường của việc khai thác đá vôi.", a: "Gây ô nhiễm không khí (bụi), ô nhiễm tiếng ồn, phá hủy cảnh quan, ảnh hưởng hệ sinh thái." },
+            { q: "Câu 12. Vì sao việc sản xuất xi măng lại tiêu tốn nhiều năng lượng và gây ô nhiễm môi trường?", a: "Vì cần nung hỗn hợp ở nhiệt độ rất cao (1400-1500°C), tiêu tốn nhiều nhiên liệu. Quá trình này cũng phát thải nhiều bụi và khí CO₂." },
+            { q: "Câu 13. Vì sao việc tiết kiệm và bảo vệ tài nguyên lại phục vụ cho sự phát triển bền vững?", a: "Để đảm bảo nguồn tài nguyên cho các thế hệ tương lai, bảo vệ môi trường, tiết kiệm chi phí và nâng cao hiệu quả kinh tế." },
+            { q: "Câu 14. Trình bày một số lợi ích của việc khai thác đá vôi.", a: "Cung cấp vật liệu cho ngành xây dựng (xi măng, vôi), nguyên liệu cho công nghiệp hóa chất, và phục vụ nông nghiệp (cải tạo đất)." },
+            { q: "Câu 15. Giải thích vì sao thủy tinh lại trong suốt và không gỉ.", a: "Thủy tinh có cấu trúc vô định hình, không có cấu trúc tinh thể nên cho ánh sáng truyền qua. Thành phần chính là các oxit bền vững (SiO₂, CaO, Na₂O) nên không bị oxy hóa hay ăn mòn." }
+        ];
+
+        const mcqData = [
+            { q: "Câu 1. Thành phần chính của đá vôi là", o: ["CaO", "Ca(OH)₂", "CaCO₃", "CaSO₄"], a: "C" },
+            { q: "Câu 2. Sản phẩm của phản ứng nung đá vôi là", o: ["Vôi sống và carbon dioxide", "Vôi tôi và carbon dioxide", "Vôi sống và nước", "Canxi và carbon dioxide"], a: "A" },
+            { q: "Câu 3. Nguyên liệu nào sau đây không được dùng để sản xuất xi măng?", o: ["Đá vôi", "Đất sét", "Quặng sắt", "Cát thạch anh"], a: "D" },
+            { q: "Câu 4. Thành phần chính của cát thạch anh dùng trong sản xuất thủy tinh là", o: ["Al₂O₃", "SiO₂", "Fe₂O₃", "CaCO₃"], a: "B" },
+            { q: "Câu 5. Ngành công nghiệp sản xuất xi măng, gốm, sứ, thủy tinh được gọi chung là", o: ["Công nghiệp hóa chất", "Công nghiệp luyện kim", "Công nghiệp Silicate", "Công nghiệp thực phẩm"], a: "C" },
+            { q: "Câu 6. Để sản xuất vôi tôi, người ta cho vôi sống tác dụng với chất nào?", o: ["Nước", "Khí carbon dioxide", "Dung dịch HCl", "Khí oxygen"], a: "A" },
+            { q: "Câu 7. Sản phẩm nào sau đây không thuộc ngành công nghiệp Silicate?", o: ["Gạch", "Ngói", "Xi măng", "Nhựa PVC"], a: "D" },
+            { q: "Câu 8. Clinker là sản phẩm trung gian trong quá trình sản xuất", o: ["Thủy tinh", "Đồ gốm", "Xi măng", "Vôi sống"], a: "C" },
+            { q: "Câu 9. Phát biểu nào sau đây là đúng?", o: ["Thành phần chính của xi măng là CaCO₃.", "Thủy tinh là một chất kết tinh.", "Đồ gốm được làm chủ yếu từ đất sét.", "Vôi sống có công thức là Ca(OH)₂."], a: "C" },
+            { q: "Câu 10. Việc khai thác đá vôi có thể gây ra tác động tiêu cực nào đến môi trường?", o: ["Ô nhiễm không khí do bụi", "Thay đổi cảnh quan", "Ô nhiễm tiếng ồn", "Tất cả các ý trên"], a: "D" },
+            { q: "Câu 11. Trong sản xuất thủy tinh, soda (Na₂CO₃) được sử dụng để", o: ["Làm tăng nhiệt độ nóng chảy.", "Hạ nhiệt độ nóng chảy của hỗn hợp.", "Tạo màu xanh cho thủy tinh.", "Tăng độ cứng cho thủy tinh."], a: "B" },
+            { q: "Câu 12. Quá trình nào sau đây không xảy ra trong lò nung vôi?", o: ["CaCO₃ → CaO + CO₂", "C + O₂ → CO₂", "CaO + H₂O → Ca(OH)₂", "Nhiên liệu cháy cung cấp nhiệt"], a: "C" },
+            { q: "Câu 13. Đất sét là nguyên liệu chính để sản xuất", o: ["Xi măng và đồ gốm", "Thủy tinh và xi măng", "Vôi sống và đồ gốm", "Thủy tinh và vôi sống"], a: "A" },
+            { q: "Câu 14. Để tạo ra các loại thủy tinh có màu sắc khác nhau, người ta thường thêm vào hỗn hợp nguyên liệu một lượng nhỏ", o: ["Muối ăn", "Acid", "Oxide kim loại", "Đường"], a: "C" },
+            { q: "Câu 15. Hành động nào sau đây góp phần vào việc phát triển bền vững trong ngành khai thác đá vôi?", o: ["Khai thác tối đa trữ lượng mỏ", "Phục hồi môi trường sau khai thác", "Không sử dụng công nghệ xử lí bụi", "Xả thải trực tiếp ra sông suối"], a: "B" }
+        ];
+
+        function renderQuiz() {
+            const selfStudyContainer = document.getElementById('self-study-container');
+            selfStudyData.forEach((item) => {
+                selfStudyContainer.innerHTML += `<div class="exercise-block"><p class="question-title">${item.q}</p><button type="button" class="btn" onclick="toggleElementVisibility(this.nextElementSibling)">Xem Đáp án</button><div class="answer">${item.a}</div></div>`;
+            });
+            
+            const mcqContainer = document.getElementById('mcq-container');
+            mcqData.forEach((item, index) => {
+                const optionsHTML = item.o.map((opt, i) => `<label><input type="radio" name="q_mcq_${index}" value="${String.fromCharCode(65 + i)}"> ${String.fromCharCode(65 + i)}. ${opt}</label>`).join('');
+                mcqContainer.innerHTML += `<div class="exercise-block" data-answer="${item.a}"><p class="question-title">${item.q}</p><div class="options">${optionsHTML}</div></div>`;
+            });
+        }
+
+        function checkMCQ() {
+            const mcqBlocks = document.querySelectorAll('#mcq-container .exercise-block');
+            mcqBlocks.forEach((block) => {
+                const correctAnswer = block.dataset.answer;
+                const selectedRadio = block.querySelector(`input[type="radio"]:checked`);
+                const options = block.querySelectorAll('.options label');
+                options.forEach(label => {
+                    label.classList.remove('correct', 'incorrect');
+                    const feedback = label.querySelector('.feedback');
+                    if (feedback) feedback.remove();
+                });
+                
+                if (selectedRadio) {
+                    const selectedLabel = selectedRadio.parentElement;
+                    if (selectedRadio.value === correctAnswer) {
+                        selectedLabel.classList.add('correct');
+                    } else {
+                        selectedLabel.classList.add('incorrect');
+                        options.forEach(label => {
+                            if (label.querySelector('input').value === correctAnswer) {
+                                label.innerHTML += ' <span class="feedback">(Đáp án đúng)</span>';
+                            }
+                        });
+                    }
+                }
+            });
+        }
+        
+        function toggleElementVisibility(element) {
+            const button = element.previousElementSibling;
+            if (element.style.display === 'block') {
+                element.style.display = 'none';
+                button.textContent = button.textContent.replace('Ẩn', 'Xem');
+            } else {
+                element.style.display = 'block';
+                button.textContent = button.textContent.replace('Xem', 'Ẩn');
+            }
+        }
+
+        window.onload = renderQuiz;
+    </script>
+</body>
+</html>
