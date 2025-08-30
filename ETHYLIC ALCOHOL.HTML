@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chuyên đề 1: Ethylic Alcohol</title>
+    <style>
+        :root {
+            --primary-color: #007bff;
+            --secondary-color: #6c757d;
+            --correct-color: #28a745;
+            --incorrect-color: #dc3545;
+            --light-bg: #f8f9fa;
+            --border-color: #dee2e6;
+            --text-color: #212529;
+            --header-font: 'Georgia', serif;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Georgia&family=Roboto:wght@400;500;700&display=swap');
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.7;
+            color: var(--text-color);
+            background-color: var(--light-bg);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2, h3 {
+            font-family: var(--header-font);
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        h1 { text-align: center; font-size: 2.5em; margin-bottom: 25px; }
+        h2 { font-size: 1.8em; margin-top: 40px; border-bottom: 3px solid var(--primary-color); padding-bottom: 10px; }
+        h3 { font-size: 1.4em; color: #343a40; }
+
+        .collapsible {
+            background-color: #e9ecef;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: 1px solid var(--border-color);
+            text-align: left;
+            outline: none;
+            font-size: 1.2em;
+            font-weight: 500;
+            margin-top: 15px;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .collapsible:hover { background-color: #ced4da; }
+        .collapsible::after { content: '\\2795'; font-size: 14px; color: var(--primary-color); }
+        .collapsible.active::after { content: "\\2796"; }
+
+        .content {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+            background-color: #fafafa;
+            border: 1px solid var(--border-color);
+            border-top: none;
+            border-radius: 0 0 8px 8px;
+        }
+        .content-inner { padding: 20px 5px; }
+
+        .exercise-block {
+            background-color: #fff;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 25px;
+            margin: 25px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .question-text {
+             font-weight: 500;
+             margin-bottom: 15px;
+             font-size: 1.1em;
+        }
+        
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 10px;
+        }
+        
+        .option {
+            cursor: pointer;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+        .option:hover {
+            background-color: #e9ecef;
+            border-color: var(--primary-color);
+        }
+        .option.selected {
+            background-color: #cfe2ff;
+            border-color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .correct { background-color: #d4edda !important; border-color: var(--correct-color) !important; }
+        .incorrect { background-color: #f8d7da !important; border-color: var(--incorrect-color) !important; }
+        
+        .hint {
+            font-weight: normal;
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            border-radius: 4px;
+            display: none;
+        }
+        
+        .solution {
+            display: none;
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #e9ecef;
+            border-left: 4px solid var(--secondary-color);
+            border-radius: 4px;
+        }
+
+        .action-button {
+            display: inline-block;
+            padding: 12px 24px;
+            font-size: 1em;
+            font-weight: bold;
+            color: white;
+            background: var(--primary-color);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.2s, transform 0.2s;
+        }
+        .action-button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        .self-study-textarea, .short-answer-input {
+            padding: 12px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            width: calc(100% - 26px);
+            font-family: inherit;
+            font-size: 1em;
+            transition: border-color 0.2s;
+        }
+        .self-study-textarea:focus, .short-answer-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+        .self-study-textarea { min-height: 120px; resize: vertical; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>CHUYÊN ĐỀ 1: ETHYLIC ALCOHOL</h1>
+
+    <!-- =============================================================== -->
+    <!-- PHẦN I: KIẾN THỨC CẦN NHỚ -->
+    <!-- =============================================================== -->
+    <h2>I. KIẾN THỨC CẦN NHỚ</h2>
+    <button type="button" class="collapsible">1. Công thức, cấu tạo và tính chất vật lí</button>
+    <div class="content">
+        <div class="content-inner">
+            <h3>Công thức và đặc điểm cấu tạo</h3>
+            <ul>
+                <li><strong>Công thức phân tử:</strong> C₂H₆O</li>
+                <li><strong>Công thức cấu tạo:</strong> CH₃-CH₂-OH</li>
+                <li><strong>Đặc điểm:</strong> Có nhóm -OH (hydroxyl) quyết định tính chất hóa học đặc trưng.</li>
+            </ul>
+            <h3>Tính chất vật lí</h3>
+            <ul>
+                <li>Chất lỏng, không màu, mùi đặc trưng, vị cay, tan vô hạn trong nước.</li>
+                <li>Sôi ở 78.3°C, nhẹ hơn nước (D = 0.789 g/cm³).</li>
+                <li>Hòa tan được nhiều chất như iodine, benzene.</li>
+                <li><strong>Độ cồn:</strong> Số ml ethylic alcohol nguyên chất có trong 100 ml dung dịch rượu.</li>
+            </ul>
+        </div>
+    </div>
+    <button type="button" class="collapsible">2. Tính chất hóa học</button>
+    <div class="content">
+        <div class="content-inner">
+            <h3>a. Phản ứng cháy</h3>
+            <p>Cháy với ngọn lửa màu xanh, tỏa nhiều nhiệt.</p>
+            <code>C₂H₅OH + 3O₂ → 2CO₂ + 3H₂O</code>
+            <h3>b. Phản ứng với kim loại kiềm (Na, K)</h3>
+            <p>Tác dụng với kim loại kiềm giải phóng khí hydrogen.</p>
+            <code>2C₂H₅OH + 2Na → 2C₂H₅ONa + H₂↑</code>
+        </div>
+    </div>
+
+    <!-- =============================================================== -->
+    <!-- PHẦN II: BÀI TẬP TỰ LUẬN -->
+    <!-- =============================================================== -->
+    <h2>II. BÀI TẬP TỰ LUẬN</h2>
+    <div class="exercise-block">
+        <p class="question-text">Câu 1. Viết công thức cấu tạo dạng đầy đủ và thu gọn của ethylic alcohol.</p>
+        <textarea class="self-study-textarea" placeholder="Nhập câu trả lời..."></textarea>
+    </div>
+    <div class="exercise-block">
+        <p class="question-text">Câu 2. Hoàn thành các phương trình hóa học sau: <br>
+        (a) C₂H₅OH + O₂ → ? + ? <br>
+        (b) C₂H₅OH + Na → ? + ? <br>
+        (c) C₆H₁₂O₆ --(men rượu)--> ? + ?</p>
+        <textarea class="self-study-textarea" placeholder="Hoàn thành các phương trình..."></textarea>
+    </div>
+    <div class="exercise-block">
+        <p class="question-text">Câu 3. Nêu phương pháp hóa học để phân biệt hai chất lỏng không màu: ethylic alcohol và dung dịch acetic acid.</p>
+        <textarea class="self-study-textarea" placeholder="Trình bày phương pháp..."></textarea>
+    </div>
+
+    <!-- =============================================================== -->
+    <!-- PHẦN III: BÀI TẬP TÍNH TOÁN -->
+    <!-- =============================================================== -->
+    <h2>III. BÀI TẬP TÍNH TOÁN</h2>
+    <div class="exercise-block">
+        <p class="question-text"><strong>Bài 1.</strong> Đốt cháy hoàn toàn 9.2 gam ethylic alcohol (C₂H₅OH) trong không khí. Tính thể tích khí oxygen cần dùng (đktc). (Cho C=12, H=1, O=16).</p>
+        <textarea class="self-study-textarea" placeholder="Nhập lời giải của bạn..."></textarea>
+        <button class="action-button toggle-solution-btn">Xem hướng dẫn giải</button>
+        <div class="solution">
+            <p><strong>Bước 1: Tính số mol C₂H₅OH</strong></p>
+            <p>M<sub>C₂H₅OH</sub> = 12*2 + 1*6 + 16 = 46 g/mol</p>
+            <p>n<sub>C₂H₅OH</sub> = m / M = 9.2 / 46 = 0.2 mol</p>
+            <p><strong>Bước 2: Viết phương trình phản ứng cháy</strong></p>
+            <p>C₂H₅OH + 3O₂ → 2CO₂ + 3H₂O</p>
+            <p><strong>Bước 3: Tính số mol O₂ theo phương trình</strong></p>
+            <p>Theo phương trình, 1 mol C₂H₅OH cần 3 mol O₂.</p>
+            <p>Vậy, 0.2 mol C₂H₅OH cần: n<sub>O₂</sub> = 0.2 * 3 = 0.6 mol</p>
+            <p><strong>Bước 4: Tính thể tích O₂</strong></p>
+            <p>V<sub>O₂</sub> = n * 22.4 = 0.6 * 22.4 = <strong>13.44 lít</strong></p>
+        </div>
+    </div>
+    <div class="exercise-block">
+        <p class="question-text"><strong>Bài 2.</strong> Tính khối lượng ethylic alcohol có trong 500 ml rượu 40°, biết khối lượng riêng của ethylic alcohol là 0.8 g/ml.</p>
+        <textarea class="self-study-textarea" placeholder="Nhập lời giải của bạn..."></textarea>
+        <button class="action-button toggle-solution-btn">Xem hướng dẫn giải</button>
+        <div class="solution">
+            <p><strong>Bước 1: Tính thể tích C₂H₅OH nguyên chất</strong></p>
+            <p>Độ cồn = (V<sub>rượu nguyên chất</sub> / V<sub>dung dịch rượu</sub>) * 100</p>
+            <p>V<sub>C₂H₅OH</sub> = (Độ cồn * V<sub>dung dịch</sub>) / 100 = (40 * 500) / 100 = 200 ml</p>
+            <p><strong>Bước 2: Tính khối lượng C₂H₅OH</strong></p>
+            <p>m = D * V = 0.8 * 200 = <strong>160 gam</strong></p>
+        </div>
+    </div>
+    <div class="exercise-block">
+        <p class="question-text"><strong>Bài 3.</strong> Lên men 180 gam glucose (C₆H₁₂O₆) thu được ethylic alcohol. Tính thể tích ethylic alcohol (D = 0.8 g/ml) thu được, biết hiệu suất phản ứng là 80%.</p>
+        <textarea class="self-study-textarea" placeholder="Nhập lời giải của bạn..."></textarea>
+        <button class="action-button toggle-solution-btn">Xem hướng dẫn giải</button>
+        <div class="solution">
+            <p><strong>Bước 1: Tính số mol glucose</strong></p>
+            <p>n<sub>glucose</sub> = 180 / 180 = 1 mol</p>
+            <p><strong>Bước 2: Viết phương trình phản ứng lên men</strong></p>
+            <p>C₆H₁₂O₆ --(men)--> 2C₂H₅OH + 2CO₂</p>
+            <p><strong>Bước 3: Tính số mol C₂H₅OH theo lý thuyết</strong></p>
+            <p>Theo phương trình, 1 mol glucose → 2 mol C₂H₅OH.</p>
+            <p>Vậy, 1 mol glucose → n<sub>C₂H₅OH (lý thuyết)</sub> = 2 mol</p>
+            <p><strong>Bước 4: Tính khối lượng C₂H₅OH thực tế (tính cả hiệu suất)</strong></p>
+            <p>m<sub>C₂H₅OH (thực tế)</sub> = n<sub>lý thuyết</sub> * M * Hiệu suất = 2 * 46 * 0.8 = 73.6 gam</p>
+            <p><strong>Bước 5: Tính thể tích C₂H₅OH</strong></p>
+            <p>V = m / D = 73.6 / 0.8 = <strong>92 ml</strong></p>
+        </div>
+    </div>
+
+    <!-- =============================================================== -->
+    <!-- PHẦN IV: BÀI TẬP TRẮC NGHIỆM -->
+    <!-- =============================================================== -->
+    <h2>IV. BÀI TẬP TRẮC NGHIỆM</h2>
+    <div class="exercise-block" id="interactive-quiz">
+        <!-- Questions will be inserted here by JS -->
+    </div>
+    <button class="action-button" onclick="checkAllAnswers()">Kiểm tra đáp án trắc nghiệm</button>
+
+</div>
+
+<script>
+    const quizData = [
+        // MCQ Questions
+        {
+            type: 'mcq',
+            question: 'Câu 1. Công thức phân tử của ethylic alcohol là:',
+            options: ['C₂H₄O₂', 'C₂H₆O', 'CH₄O', 'C₃H₈O'],
+            answer: 'C₂H₆O',
+            hint: 'Ethylic alcohol có 2 nguyên tử Carbon, 6 nguyên tử Hydrogen và 1 nguyên tử Oxygen.'
+        },
+        {
+            type: 'mcq',
+            question: 'Câu 2. Phản ứng đặc trưng của ethylic alcohol là phản ứng với:',
+            options: ['HCl', 'NaOH', 'Na', 'AgNO₃/NH₃'],
+            answer: 'Na',
+            hint: 'Nhóm -OH trong alcohol có khả năng phản ứng với kim loại kiềm như Na để giải phóng khí H₂.'
+        },
+        {
+            type: 'mcq',
+            question: 'Câu 3. Độ cồn được tính bằng:',
+            options: ['Số gam rượu trong 100 gam dung dịch', 'Số ml rượu trong 100 ml dung dịch', 'Số mol rượu trong 1 lít dung dịch', 'Số gam rượu trong 100 ml dung dịch'],
+            answer: 'Số ml rượu trong 100 ml dung dịch',
+            hint: 'Độ cồn là tỉ lệ phần trăm về thể tích của rượu nguyên chất trong dung dịch.'
+        },
+        {
+            type: 'mcq',
+            question: 'Câu 4. Phản ứng lên men glucose (C₆H₁₂O₆) tạo ra ethylic alcohol và khí nào?',
+            options: ['O₂', 'H₂', 'CO', 'CO₂'],
+            answer: 'CO₂',
+            hint: 'Phản ứng lên men rượu là: C₆H₁₂O₆ → 2C₂H₅OH + 2CO₂.'
+        },
+        {
+            type: 'mcq',
+            question: 'Câu 5. Ethylic alcohol sôi ở nhiệt độ bao nhiêu?',
+            options: ['100°C', '78.3°C', '50°C', '90°C'],
+            answer: '78.3°C',
+            hint: 'Ethylic alcohol có nhiệt độ sôi thấp hơn nước (100°C).'
+        },
+        // True/False Questions
+        {
+            type: 'tf',
+            question: 'Câu 6. Ethylic alcohol tan vô hạn trong nước.',
+            answer: true,
+            hint: 'Đúng. Do có nhóm -OH phân cực, ethylic alcohol có thể tạo liên kết hydrogen với nước.'
+        },
+        {
+            type: 'tf',
+            question: 'Câu 7. Ethylic alcohol nặng hơn nước.',
+            answer: false,
+            hint: 'Sai. Khối lượng riêng của ethylic alcohol (khoảng 0.8 g/ml) nhỏ hơn của nước (1 g/ml).'
+        },
+        {
+            type: 'tf',
+            question: 'Câu 8. Có thể dùng ethylic alcohol để sản xuất acetic acid (giấm ăn).',
+            answer: true,
+            hint: 'Đúng. Bằng phương pháp lên men giấm, ethylic alcohol bị oxy hóa thành acetic acid.'
+        },
+        {
+            type: 'tf',
+            question: 'Câu 9. Uống nhiều rượu bia không gây hại cho gan.',
+            answer: false,
+            hint: 'Sai. Lạm dụng rượu bia là một trong những nguyên nhân hàng đầu gây ra các bệnh về gan như xơ gan, viêm gan.'
+        },
+        {
+            type: 'tf',
+            question: 'Câu 10. Ethylic alcohol là một hợp chất hữu cơ.',
+            answer: true,
+            hint: 'Đúng. Vì trong phân tử có chứa nguyên tử carbon liên kết trực tiếp với nhau và với hydrogen.'
+        },
+        // Short Answer Questions
+        {
+            type: 'sa',
+            question: 'Câu 11. Trong phân tử ethylic alcohol có bao nhiêu nguyên tử hydrogen?',
+            answer: '6',
+            hint: 'Công thức cấu tạo là CH₃-CH₂-OH. Đếm số nguyên tử H.'
+        },
+        {
+            type: 'sa',
+            question: 'Câu 12. Tên gọi của muối tạo thành khi cho ethylic alcohol tác dụng với Natri là gì?',
+            answer: 'Sodium ethoxide',
+            hint: 'Tên muối được tạo thành từ gốc "ethoxide" (C₂H₅O⁻) và kim loại Natri (Sodium).'
+        },
+        {
+            type: 'sa',
+            question: 'Câu 13. Trong công nghiệp, ethylic alcohol thường được điều chế từ nguyên liệu nào có chứa nhiều tinh bột?',
+            answer: 'ngũ cốc',
+            hint: 'Tinh bột được thủy phân thành glucose, sau đó glucose được lên men. Sắn, khoai cũng là đáp án đúng.'
+        },
+        {
+            type: 'sa',
+            question: 'Câu 14. Khí sinh ra khi đốt cháy hoàn toàn ethylic alcohol là gì?',
+            answer: 'CO2',
+            hint: 'Phản ứng cháy hợp chất hữu cơ chứa C, H, O luôn tạo ra CO₂ và H₂O.'
+        },
+        {
+            type: 'sa',
+            question: 'Câu 15. Nhóm chức đặc trưng quyết định tính chất của ethylic alcohol là gì?',
+            answer: '-OH',
+            hint: 'Đây là nhóm chức hydroxyl, đặc trưng của lớp hợp chất alcohol.'
+        }
+    ];
+
+    function renderQuiz() {
+        const container = document.getElementById('interactive-quiz');
+        let html = '';
+        quizData.forEach((item, index) => {
+            html += `<div class="question-block" id="q-${index}">`;
+            html += `<h3 class="question-text">${item.question}</h3>`;
+            if (item.type === 'mcq') {
+                html += '<div class="options-grid">';
+                item.options.forEach(opt => {
+                    html += `<div class="option" onclick="selectOption(this, ${index})">${opt}</div>`;
+                });
+                html += '</div>';
+            } else if (item.type === 'tf') {
+                 html += `<div class="options-grid">
+                            <div class="option" onclick="selectOption(this, ${index})">Đúng</div>
+                            <div class="option" onclick="selectOption(this, ${index})">Sai</div>
+                          </div>`;
+            } else if (item.type === 'sa') {
+                html += `<input type="text" class="short-answer-input" placeholder="Nhập đáp án của bạn...">`;
+            }
+            html += `<div class="hint" id="hint-${index}"></div>`;
+            html += `</div>`;
+        });
+        container.innerHTML = html;
+    }
+
+    let userAnswers = {};
+
+    function selectOption(element, index) {
+        const parent = element.parentElement;
+        Array.from(parent.children).forEach(child => child.classList.remove('selected'));
+        element.classList.add('selected');
+        userAnswers[index] = element.textContent.trim();
+    }
+    
+    function checkAllAnswers() {
+        quizData.forEach((item, index) => {
+            const questionBlock = document.getElementById(`q-${index}`);
+            const hintBox = document.getElementById(`hint-${index}`);
+            let isCorrect = false;
+
+            if (item.type === 'mcq' || item.type === 'tf') {
+                const selectedOption = questionBlock.querySelector('.option.selected');
+                if (selectedOption) {
+                    let answer = userAnswers[index];
+                    if (item.type === 'tf') {
+                        answer = (answer === 'Đúng');
+                    }
+                    if (answer === item.answer) {
+                        isCorrect = true;
+                    }
+                }
+                 if(isCorrect) {
+                    selectedOption.classList.add('correct');
+                } else {
+                    if(selectedOption) selectedOption.classList.add('incorrect');
+                    hintBox.textContent = item.hint;
+                    hintBox.style.display = 'block';
+                }
+            } else if (item.type === 'sa') {
+                const input = questionBlock.querySelector('input');
+                let userAnswer = input.value.trim().toLowerCase();
+                if (userAnswer === item.answer.toLowerCase()) {
+                    isCorrect = true;
+                }
+                 if(isCorrect) {
+                    input.classList.add('correct');
+                } else {
+                    input.classList.add('incorrect');
+                    hintBox.textContent = item.hint;
+                    hintBox.style.display = 'block';
+                }
+            }
+        });
+    }
+
+    // --- Script for Collapsible Sections ---
+    const collapsibles = document.getElementsByClassName("collapsible");
+    for (let i = 0; i < collapsibles.length; i++) {
+        collapsibles[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            const content = this.nextElementSibling;
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+            }
+        });
+    }
+
+    // --- Script for Toggling Solutions ---
+    function setupSolutionToggles() {
+        const solutionButtons = document.getElementsByClassName("toggle-solution-btn");
+        for (let i = 0; i < solutionButtons.length; i++) {
+            solutionButtons[i].addEventListener("click", function() {
+                const solution = this.nextElementSibling;
+                if (solution.style.display === "block") {
+                    solution.style.display = "none";
+                    this.textContent = "Xem hướng dẫn giải";
+                } else {
+                    solution.style.display = "block";
+                    this.textContent = "Ẩn hướng dẫn giải";
+                }
+            });
+        }
+    }
+
+    window.onload = () => {
+        renderQuiz();
+        setupSolutionToggles();
+    };
+</script>
+
+</body>
+</html>
