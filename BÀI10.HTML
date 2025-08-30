@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chuyên đề 4: Nguồn nhiên liệu</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0 auto;
+            max-width: 900px;
+            padding: 20px;
+            background-color: #f4f7f6;
+            color: #333;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        h1, h2, h3, h4 {
+            color: #0056b3;
+            border-bottom: 2px solid #eef2f5;
+            padding-bottom: 10px;
+        }
+        h1 {
+            text-align: center;
+            color: #d9534f;
+        }
+        .section-title {
+            background-color: #0277bd;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        .knowledge-section ul {
+            list-style-type: square;
+            padding-left: 20px;
+        }
+        .knowledge-section li {
+            margin-bottom: 8px;
+        }
+        .question, .self-study-question {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #fdfdfd;
+        }
+        .question p, .self-study-question p {
+            font-weight: bold;
+            margin-top: 0;
+        }
+        .options label {
+            display: block;
+            margin: 5px 0;
+            padding: 8px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .options label:hover {
+            background-color: #e9ecef;
+        }
+        input[type="radio"], input[type="text"], input[type="number"] {
+            margin-right: 10px;
+        }
+        input[type="number"], input[type="text"] {
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        textarea.user-answer {
+            width: 98%;
+            min-height: 80px;
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 15px;
+            resize: vertical;
+        }
+        .hint-button {
+            background-color: #ffc107;
+            color: #212529;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .hint {
+            background-color: #e2f0d9;
+            border: 1px solid #b7d1a5;
+            padding: 15px;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+        .button-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+        button {
+            padding: 12px 25px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            margin: 5px;
+            color: white;
+            transition: opacity 0.3s;
+        }
+        button:hover {
+            opacity: 0.85;
+        }
+        #checkBtn { background-color: #28a745; }
+        #showAnswersBtn { background-color: #17a2b8; }
+        #resetBtn { background-color: #dc3545; }
+        .feedback {
+            margin-top: 10px;
+            font-weight: bold;
+            padding: 8px;
+            border-radius: 5px;
+        }
+        .correct {
+            color: #155724;
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+        }
+        .incorrect {
+            color: #721c24;
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+        }
+        #answer-key {
+            margin-top: 30px;
+            background-color: #fffbe6;
+            border: 1px dashed #ffeeba;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        code {
+            background-color: #eef2f5;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: "Courier New", Courier, monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>CHUYÊN ĐỀ 4. NGUỒN NHIÊN LIỆU</h1>
+
+        <div class="knowledge-section">
+            <h2 class="section-title">A. KIẾN THỨC CẦN NHỚ</h2>
+            <h3>I. Dầu mỏ, khí mỏ dầu và khí thiên nhiên</h3>
+            <ul>
+                <li><strong>Dầu mỏ:</strong> Là một hỗn hợp lỏng, sánh, màu nâu đen, không tan trong nước và nhẹ hơn nước. Thành phần chính là hỗn hợp phức tạp của các hydrocarbon.</li>
+                <li><strong>Khí thiên nhiên:</strong> Có trong các mỏ khí, thành phần chủ yếu là methane (CH₄, chiếm trên 90%).</li>
+                <li><strong>Khí mỏ dầu (khí đồng hành):</strong> Khí thu được cùng với dầu mỏ, thành phần chủ yếu cũng là methane.</li>
+                <li><strong>Chế biến dầu mỏ:</strong> Dùng phương pháp <strong>chưng cất phân đoạn</strong> để tách dầu thô thành các sản phẩm như xăng, dầu hỏa, dầu diesel, dầu mazut và nhựa đường.</li>
+            </ul>
+            <h3>II. Nhiên liệu</h3>
+            <ul>
+                <li><strong>Khái niệm:</strong> Nhiên liệu là những chất cháy được, khi cháy tỏa nhiệt và phát sáng.</li>
+                <li><strong>Phân loại:</strong> Dựa vào trạng thái, nhiên liệu được chia thành 3 loại:
+                    <ul>
+                        <li><strong>Nhiên liệu rắn:</strong> Gỗ, than đá, than cốc,...</li>
+                        <li><strong>Nhiên liệu lỏng:</strong> Xăng, dầu hỏa, cồn,...</li>
+                        <li><strong>Nhiên liệu khí:</strong> Khí thiên nhiên, khí gas, biogas,...</li>
+                    </ul>
+                </li>
+                <li><strong>Sử dụng nhiên liệu hiệu quả:</strong>
+                    <ul>
+                        <li>Cung cấp đủ không khí (oxygen) cho quá trình cháy.</li>
+                        <li>Tăng diện tích tiếp xúc của nhiên liệu với không khí.</li>
+                        <li>Điều chỉnh lượng nhiên liệu để duy trì sự cháy ở mức độ cần thiết.</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <h2 class="section-title">B. BÀI TẬP TỰ LUẬN TƯƠNG TÁC</h2>
+        <div class="self-study-question">
+            <p>Câu 1 (Tự luận). Giải thích tại sao không được dùng nước để dập tắt đám cháy xăng, dầu?</p>
+            <textarea class="user-answer" placeholder="Nhập câu trả lời của bạn..."></textarea>
+            <button class="hint-button">Xem Gợi ý</button>
+            <div class="hint" style="display:none;">
+                <strong>Gợi ý:</strong><br>
+                Vì xăng, dầu nhẹ hơn nước và không tan trong nước. Nếu dùng nước, xăng dầu sẽ nổi lên trên bề mặt nước và tiếp tục cháy, khiến đám cháy lan rộng ra, gây nguy hiểm hơn.
+            </div>
+        </div>
+        <div class="self-study-question">
+            <p>Câu 2 (Tự luận). Để sử dụng nhiên liệu hiệu quả, chúng ta cần làm gì? Giải thích tác dụng của việc chẻ nhỏ củi khi đun nấu.</p>
+            <textarea class="user-answer" placeholder="Nhập câu trả lời của bạn..."></textarea>
+            <button class="hint-button">Xem Gợi ý</button>
+            <div class="hint" style="display:none;">
+                <strong>Gợi ý:</strong><br>
+                Để sử dụng nhiên liệu hiệu quả, cần cung cấp đủ oxygen và tăng diện tích tiếp xúc của nhiên liệu với không khí. Việc chẻ nhỏ củi làm tăng diện tích tiếp xúc giữa củi và không khí, giúp củi cháy đều hơn, cháy hết và cung cấp nhiệt lượng tối đa.
+            </div>
+        </div>
+        <div class="self-study-question">
+            <p>Câu 3 (Tự luận). So sánh khí thiên nhiên và khí mỏ dầu về thành phần và trạng thái tự nhiên.</p>
+            <textarea class="user-answer" placeholder="Nhập câu trả lời của bạn..."></textarea>
+            <button class="hint-button">Xem Gợi ý</button>
+            <div class="hint" style="display:none;">
+                <strong>Gợi ý:</strong><br>
+                - <strong>Giống nhau:</strong> Cả hai đều là nhiên liệu khí, có thành phần chính là methane (CH₄).<br>
+                - <strong>Khác nhau:</strong> Khí thiên nhiên tồn tại trong các mỏ khí riêng, hàm lượng methane rất cao (trên 90%). Khí mỏ dầu (khí đồng hành) được tìm thấy cùng với dầu mỏ trong các mỏ dầu, hàm lượng methane thấp hơn.
+            </div>
+        </div>
+        <div class="self-study-question">
+            <p>Câu 4 (Tự luận). Khí biogas là gì và nó được tạo ra như thế nào?</p>
+            <textarea class="user-answer" placeholder="Nhập câu trả lời của bạn..."></textarea>
+            <button class="hint-button">Xem Gợi ý</button>
+            <div class="hint" style="display:none;">
+                <strong>Gợi ý:</strong><br>
+                Khí biogas (khí sinh học) là hỗn hợp khí, chủ yếu là methane (CH₄). Nó được tạo ra từ quá trình phân hủy các chất hữu cơ (như phân động vật, rác thải hữu cơ) trong điều kiện không có không khí (kị khí) bởi các vi sinh vật.
+            </div>
+        </div>
+        <div class="self-study-question">
+            <p>Câu 5 (Tự luận). Nêu nguyên tắc của phương pháp chưng cất phân đoạn để chế biến dầu mỏ.</p>
+            <textarea class="user-answer" placeholder="Nhập câu trả lời của bạn..."></textarea>
+            <button class="hint-button">Xem Gợi ý</button>
+            <div class="hint" style="display:none;">
+                <strong>Gợi ý:</strong><br>
+                Nguyên tắc của phương pháp này dựa vào sự khác nhau về <strong>nhiệt độ sôi</strong> của các chất có trong dầu mỏ. Khi đun nóng dầu thô, các chất có nhiệt độ sôi thấp hơn sẽ bay hơi trước, sau đó được dẫn qua các tầng khác nhau của tháp chưng cất để ngưng tụ và được thu lại ở các khoảng nhiệt độ khác nhau.
+            </div>
+        </div>
+
+
+        <h2 class="section-title">C. BÀI TẬP TRẮC NGHIỆM TƯƠNG TÁC</h2>
+        <form id="quiz-form">
+            <h3>1. Trắc nghiệm nhiều lựa chọn</h3>
+            <h4>Mức độ BIẾT</h4>
+            <div class="question" id="q1">
+                <p>Câu 1. Thành phần chính của dầu mỏ là</p>
+                <div class="options">
+                    <label><input type="radio" name="q1" value="A"> A. hydrocarbon.</label>
+                    <label><input type="radio" name="q1" value="B"> B. dẫn xuất của hydrocarbon.</label>
+                    <label><input type="radio" name="q1" value="C"> C. hydrogen.</label>
+                    <label><input type="radio" name="q1" value="D"> D. acid.</label>
+                </div>
+                <div class="feedback"></div>
+            </div>
+            <div class="question" id="q2">
+                <p>Câu 2. Thành phần chủ yếu của khí thiên nhiên là</p>
+                <div class="options">
+                    <label><input type="radio" name="q2" value="A"> A. CO₂.</label>
+                    <label><input type="radio" name="q2" value="B"> B. H₂O.</label>
+                    <label><input type="radio" name="q2" value="C"> C. CH₄.</label>
+                    <label><input type="radio" name="q2" value="D"> D. NaCl.</label>
+                </div>
+                <div class="feedback"></div>
+            </div>
+             <div class="question" id="q6">
+                <p>Câu 6. Những chất cháy được, khi cháy toả nhiệt và phát sáng được gọi là</p>
+                <div class="options">
+                    <label><input type="radio" name="q6" value="A"> A. nguyên liệu.</label>
+                    <label><input type="radio" name="q6" value="B"> B. nhiên liệu.</label>
+                    <label><input type="radio" name="q6" value="C"> C. vật liệu.</label>
+                    <label><input type="radio" name="q6" value="D"> D. điện năng.</label>
+                </div>
+                <div class="feedback"></div>
+            </div>
+             <div class="question" id="q_new_mc_1">
+                <p>Câu hỏi mới 1. Sản phẩm nào sau đây không được tạo ra trực tiếp từ chưng cất phân đoạn dầu mỏ?</p>
+                <div class="options">
+                    <label><input type="radio" name="q_new_mc_1" value="A"> A. Xăng.</label>
+                    <label><input type="radio" name="q_new_mc_1" value="B"> B. Dầu hỏa.</label>
+                    <label><input type="radio" name="q_new_mc_1" value="C"> C. Nhựa đường.</label>
+                    <label><input type="radio" name="q_new_mc_1" value="D"> D. Ethylene.</label>
+                </div>
+                <div class="feedback"></div>
+            </div>
+             <div class="question" id="q_new_mc_2">
+                <p>Câu hỏi mới 2. Nhiên liệu nào sau đây được coi là "nhiên liệu sạch"?</p>
+                <div class="options">
+                    <label><input type="radio" name="q_new_mc_2" value="A"> A. Than đá.</label>
+                    <label><input type="radio" name="q_new_mc_2" value="B"> B. Dầu mazut.</label>
+                    <label><input type="radio" name="q_new_mc_2" value="C"> C. Khí hydrogen.</label>
+                    <label><input type="radio" name="q_new_mc_2" value="D"> D. Gỗ.</label>
+                </div>
+                <div class="feedback"></div>
+            </div>
+            
+            <h4>Mức độ HIỂU</h4>
+            <div class="question" id="q8">
+                <p>Câu 8. Tính chất vật lý nào sau đây không phải là của dầu mỏ?</p>
+                <div class="options">
+                    <label><input type="radio" name="q8" value="A"> A. Dầu mỏ là hỗn hợp lỏng, sánh, màu nâu đen.</label>
+                    <label><input type="radio" name="q8" value="B"> B. Dầu mỏ không tan trong nước.</label>
+                    <label><input type="radio" name="q8" value="C"> C. Dầu mỏ tan tốt trong nước.</label>
+                    <label><input type="radio" name="q8" value="D"> D. Dầu mỏ nhẹ hơn nước.</label>
+                </div>
+                <div class="feedback"></div>
+            </div>
+            <div class="question" id="q9">
+                <p>Câu 9. Mục đích chính của việc thêm chất có mùi hôi vào gas là gì?</p>
+                <div class="options">
+                    <label><input type="radio" name="q9" value="A"> A. Tăng năng suất toả nhiệt của gas.</label>
+                    <label><input type="radio" name="q9" value="B"> B. Phát hiện nhanh chóng sự cố rò rỉ gas.</label>
+                    <label><input type="radio" name="q9" value="C"> C. Hạ giá thành sản xuất gas.</label>
+                    <label><input type="radio" name="q9" value="D"> D. Phòng chống cháy nổ khi sử dụng gas.</label>
+                </div>
+                <div class="feedback"></div>
+            </div>
+             <div class="question" id="q_new_mc_3">
+                <p>Câu hỏi mới 3. Việc làm nào sau đây làm tăng hiệu quả sử dụng nhiên liệu rắn?</p>
+                <div class="options">
+                    <label><input type="radio" name="q_new_mc_3" value="A"> A. Để củi hoặc than thành đống lớn và đặc.</label>
+                    <label><input type="radio" name="q_new_mc_3" value="B"> B. Chẻ nhỏ củi và tạo nhiều lỗ trong viên than tổ ong.</label>
+                    <label><input type="radio" name="q_new_mc_3" value="C"> C. Đốt nhiên liệu trong không gian kín, ít không khí.</label>
+                    <label><input type="radio" name="q_new_mc_3" value="D"> D. Thường xuyên dội nước vào bếp lò đang cháy.</label>
+                </div>
+                <div class="feedback"></div>
+            </div>
+
+            <h4>Mức độ VẬN DỤNG</h4>
+            <div class="question" id="q11">
+                <p>Câu 11. Số cách chữa cháy thích hợp đối với đám cháy do xăng dầu là:</p>
+                <div class="options">
+                    <label><input type="radio" name="q11" value="A"> (1) Phun nước vào ngọn lửa.</label>
+                    <label><input type="radio" name="q11" value="B"> (2), (3) và (4).</label>
+                    <label><input type="radio" name="q11" value="C"> (1) và (4).</label>
+                    <label><input type="radio" name="q11" value="D"> (1), (2), (3), và (4).</label>
+                </div>
+                <div class="feedback"></div>
+            </div>
+            <div class="question" id="q_new_mc_4">
+                <p>Câu hỏi mới 4. Mưa acid là hiện tượng gây ra chủ yếu bởi khí nào sinh ra khi đốt nhiên liệu hóa thạch?</p>
+                <div class="options">
+                    <label><input type="radio" name="q_new_mc_4" value="A"> A. CO (carbon monoxide).</label>
+                    <label><input type="radio" name="q_new_mc_4" value="B"> B. CH₄ (methane).</label>
+                    <label><input type="radio" name="q_new_mc_4" value="C"> C. SO₂ và NOₓ (oxide của sulfur và nitrogen).</label>
+                    <label><input type="radio" name="q_new_mc_4" value="D"> D. H₂O (hơi nước).</label>
+                </div>
+                <div class="feedback"></div>
+            </div>
+
+            <h3>2. Trắc nghiệm Đúng - Sai</h3>
+            <div class="question" id="q12b">
+                <p>Câu 12b. Thành phần chính của dầu mỏ là hydrocarbon.</p>
+                <div class="options">
+                    <label><input type="radio" name="q12b" value="D"> Đúng</label>
+                    <label><input type="radio" name="q12b" value="S"> Sai</label>
+                </div>
+                <div class="feedback"></div>
+            </div>
+             <div class="question" id="q14b">
+                <p>Câu 14b. Thành phần chính của khí thiên nhiên là methane.</p>
+                <div class="options">
+                    <label><input type="radio" name="q14b" value="D"> Đúng</label>
+                    <label><input type="radio" name="q14b" value="S"> Sai</label>
+                </div>
+                <div class="feedback"></div>
+            </div>
+             <div class="question" id="q_new_tf_1">
+                <p>Câu hỏi mới 1. Xăng là một hợp chất hữu cơ tinh khiết có công thức xác định.</p>
+                <div class="options">
+                    <label><input type="radio" name="q_new_tf_1" value="D"> Đúng</label>
+                    <label><input type="radio" name="q_new_tf_1" value="S"> Sai</label>
+                </div>
+                <div class="feedback"></div>
+            </div>
+            <div class="question" id="q_new_tf_2">
+                <p>Câu hỏi mới 2. Đốt cháy không hoàn toàn nhiên liệu có thể sinh ra khí CO độc hại.</p>
+                <div class="options">
+                    <label><input type="radio" name="q_new_tf_2" value="D"> Đúng</label>
+                    <label><input type="radio" name="q_new_tf_2" value="S"> Sai</label>
+                </div>
+                <div class="feedback"></div>
+            </div>
+             <div class="question" id="q_new_tf_3">
+                <p>Câu hỏi mới 3. Khí thiên nhiên là một nguồn năng lượng tái tạo.</p>
+                <div class="options">
+                    <label><input type="radio" name="q_new_tf_3" value="D"> Đúng</label>
+                    <label><input type="radio" name="q_new_tf_3" value="S"> Sai</label>
+                </div>
+                <div class="feedback"></div>
+            </div>
+            
+            <h3>3. Trắc nghiệm trả lời ngắn</h3>
+            <div class="question" id="q23">
+                <p>Câu 23. Khí methane chiếm khoảng bao nhiêu phần trăm thể tích của khí thiên nhiên?</p>
+                <label>Trả lời: <input type="number" name="q23"></label>
+                <div class="feedback"></div>
+            </div>
+             <div class="question" id="q25">
+                <p>Câu 25. Cho các nhiên liệu: Xăng, gỗ, nến, ethanol, than, dầu hỏa. Có bao nhiêu nhiên liệu ở thể lỏng điều kiện thường?</p>
+                <label>Trả lời: <input type="number" name="q25"></label>
+                <div class="feedback"></div>
+            </div>
+             <div class="question" id="q_new_sa_1">
+                <p>Câu hỏi mới 1. Phương pháp chính để chế biến dầu mỏ là chưng cất gì?</p>
+                <label>Trả lời: <input type="text" name="q_new_sa_1"></label>
+                <div class="feedback"></div>
+            </div>
+             <div class="question" id="q_new_sa_2">
+                <p>Câu hỏi mới 2. Trong tháp chưng cất, sản phẩm có nhiệt độ sôi thấp nhất được lấy ra ở đâu?</p>
+                <label>Trả lời: <input type="text" name="q_new_sa_2"></label>
+                <div class="feedback"></div>
+            </div>
+            <div class="question" id="q_new_sa_3">
+                <p>Câu hỏi mới 3. Đốt cháy hoàn toàn 1 mol methane (CH₄) cần bao nhiêu mol oxygen (O₂)?</p>
+                <label>Trả lời: <input type="number" name="q_new_sa_3"></label>
+                <div class="feedback"></div>
+            </div>
+        </form>
+
+        <div class="button-container">
+            <button id="checkBtn" type="button">Kiểm tra Trắc nghiệm</button>
+            <button id="showAnswersBtn" type="button">Xem đáp án Trắc nghiệm</button>
+            <button id="resetBtn" type="button">Làm lại Trắc nghiệm</button>
+        </div>
+
+        <div id="answer-key" style="display:none;">
+            <h3>HƯỚNG DẪN ĐÁP ÁN TRẮC NGHIỆM</h3>
+            <ul>
+                <li><strong>Câu 1: A.</strong> Dầu mỏ là hỗn hợp phức tạp của các hydrocarbon.</li>
+                <li><strong>Câu 2: C.</strong> Khí thiên nhiên chứa chủ yếu là methane (CH₄).</li>
+                <li><strong>Câu 6: B.</strong> Theo định nghĩa, nhiên liệu là chất khi cháy tỏa nhiệt và phát sáng.</li>
+                <li><strong>Câu hỏi mới 1 (MC): D.</strong> Ethylene được sản xuất bằng phương pháp cracking, không phải chưng cất trực tiếp.</li>
+                <li><strong>Câu hỏi mới 2 (MC): C.</strong> Khí hydrogen khi cháy chỉ tạo ra H₂O, không sinh ra CO₂ hay các khí độc khác.</li>
+                <li><strong>Câu 8: C.</strong> Sai. Dầu mỏ không tan trong nước.</li>
+                <li><strong>Câu 9: B.</strong> Gas tự nhiên không mùi. Người ta thêm ethyl mercaptan (C₂H₅SH) có mùi hôi để dễ dàng phát hiện khi có rò rỉ.</li>
+                <li><strong>Câu hỏi mới 3 (MC): B.</strong> Việc này làm tăng diện tích tiếp xúc với oxygen, giúp nhiên liệu cháy hiệu quả hơn.</li>
+                <li><strong>Câu 11: B.</strong> Không dùng nước (1). Các biện pháp còn lại (2, 3, 4) đều có tác dụng cách ly ngọn lửa với oxygen.</li>
+                <li><strong>Câu hỏi mới 4 (MC): C.</strong> Nhiên liệu hóa thạch thường chứa lưu huỳnh và khi cháy ở nhiệt độ cao trong động cơ sẽ tạo ra NOₓ. Các khí này gây ra mưa acid.</li>
+                <li><strong>Câu 12b: Đúng.</strong> Đây là thành phần chính của dầu mỏ.</li>
+                <li><strong>Câu 14b: Đúng.</strong> Methane chiếm tới trên 90% thể tích khí thiên nhiên.</li>
+                <li><strong>Câu hỏi mới 1 (TF): Sai.</strong> Xăng là một hỗn hợp của nhiều hydrocarbon, không phải là một chất tinh khiết.</li>
+                <li><strong>Câu hỏi mới 2 (TF): Đúng.</strong> Cháy không hoàn toàn tạo ra carbon monoxide (CO), một khí rất độc.</li>
+                <li><strong>Câu hỏi mới 3 (TF): Sai.</strong> Khí thiên nhiên là nhiên liệu hóa thạch, hình thành trong hàng triệu năm, là nguồn năng lượng không tái tạo.</li>
+                <li><strong>Câu 23: >90.</strong> Khí methane chiếm trên 90% thể tích khí thiên nhiên.</li>
+                <li><strong>Câu 25: 3.</strong> Các nhiên liệu lỏng là: Xăng, ethanol, dầu hỏa.</li>
+                <li><strong>Câu hỏi mới 1 (SA): Phân đoạn.</strong> Phương pháp chính là chưng cất phân đoạn.</li>
+                <li><strong>Câu hỏi mới 2 (SA): Đỉnh tháp.</strong> Các chất có nhiệt độ sôi thấp nhất (như khí gas, xăng) bay lên cao nhất và được lấy ra ở đỉnh tháp.</li>
+                <li><strong>Câu hỏi mới 3 (SA): 2.</strong> PT: CH₄ + 2O₂ → CO₂ + 2H₂O.</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        const answers = {
+            q1: 'A', q2: 'C', q6: 'B', q_new_mc_1: 'D', q_new_mc_2: 'C',
+            q8: 'C', q9: 'B', q_new_mc_3: 'B',
+            q11: 'B', q_new_mc_4: 'C',
+            q12b: 'D', q14b: 'D', q_new_tf_1: 'S', q_new_tf_2: 'D', q_new_tf_3: 'S',
+            q23: '90', q25: '3', q_new_sa_1: 'Phân đoạn', q_new_sa_2: 'Đỉnh tháp', q_new_sa_3: '2'
+        };
+
+        const checkBtn = document.getElementById('checkBtn');
+        const showAnswersBtn = document.getElementById('showAnswersBtn');
+        const resetBtn = document.getElementById('resetBtn');
+        const quizForm = document.getElementById('quiz-form');
+        const answerKey = document.getElementById('answer-key');
+
+        checkBtn.addEventListener('click', () => {
+            Object.keys(answers).forEach(key => {
+                const questionDiv = document.getElementById(key);
+                if (!questionDiv) return;
+                const feedbackDiv = questionDiv.querySelector('.feedback');
+                
+                const radioInput = questionDiv.querySelector(`input[name="${key}"]:checked`);
+                const textInput = questionDiv.querySelector(`input[name="${key}"]`);
+
+                let userAnswer = null;
+                if (radioInput) {
+                    userAnswer = radioInput.value;
+                } else if (textInput) {
+                    userAnswer = textInput.value.trim();
+                }
+
+                if (userAnswer === null || userAnswer === '') {
+                    feedbackDiv.style.display = 'block';
+                    feedbackDiv.textContent = 'Bạn chưa trả lời!';
+                    feedbackDiv.className = 'feedback';
+                } else if (userAnswer.toLowerCase() === answers[key].toString().toLowerCase() || (key === 'q23' && parseFloat(userAnswer) > 90) ) {
+                    feedbackDiv.style.display = 'block';
+                    feedbackDiv.textContent = 'Chính xác!';
+                    feedbackDiv.className = 'feedback correct';
+                } else {
+                    feedbackDiv.style.display = 'block';
+                    feedbackDiv.textContent = `Sai rồi! Đáp án đúng là ${answers[key]}.`;
+                    feedbackDiv.className = 'feedback incorrect';
+                }
+            });
+        });
+
+        resetBtn.addEventListener('click', () => {
+            quizForm.reset();
+            document.querySelectorAll('.feedback').forEach(div => {
+                div.style.display = 'none';
+                div.textContent = '';
+                div.className = 'feedback';
+            });
+            answerKey.style.display = 'none';
+            showAnswersBtn.textContent = 'Xem đáp án Trắc nghiệm';
+        });
+
+        showAnswersBtn.addEventListener('click', () => {
+            if (answerKey.style.display === 'none') {
+                answerKey.style.display = 'block';
+                showAnswersBtn.textContent = 'Ẩn đáp án Trắc nghiệm';
+            } else {
+                answerKey.style.display = 'none';
+                showAnswersBtn.textContent = 'Xem đáp án Trắc nghiệm';
+            }
+        });
+
+        const hintButtons = document.querySelectorAll('.hint-button');
+        hintButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const hintDiv = button.nextElementSibling;
+                if (hintDiv.style.display === 'none') {
+                    hintDiv.style.display = 'block';
+                    button.textContent = 'Ẩn Gợi ý';
+                } else {
+                    hintDiv.style.display = 'none';
+                    button.textContent = 'Xem Gợi ý';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

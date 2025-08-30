@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đề kiểm tra Chương 7: Hóa học Hữu cơ & Hydrocarbon</title>
+    <style>
+        :root {
+            --primary-color: #0056b3;
+            --secondary-color: #2a9d8f;
+            --correct-color: #28a745;
+            --incorrect-color: #dc3545;
+            --light-bg: #f8f9fa;
+            --border-color: #dee2e6;
+            --text-color: #212529;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.7;
+            color: var(--text-color);
+            background-color: var(--light-bg);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        h1, h2 {
+            color: var(--primary-color);
+            font-weight: 700;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 10px;
+        }
+        h1 { text-align: center; font-size: 2.2em; }
+        h2 { font-size: 1.8em; margin-top: 40px; }
+
+        .question-block {
+            background-color: #fff;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 25px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .question-text {
+             font-weight: bold;
+             margin-bottom: 15px;
+             font-size: 1.1em;
+        }
+        
+        /* Multiple Choice Options */
+        .mcq-options .option {
+            margin: 10px 0;
+            cursor: pointer;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+        .mcq-options .option:hover {
+            background-color: #e9f5ff;
+            border-color: var(--primary-color);
+        }
+        .mcq-options .option.selected {
+            background-color: #cfe2ff;
+            border-color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        /* True/False Options */
+        .tf-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .tf-options { display: flex; gap: 10px; }
+        .tf-options .tf-option {
+            padding: 8px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .tf-options .tf-option.selected {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        /* Highlighting results */
+        .correct { background-color: #d4edda !important; border-color: var(--correct-color) !important; }
+        .incorrect { background-color: #f8d7da !important; border-color: var(--incorrect-color) !important; }
+        .correct-answer-text { color: var(--correct-color); font-weight: bold; margin-left: 15px; }
+
+        /* Inputs */
+        .short-answer-input, .essay-textarea {
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: calc(100% - 22px);
+            font-family: inherit;
+            font-size: 1em;
+        }
+        .essay-textarea { min-height: 120px; resize: vertical; }
+
+        /* Submit Button & Results */
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: white;
+            background-color: var(--secondary-color);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 30px;
+            transition: background-color 0.2s;
+        }
+        .submit-btn:hover { background-color: #248a7e; }
+
+        #results-summary {
+            text-align: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-top: 30px;
+            padding: 20px;
+            border-radius: 8px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>ĐỀ KIỂM TRA CUỐI CHƯƠNG 7</h1>
+    <p style="text-align: center; font-weight: bold;">Môn: KHTN 9 | Thời gian làm bài: 50 phút</p>
+
+    <!-- =============================================================== -->
+    <!-- PHẦN I: TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN -->
+    <!-- =============================================================== -->
+    <h2>PHẦN I. Câu trắc nghiệm nhiều phương án lựa chọn (5 điểm)</h2>
+    
+    <div class="question-block" id="mcq-container">
+        <!-- Questions will be dynamically inserted here by JavaScript -->
+    </div>
+
+    <!-- =============================================================== -->
+    <!-- PHẦN II: TRẮC NGHIỆM ĐÚNG/SAI -->
+    <!-- =============================================================== -->
+    <h2>PHẦN II. Câu trắc nghiệm đúng sai (2 điểm)</h2>
+    <div class="question-block" id="tf-container">
+        <!-- True/False questions will be inserted here -->
+    </div>
+
+    <!-- =============================================================== -->
+    <!-- PHẦN III: TRẢ LỜI NGẮN -->
+    <!-- =============================================================== -->
+    <h2>PHẦN III: Câu trắc nghiệm yêu cầu trả lời ngắn (1 điểm)</h2>
+    <div class="question-block" id="sa-container">
+        <!-- Short answer questions will be inserted here -->
+    </div>
+
+    <!-- =============================================================== -->
+    <!-- PHẦN IV: TỰ LUẬN -->
+    <!-- =============================================================== -->
+    <h2>PHẦN IV: TỰ LUẬN (2 điểm)</h2>
+    <div class="question-block" id="essay-container">
+        <!-- Essay questions will be inserted here -->
+    </div>
+
+    <button class="submit-btn" onclick="submitTest()">Nộp bài & Xem kết quả</button>
+    <div id="results-summary"></div>
+</div>
+
+<script>
+    // --- DATABASE ---
+    const mcqQuestions = [
+        { q: "Câu 1. Chất nào sau đây không thuộc loại chất hữu cơ?", o: ["CH₄", "CH₃Cl", "CH₃COONa", "CO₂"], a: "D" },
+        { q: "Câu 2. Các chất trong nhóm chất nào dưới đây đều là dẫn xuất của hydrocarbon?", o: ["CH₂Cl₂, CH₂Br-CH₂Br, NaCl, CH₃Br", "CH₂Cl₂, CH₂Br-CH₂Br, CH₃Br, CH₃CH₂OH", "CH₂Br-CH₂Br, CH₂=CHBr, CH₃Br, CH₃CH₃", "HgCl₂, CH₂Br-CH₂Br, CH₂=CHBr, CH₃CH₂Br"], a: "B" },
+        { q: "Câu 3. Công thức phân tử của chất có công thức cấu tạo H-C(H)₂-C(H)₂-C(H)₂-OH là?", o: ["C₃H₆O", "C₃H₁₀O", "C₃H₈O", "C₃H₈O₂"], a: "C" },
+        { q: "Câu 4. Tên gọi của chất có công thức CH₄ là", o: ["Methane", "Propane", "Pentane", "Hexane"], a: "A" },
+        { q: "Câu 5. Thành phần chính của biogas là", o: ["N₂", "CO₂", "CH₄", "NH₃"], a: "C" },
+        { q: "Câu 6. Công thức hóa học của Ethylene là", o: ["CH₄", "C₂H₄", "C₂H₂", "C₃H₆"], a: "B" },
+        { q: "Câu 7. Dẫn từ từ khí ethylene qua dung dịch bromine, chất thu được là", o: ["C₂H₅Br", "C₂H₄Br₂", "CH₃Br", "C₂H₂Br₂"], a: "B" },
+        { q: "Câu 8. Thành phần chính của dầu mỏ là", o: ["Hydrocarbon", "Muối", "Base", "Acid"], a: "A" },
+        { q: "Câu 9. Nguồn năng lượng nào sau đây là nguồn năng lượng không thể tái tạo?", o: ["Nhiên liệu đốt hydrogen", "Dầu mỏ", "Năng lượng gió", "Năng lượng mặt trời"], a: "B" },
+        { q: "Câu 10. Vì sao hydrogen được coi là nhiên liệu không gây ô nhiễm môi trường?", o: ["Sản phẩm của quá trình đốt nhiên liệu này chỉ là nước.", "Là nguồn năng lượng gần như vô tận.", "Có mức khí thải thấp hơn nhiên liệu thông thường.", "Được sản xuất từ các nguyên liệu rẻ, sẵn có."], a: "A" },
+    ];
+
+    const tfQuestions = [
+        { 
+            q: "Câu 1. Phương pháp nào sau đây không thể thực hiện được để góp phần hạn chế ô nhiễm môi trường do các phương tiện giao thông gây ra?",
+            s: [
+                { text: "Không sử dụng phương tiện giao thông.", a: false },
+                { text: "Cấm các phương tiện giao thông tại các đô thị.", a: false },
+                { text: "Sử dụng phương tiện chạy bằng điện hoặc nhiên liệu xanh.", a: true },
+                { text: "Sử dụng các phương tiện giao thông công cộng.", a: true }
+            ],
+            note: "Lưu ý: Câu hỏi gốc hỏi 'không thể thực hiện được', nhưng logic thông thường là chọn các giải pháp 'có thể'. Ở đây, chúng tôi chấm các phương án khả thi là 'Đúng'."
+        },
+        {
+            q: "Câu 2. Dựa vào thông tin về Ethylene và quá trình làm chín trái cây:",
+            s: [
+                { text: "Công thức hóa học của Ethylene là C₂H₆.", a: false },
+                { text: "Trong công thức cấu tạo của Ethylene có 2 liên kết C=C.", a: false },
+                { text: "Phản ứng giữa Br₂ và Ethylene là phản ứng cộng.", a: true },
+                { text: "Phản ứng đốt cháy giữa Ethylene và khí oxygen tỏa nhiều nhiệt.", a: true }
+            ]
+        }
+    ];
+
+    const saQuestions = [
+        { q: "Câu 1. Cho các chất sau: AlCl₃, HNO₃, CH₃-CH₂-CH₃, CH₂=CH-CH₂-CH₃, NaOOC-COONa, CH₂OH-CH₂OH, H-CH=O, Ba(OH)₂, Na₂CO₃, CO, CaC₂, NaCN. Số chất hữu cơ trong dãy là bao nhiêu?", a: "5" },
+        { q: "Câu 2. Xét các chất: (A) CH₃-CH₃; (B) CH₂=CH-CH₃; (C) CH₂=C(CH₃)-CH₃; (D) CH₃-CH₂-OH; (E) CH₃-COOH; (G) CH₃-CH(CH₃)-CH₃; (H) CH₂=CH-CH=CH₂; (I) CH₄. Có bao nhiêu chất là alkane?", a: "3" },
+        { q: "Câu 3. Cho dãy các chất sau: CH₂=CH₂, CH₄, C₃H₈, C₂H₆, C₃H₆. Có bao nhiêu chất là alkene?", a: "2" },
+        { q: "Câu 4. Trong các nguồn năng lượng: (1) Mặt trời, (2) Gió, (3) Hạt nhân, (4) Than đá/xăng dầu, (5) Nước. Bao nhiêu nguồn không phải năng lượng sạch (gây ô nhiễm)?", a: "2" }
+    ];
+
+    const essayQuestions = [
+        { q: "Câu 1 (1 điểm). Hãy viết công thức phân tử, công thức cấu tạo thu gọn và cho biết đặc điểm cấu tạo của Methane, Ethane, Propane, Butane." },
+        { q: "Câu 2 (1 điểm). Dựa vào bảng nhiệt lượng tỏa ra khi đốt cháy: Methane (55.5 kJ/g), Butane (49.5 kJ/g), Hydrogen (141.8 kJ/g), Ethane (51.9 kJ/g). Với cùng khối lượng, chất nào tỏa nhiệt lớn nhất? Chất nào phát thải ít CO₂ nhất? Chất nào phát thải nhiều CO₂ nhất?" }
+    ];
+
+    // --- RENDER FUNCTIONS ---
+    function renderMCQ() {
+        const container = document.getElementById('mcq-container');
+        let html = '';
+        mcqQuestions.forEach((item, index) => {
+            html += `<div class="question-text">${item.q}</div>`;
+            html += `<div class="mcq-options" id="mcq-${index}">`;
+            item.o.forEach((option, i) => {
+                const optionLetter = String.fromCharCode(65 + i); // A, B, C, D
+                html += `<div class="option" onclick="selectMCQ(this, ${index}, '${optionLetter}')"><strong>${optionLetter}.</strong> ${option}</div>`;
+            });
+            html += `</div><hr style="border-top: 1px solid #eee; margin: 20px 0;">`;
+        });
+        container.innerHTML = html;
+    }
+
+    function renderTF() {
+        const container = document.getElementById('tf-container');
+        let html = '';
+        tfQuestions.forEach((item, index) => {
+            html += `<div class="question-text">${item.q}</div>`;
+            if(item.note) html += `<p style="font-style: italic; color: #555;">${item.note}</p>`;
+            html += `<div id="tf-${index}">`;
+            item.s.forEach((sub, i) => {
+                const subLetter = String.fromCharCode(97 + i); // a, b, c, d
+                html += `<div class="tf-question">
+                            <span><strong>${subLetter})</strong> ${sub.text}</span>
+                            <div class="tf-options">
+                                <div class="tf-option" onclick="selectTF(this, ${index}, ${i}, true)">Đúng</div>
+                                <div class="tf-option" onclick="selectTF(this, ${index}, ${i}, false)">Sai</div>
+                            </div>
+                         </div>`;
+            });
+            html += `</div>`;
+        });
+        container.innerHTML = html;
+    }
+
+    function renderSA() {
+        const container = document.getElementById('sa-container');
+        let html = '';
+        saQuestions.forEach((item, index) => {
+            html += `<label for="sa-${index}" class="question-text">${item.q}</label>
+                     <input type="text" id="sa-${index}" class="short-answer-input" placeholder="Nhập câu trả lời...">`;
+        });
+        container.innerHTML = html;
+    }
+    
+    function renderEssay() {
+        const container = document.getElementById('essay-container');
+        let html = '';
+        essayQuestions.forEach((item, index) => {
+            html += `<div class="question-text">${item.q}</div>
+                     <textarea id="essay-${index}" class="essay-textarea" placeholder="Nhập câu trả lời của bạn..."></textarea>`;
+        });
+        container.innerHTML = html;
+    }
+
+    // --- INTERACTION FUNCTIONS ---
+    let userAnswers = { mcq: {}, tf: {} };
+
+    function selectMCQ(element, qIndex, option) {
+        // Clear previous selection
+        const options = document.querySelectorAll(`#mcq-${qIndex} .option`);
+        options.forEach(opt => opt.classList.remove('selected'));
+        // Set new selection
+        element.classList.add('selected');
+        userAnswers.mcq[qIndex] = option;
+    }
+
+    function selectTF(element, qIndex, sIndex, value) {
+        const parent = element.parentElement;
+        // Clear previous selection in the same row
+        Array.from(parent.children).forEach(child => child.classList.remove('selected'));
+        element.classList.add('selected');
+        if (!userAnswers.tf[qIndex]) userAnswers.tf[qIndex] = {};
+        userAnswers.tf[qIndex][sIndex] = value;
+    }
+
+    // --- SUBMIT FUNCTION ---
+    function submitTest() {
+        let mcqScore = 0;
+        let tfScore = 0;
+        let saScore = 0;
+
+        // Check MCQ
+        mcqQuestions.forEach((q, i) => {
+            const options = document.querySelectorAll(`#mcq-${i} .option`);
+            const correctOptionIndex = q.a.charCodeAt(0) - 65;
+            if (userAnswers.mcq[i] === q.a) {
+                mcqScore++;
+                options[correctOptionIndex].classList.add('correct');
+            } else {
+                if (userAnswers.mcq[i]) {
+                    const selectedIndex = userAnswers.mcq[i].charCodeAt(0) - 65;
+                    options[selectedIndex].classList.add('incorrect');
+                }
+                options[correctOptionIndex].classList.add('correct');
+                options[correctOptionIndex].innerHTML += `<span class="correct-answer-text"> (Đáp án đúng)</span>`;
+            }
+        });
+
+        // Check TF
+        tfQuestions.forEach((q, i) => {
+            q.s.forEach((sub, j) => {
+                const options = document.querySelectorAll(`#tf-${i} .tf-question`)[j].querySelectorAll('.tf-option');
+                if(userAnswers.tf[i] && userAnswers.tf[i][j] === sub.a) {
+                    tfScore++;
+                    if(sub.a) options[0].classList.add('correct');
+                    else options[1].classList.add('correct');
+                } else {
+                    if(userAnswers.tf[i] && userAnswers.tf[i][j] !== undefined) {
+                         if(sub.a) options[1].classList.add('incorrect');
+                         else options[0].classList.add('incorrect');
+                    }
+                    if(sub.a) options[0].classList.add('correct');
+                    else options[1].classList.add('correct');
+                }
+            });
+        });
+        
+        // Check Short Answer
+        saQuestions.forEach((q, i) => {
+            const input = document.getElementById(`sa-${i}`);
+            if (input.value.trim() === q.a) {
+                saScore++;
+                input.classList.add('correct');
+            } else {
+                input.classList.add('incorrect');
+                input.insertAdjacentHTML('afterend', `<span class="correct-answer-text">Đáp án: ${q.a}</span>`);
+            }
+        });
+
+        const totalMCQScore = (mcqScore / mcqQuestions.length) * 5;
+        const totalTFScore = (tfScore / (tfQuestions[0].s.length + tfQuestions[1].s.length)) * 2;
+        const totalSAScore = (saScore / saQuestions.length) * 1;
+        const totalScore = totalMCQScore + totalTFScore + totalSAScore;
+
+        const resultsSummary = document.getElementById('results-summary');
+        resultsSummary.innerHTML = `KẾT QUẢ: ${totalScore.toFixed(2)} / 8.0 điểm (Phần tự luận chấm riêng)`;
+        resultsSummary.style.display = 'block';
+        resultsSummary.style.backgroundColor = totalScore >= 4 ? '#d4edda' : '#f8d7da';
+        resultsSummary.style.color = totalScore >= 4 ? '#155724' : '#721c24';
+        
+        // Disable all inputs and buttons after submission
+        document.querySelectorAll('.option, .tf-option, .submit-btn').forEach(el => el.style.pointerEvents = 'none');
+        document.querySelectorAll('input, textarea').forEach(el => el.disabled = true);
+    }
+
+    // --- INITIAL RENDER ---
+    window.onload = () => {
+        renderMCQ();
+        renderTF();
+        renderSA();
+        renderEssay();
+    };
+</script>
+
+</body>
+</html>
