@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chủ Đề Chất Và Sự Biến Đổi - KHTN 9</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Sử dụng font Inter từ Google Fonts */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Hiệu ứng nền gradient chuyển động */
+        body {
+            background: linear-gradient(-45deg, #e0e7ff, #c7d2fe, #a5b4fc, #6366f1);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Hiệu ứng xuất hiện cho nội dung tab */
+        .tabcontent {
+            animation: fadeIn 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Hiệu ứng xuất hiện cho toàn bộ container */
+        .main-container {
+            animation: slideUp 0.8s ease-out;
+        }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Style cho tab đang hoạt động */
+        .tablinks.active {
+            background-color: #4f46e5; /* Indigo-600 */
+            color: white;
+            border-color: #4f46e5;
+        }
+        
+        /* Hiệu ứng hover cho các link trong tab */
+        .tab-link {
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        .tab-link:hover {
+            transform: translateX(5px);
+            color: #4338ca; /* Indigo-700 */
+        }
+    </style>
+</head>
+<body class="text-gray-800 antialiased">
+
+    <div class="w-full min-h-screen p-4 sm:p-6 md:p-8 main-container">
+        
+        <!-- Tiêu đề chính -->
+        <header class="text-center mb-8">
+            <h1 class="text-3xl sm:text-4xl font-bold text-white drop-shadow-lg">Chủ Đề Chất Và Sự Biến Đổi - KHTN 9</h1>
+            <p class="text-md text-indigo-100 mt-2">Chọn một chủ đề để xem danh sách các bài học liên quan.</p>
+        </header>
+
+        <!-- Container cho các Tab -->
+        <div class="bg-white/90 backdrop-blur-sm rounded-2xl shadow-2xl overflow-hidden max-w-5xl mx-auto">
+            <!-- Thanh điều hướng Tab -->
+            <div class="border-b border-gray-200">
+                <div id="tab-buttons" class="flex flex-wrap justify-center -mb-px px-4 sm:px-6">
+                    <!-- Các button sẽ được tạo bằng JavaScript -->
+                </div>
+            </div>
+
+            <!-- Nội dung các Tab -->
+            <div class="p-6 sm:p-8">
+                <!-- Tab 1 Content: Chủ đề 6 -->
+                <div id="Tab1" class="tabcontent">
+                    <h2 class="text-2xl font-semibold mb-6 text-indigo-800">Chủ Đề 6: KIM LOẠI</h2>
+                    <ul class="space-y-4">
+                        <li><a href="BÀI1.html" class="tab-link text-indigo-600 font-medium hover:underline">Bài 16: Tính chất chung kim loại</a></li>
+                        <li><a href="BÀI2.html" class="tab-link text-indigo-600 font-medium hover:underline">Bài 17: Dãy hoạt động hóa học kim loại</a></li>
+                        <li><a href="BÀI3.html" class="tab-link text-indigo-600 font-medium hover:underline">Bài 18: Tách kim loại và sử dụng hợp kim</a></li>
+                        <li><a href="BÀI4.html" class="tab-link text-indigo-600 font-medium hover:underline">Bài 19: Sự khác nhau giữa kim loại và phi kim</a></li>
+			            <li><a href="BÀI6.html" class="tab-link text-indigo-600 font-medium hover:underline">Ôn tập chủ đề 6</a></li>
+			            <li><a href="BÀI5.html" class="tab-link text-indigo-600 font-medium hover:underline">Kiểm tra chủ đề 6</a></li>
+                    </ul>
+                </div>
+
+                <!-- Tab 2 Content: Chủ đề 7 -->
+                <div id="Tab2" class="tabcontent" style="display:none;">
+                    <h2 class="text-2xl font-semibold mb-6 text-indigo-800">Chủ Đề 7: HỢP CHẤT HỮU CƠ. NGUỒN NHIÊN LIỆU</h2>
+                    <ul class="space-y-4">
+                        <li><a href="BÀI7.html" class="tab-link text-indigo-600 font-medium hover:underline">Bài 20: Giới thiệu hợp chất hữu cơ</a></li>
+                        <li><a href="BÀI8.html" class="tab-link text-indigo-600 font-medium hover:underline">Bài 21: Alkane</a></li>
+                        <li><a href="BÀI9.html" class="tab-link text-indigo-600 font-medium hover:underline">Bài 22: Alkene</a></li>
+                        <li><a href="BÀI10.html" class="tab-link text-indigo-600 font-medium hover:underline">Bài 23: Nguồn Nhiên liệu</a></li>
+			            <li><a href="BÀI12.html" class="tab-link text-indigo-600 font-medium hover:underline">Ôn tập chủ đề 7</a></li>
+			            <li><a href="BÀI11.html" class="tab-link text-indigo-600 font-medium hover:underline">Kiểm tra chủ đề 7</a></li>
+                    </ul>
+                </div>
+
+                <!-- Tab 3 Content: Chủ đề 8 -->
+                <div id="Tab3" class="tabcontent" style="display:none;">
+                    <h2 class="text-2xl font-semibold mb-6 text-indigo-800">Chủ Đề 8: ETHYLIC ALCOHOL - ACETIC ACID</h2>
+                    <ul class="space-y-4">
+                        <li><a href="ETHYLIC ALCOHOL.html" class="tab-link text-indigo-600 font-medium hover:underline">Bài 24: Ethylic alcohol</a></li>
+                        <li><a href="ACETIC ACID.html" class="tab-link text-indigo-600 font-medium hover:underline">Bài 25: Acetic Acid</a></li>
+                        <li><a href="ÔN CHỦ ĐỀ 8.html" class="tab-link text-indigo-600 font-medium hover:underline">Ôn chủ đề 8</a></li>
+                        <li><a href="KIỂM TRA CHỦ ĐỀ 8.html" class="tab-link text-indigo-600 font-medium hover:underline">Kiểm tra chủ đề 8</a></li>
+                    </ul>
+                </div>
+
+                <!-- Tab 4 Content: Chủ đề 9 -->
+                <div id="Tab4" class="tabcontent" style="display:none;">
+                     <h2 class="text-2xl font-semibold mb-6 text-indigo-800">Chủ Đề 9: LIPID-CARBOHYDRATE-PROTEIN-POLYMER</h2>
+                    <ul class="space-y-4">
+                        <li><a href="LIPID VÀ CHẤT BÉO.html" class="tab-link text-indigo-600 font-medium hover:underline">Bài 26: Lipid và chất béo</a></li>
+                        <li><a href="GLUCOSE VÀ SACCHAROSE.html" class="tab-link text-indigo-600 font-medium hover:underline">Bài 27: Glucose và Saccharose</a></li>
+                        <li><a href="PROTEIN.html" class="tab-link text-indigo-600 font-medium hover:underline">Bài 28: Protein</a></li>
+                        <li><a href="POLYMER.html" class="tab-link text-indigo-600 font-medium hover:underline">Bài 29: Polymer</a></li>
+			            <li><a href="ÔN TẬP CHỦ ĐỀ 9.html" class="tab-link text-indigo-600 font-medium hover:underline">Ôn tập chủ đề 9</a></li>
+		            </ul>
+                </div>
+                
+                <!-- Tab 5 Content: Chủ đề 10 (Mới) -->
+                <div id="Tab5" class="tabcontent" style="display:none;">
+                     <h2 class="text-2xl font-semibold mb-6 text-indigo-800">Chủ Đề 10: KHAI THÁC TÀI NGUYÊN TỪ VỎ TRÁI ĐẤT</h2>
+                    <ul class="space-y-4">
+                        <li><a href="SƠ LƯỢC VỀ HÓA HỌC VÕ TRÁI ĐẤT.html" class="tab-link text-gray-500 font-medium">Bài 31: Sơ lược về HH VTĐ và KT tài nguyên...</a></li>
+			<li><a href="KHAI THÁC ĐÁ VÔI.html" class="tab-link text-gray-500 font-medium">Bài 32: Khai thác đá vôi và Công nghiệp silicate</a></li>
+			<li><a href="KHAI THÁC NHIÊN LIỆU HÓA THẠCH.html" class="tab-link text-gray-500 font-medium">Bài 33: Khai thác nhiên liệu hóa thạch</a></li>
+			<li><a href="ÔN TẬP CHỦ ĐỀ 10.html" class="tab-link text-gray-500 font-medium">Ôn tập chủ đề 10</a></li>
+		            </ul>
+                </div>
+                
+                <!-- Tab 6 Content: Ôn tập (Mới) -->
+                <div id="Tab6" class="tabcontent" style="display:none;">
+                     <h2 class="text-2xl font-semibold mb-6 text-indigo-800">ÔN TẬP MỞ ĐẦU</h2>
+                    <ul class="space-y-4">
+                        <li><a href="các loại HCVC.html" class="tab-link text-gray-500 font-medium">Ôn tập các hợp chất vô cơ</a></li>
+			<li><a href="game phân loại hcvc.html" class="tab-link text-gray-500 font-medium">GAME</a></li>
+			<li><a href="máy tính.html" class="tab-link text-gray-500 font-medium">Tính số mol</a></li>
+			<li><a href="chuyen doi mol.html" class="tab-link text-gray-500 font-medium">Chuyển đổi mol</a></li>
+			<li><a href="https://pt.kle.cz/vi_VN/index.html" class="tab-link text-gray-500 font-medium">Bảng Tuần Hoàn</a></li>
+
+		            </ul>
+                </div>
+
+		    </div>
+        </div>
+    </div>
+
+    <script>
+        // Hàm để mở tab
+        function openTab(tabName) {
+            const tabcontent = document.getElementsByClassName("tabcontent");
+            for (let i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+
+            const tablinks = document.getElementsByClassName("tablinks");
+            for (let i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("active");
+            }
+
+            document.getElementById(tabName).style.display = "block";
+            document.querySelector(`button[onclick="openTab('${tabName}')"]`).classList.add("active");
+        }
+
+        // Tự động tạo các button cho tab
+        document.addEventListener('DOMContentLoaded', function() {
+            // Cập nhật dữ liệu tab theo yêu cầu
+            const tabData = [
+                { id: 'Tab1', title: 'Chủ Đề 6' },
+                { id: 'Tab2', title: 'Chủ Đề 7' },
+                { id: 'Tab3', title: 'Chủ Đề 8' },
+                { id: 'Tab4', title: 'Chủ Đề 9' },
+                { id: 'Tab5', title: 'Chủ Đề 10' },
+                { id: 'Tab6', title: 'Ôn tập mở đầu' }
+            ];
+
+            const tabButtonsContainer = document.getElementById('tab-buttons');
+            
+            tabData.forEach((tab, index) => {
+                const button = document.createElement('button');
+                // Cập nhật class cho button để có hiệu ứng đẹp hơn
+                button.className = 'tablinks text-lg font-medium py-4 px-6 border-b-2 border-transparent hover:bg-indigo-100 hover:border-indigo-300 text-indigo-700 transition duration-300 focus:outline-none';
+                button.textContent = tab.title;
+                button.setAttribute('onclick', `openTab('${tab.id}')`);
+                
+                if (index === 0) {
+                    button.classList.add('active');
+                }
+                
+                tabButtonsContainer.appendChild(button);
+            });
+
+            // Mặc định mở tab đầu tiên khi tải trang
+            openTab('Tab1');
+        });
+    </script>
+
+</body>
+</html>
