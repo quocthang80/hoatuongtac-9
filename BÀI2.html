@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chuyên đề: Dãy hoạt động hóa học của Kim loại</title>
+    <style>
+        /* --- General Styling & Variables --- */
+        :root {
+            --primary-color: #0056b3;
+            --secondary-color: #28a745;
+            --accent-color: #ffc107;
+            --light-bg: #f8f9fa;
+            --border-color: #dee2e6;
+            --text-color: #212529;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.7;
+            color: var(--text-color);
+            background-color: var(--light-bg);
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 20px auto;
+            padding: 25px;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        /* --- Typography --- */
+        h1, h2, h3 {
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        h1 {
+            text-align: center;
+            border-bottom: 3px solid var(--primary-color);
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+            font-size: 2.4em;
+        }
+
+        h2 {
+            background-color: #e9f5ff;
+            padding: 12px 18px;
+            border-left: 5px solid var(--primary-color);
+            border-radius: 5px;
+            margin-top: 35px;
+            font-size: 1.8em;
+        }
+        
+        h3 {
+            font-size: 1.5em;
+            margin-top: 30px;
+            color: #1a237e;
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 8px;
+        }
+
+        .chemical-equation {
+            font-family: Consolas, "Courier New", monospace;
+            background-color: #eef;
+            padding: 3px 7px;
+            border-radius: 5px;
+            font-size: 0.95em;
+        }
+
+        /* --- Activity Series Visualization --- */
+        .activity-series {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background-color: #f1f1f1;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .metal, .separator {
+            font-size: 1.2em;
+            font-weight: bold;
+            padding: 10px 15px;
+            margin: 5px;
+            border-radius: 8px;
+        }
+        .metal {
+            background-color: var(--accent-color);
+            color: #333;
+        }
+        .separator {
+            color: var(--primary-color);
+        }
+
+        /* --- Exercise & Quiz Blocks --- */
+        .exercise-block {
+            background-color: #fff;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 25px;
+            margin: 25px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        
+        .question-text {
+             font-weight: bold;
+             margin-bottom: 15px;
+             font-size: 1.1em;
+        }
+        
+        .quiz-options .quiz-option {
+            margin: 10px 0;
+            cursor: pointer;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+        
+        .quiz-options .quiz-option:hover {
+            background-color: #f0f8ff;
+            border-color: var(--primary-color);
+        }
+
+        .quiz-option.selected { background-color: #e0e0ff; border-color: var(--primary-color); font-weight: bold; }
+        .quiz-option.correct { background-color: #d4edda !important; color: #155724 !important; border-color: #c3e6cb !important; }
+        .quiz-option.incorrect { background-color: #f8d7da !important; color: #721c24 !important; border-color: #f5c6cb !important; }
+        
+        .short-answer-input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 2px solid var(--border-color);
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        /* --- Buttons & Feedback --- */
+        .action-button {
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            margin-top: 15px;
+            transition: background-color 0.2s, transform 0.1s;
+        }
+        
+        .action-button:hover { opacity: 0.9; transform: translateY(-2px); }
+        .action-button:active { transform: translateY(1px); }
+
+        .btn-check { background-color: var(--primary-color); }
+        .toggle-solution-btn { background-color: var(--secondary-color); }
+
+        #sa-result {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            display: none;
+        }
+        .solution {
+            display: none;
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #e9f7ef;
+            border-left: 4px solid var(--secondary-color);
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>CHUYÊN ĐỀ: DÃY HOẠT ĐỘNG HÓA HỌC CỦA KIM LOẠI</h1>
+
+    <h2>A. KIẾN THỨC CẦN NHỚ</h2>
+    <h3>1. Dãy hoạt động hóa học</h3>
+    <div class="activity-series">
+        <span class="metal">K</span><span class="separator">></span>
+        <span class="metal">Na</span><span class="separator">></span>
+        <span class="metal">Mg</span><span class="separator">></span>
+        <span class="metal">Al</span><span class="separator">></span>
+        <span class="metal">Zn</span><span class="separator">></span>
+        <span class="metal">Fe</span><span class="separator">></span>
+        <span class="metal">Pb</span><span class="separator">></span>
+        <span class="metal" style="background-color: #ccc; color: #555;">(H)</span><span class="separator">></span>
+        <span class="metal">Cu</span><span class="separator">></span>
+        <span class="metal">Ag</span><span class="separator">></span>
+        <span class="metal">Au</span>
+    </div>
+    
+    <h3>2. Ý nghĩa của dãy hoạt động hóa học</h3>
+    <p>Dãy hoạt động hóa học cho biết mức độ hoạt động của các kim loại giảm dần từ trái sang phải.</p>
+    <ul>
+        <li><strong>Phản ứng với nước:</strong> Các kim loại đứng đầu (K, Na,...) tác dụng với nước ở điều kiện thường.</li>
+        <li><strong>Phản ứng với dung dịch acid (HCl, H₂SO₄ loãng):</strong> Kim loại đứng trước (H) phản ứng với acid giải phóng khí H₂.</li>
+        <li><strong>Phản ứng với dung dịch muối:</strong> Kim loại mạnh hơn (đứng trước) đẩy kim loại yếu hơn (đứng sau) ra khỏi dung dịch muối của nó. (Lưu ý: không áp dụng cho các kim loại tan trong nước như K, Na).</li>
+    </ul>
+
+    <h2>B. BÀI TẬP VẬN DỤNG</h2>
+    
+    <h3>1. Tự luận tính toán (Có hướng dẫn giải)</h3>
+    <div class="exercise-block">
+        <p class="question-text"><b>Bài toán:</b> Ngâm một thanh sắt (Fe) có khối lượng 50 gam vào 200 ml dung dịch đồng(II) sulfate (CuSO₄) 1M. Sau một thời gian, lấy thanh sắt ra, rửa sạch, sấy khô và cân lại thấy khối lượng là 51,6 gam.
+        <br>a. Viết phương trình hóa học.
+        <br>b. Tính khối lượng đồng (Cu) đã bám vào thanh sắt.
+        <br><i>(Cho: Fe=56, Cu=64, S=32, O=16)</i></p>
+        <button class="action-button toggle-solution-btn" onclick="toggleSolution(this)">Xem hướng dẫn giải</button>
+        <div class="solution">
+            <p><b>Hướng dẫn giải:</b></p>
+            <p><b>Bước 1: Phân tích và viết phương trình hóa học.</b></p>
+            <ul>
+                <li>Sắt (Fe) đứng trước Đồng (Cu) trong dãy hoạt động hóa học nên Fe sẽ đẩy Cu ra khỏi dung dịch muối CuSO₄.</li>
+                <li>Phương trình hóa học: <span class="chemical-equation">Fe + CuSO₄ → FeSO₄ + Cu</span></li>
+            </ul>
+            <p><b>Bước 2: Phân tích sự tăng giảm khối lượng.</b></p>
+            <ul>
+                <li>Theo PTHH, cứ 1 mol Fe (56g) tan ra thì có 1 mol Cu (64g) bám vào.</li>
+                <li>Vậy, cứ 1 mol Fe phản ứng thì khối lượng thanh kim loại tăng: 64 - 56 = 8 (gam).</li>
+                <li>Gọi x là số mol Fe đã phản ứng. Khối lượng thanh sắt tăng lên là 8x (gam).</li>
+            </ul>
+            <p><b>Bước 3: Tính số mol Fe phản ứng dựa vào khối lượng tăng.</b></p>
+            <ul>
+                <li>Khối lượng thanh sắt tăng thực tế là: m<sub>tăng</sub> = 51,6 - 50 = 1,6 (gam).</li>
+                <li>Ta có: 8x = 1,6 => x = 1,6 / 8 = 0,2 (mol).</li>
+                <li>Vậy, số mol Fe đã phản ứng là 0,2 mol.</li>
+            </ul>
+            <p><b>Bước 4: Tính khối lượng đồng bám vào (Câu b).</b></p>
+            <ul>
+                <li>Theo PTHH: n<sub>Cu</sub> = n<sub>Fe</sub> = x = 0,2 (mol).</li>
+                <li>Khối lượng đồng đã bám vào thanh sắt là: m<sub>Cu</sub> = n × M = 0,2 × 64 = 12,8 (gam).</li>
+            </ul>
+            <p><b>Đáp số:</b> a) Fe + CuSO₄ → FeSO₄ + Cu; b) m<sub>Cu</sub> = 12,8g.</p>
+        </div>
+    </div>
+    
+    <h3>2. Trắc nghiệm nhiều lựa chọn</h3>
+    <div class="exercise-block" id="mcq-container">
+        <!-- Existing Questions -->
+        <p class="question-text">Câu 1. Kim loại nào sau đây tác dụng được với dung dịch HCl?</p>
+        <div class="quiz-options" data-answer="B"><div class="quiz-option" onclick="selectOption(this)">A. Cu</div><div class="quiz-option" onclick="selectOption(this)">B. Fe</div><div class="quiz-option" onclick="selectOption(this)">C. Ag</div><div class="quiz-option" onclick="selectOption(this)">D. Au</div></div><hr>
+        <p class="question-text">Câu 2. Cặp chất nào sau đây không xảy ra phản ứng?</p>
+        <div class="quiz-options" data-answer="D"><div class="quiz-option" onclick="selectOption(this)">A. Zn + CuSO₄</div><div class="quiz-option" onclick="selectOption(this)">B. Fe + Pb(NO₃)₂</div><div class="quiz-option" onclick="selectOption(this)">C. Mg + FeSO₄</div><div class="quiz-option" onclick="selectOption(this)">D. Cu + MgCl₂</div></div><hr>
+        
+        <!-- New Theoretical Questions -->
+        <p class="question-text">Câu 3. Dãy kim loại nào sau đây được sắp xếp đúng theo chiều hoạt động hóa học tăng dần?</p>
+        <div class="quiz-options" data-answer="A"><div class="quiz-option" onclick="selectOption(this)">A. Cu, Fe, Zn, Al</div><div class="quiz-option" onclick="selectOption(this)">B. Al, Zn, Fe, Cu</div><div class="quiz-option" onclick="selectOption(this)">C. Al, Fe, Zn, Cu</div><div class="quiz-option" onclick="selectOption(this)">D. Cu, Zn, Fe, Al</div></div><hr>
+        <p class="question-text">Câu 4. Kim loại nào sau đây tác dụng được với nước ở nhiệt độ thường?</p>
+        <div class="quiz-options" data-answer="C"><div class="quiz-option" onclick="selectOption(this)">A. Fe</div><div class="quiz-option" onclick="selectOption(this)">B. Mg</div><div class="quiz-option" onclick="selectOption(this)">C. K</div><div class="quiz-option" onclick="selectOption(this)">D. Al</div></div><hr>
+        <p class="question-text">Câu 5. Phản ứng nào sau đây chứng tỏ Fe hoạt động hóa học mạnh hơn Pb?</p>
+        <div class="quiz-options" data-answer="B"><div class="quiz-option" onclick="selectOption(this)">A. Pb + FeCl₂</div><div class="quiz-option" onclick="selectOption(this)">B. Fe + Pb(NO₃)₂</div><div class="quiz-option" onclick="selectOption(this)">C. Fe + HCl</div><div class="quiz-option" onclick="selectOption(this)">D. Pb + H₂SO₄ loãng</div></div><hr>
+        <p class="question-text">Câu 6. Để làm sạch một mẫu bạc có lẫn kẽm và đồng, ta có thể ngâm mẫu kim loại này vào dung dịch nào sau đây (dư)?</p>
+        <div class="quiz-options" data-answer="D"><div class="quiz-option" onclick="selectOption(this)">A. HCl</div><div class="quiz-option" onclick="selectOption(this)">B. CuSO₄</div><div class="quiz-option" onclick="selectOption(this)">C. MgCl₂</div><div class="quiz-option" onclick="selectOption(this)">D. AgNO₃</div></div><hr>
+        <p class="question-text">Câu 7. Kim loại M tác dụng được với dung dịch HCl nhưng không tác dụng được với dung dịch ZnSO₄. M là kim loại nào?</p>
+        <div class="quiz-options" data-answer="A"><div class="quiz-option" onclick="selectOption(this)">A. Fe</div><div class="quiz-option" onclick="selectOption(this)">B. Mg</div><div class="quiz-option" onclick="selectOption(this)">C. Cu</div><div class="quiz-option" onclick="selectOption(this)">D. Na</div></div><hr>
+        <p class="question-text">Câu 8. Phát biểu nào sau đây là đúng?</p>
+        <div class="quiz-options" data-answer="C"><div class="quiz-option" onclick="selectOption(this)">A. Kim loại đứng trước Mg đẩy được Mg ra khỏi muối.</div><div class="quiz-option" onclick="selectOption(this)">B. Kim loại đứng sau Cu đẩy được Cu ra khỏi muối.</div><div class="quiz-option" onclick="selectOption(this)">C. Kim loại đứng trước H tác dụng được với H₂SO₄ loãng.</div><div class="quiz-option" onclick="selectOption(this)">D. Kim loại đứng sau H tác dụng được với HCl.</div></div><hr>
+        <p class="question-text">Câu 9. Cặp kim loại nào sau đây có thể được điều chế bằng phương pháp thủy luyện?</p>
+        <div class="quiz-options" data-answer="B"><div class="quiz-option" onclick="selectOption(this)">A. Na, K</div><div class="quiz-option" onclick="selectOption(this)">B. Cu, Ag</div><div class="quiz-option" onclick="selectOption(this)">C. Mg, Al</div><div class="quiz-option" onclick="selectOption(this)">D. Fe, Zn</div></div><hr>
+        <p class="question-text">Câu 10. Cho kim loại X vào dung dịch FeCl₂, không có phản ứng xảy ra. X có thể là kim loại nào?</p>
+        <div class="quiz-options" data-answer="D"><div class="quiz-option" onclick="selectOption(this)">A. Mg</div><div class="quiz-option" onclick="selectOption(this)">B. Zn</div><div class="quiz-option" onclick="selectOption(this)">C. Al</div><div class="quiz-option" onclick="selectOption(this)">D. Cu</div></div><hr>
+
+        <!-- New Calculation Questions -->
+        <p class="question-text">Câu 11. Cho 5,6 gam Fe tác dụng hoàn toàn với dung dịch HCl dư. Thể tích khí H₂ (ở đkc 25°C, 1 bar) thu được là (Fe=56)</p>
+        <div class="quiz-options" data-answer="A"><div class="quiz-option" onclick="selectOption(this)">A. 2,479 lít</div><div class="quiz-option" onclick="selectOption(this)">B. 4,958 lít</div><div class="quiz-option" onclick="selectOption(this)">C. 2,24 lít</div><div class="quiz-option" onclick="selectOption(this)">D. 4,48 lít</div></div><hr>
+        <p class="question-text">Câu 12. Ngâm một lá kẽm trong dung dịch CuSO₄ dư. Sau phản ứng, khối lượng lá kẽm thay đổi như thế nào? (Zn=65, Cu=64)</p>
+        <div class="quiz-options" data-answer="B"><div class="quiz-option" onclick="selectOption(this)">A. Tăng lên</div><div class="quiz-option" onclick="selectOption(this)">B. Giảm đi</div><div class="quiz-option" onclick="selectOption(this)">C. Không đổi</div><div class="quiz-option" onclick="selectOption(this)">D. Tăng rồi giảm</div></div><hr>
+        <p class="question-text">Câu 13. Cho m gam Mg vào dung dịch AgNO₃ dư, sau phản ứng thu được 21,6 gam Ag. Giá trị của m là (Mg=24, Ag=108)</p>
+        <div class="quiz-options" data-answer="A"><div class="quiz-option" onclick="selectOption(this)">A. 2,4 gam</div><div class="quiz-option" onclick="selectOption(this)">B. 4,8 gam</div><div class="quiz-option" onclick="selectOption(this)">C. 1,2 gam</div><div class="quiz-option" onclick="selectOption(this)">D. 3,6 gam</div></div><hr>
+        <p class="question-text">Câu 14. Hòa tan hoàn toàn 5,4 gam Al bằng dung dịch H₂SO₄ loãng dư. Khối lượng muối Al₂(SO₄)₃ thu được là (Al=27, S=32, O=16)</p>
+        <div class="quiz-options" data-answer="D"><div class="quiz-option" onclick="selectOption(this)">A. 17,1 gam</div><div class="quiz-option" onclick="selectOption(this)">B. 68,4 gam</div><div class="quiz-option" onclick="selectOption(this)">C. 342 gam</div><div class="quiz-option" onclick="selectOption(this)">D. 34,2 gam</div></div><hr>
+        <p class="question-text">Câu 15. Ngâm một thanh kẽm có khối lượng 50 gam vào dung dịch AgNO₃ dư. Sau một thời gian, lấy thanh kẽm ra và cân lại thấy khối lượng là 57,55 gam. Khối lượng bạc đã bám vào thanh kẽm là (Zn=65, Ag=108)</p>
+        <div class="quiz-options" data-answer="C"><div class="quiz-option" onclick="selectOption(this)">A. 7,55 gam</div><div class="quiz-option" onclick="selectOption(this)">B. 3,25 gam</div><div class="quiz-option" onclick="selectOption(this)">C. 10,8 gam</div><div class="quiz-option" onclick="selectOption(this)">D. 5,4 gam</div></div>
+        
+        <button class="action-button btn-check" onclick="checkMCQ()">Kiểm tra Trắc nghiệm</button>
+    </div>
+
+    <h3>3. Trả lời ngắn</h3>
+    <div class="exercise-block" id="sa-container">
+        <p class="question-text">Câu 1. Sắp xếp các kim loại sau theo chiều hoạt động hóa học giảm dần: Mg, Cu, K, Fe.</p>
+        <input type="text" class="short-answer-input" data-answer="k,mg,fe,cu">
+        <hr>
+        <p class="question-text">Câu 2. Hiện tượng gì xảy ra khi cho một dây bạc vào dung dịch đồng(II) sulfate?</p>
+        <input type="text" class="short-answer-input" data-answer="không hiện tượng,không phản ứng">
+        <button class="action-button btn-check" onclick="checkShortAnswers()">Kiểm tra Trả lời ngắn</button>
+        <div id="sa-result"></div>
+    </div>
+
+</div>
+
+<script>
+    // --- Script for Toggling Solution ---
+    function toggleSolution(button) {
+        const solution = button.nextElementSibling;
+        if (solution.style.display === "block") {
+            solution.style.display = "none";
+            button.textContent = "Xem hướng dẫn giải";
+        } else {
+            solution.style.display = "block";
+            button.textContent = "Ẩn hướng dẫn giải";
+        }
+    }
+
+    // --- Script for Multiple Choice Questions ---
+    function selectOption(element) {
+        const parent = element.parentElement;
+        parent.querySelectorAll('.quiz-option').forEach(opt => opt.classList.remove('selected'));
+        element.classList.add('selected');
+    }
+
+    function checkMCQ() {
+        const questions = document.querySelectorAll('#mcq-container .quiz-options');
+        for (const q of questions) {
+            const correctAnswer = q.dataset.answer;
+            const options = q.querySelectorAll('.quiz-option');
+            for (let i = 0; i < options.length; i++) {
+                const opt = options[i];
+                const optionLetter = String.fromCharCode(65 + i);
+                opt.classList.remove('correct', 'incorrect');
+                if (opt.classList.contains('selected')) {
+                    if (optionLetter === correctAnswer) {
+                        opt.classList.add('correct');
+                    } else {
+                        opt.classList.add('incorrect');
+                    }
+                }
+            }
+        }
+    }
+
+    // --- Script for Short Answer Questions ---
+    function checkShortAnswers() {
+        const inputs = document.querySelectorAll('.short-answer-input');
+        let allCorrect = true;
+        let incorrectCount = 0;
+
+        inputs.forEach(input => {
+            const userAns = input.value.trim().toLowerCase().replace(/\s/g, '');
+            const correctAnswers = input.dataset.answer.split(',');
+            
+            if (correctAnswers.some(ans => userAns.includes(ans.trim()))) {
+                input.style.borderColor = 'green';
+            } else {
+                input.style.borderColor = 'red';
+                allCorrect = false;
+                incorrectCount++;
+            }
+        });
+
+        const resultDiv = document.getElementById('sa-result');
+        resultDiv.style.display = 'block';
+
+        if (allCorrect) {
+            resultDiv.innerHTML = 'Tuyệt vời! Tất cả các câu trả lời đều đúng.';
+            resultDiv.style.backgroundColor = '#d4edda';
+            resultDiv.style.color = '#155724';
+        } else {
+            resultDiv.innerHTML = `Có ${incorrectCount} câu trả lời chưa chính xác. Hãy kiểm tra lại các ô màu đỏ.`;
+            resultDiv.style.backgroundColor = '#f8d7da';
+            resultDiv.style.color = '#721c24';
+        }
+    }
+</script>
+
+</body>
+</html>
