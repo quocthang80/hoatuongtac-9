@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Máy Tính Số Mol</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" xintegrity="sha384-n8MVd4RsNIU0KOVEMQNogPSesLpv7UNLRdaPoqWCr/BOCrAUoZAZn68J_mkBsPaI" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" xintegrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" xintegrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .calculator-card {
+            background-color: white;
+            border-radius: 1rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .calculator-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+        .formula-display {
+            font-size: 1.5rem;
+            color: #1e3a8a; /* blue-900 */
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        .result-box {
+            background-color: #eef2ff; /* indigo-50 */
+            border-left: 4px solid #4f46e5; /* indigo-600 */
+            padding: 1rem;
+            margin-top: 1.5rem;
+            border-radius: 0.5rem;
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #312e81; /* indigo-900 */
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <div class="container mx-auto p-4 sm:p-6 md:p-8 max-w-3xl">
+        <h1 class="text-3xl sm:text-4xl font-bold text-center text-gray-900 mb-8">Máy Tính Số Mol</h1>
+
+        <!-- Công thức 1 -->
+        <div class="calculator-card">
+            <h2 class="text-xl font-semibold text-gray-800 mb-2">1. Tính theo khối lượng</h2>
+            <div class="formula-display" id="formula1"></div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                    <label for="m1" class="block text-sm font-medium text-gray-700">Khối lượng (m)</label>
+                    <input type="number" id="m1" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" placeholder="gam">
+                </div>
+                <div>
+                    <label for="M1" class="block text-sm font-medium text-gray-700">Khối lượng mol (M)</label>
+                    <input type="number" id="M1" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" placeholder="g/mol">
+                </div>
+            </div>
+            <button onclick="calculate(1)" class="mt-6 w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-lg shadow-md transition-transform transform hover:scale-105">Tính</button>
+            <div id="result1" class="result-box mt-4" style="display: none;"></div>
+        </div>
+
+        <!-- Công thức 2 -->
+        <div class="calculator-card">
+            <h2 class="text-xl font-semibold text-gray-800 mb-2">2. Tính theo thể tích chất khí (đkc)</h2>
+            <div class="formula-display" id="formula2"></div>
+            <div>
+                <label for="V2" class="block text-sm font-medium text-gray-700">Thể tích khí (V)</label>
+                <input type="number" id="V2" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" placeholder="lít">
+            </div>
+            <button onclick="calculate(2)" class="mt-6 w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-lg shadow-md transition-transform transform hover:scale-105">Tính</button>
+            <div id="result2" class="result-box mt-4" style="display: none;"></div>
+        </div>
+
+        <!-- Công thức 3 -->
+        <div class="calculator-card">
+            <h2 class="text-xl font-semibold text-gray-800 mb-2">3. Tính theo nồng độ mol</h2>
+            <div class="formula-display" id="formula3"></div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                    <label for="CM3" class="block text-sm font-medium text-gray-700">Nồng độ mol (Cₘ)</label>
+                    <input type="number" id="CM3" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" placeholder="mol/l">
+                </div>
+                <div>
+                    <label for="Vdd3" class="block text-sm font-medium text-gray-700">Thể tích dung dịch (Vdd)</label>
+                    <input type="number" id="Vdd3" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" placeholder="lít">
+                </div>
+            </div>
+            <button onclick="calculate(3)" class="mt-6 w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-lg shadow-md transition-transform transform hover:scale-105">Tính</button>
+            <div id="result3" class="result-box mt-4" style="display: none;"></div>
+        </div>
+
+        <!-- Công thức 4 -->
+        <div class="calculator-card">
+            <h2 class="text-xl font-semibold text-gray-800 mb-2">4. Tính từ nồng độ C%</h2>
+            <div class="formula-display" id="formula4"></div>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div>
+                    <label for="mdd4" class="block text-sm font-medium text-gray-700">Khối lượng dd (mdd)</label>
+                    <input type="number" id="mdd4" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm" placeholder="gam">
+                </div>
+                <div>
+                    <label for="C4" class="block text-sm font-medium text-gray-700">Nồng độ (C%)</label>
+                    <input type="number" id="C4" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm" placeholder="%">
+                </div>
+                 <div>
+                    <label for="M4" class="block text-sm font-medium text-gray-700">Khối lượng mol (M)</label>
+                    <input type="number" id="M4" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm" placeholder="g/mol">
+                </div>
+            </div>
+            <button onclick="calculate(4)" class="mt-6 w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-lg shadow-md transition-transform transform hover:scale-105">Tính</button>
+            <div id="result4" class="result-box mt-4" style="display: none;"></div>
+        </div>
+        
+        <!-- Công thức 5 -->
+        <div class="calculator-card">
+            <h2 class="text-xl font-semibold text-gray-800 mb-2">5. Tính từ C%, thể tích và khối lượng riêng</h2>
+            <div class="formula-display" id="formula5"></div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div>
+                    <label for="V5" class="block text-sm font-medium text-gray-700">Thể tích (V)</label>
+                    <input type="number" id="V5" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm" placeholder="ml">
+                </div>
+                <div>
+                    <label for="D5" class="block text-sm font-medium text-gray-700">Khối lượng riêng (D)</label>
+                    <input type="number" id="D5" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm" placeholder="g/ml">
+                </div>
+                 <div>
+                    <label for="C5" class="block text-sm font-medium text-gray-700">Nồng độ (C%)</label>
+                    <input type="number" id="C5" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm" placeholder="%">
+                </div>
+                 <div>
+                    <label for="M5" class="block text-sm font-medium text-gray-700">Khối lượng mol (M)</label>
+                    <input type="number" id="M5" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm" placeholder="g/mol">
+                </div>
+            </div>
+            <button onclick="calculate(5)" class="mt-6 w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-lg shadow-md transition-transform transform hover:scale-105">Tính</button>
+            <div id="result5" class="result-box mt-4" style="display: none;"></div>
+        </div>
+
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Render các công thức toán học
+            katex.render("n = \\frac{m}{M}", document.getElementById('formula1'));
+            katex.render("n = \\frac{V}{24.79}", document.getElementById('formula2'));
+            katex.render("n = C_M \\cdot V_{dd}", document.getElementById('formula3'));
+            katex.render("n = \\frac{m_{dd} \\cdot C\\%}{100\\% \\cdot M}", document.getElementById('formula4'));
+            katex.render("n = \\frac{V \\cdot D \\cdot C\\%}{100\\% \\cdot M}", document.getElementById('formula5'));
+        });
+
+        function calculate(formulaNumber) {
+            let result = 0;
+            let resultText = '';
+            const resultDiv = document.getElementById(`result${formulaNumber}`);
+            
+            try {
+                switch(formulaNumber) {
+                    case 1:
+                        const m1 = parseFloat(document.getElementById('m1').value);
+                        const M1 = parseFloat(document.getElementById('M1').value);
+                        if (isNaN(m1) || isNaN(M1) || M1 === 0) throw new Error("Vui lòng nhập giá trị hợp lệ.");
+                        result = m1 / M1;
+                        break;
+                    case 2:
+                        const V2 = parseFloat(document.getElementById('V2').value);
+                        if (isNaN(V2)) throw new Error("Vui lòng nhập giá trị hợp lệ.");
+                        result = V2 / 24.79;
+                        break;
+                    case 3:
+                        const CM3 = parseFloat(document.getElementById('CM3').value);
+                        const Vdd3 = parseFloat(document.getElementById('Vdd3').value);
+                        if (isNaN(CM3) || isNaN(Vdd3)) throw new Error("Vui lòng nhập giá trị hợp lệ.");
+                        result = CM3 * Vdd3;
+                        break;
+                    case 4:
+                        const mdd4 = parseFloat(document.getElementById('mdd4').value);
+                        const C4 = parseFloat(document.getElementById('C4').value);
+                        const M4 = parseFloat(document.getElementById('M4').value);
+                        if (isNaN(mdd4) || isNaN(C4) || isNaN(M4) || M4 === 0) throw new Error("Vui lòng nhập giá trị hợp lệ.");
+                        result = (mdd4 * C4) / (100 * M4);
+                        break;
+                    case 5:
+                        const V5 = parseFloat(document.getElementById('V5').value);
+                        const D5 = parseFloat(document.getElementById('D5').value);
+                        const C5 = parseFloat(document.getElementById('C5').value);
+                        const M5 = parseFloat(document.getElementById('M5').value);
+                        if (isNaN(V5) || isNaN(D5) || isNaN(C5) || isNaN(M5) || M5 === 0) throw new Error("Vui lòng nhập giá trị hợp lệ.");
+                        result = (V5 * D5 * C5) / (100 * M5);
+                        break;
+                }
+                
+                // Làm tròn kết quả để hiển thị đẹp hơn
+                resultText = `Kết quả: n = ${result.toLocaleString(undefined, { maximumFractionDigits: 5 })} mol`;
+            } catch (error) {
+                resultText = `<span class="text-red-600">${error.message}</span>`;
+            }
+            
+            resultDiv.innerHTML = resultText;
+            resultDiv.style.display = 'block';
+        }
+    </script>
+
+</body>
+</html>
