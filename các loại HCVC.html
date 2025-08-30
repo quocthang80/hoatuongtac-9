@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài Tập Ghép Công Thức Hóa Học</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .draggable {
+            cursor: grab;
+            transition: all 0.2s ease;
+        }
+        .draggable:active {
+            cursor: grabbing;
+            transform: scale(1.05);
+        }
+        .drop-zone {
+            min-height: 40px;
+            border: 2px dashed #cbd5e1;
+            transition: all 0.2s ease;
+        }
+        .drop-zone.drag-over {
+            border-color: #3b82f6;
+            background-color: #eff6ff;
+        }
+        .drop-zone.filled {
+            border-color: #10b981;
+            background-color: #f0fdf4;
+        }
+        .element-box {
+            min-width: 50px;
+            text-align: center;
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+        .correct-answer {
+            animation: bounce 0.6s ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen p-4">
+    <div class="max-w-6xl mx-auto">
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-indigo-800 mb-2">🧪 Bài Tập Ghép Công Thức Hóa Học</h1>
+            <p class="text-lg text-gray-600">Kéo thả các nguyên tố để tạo thành công thức hóa học đúng</p>
+            <div class="mt-4 flex justify-center gap-4">
+                <div class="bg-white px-4 py-2 rounded-lg shadow">
+                    <span class="text-sm font-medium text-gray-600">Điểm: </span>
+                    <span id="score" class="text-lg font-bold text-green-600">0</span>
+                </div>
+                <div class="bg-white px-4 py-2 rounded-lg shadow">
+                    <span class="text-sm font-medium text-gray-600">Hoàn thành: </span>
+                    <span id="completed" class="text-lg font-bold text-blue-600">0/18</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Elements Bank -->
+        <div class="bg-white rounded-xl shadow-lg p-4 mb-6">
+            <h2 class="text-xl font-bold text-gray-800 mb-3">🔬 Ngân Hàng Nguyên Tố</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                <!-- Kim loại -->
+                <div class="bg-red-50 p-3 rounded-lg">
+                    <h3 class="font-bold text-red-700 mb-2 text-sm">Kim loại</h3>
+                    <div class="flex flex-wrap gap-1">
+                        <div class="draggable element-box bg-red-200 text-red-800 px-2 py-1 rounded font-bold text-sm" data-element="Na" data-valence="1">Na</div>
+                        <div class="draggable element-box bg-red-200 text-red-800 px-2 py-1 rounded font-bold text-sm" data-element="Ca" data-valence="2">Ca</div>
+                        <div class="draggable element-box bg-red-200 text-red-800 px-2 py-1 rounded font-bold text-sm" data-element="Al" data-valence="3">Al</div>
+                        <div class="draggable element-box bg-red-200 text-red-800 px-2 py-1 rounded font-bold text-sm" data-element="Fe" data-valence="2">Fe</div>
+                        <div class="draggable element-box bg-red-200 text-red-800 px-2 py-1 rounded font-bold text-sm" data-element="Mg" data-valence="2">Mg</div>
+                    </div>
+                </div>
+
+                <!-- Phi kim -->
+                <div class="bg-blue-50 p-3 rounded-lg">
+                    <h3 class="font-bold text-blue-700 mb-2 text-sm">Phi kim</h3>
+                    <div class="flex flex-wrap gap-1">
+                        <div class="draggable element-box bg-blue-200 text-blue-800 px-2 py-1 rounded font-bold text-sm" data-element="O" data-valence="2">O</div>
+                        <div class="draggable element-box bg-blue-200 text-blue-800 px-2 py-1 rounded font-bold text-sm" data-element="Cl" data-valence="1">Cl</div>
+                        <div class="draggable element-box bg-blue-200 text-blue-800 px-2 py-1 rounded font-bold text-sm" data-element="S" data-valence="2">S</div>
+                        <div class="draggable element-box bg-blue-200 text-blue-800 px-2 py-1 rounded font-bold text-sm" data-element="N" data-valence="3">N</div>
+                        <div class="draggable element-box bg-blue-200 text-blue-800 px-2 py-1 rounded font-bold text-sm" data-element="C" data-valence="4">C</div>
+                    </div>
+                </div>
+
+                <!-- Gốc acid -->
+                <div class="bg-green-50 p-3 rounded-lg">
+                    <h3 class="font-bold text-green-700 mb-2 text-sm">Gốc acid</h3>
+                    <div class="flex flex-wrap gap-1">
+                        <div class="draggable element-box bg-green-200 text-green-800 px-2 py-1 rounded font-bold text-sm" data-element="SO₄" data-valence="2">SO₄</div>
+                        <div class="draggable element-box bg-green-200 text-green-800 px-2 py-1 rounded font-bold text-sm" data-element="NO₃" data-valence="1">NO₃</div>
+                        <div class="draggable element-box bg-green-200 text-green-800 px-2 py-1 rounded font-bold text-sm" data-element="CO₃" data-valence="2">CO₃</div>
+                        <div class="draggable element-box bg-green-200 text-green-800 px-2 py-1 rounded font-bold text-sm" data-element="PO₄" data-valence="3">PO₄</div>
+                    </div>
+                </div>
+
+                <!-- Nhóm OH và H -->
+                <div class="bg-purple-50 p-3 rounded-lg">
+                    <h3 class="font-bold text-purple-700 mb-2 text-sm">Nhóm khác</h3>
+                    <div class="flex flex-wrap gap-1">
+                        <div class="draggable element-box bg-purple-200 text-purple-800 px-2 py-1 rounded font-bold text-sm" data-element="OH" data-valence="1">OH</div>
+                        <div class="draggable element-box bg-purple-200 text-purple-800 px-2 py-1 rounded font-bold text-sm" data-element="H" data-valence="1">H</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Exercise Area -->
+        <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-4">
+            <!-- Oxide Kim loại -->
+            <div class="bg-white rounded-xl shadow-lg p-4">
+                <h3 class="text-lg font-bold text-orange-600 mb-3">🔥 Oxide Kim loại</h3>
+                <div class="space-y-3">
+                    <div class="exercise-item" data-type="oxide" data-answer="Na₂O">
+                        <p class="text-xs text-gray-600 mb-1">Natri oxide:</p>
+                        <div class="flex items-center gap-1">
+                            <div class="drop-zone rounded-lg p-2 flex-1 text-sm" data-position="1"></div>
+                            <div class="drop-zone rounded-lg p-2 flex-1 text-sm" data-position="2"></div>
+                        </div>
+                    </div>
+                    <div class="exercise-item" data-type="oxide" data-answer="CaO">
+                        <p class="text-xs text-gray-600 mb-1">Canxi oxide:</p>
+                        <div class="flex items-center gap-1">
+                            <div class="drop-zone rounded-lg p-2 flex-1 text-sm" data-position="1"></div>
+                            <div class="drop-zone rounded-lg p-2 flex-1 text-sm" data-position="2"></div>
+                        </div>
+                    </div>
+                    <div class="exercise-item" data-type="oxide" data-answer="Al₂O₃">
+                        <p class="text-xs text-gray-600 mb-1">Nhôm oxide:</p>
+                        <div class="flex items-center gap-1">
+                            <div class="drop-zone rounded-lg p-2 flex-1 text-sm" data-position="1"></div>
+                            <div class="drop-zone rounded-lg p-2 flex-1 text-sm" data-position="2"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Oxide Phi kim -->
+            <div class="bg-white rounded-xl shadow-lg p-4">
+                <h3 class="text-lg font-bold text-yellow-600 mb-3">💨 Oxide Phi kim</h3>
+                <div class="space-y-3">
+                    <div class="exercise-item" data-type="nonmetal-oxide" data-answer="SO₂">
+                        <p class="text-xs text-gray-600 mb-1">Lưu huỳnh dioxide:</p>
+                        <div class="flex items-center gap-1">
+                            <div class="drop-zone rounded-lg p-2 flex-1 text-sm" data-position="1"></div>
+                            <div class="drop-zone rounded-lg p-2 flex-1 text-sm" data-position="2"></div>
+                        </div>
+                    </div>
+                    <div class="exercise-item" data-type="nonmetal-oxide" data-answer="CO₂">
+                        <p class="text-xs text-gray-600 mb-1">Carbon dioxide:</p>
+                        <div class="flex items-center gap-1">
+                            <div class="drop-zone rounded-lg p-2 flex-1 text-sm" data-position="1"></div>
+                            <div class="drop-zone rounded-lg p-2 flex-1 text-sm" data-position="2"></div>
+                        </div>
+                    </div>
+                    <div class="exercise-item" data-type="nonmetal-oxide" data-answer="N₂O₅">
+                        <p class="text-xs text-gray-600 mb-1">Nitơ pentoxide:</p>
+                        <div class="flex items-center gap-1">
+                            <div class="drop-zone rounded-lg p-2 flex-1 text-sm" data-position="1"></div>
+                            <div class="drop-zone rounded-lg p-2 flex-1 text-sm" data-position="2"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Acid -->
+            <div class="bg-white rounded-xl shadow-lg p-4">
+                <h3 class="text-lg font-bold text-red-600 mb-3">⚡ Acid</h3>
+                <div class="space-y-3">
+                    <div class="exercise-item" data-type="acid" data-answer="HCl">
+                        <p class="text-xs text-gray-600 mb-1">Acid clohydric:</p>
+                        <div class="flex items-center gap-1">
+                            <div class="drop-zone rounded-lg p-2 flex-1 text-sm" data-position="1"></div>
+                            <div class="drop-zone rounded-lg p-2 flex-1 text-sm" data-position="2"></div>
+                        </div>
+                    </div>
+                    <div class="exercise-item" data-type="acid" data-answer="H₂SO₄">
+                        <p class="text-xs text-gray-600 mb-1">Acid sulfuric:</p>
+                        <div class="flex items-center gap-1">
+                            <div class="drop-zone rounded-lg p-2 flex-1 text-sm" data-position="1"></div>
+                            <div class="drop-zone rounded-lg p-2 flex-1 text-sm" data-position="2"></div>
+                        </div>
+                    </div>
+                    <div class="exercise-item" data-type="acid" data-answer="HNO₃">
+                        <p class="text-xs text-gray-600 mb-1">Acid nitric:</p>
+                        <div class="flex items-center gap-1">
+                            <div class="drop-zone rounded-lg p-2 flex-1 text-sm" data-position="1"></div>
+                            <div class="drop-zone rounded-lg p-2 flex-1 text-sm" data-position="2"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Base -->
+            <div class="bg-white rounded-xl shadow-lg p-4">
+                <h3 class="text-lg font-bold text-blue-600 mb-3">⚗️ Base</h3>
+                <div class="space-y-3">
+                    <div class="exercise-item" data-type="base" data-answer="NaOH">
+                        <p class="text-xs text-gray-600 mb-1">Natri hydroxide:</p>
+                        <div class="flex items-center gap-1">
+                            <div class="drop-zone rounded-lg p-2 flex-1 text-sm" data-position="1"></div>
+                            <div class="drop-zone rounded-lg p-2 flex-1 text-sm" data-position="2"></div>
+                        </div>
+                    </div>
+                    <div class="exercise-item" data-type="base" data-answer="Ca(OH)₂">
+                        <p class="text-xs text-gray-600 mb-1">Canxi hydroxide:</p>
+                        <div class="flex items-center gap-1">
+                            <div class="drop-zone rounded-lg p-2 flex-1 text-sm" data-position="1"></div>
+                            <div class="drop-zone rounded-lg p-2 flex-1 text-sm" data-position="2"></div>
+                        </div>
+                    </div>
+                    <div class="exercise-item" data-type="base" data-answer="Al(OH)₃">
+                        <p class="text-xs text-gray-600 mb-1">Nhôm hydroxide:</p>
+                        <div class="flex items-center gap-1">
+                            <div class="drop-zone rounded-lg p-2 flex-1 text-sm" data-position="1"></div>
+                            <div class="drop-zone rounded-lg p-2 flex-1 text-sm" data-position="2"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Salt -->
+            <div class="bg-white rounded-xl shadow-lg p-4">
+                <h3 class="text-lg font-bold text-green-600 mb-3">🧂 Muối</h3>
+                <div class="space-y-3">
+                    <div class="exercise-item" data-type="salt" data-answer="Na₂SO₄">
+                        <p class="text-xs text-gray-600 mb-1">Natri sulfate:</p>
+                        <div class="flex items-center gap-1">
+                            <div class="drop-zone rounded-lg p-2 flex-1 text-sm" data-position="1"></div>
+                            <div class="drop-zone rounded-lg p-2 flex-1 text-sm" data-position="2"></div>
+                        </div>
+                    </div>
+                    <div class="exercise-item" data-type="salt" data-answer="Ca(NO₃)₂">
+                        <p class="text-xs text-gray-600 mb-1">Canxi nitrate:</p>
+                        <div class="flex items-center gap-1">
+                            <div class="drop-zone rounded-lg p-2 flex-1 text-sm" data-position="1"></div>
+                            <div class="drop-zone rounded-lg p-2 flex-1 text-sm" data-position="2"></div>
+                        </div>
+                    </div>
+                    <div class="exercise-item" data-type="salt" data-answer="AlPO₄">
+                        <p class="text-xs text-gray-600 mb-1">Nhôm phosphate:</p>
+                        <div class="flex items-center gap-1">
+                            <div class="drop-zone rounded-lg p-2 flex-1 text-sm" data-position="1"></div>
+                            <div class="drop-zone rounded-lg p-2 flex-1 text-sm" data-position="2"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reset Button -->
+        <div class="text-center mt-8">
+            <button id="resetBtn" class="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-3 rounded-lg font-bold text-lg shadow-lg transition-colors">
+                🔄 Làm lại
+            </button>
+        </div>
+    </div>
+
+    <script>
+        let score = 0;
+        let completed = 0;
+        const totalExercises = 18;
+
+        // Correct answers mapping
+        const correctAnswers = {
+            'Na₂O': ['Na', 'O'],
+            'CaO': ['Ca', 'O'],
+            'Al₂O₃': ['Al', 'O'],
+            'SO₂': ['S', 'O'],
+            'CO₂': ['C', 'O'],
+            'N₂O₅': ['N', 'O'],
+            'HCl': ['H', 'Cl'],
+            'H₂SO₄': ['H', 'SO₄'],
+            'HNO₃': ['H', 'NO₃'],
+            'NaOH': ['Na', 'OH'],
+            'Ca(OH)₂': ['Ca', 'OH'],
+            'Al(OH)₃': ['Al', 'OH'],
+            'Na₂SO₄': ['Na', 'SO₄'],
+            'Ca(NO₃)₂': ['Ca', 'NO₃'],
+            'AlPO₄': ['Al', 'PO₄']
+        };
+
+        // Initialize drag and drop
+        function initDragAndDrop() {
+            const draggables = document.querySelectorAll('.draggable');
+            const dropZones = document.querySelectorAll('.drop-zone');
+
+            draggables.forEach(draggable => {
+                draggable.addEventListener('dragstart', handleDragStart);
+                draggable.addEventListener('dragend', handleDragEnd);
+                draggable.setAttribute('draggable', true);
+            });
+
+            dropZones.forEach(zone => {
+                zone.addEventListener('dragover', handleDragOver);
+                zone.addEventListener('drop', handleDrop);
+                zone.addEventListener('dragleave', handleDragLeave);
+            });
+        }
+
+        let draggedElement = null;
+
+        function handleDragStart(e) {
+            draggedElement = e.target;
+            e.target.style.opacity = '0.5';
+        }
+
+        function handleDragEnd(e) {
+            e.target.style.opacity = '1';
+        }
+
+        function handleDragOver(e) {
+            e.preventDefault();
+            e.target.classList.add('drag-over');
+        }
+
+        function handleDragLeave(e) {
+            e.target.classList.remove('drag-over');
+        }
+
+        function handleDrop(e) {
+            e.preventDefault();
+            e.target.classList.remove('drag-over');
+
+            if (draggedElement && e.target.classList.contains('drop-zone')) {
+                // Clear existing content
+                e.target.innerHTML = '';
+                
+                // Clone the dragged element
+                const clone = draggedElement.cloneNode(true);
+                clone.classList.remove('draggable');
+                clone.classList.add('dropped-element');
+                clone.setAttribute('draggable', false);
+                
+                // Add remove functionality
+                clone.addEventListener('click', function() {
+                    e.target.innerHTML = '';
+                    e.target.classList.remove('filled');
+                    checkAnswer(e.target.closest('.exercise-item'));
+                });
+
+                e.target.appendChild(clone);
+                e.target.classList.add('filled');
+
+                // Check answer
+                checkAnswer(e.target.closest('.exercise-item'));
+            }
+        }
+
+        function checkAnswer(exerciseItem) {
+            const answer = exerciseItem.dataset.answer;
+            const dropZones = exerciseItem.querySelectorAll('.drop-zone');
+            const elements = [];
+
+            dropZones.forEach(zone => {
+                const element = zone.querySelector('.dropped-element');
+                if (element) {
+                    elements.push(element.dataset.element);
+                }
+            });
+
+            if (elements.length === 2) {
+                const correctElements = correctAnswers[answer];
+                const isCorrect = arraysEqual(elements, correctElements);
+
+                if (isCorrect) {
+                    exerciseItem.classList.add('correct-answer');
+                    exerciseItem.style.backgroundColor = '#f0fdf4';
+                    exerciseItem.style.border = '2px solid #10b981';
+                    
+                    if (!exerciseItem.dataset.completed) {
+                        score += 10;
+                        completed++;
+                        exerciseItem.dataset.completed = 'true';
+                        updateScore();
+                        
+                        // Show formula
+                        setTimeout(() => {
+                            showFormula(exerciseItem, answer);
+                        }, 500);
+                    }
+                } else {
+                    exerciseItem.style.backgroundColor = '#fef2f2';
+                    exerciseItem.style.border = '2px solid #ef4444';
+                    setTimeout(() => {
+                        exerciseItem.style.backgroundColor = '';
+                        exerciseItem.style.border = '';
+                    }, 1000);
+                }
+            } else {
+                exerciseItem.style.backgroundColor = '';
+                exerciseItem.style.border = '';
+                exerciseItem.classList.remove('correct-answer');
+            }
+        }
+
+        function showFormula(exerciseItem, formula) {
+            const formulaDiv = document.createElement('div');
+            formulaDiv.className = 'mt-2 text-center text-lg font-bold text-green-600';
+            formulaDiv.textContent = `✓ ${formula}`;
+            exerciseItem.appendChild(formulaDiv);
+        }
+
+        function arraysEqual(a, b) {
+            return a.length === b.length && a.every((val, i) => val === b[i]);
+        }
+
+        function updateScore() {
+            document.getElementById('score').textContent = score;
+            document.getElementById('completed').textContent = `${completed}/${totalExercises}`;
+            
+            if (completed === totalExercises) {
+                setTimeout(() => {
+                    alert('🎉 Chúc mừng! Bạn đã hoàn thành tất cả bài tập!');
+                }, 500);
+            }
+        }
+
+        function resetGame() {
+            score = 0;
+            completed = 0;
+            updateScore();
+
+            // Clear all drop zones
+            document.querySelectorAll('.drop-zone').forEach(zone => {
+                zone.innerHTML = '';
+                zone.classList.remove('filled');
+            });
+
+            // Reset exercise items
+            document.querySelectorAll('.exercise-item').forEach(item => {
+                item.style.backgroundColor = '';
+                item.style.border = '';
+                item.classList.remove('correct-answer');
+                item.removeAttribute('data-completed');
+                
+                // Remove formula displays
+                const formula = item.querySelector('.text-green-600');
+                if (formula) {
+                    formula.remove();
+                }
+            });
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            initDragAndDrop();
+            document.getElementById('resetBtn').addEventListener('click', resetGame);
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9749191cb2da5f90',t:'MTc1NjEwNDAyNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
