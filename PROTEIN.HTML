@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chuyên đề: Protein</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.7;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #343a40;
+        }
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 25px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+        h1, h2, h3 {
+            color: #0056b3;
+        }
+        h1 {
+            text-align: center;
+            color: #dc3545;
+            border-bottom: 3px solid #dc3545;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+        h2 {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 18px;
+            border-radius: 8px;
+            margin-top: 35px;
+        }
+        h3 {
+            color: #17a2b8;
+            border-left: 4px solid #17a2b8;
+            padding-left: 12px;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        ul {
+            list-style-type: '✔ ';
+            padding-left: 25px;
+        }
+        .exercise-block {
+            margin-bottom: 25px;
+            padding: 20px;
+            border: 1px solid #dee2e6;
+            border-radius: 10px;
+            background-color: #fdfdfd;
+        }
+        .exercise-block p.question-title {
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-top: 0;
+        }
+        .options label {
+            display: block;
+            margin: 8px 0;
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s, border-color 0.2s;
+            border: 1px solid #ced4da;
+        }
+        .options label:hover {
+            background-color: #e9ecef;
+            border-color: #adb5bd;
+        }
+        .options input[type="radio"] {
+            margin-right: 12px;
+        }
+        textarea.user-answer {
+            width: calc(100% - 22px);
+            min-height: 80px;
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 1em;
+            resize: vertical;
+        }
+        .solution, .answer {
+            display: none;
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #e2f0d9;
+            border-left: 5px solid #28a745;
+            border-radius: 5px;
+        }
+        .btn {
+            background-color: #6c757d;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: #5a6268;
+        }
+        .button-container {
+            text-align: center;
+            margin-top: 25px;
+        }
+        .check-all-btn {
+            background-color: #28a745;
+        }
+        .check-all-btn:hover {
+            background-color: #218838;
+        }
+        .correct {
+            background-color: #d4edda !important;
+            border-color: #c3e6cb !important;
+            color: #155724;
+        }
+        .incorrect {
+            background-color: #f8d7da !important;
+            border-color: #f5c6cb !important;
+            color: #721c24;
+        }
+        .feedback {
+            font-weight: bold;
+            margin-left: 15px;
+        }
+        .chemical-formula {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #e9ecef;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>CHUYÊN ĐỀ 4: PROTEIN</h1>
+
+        <div class="section" id="ly-thuyet">
+            <h2>A. KIẾN THỨC CẦN NHỚ</h2>
+            <h3>I. Khái niệm, cấu tạo</h3>
+            <ul>
+                <li><strong>Protein</strong> là những hợp chất hữu cơ phức tạp, có phân tử khối rất lớn (từ vài chục nghìn đến vài triệu amu).</li>
+                <li>Về cấu tạo, protein được tạo thành từ nhiều đơn vị nhỏ là các <strong>amino acid</strong>, liên kết với nhau bằng <strong>liên kết peptide</strong>.</li>
+            </ul>
+
+            <h3>II. Tính chất hóa học</h3>
+            <ul>
+                <li><strong>Phản ứng thủy phân:</strong> Protein bị thủy phân (cắt nhỏ) thành các amino acid khi có enzyme, hoặc khi đun nóng với acid/base.</li>
+                <li><strong>Sự đông tụ:</strong> Nhiều protein bị vón cục, kết tủa (đông tụ) khi đun nóng hoặc khi gặp môi trường acid, base. Ví dụ: lòng trắng trứng đông lại khi luộc, riêu cua nổi lên khi nấu.</li>
+                <li><strong>Sự phân hủy bởi nhiệt:</strong> Khi đốt cháy protein (tóc, lông gà, tơ tằm) sẽ có mùi khét đặc trưng.</li>
+            </ul>
+
+            <h3>III. Vai trò và ứng dụng</h3>
+            <ul>
+                <li><strong>Vai trò cấu trúc:</strong> Cấu tạo nên cơ bắp, da, tóc,...</li>
+                <li><strong>Vai trò xúc tác:</strong> Các enzyme là protein giúp các phản ứng trong cơ thể xảy ra nhanh hơn.</li>
+                <li><strong>Vai trò vận chuyển:</strong> Hemoglobin trong máu vận chuyển oxygen.</li>
+                <li><strong>Vai trò dinh dưỡng:</strong> Là nguồn thực phẩm quan trọng cung cấp amino acid cho cơ thể.</li>
+            </ul>
+        </div>
+
+        <div class="section" id="bai-tap">
+            <h2>B. BÀI TẬP VẬN DỤNG</h2>
+
+            <h3>I. Tự luận tính toán (Có hướng dẫn giải)</h3>
+            <div class="exercise-block">
+                <p class="question-title"><b>Bài toán:</b> Amino acid X có trong protein tự nhiên. Khi phân tích thành phần của X, ta có: 40,82% C; 6,12% H; 43,54% O về khối lượng, còn lại là nitrogen. Biết khối lượng phân tử của X là 147 amu. Hãy xác định công thức phân tử của X.
+                <br><i>(Cho: C=12, H=1, O=16, N=14)</i></p>
+                <button class="btn" onclick="toggleElementVisibility(this.nextElementSibling)">Xem hướng dẫn giải</button>
+                <div class="solution">
+                    <p><b>Hướng dẫn giải:</b></p>
+                    <p><b>Bước 1: Tìm thành phần % của Nitrogen.</b></p>
+                    <ul>
+                        <li>Tổng % các nguyên tố là 100%.</li>
+                        <li>%N = 100% - (%C + %H + %O) = 100% - (40,82% + 6,12% + 43,54%) = 9,52%.</li>
+                    </ul>
+                    <p><b>Bước 2: Đặt công thức tổng quát và lập tỉ lệ.</b></p>
+                    <ul>
+                        <li>Gọi công thức phân tử của X là <span class="chemical-formula">CₓHᵧO₂Nₜ</span>.</li>
+                        <li>Ta có tỉ lệ: <span class="chemical-formula">x : y : z : t = (%C/12) : (%H/1) : (%O/16) : (%N/14)</span></li>
+                        <li>Thay số: <span class="chemical-formula">x : y : z : t = (40,82/12) : (6,12/1) : (43,54/16) : (9,52/14)</span></li>
+                        <li><span class="chemical-formula">x : y : z : t ≈ 3,40 : 6,12 : 2,72 : 0,68</span></li>
+                    </ul>
+                    <p><b>Bước 3: Tìm tỉ lệ số nguyên đơn giản nhất.</b></p>
+                    <ul>
+                        <li>Chia tất cả các số trong tỉ lệ cho số nhỏ nhất (0,68):</li>
+                        <li><span class="chemical-formula">x : y : z : t ≈ (3,40/0,68) : (6,12/0,68) : (2,72/0,68) : (0,68/0,68)</span></li>
+                        <li><span class="chemical-formula">x : y : z : t ≈ 5 : 9 : 4 : 1</span></li>
+                        <li>Vậy, công thức đơn giản nhất của X là <span class="chemical-formula">(C₅H₉O₄N)ₙ</span>.</li>
+                    </ul>
+                    <p><b>Bước 4: Tìm công thức phân tử.</b></p>
+                    <ul>
+                        <li>Khối lượng của công thức đơn giản nhất: (12×5 + 1×9 + 16×4 + 14×1) = 147 amu.</li>
+                        <li>Theo đề bài, khối lượng phân tử của X cũng là 147 amu.</li>
+                        <li>Do đó, 147n = 147 => n = 1.</li>
+                    </ul>
+                    <p><b>Kết luận:</b> Công thức phân tử của X là <span class="chemical-formula">C₅H₉O₄N</span>.</p>
+                </div>
+            </div>
+
+            <h3>II. Tự luận trả lời câu hỏi</h3>
+            <div class="exercise-block">
+                <p class="question-title">Câu 1. Vì sao bác sĩ dinh dưỡng khuyến cáo không nên thêm chanh (tính acid) vào sữa bò hoặc sữa đậu nành khi uống?</p>
+                <button class="btn" onclick="toggleElementVisibility(this.nextElementSibling)">Xem Đáp án</button>
+                <div class="answer">
+                    <strong>Đáp án:</strong><br>
+                    Vì sữa chứa nhiều protein. Chanh có tính acid, khi thêm vào sữa sẽ gây ra hiện tượng <strong>đông tụ protein</strong>, làm sữa bị vón cục, gây khó tiêu và làm giảm giá trị dinh dưỡng.
+                </div>
+            </div>
+            <div class="exercise-block">
+                <p class="question-title">Câu 2. Làm thế nào để phân biệt tơ tằm (nguồn gốc protein) và tơ nylon (tơ tổng hợp)?</p>
+                <button class="btn" onclick="toggleElementVisibility(this.nextElementSibling)">Xem Đáp án</button>
+                <div class="answer">
+                    <strong>Đáp án:</strong><br>
+                    Cách đơn giản nhất là <strong>đốt một mẩu nhỏ</strong>. Tơ tằm khi cháy sẽ có <strong>mùi khét</strong> đặc trưng của protein (giống mùi tóc cháy). Tơ nylon khi cháy sẽ vón cục lại và không có mùi khét.
+                </div>
+            </div>
+             <div class="exercise-block">
+                <p class="question-title">Câu 3. Giải thích hiện tượng riêu cua nổi lên thành từng mảng khi nấu canh cua.</p>
+                <button class="btn" onclick="toggleElementVisibility(this.nextElementSibling)">Xem Đáp án</button>
+                <div class="answer">
+                    <strong>Đáp án:</strong><br>
+                    Trong thịt cua có chứa nhiều protein hòa tan trong nước. Khi đun nóng, protein này bị <strong>đông tụ bởi nhiệt</strong>, kết lại thành từng mảng rắn và nổi lên trên, tạo thành riêu cua.
+                </div>
+            </div>
+
+            <h3>III. Bài tập trắc nghiệm</h3>
+            <div id="quiz-container">
+                <!-- Multiple Choice -->
+                <div class="exercise-block" data-correct="C">
+                    <p class="question-title">Câu 1. Protein được cấu tạo từ những đơn vị cơ bản nào?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q1" value="A"> A. Glucose.</label>
+                        <label><input type="radio" name="q1" value="B"> B. Chất béo.</label>
+                        <label><input type="radio" name="q1" value="C"> C. Amino acid.</label>
+                        <label><input type="radio" name="q1" value="D"> D. DNA.</label>
+                    </div>
+                </div>
+                <div class="exercise-block" data-correct="B">
+                    <p class="question-title">Câu 2. Hiện tượng nào xảy ra khi cho một ít giấm ăn (acid) vào cốc sữa?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q2" value="A"> A. Sủi bọt khí.</label>
+                        <label><input type="radio" name="q2" value="B"> B. Sữa bị vón cục (đông tụ).</label>
+                        <label><input type="radio" name="q2" value="C"> C. Dung dịch trong suốt.</label>
+                        <label><input type="radio" name="q2" value="D"> D. Không có hiện tượng gì.</label>
+                    </div>
+                </div>
+                <div class="exercise-block" data-correct="D">
+                    <p class="question-title">Câu 3. Khi đun nóng protein trong dung dịch acid, sản phẩm cuối cùng thu được là gì?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q3" value="A"> A. Glucose.</label>
+                        <label><input type="radio" name="q3" value="B"> B. Lipid.</label>
+                        <label><input type="radio" name="q3" value="C"> C. Acid acetic.</label>
+                        <label><input type="radio" name="q3" value="D"> D. Hỗn hợp các amino acid.</label>
+                    </div>
+                </div>
+                 <div class="exercise-block" data-correct="B">
+                    <p class="question-title">Câu 4. Để làm sạch nhớt cá (bản chất là protein), người ta thường dùng cách nào sau đây?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q4" value="A"> A. Rửa bằng nước lạnh nhiều lần.</label>
+                        <label><input type="radio" name="q4" value="B"> B. Dùng giấm ăn hoặc muối để rửa.</label>
+                        <label><input type="radio" name="q4" value="C"> C. Rửa bằng nước đường.</label>
+                        <label><input type="radio" name="q4" value="D"> D. Rửa bằng dầu ăn.</label>
+                    </div>
+                </div>
+            </div>
+            <div class="button-container">
+                <button class="btn check-all-btn" onclick="checkAllMCQ()">Kiểm tra Trắc nghiệm</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleElementVisibility(element) {
+            if (element.style.display === 'block') {
+                element.style.display = 'none';
+                element.previousElementSibling.textContent = 'Xem Đáp án/Hướng dẫn';
+            } else {
+                element.style.display = 'block';
+                element.previousElementSibling.textContent = 'Ẩn Đáp án/Hướng dẫn';
+            }
+        }
+
+        function checkAllMCQ() {
+            const questions = document.querySelectorAll('#quiz-container .exercise-block');
+            questions.forEach((q, index) => {
+                const correctAnswer = q.dataset.correct;
+                const options = q.querySelectorAll('.options label');
+                const selectedRadio = q.querySelector(`input[name="q${index + 1}"]:checked`);
+
+                options.forEach(label => {
+                    label.classList.remove('correct', 'incorrect');
+                    const feedbackSpan = label.querySelector('.feedback');
+                    if (feedbackSpan) feedbackSpan.remove();
+                });
+
+                if (selectedRadio) {
+                    const selectedLabel = selectedRadio.parentElement;
+                    if (selectedRadio.value === correctAnswer) {
+                        selectedLabel.classList.add('correct');
+                    } else {
+                        selectedLabel.classList.add('incorrect');
+                        options.forEach(label => {
+                            if (label.querySelector('input').value === correctAnswer) {
+                                label.innerHTML += ' <span class="feedback">(Đáp án đúng)</span>';
+                            }
+                        });
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>
