@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài Kiểm Tra Hóa Học Lớp 9</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .student-info {
+            padding: 20px 30px;
+            background: #f8f9fa;
+            border-bottom: 2px solid #e9ecef;
+        }
+
+        .student-info h3 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .student-info input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            margin: 8px 0;
+            transition: border-color 0.3s;
+        }
+
+        .student-info input:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+        
+        .student-info .btn {
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .exam-content {
+            padding: 30px;
+        }
+
+        .question-container {
+            display: none;
+            background: #fff;
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #eee;
+            animation: fadeIn 0.5s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .question-container.active {
+            display: block;
+        }
+
+        .question-header {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 15px;
+            padding: 15px;
+            background: linear-gradient(45deg, #f093fb 0%, #f5576c 100%);
+            border-radius: 8px;
+        }
+
+        .question-content {
+            margin-bottom: 20px;
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+
+        .options {
+            margin: 15px 0;
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .option:hover {
+            background-color: #f8f9fa;
+        }
+
+        .option input[type="radio"], .option input[type="checkbox"] {
+            margin-right: 10px;
+            transform: scale(1.2);
+        }
+
+        .option label {
+            cursor: pointer;
+            flex-grow: 1;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-top: 1px solid #eee;
+            margin-top: 20px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .btn-success {
+            background: linear-gradient(45deg, #28a745 0%, #218838 100%);
+            color: white;
+        }
+
+        .progress-bar {
+            height: 6px;
+            background: #e9ecef;
+            border-radius: 3px;
+            margin-bottom: 20px;
+        }
+
+        .progress {
+            height: 100%;
+            background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+            border-radius: 3px;
+            transition: width 0.3s ease;
+        }
+
+        .question-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-bottom: 20px;
+        }
+
+        .question-btn {
+            width: 40px;
+            height: 40px;
+            border: 2px solid #ddd;
+            background: white;
+            border-radius: 50%;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .question-btn.answered {
+            background: #28a745;
+            color: white;
+            border-color: #28a745;
+        }
+
+        .question-btn.current {
+            background: #007bff;
+            color: white;
+            border-color: #007bff;
+            transform: scale(1.1);
+        }
+
+        .results {
+            display: none;
+            text-align: center;
+            padding: 40px;
+            animation: fadeIn 0.5s;
+        }
+        
+        .results h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .score {
+            font-size: 3em;
+            font-weight: bold;
+            color: #28a745;
+            margin-bottom: 20px;
+        }
+
+        .true-false-container {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin: 10px 0;
+            padding: 15px;
+        }
+
+        .true-false-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .true-false-item:last-child {
+            border-bottom: none;
+        }
+
+        .tf-options {
+            display: flex;
+            gap: 20px;
+        }
+
+        .short-answer input[type="text"] {
+            width: 100%;
+            max-width: 300px;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        
+        #timer {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #dc3545;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            .container {
+                margin: 0;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .navigation {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .navigation .btn {
+                width: 100%;
+            }
+
+            .true-false-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🧪 BÀI KIỂM TRA HÓA HỌC</h1>
+            <p>Lớp 9 - Thời gian: 45 phút</p>
+        </div>
+
+        <div id="student-form" class="student-info">
+            <h3>Thông tin học sinh</h3>
+            <input type="text" id="studentName" placeholder="Họ và tên học sinh *" required>
+            <input type="text" id="studentClass" placeholder="Lớp *" required>
+            <input type="email" id="studentEmail" placeholder="Email *" required>
+            <button class="btn btn-primary" onclick="startExam()">Bắt đầu làm bài</button>
+        </div>
+
+        <div id="exam-container" class="exam-content" style="display: none;">
+            <div id="timer">45:00</div>
+            <div class="progress-bar">
+                <div class="progress" id="progress"></div>
+            </div>
+            
+            <div class="question-nav" id="questionNav"></div>
+
+            <div id="questions-wrapper">
+                <!-- PHẦN I: TRẮC NGHIỆM NHIỀU LỰA CHỌN -->
+                <div class="question-container" data-question="1">
+                    <div class="question-header">Câu 1</div>
+                    <div class="question-content">
+                        <p><strong>Kim loại nào sau đây dẫn điện tốt nhất?</strong></p>
+                        <div class="options">
+                            <div class="option"><input type="radio" id="q1a" name="q1" value="A"><label for="q1a">A. Au</label></div>
+                            <div class="option"><input type="radio" id="q1b" name="q1" value="B"><label for="q1b">B. Cu</label></div>
+                            <div class="option"><input type="radio" id="q1c" name="q1" value="C"><label for="q1c">C. Fe</label></div>
+                            <div class="option"><input type="radio" id="q1d" name="q1" value="D"><label for="q1d">D. Ag</label></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="question-container" data-question="2">
+                    <div class="question-header">Câu 2</div>
+                    <div class="question-content">
+                        <p><strong>Kim loại nào sau đây tác dụng với nước thu được dung dịch kiềm?</strong></p>
+                        <div class="options">
+                            <div class="option"><input type="radio" id="q2a" name="q2" value="A"><label for="q2a">A. Al</label></div>
+                            <div class="option"><input type="radio" id="q2b" name="q2" value="B"><label for="q2b">B. K</label></div>
+                            <div class="option"><input type="radio" id="q2c" name="q2" value="C"><label for="q2c">C. Ag</label></div>
+                            <div class="option"><input type="radio" id="q2d" name="q2" value="D"><label for="q2d">D. Fe</label></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="question-container" data-question="3">
+                    <div class="question-header">Câu 3</div>
+                    <div class="question-content">
+                        <p><strong>Kim loại nào sau đây không tan được trong dung dịch HCl?</strong></p>
+                        <div class="options">
+                           <div class="option"><input type="radio" id="q3a" name="q3" value="A"><label for="q3a">A. Al</label></div>
+                           <div class="option"><input type="radio" id="q3b" name="q3" value="B"><label for="q3b">B. Ag</label></div>
+                           <div class="option"><input type="radio" id="q3c" name="q3" value="C"><label for="q3c">C. Zn</label></div>
+                           <div class="option"><input type="radio" id="q3d" name="q3" value="D"><label for="q3d">D. Mg</label></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="question-container" data-question="4">
+                    <div class="question-header">Câu 4</div>
+                    <div class="question-content">
+                        <p><strong>Hai kim loại đều phản ứng với dung dịch Cu(NO₃)₂ giải phóng kim loại Cu là:</strong></p>
+                        <div class="options">
+                           <div class="option"><input type="radio" id="q4a" name="q4" value="A"><label for="q4a">A. Fe và Au</label></div>
+                           <div class="option"><input type="radio" id="q4b" name="q4" value="B"><label for="q4b">B. Al và Ag</label></div>
+                           <div class="option"><input type="radio" id="q4c" name="q4" value="C"><label for="q4c">C. Cr và Hg</label></div>
+                           <div class="option"><input type="radio" id="q4d" name="q4" value="D"><label for="q4d">D. Al và Fe</label></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="question-container" data-question="5">
+                    <div class="question-header">Câu 5</div>
+                    <div class="question-content">
+                        <p><strong>Kim loại nào sau đây khi tác dụng với HCl và tác dụng với Cl₂ cho cùng một loại muối chloride?</strong></p>
+                        <div class="options">
+                           <div class="option"><input type="radio" id="q5a" name="q5" value="A"><label for="q5a">A. Fe</label></div>
+                           <div class="option"><input type="radio" id="q5b" name="q5" value="B"><label for="q5b">B. Ag</label></div>
+                           <div class="option"><input type="radio" id="q5c" name="q5" value="C"><label for="q5c">C. Zn</label></div>
+                           <div class="option"><input type="radio" id="q5d" name="q5" value="D"><label for="q5d">D. Cu</label></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="question-container" data-question="6">
+                    <div class="question-header">Câu 6</div>
+                    <div class="question-content">
+                        <p><strong>Cho dãy các kim loại: Ag, Cu, Al, Mg. Kim loại trong dãy hoạt động hóa học yếu nhất là?</strong></p>
+                        <div class="options">
+                           <div class="option"><input type="radio" id="q6a" name="q6" value="A"><label for="q6a">A. Cu</label></div>
+                           <div class="option"><input type="radio" id="q6b" name="q6" value="B"><label for="q6b">B. Mg</label></div>
+                           <div class="option"><input type="radio" id="q6c" name="q6" value="C"><label for="q6c">C. Al</label></div>
+                           <div class="option"><input type="radio" id="q6d" name="q6" value="D"><label for="q6d">D. Ag</label></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="question-container" data-question="7">
+                    <div class="question-header">Câu 7</div>
+                    <div class="question-content">
+                        <p><strong>Trong công nghiệp, kim loại nào sau đây được điều chế bằng phương pháp nhiệt luyện?</strong></p>
+                        <div class="options">
+                           <div class="option"><input type="radio" id="q7a" name="q7" value="A"><label for="q7a">A. Mg</label></div>
+                           <div class="option"><input type="radio" id="q7b" name="q7" value="B"><label for="q7b">B. Fe</label></div>
+                           <div class="option"><input type="radio" id="q7c" name="q7" value="C"><label for="q7c">C. Na</label></div>
+                           <div class="option"><input type="radio" id="q7d" name="q7" value="D"><label for="q7d">D. Al</label></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="question-container" data-question="8">
+                    <div class="question-header">Câu 8</div>
+                    <div class="question-content">
+                        <p><strong>Tính chất đặc trưng của inox là:</strong></p>
+                        <div class="options">
+                           <div class="option"><input type="radio" id="q8a" name="q8" value="A"><label for="q8a">A. nhẹ và bền</label></div>
+                           <div class="option"><input type="radio" id="q8b" name="q8" value="B"><label for="q8b">B. độ cứng cao</label></div>
+                           <div class="option"><input type="radio" id="q8c" name="q8" value="C"><label for="q8c">C. khó bị gỉ</label></div>
+                           <div class="option"><input type="radio" id="q8d" name="q8" value="D"><label for="q8d">D. dẫn điện tốt</label></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="question-container" data-question="9">
+                    <div class="question-header">Câu 9</div>
+                    <div class="question-content">
+                        <p><strong>Nguyên liệu để sản xuất gang là:</strong></p>
+                        <div class="options">
+                           <div class="option"><input type="radio" id="q9a" name="q9" value="A"><label for="q9a">A. quặng sắt, than cốc, chất tạo xỉ CaCO₃, SiO₂, ...</label></div>
+                           <div class="option"><input type="radio" id="q9b" name="q9" value="B"><label for="q9b">B. quặng nhôm, than cốc, chất tạo xỉ</label></div>
+                           <div class="option"><input type="radio" id="q9c" name="q9" value="C"><label for="q9c">C. gang hoặc sắt thép phế liệu</label></div>
+                           <div class="option"><input type="radio" id="q9d" name="q9" value="D"><label for="q9d">D. quặng kẽm, than cốc, chất tạo xỉ</label></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="question-container" data-question="10">
+                    <div class="question-header">Câu 10</div>
+                    <div class="question-content">
+                        <p><strong>Ứng dụng nào sau đây không phải của kim cương?</strong></p>
+                        <div class="options">
+                           <div class="option"><input type="radio" id="q10a" name="q10" value="A"><label for="q10a">A. Đồ trang sức</label></div>
+                           <div class="option"><input type="radio" id="q10b" name="q10" value="B"><label for="q10b">B. Mũi khoan</label></div>
+                           <div class="option"><input type="radio" id="q10c" name="q10" value="C"><label for="q10c">C. Chất bôi trơn</label></div>
+                           <div class="option"><input type="radio" id="q10d" name="q10" value="D"><label for="q10d">D. dao cắt kính</label></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="question-container" data-question="11">
+                    <div class="question-header">Câu 11</div>
+                    <div class="question-content">
+                        <p><strong>Tính chất vật lí nào sau đây không phải của kim loại?</strong></p>
+                        <div class="options">
+                           <div class="option"><input type="radio" id="q11a" name="q11" value="A"><label for="q11a">A. Dẫn điện, dẫn nhiệt tốt</label></div>
+                           <div class="option"><input type="radio" id="q11b" name="q11" value="B"><label for="q11b">B. Nhiệt độ nóng chảy cao</label></div>
+                           <div class="option"><input type="radio" id="q11c" name="q11" value="C"><label for="q11c">C. Khối lượng riêng nhỏ</label></div>
+                           <div class="option"><input type="radio" id="q11d" name="q11" value="D"><label for="q11d">D. Hầu hết ở trạng thái rắn điều kiện thường</label></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="question-container" data-question="12">
+                    <div class="question-header">Câu 12</div>
+                    <div class="question-content">
+                        <p><strong>Cho phản ứng: 2Mg + O₂ → 2MgO. Trong phản ứng trên:</strong></p>
+                        <div class="options">
+                           <div class="option"><input type="radio" id="q12a" name="q12" value="A"><label for="q12a">A. Mg là chất nhận electron</label></div>
+                           <div class="option"><input type="radio" id="q12b" name="q12" value="B"><label for="q12b">B. O₂ là chất nhường electron</label></div>
+                           <div class="option"><input type="radio" id="q12c" name="q12" value="C"><label for="q12c">C. MgO thuộc loại oxide acid</label></div>
+                           <div class="option"><input type="radio" id="q12d" name="q12" value="D"><label for="q12d">D. Liên kết trong MgO thuộc loại ion</label></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="question-container" data-question="13">
+                    <div class="question-header">Câu 13</div>
+                    <div class="question-content">
+                        <p><strong>Phương trình hóa học nào sau đây không đúng?</strong></p>
+                        <div class="options">
+                           <div class="option"><input type="radio" id="q13a" name="q13" value="A"><label for="q13a">A. 2Fe + 3H₂SO₄(loãng) → Fe₂(SO₄)₃ + 3H₂</label></div>
+                           <div class="option"><input type="radio" id="q13b" name="q13" value="B"><label for="q13b">B. Ca + 2H₂O → Ca(OH)₂ + H₂</label></div>
+                           <div class="option"><input type="radio" id="q13c" name="q13" value="C"><label for="q13c">C. 2Al + Fe₂O₃ → Al₂O₃ + 2Fe</label></div>
+                           <div class="option"><input type="radio" id="q13d" name="q13" value="D"><label for="q13d">D. 4Cr + 3O₂ → 2Cr₂O₃</label></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="question-container" data-question="14">
+                    <div class="question-header">Câu 14</div>
+                    <div class="question-content">
+                        <p><strong>Có 4 kim loại X, Y, Z, T đứng sau Mg trong dãy hoạt động hóa học. Biết Z và T tan trong dung dịch HCl, X và Y không tan trong dung dịch HCl, Z đẩy được T trong dung dịch muối T; X đẩy được Y trong dung dịch muối Y. Thứ tự hoạt động hóa học của kim loại tăng dần như sau:</strong></p>
+                        <div class="options">
+                           <div class="option"><input type="radio" id="q14a" name="q14" value="A"><label for="q14a">A. T, Z, X, Y</label></div>
+                           <div class="option"><input type="radio" id="q14b" name="q14" value="B"><label for="q14b">B. Z, T, X, Y</label></div>
+                           <div class="option"><input type="radio" id="q14c" name="q14" value="C"><label for="q14c">C. Y, X, T, Z</label></div>
+                           <div class="option"><input type="radio" id="q14d" name="q14" value="D"><label for="q14d">D. Z, T, Y, X</label></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="question-container" data-question="15">
+                    <div class="question-header">Câu 15</div>
+                    <div class="question-content">
+                        <p><strong>Cho 5,4 gam Al tác dụng hết với khí Cl₂ (dư), thu được m gam muối. Giá trị của m là:</strong></p>
+                        <div class="options">
+                           <div class="option"><input type="radio" id="q15a" name="q15" value="A"><label for="q15a">A. 12,5</label></div>
+                           <div class="option"><input type="radio" id="q15b" name="q15" value="B"><label for="q15b">B. 25,0</label></div>
+                           <div class="option"><input type="radio" id="q15c" name="q15" value="C"><label for="q15c">C. 19,6</label></div>
+                           <div class="option"><input type="radio" id="q15d" name="q15" value="D"><label for="q15d">D. 26,7</label></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="question-container" data-question="16">
+                    <div class="question-header">Câu 16</div>
+                    <div class="question-content">
+                        <p><strong>Nhúng thanh Fe vào dung dịch CuSO₄. Sau một thời gian, khối lượng dung dịch giảm 0,8 gam so với khối lượng dung dịch ban đầu. Khối lượng Fe đã phản ứng là:</strong></p>
+                        <div class="options">
+                           <div class="option"><input type="radio" id="q16a" name="q16" value="A"><label for="q16a">A. 8,4 gam</label></div>
+                           <div class="option"><input type="radio" id="q16b" name="q16" value="B"><label for="q16b">B. 6,4 gam</label></div>
+                           <div class="option"><input type="radio" id="q16c" name="q16" value="C"><label for="q16c">C. 11,2 gam</label></div>
+                           <div class="option"><input type="radio" id="q16d" name="q16" value="D"><label for="q16d">D. 5,6 gam</label></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="question-container" data-question="17">
+                    <div class="question-header">Câu 17</div>
+                    <div class="question-content">
+                        <p><strong>Cho các phát biểu: (a) Kim loại Na, K, Fe, Ag đều có khả năng phản ứng với khí oxygen ngay điều kiện thường. (b) Kim loại Na, K, Ca phản ứng mạnh với nước ở điều kiện thường. (c) Kim loại Mg, Fe, Zn có khả năng phản ứng với hơi nước ở nhiệt độ cao tạo ra hydroxide. (d) Kim loại Au, Al, Cu không tan trong dung dịch HCl. (e) Kim loại Fe mạnh hơn có thể đẩy Cu ra khỏi dung dịch muối. Số phát biểu đúng là:</strong></p>
+                        <div class="options">
+                           <div class="option"><input type="radio" id="q17a" name="q17" value="A"><label for="q17a">A. 2</label></div>
+                           <div class="option"><input type="radio" id="q17b" name="q17" value="B"><label for="q17b">B. 3</label></div>
+                           <div class="option"><input type="radio" id="q17c" name="q17" value="C"><label for="q17c">C. 4</label></div>
+                           <div class="option"><input type="radio" id="q17d" name="q17" value="D"><label for="q17d">D. 5</label></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="question-container" data-question="18">
+                    <div class="question-header">Câu 18</div>
+                    <div class="question-content">
+                        <p><strong>Cho các phát biểu sau: (a) Carbon, lưu huỳnh, sodium là các phi kim quan trọng. (b) Chlorine được sử dụng để xử lí nước sinh hoạt. (c) Ở điều kiện thường, thủy ngân là kim loại ở trạng thái lỏng. (d) Các phi kim thường dẫn điện, dẫn nhiệt tốt hơn kim loại. (e) Trong các phản ứng hóa học, kim loại có xu hướng nhường electron còn phi kim thường có xu hướng nhận electron. Số phát biểu đúng là:</strong></p>
+                        <div class="options">
+                           <div class="option"><input type="radio" id="q18a" name="q18" value="A"><label for="q18a">A. 2</label></div>
+                           <div class="option"><input type="radio" id="q18b" name="q18" value="B"><label for="q18b">B. 3</label></div>
+                           <div class="option"><input type="radio" id="q18c" name="q18" value="C"><label for="q18c">C. 4</label></div>
+                           <div class="option"><input type="radio" id="q18d" name="q18" value="D"><label for="q18d">D. 5</label></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PHẦN II: TRẮC NGHIỆM ĐÚNG/SAI -->
+                <div class="question-container" data-question="19">
+                    <div class="question-header">Câu 19: Trắc nghiệm đúng sai</div>
+                    <div class="question-content">
+                        <p><strong>Một số kim loại thông dụng như nhôm (aluminium), sắt (iron), vàng (gold) có nhiều tính chất hóa học giống và khác nhau.</strong></p>
+                        <div class="true-false-container">
+                            <div class="true-false-item">
+                                <span>a. Sắt bị hòa tan trong dung dịch HCl còn vàng thì không.</span>
+                                <div class="tf-options">
+                                    <label><input type="radio" name="q19a" value="true"> Đúng</label>
+                                    <label><input type="radio" name="q19a" value="false"> Sai</label>
+                                </div>
+                            </div>
+                            <div class="true-false-item">
+                                <span>b. Nhôm và sắt đều tác dụng được với dung dịch HCl, H₂SO₄ loãng.</span>
+                                <div class="tf-options">
+                                    <label><input type="radio" name="q19b" value="true"> Đúng</label>
+                                    <label><input type="radio" name="q19b" value="false"> Sai</label>
+                                </div>
+                            </div>
+                            <div class="true-false-item">
+                                <span>c. Nhôm, sắt và vàng đều bền trong không khí và nước.</span>
+                                <div class="tf-options">
+                                    <label><input type="radio" name="q19c" value="true"> Đúng</label>
+                                    <label><input type="radio" name="q19c" value="false"> Sai</label>
+                                </div>
+                            </div>
+                            <div class="true-false-item">
+                                <span>d. Nhôm và sắt đều tác dụng với khí chlorine theo cùng tỉ lệ mol.</span>
+                                <div class="tf-options">
+                                    <label><input type="radio" name="q19d" value="true"> Đúng</label>
+                                    <label><input type="radio" name="q19d" value="false"> Sai</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="question-container" data-question="20">
+                    <div class="question-header">Câu 20: Trắc nghiệm đúng sai</div>
+                    <div class="question-content">
+                        <p><strong>Cho các kim loại: Na, Mg, Ag, Cu, Fe, Al.</strong></p>
+                        <div class="true-false-container">
+                            <div class="true-false-item">
+                                <span>a. Thứ tự giảm dần mức độ hoạt động hóa học của các kim loại là Na, Mg, Al, Fe, Ag, Cu.</span>
+                                <div class="tf-options">
+                                    <label><input type="radio" name="q20a" value="true"> Đúng</label>
+                                    <label><input type="radio" name="q20a" value="false"> Sai</label>
+                                </div>
+                            </div>
+                            <div class="true-false-item">
+                                <span>b. Kim loại Na có thể đẩy Mg ra khỏi dung dịch muối.</span>
+                                <div class="tf-options">
+                                    <label><input type="radio" name="q20b" value="true"> Đúng</label>
+                                    <label><input type="radio" name="q20b" value="false"> Sai</label>
+                                </div>
+                            </div>
+                            <div class="true-false-item">
+                                <span>c. Kim loại Fe có thể đẩy Cu ra khỏi muối.</span>
+                                <div class="tf-options">
+                                    <label><input type="radio" name="q20c" value="true"> Đúng</label>
+                                    <label><input type="radio" name="q20c" value="false"> Sai</label>
+                                </div>
+                            </div>
+                            <div class="true-false-item">
+                                <span>d. Có 2 kim loại không tác dụng với dung dịch HCl.</span>
+                                <div class="tf-options">
+                                    <label><input type="radio" name="q20d" value="true"> Đúng</label>
+                                    <label><input type="radio" name="q20d" value="false"> Sai</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="question-container" data-question="21">
+                    <div class="question-header">Câu 21: Trắc nghiệm đúng sai</div>
+                    <div class="question-content">
+                        <p><strong>Gang, thép và đuy – ra là những hợp kim phổ biến.</strong></p>
+                        <div class="true-false-container">
+                            <div class="true-false-item">
+                                <span>a. Gang chứa chủ yếu là sắt, 2% - 5% carbon và một số nguyên tố khác.</span>
+                                <div class="tf-options">
+                                    <label><input type="radio" name="q21a" value="true"> Đúng</label>
+                                    <label><input type="radio" name="q21a" value="false"> Sai</label>
+                                </div>
+                            </div>
+                            <div class="true-false-item">
+                                <span>b. Thép thường (thép carbon) dẻo và cứng chứa hàm lượng carbon trên 2%.</span>
+                                <div class="tf-options">
+                                    <label><input type="radio" name="q21b" value="true"> Đúng</label>
+                                    <label><input type="radio" name="q21b" value="false"> Sai</label>
+                                </div>
+                            </div>
+                            <div class="true-false-item">
+                                <span>c. Inox chứa chủ yếu là sắt và một số nguyên tố khác như Cr, Ni, … khó bị gỉ.</span>
+                                <div class="tf-options">
+                                    <label><input type="radio" name="q21c" value="true"> Đúng</label>
+                                    <label><input type="radio" name="q21c" value="false"> Sai</label>
+                                </div>
+                            </div>
+                            <div class="true-false-item">
+                                <span>d. Đuy – ra (duralumin) là hợp kim của nhôm với Cu, Mg, Mn, … nặng và bền.</span>
+                                <div class="tf-options">
+                                    <label><input type="radio" name="q21d" value="true"> Đúng</label>
+                                    <label><input type="radio" name="q21d" value="false"> Sai</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="question-container" data-question="22">
+                    <div class="question-header">Câu 22: Trắc nghiệm đúng sai</div>
+                    <div class="question-content">
+                        <p><strong>Kim loại và phi kim có nhiều tính chất vật lí khác nhau.</strong></p>
+                        <div class="true-false-container">
+                            <div class="true-false-item">
+                                <span>a. Kim loại dẫn điện tốt còn phi kim thường không dẫn điện.</span>
+                                <div class="tf-options">
+                                    <label><input type="radio" name="q22a" value="true"> Đúng</label>
+                                    <label><input type="radio" name="q22a" value="false"> Sai</label>
+                                </div>
+                            </div>
+                            <div class="true-false-item">
+                                <span>b. Kim loại dẫn nhiệt tốt nhưng không vẫn kém phi kim.</span>
+                                <div class="tf-options">
+                                    <label><input type="radio" name="q22b" value="true"> Đúng</label>
+                                    <label><input type="radio" name="q22b" value="false"> Sai</label>
+                                </div>
+                            </div>
+                            <div class="true-false-item">
+                                <span>c. Hầu hết các kim loại ở thể rắn điều kiện thường (trừ Hg thể lỏng) còn phi kim thì có cả ba trạng thái: rắn, lỏng, khí.</span>
+                                <div class="tf-options">
+                                    <label><input type="radio" name="q22c" value="true"> Đúng</label>
+                                    <label><input type="radio" name="q22c" value="false"> Sai</label>
+                                </div>
+                            </div>
+                            <div class="true-false-item">
+                                <span>d. Các kim loại thường có khối lượng riêng nhỏ còn phi kim có khối lượng riêng lớn.</span>
+                                <div class="tf-options">
+                                    <label><input type="radio" name="q22d" value="true"> Đúng</label>
+                                    <label><input type="radio" name="q22d" value="false"> Sai</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- PHẦN III: TRẢ LỜI NGẮN -->
+                <div class="question-container short-answer" data-question="23">
+                    <div class="question-header">Câu 23: Trả lời ngắn</div>
+                    <div class="question-content">
+                        <p><strong>Cho các kim loại: Mg, Na, Fe, Ca, K. Có bao nhiêu kim loại tác dụng được với nước ở điều kiện thường tạo ra dung dịch base?</strong></p>
+                        <input type="text" id="q23_answer" placeholder="Nhập câu trả lời của bạn">
+                    </div>
+                </div>
+                <div class="question-container short-answer" data-question="24">
+                    <div class="question-header">Câu 24: Trả lời ngắn</div>
+                    <div class="question-content">
+                        <p><strong>Cho các kim loại: Na, Mg, K, Ca, Fe, Al. Có bao nhiêu kim loại đẩy được Cu ra khỏi dung dịch muối?</strong></p>
+                        <input type="text" id="q24_answer" placeholder="Nhập câu trả lời của bạn">
+                    </div>
+                </div>
+                <div class="question-container short-answer" data-question="25">
+                    <div class="question-header">Câu 25: Trả lời ngắn</div>
+                    <div class="question-content">
+                        <p><strong>Cho các hợp kim: gang, thép carbon, inox, đuy – ra, đồng thau. Có bao nhiêu hợp kim có kim loại cơ bản là Fe?</strong></p>
+                        <input type="text" id="q25_answer" placeholder="Nhập câu trả lời của bạn">
+                    </div>
+                </div>
+                <div class="question-container short-answer" data-question="26">
+                    <div class="question-header">Câu 26: Trả lời ngắn</div>
+                    <div class="question-content">
+                        <p><strong>Cho các kim loại: Na, K, Mg, Cu lần lượt tác dụng với khí O₂ và dung dịch HCl ở điều kiện thích hợp. Có bao nhiêu phản ứng xảy ra?</strong></p>
+                        <input type="text" id="q26_answer" placeholder="Nhập câu trả lời của bạn">
+                    </div>
+                </div>
+                <div class="question-container short-answer" data-question="27">
+                    <div class="question-header">Câu 27: Trả lời ngắn</div>
+                    <div class="question-content">
+                        <p><strong>Cho các thí nghiệm sau: (a) Điện phân nóng chảy NaCl. (b) Cho H₂ qua Fe₃O₄, đun nóng. (c) Cho CO qua ZnO, đun nóng. (d) Cho Cu tác dụng với dung dịch FeCl₂. (e) Cho Cu tác dụng với dung dịch AgNO₃. Có bao nhiêu thí nghiệm thu được kim loại sau khi phản ứng kết thúc?</strong></p>
+                        <input type="text" id="q27_answer" placeholder="Nhập câu trả lời của bạn">
+                    </div>
+                </div>
+                <div class="question-container short-answer" data-question="28">
+                    <div class="question-header">Câu 28: Trả lời ngắn</div>
+                    <div class="question-content">
+                        <p><strong>Từ 500 tấn quặng hematite chứa 85% Fe₂O₃ sản xuất được x nghìn chiếc nồi gang có hàm lượng sắt là 95%. Biết rằng mỗi chiếc nồi gang nặng 5 kg và hiệu suất của toàn bộ quá trình là 80%. Giá trị của x là bao nhiêu? (Kết quả làm tròn đến hàng nghìn)</strong></p>
+                        <input type="text" id="q28_answer" placeholder="Nhập câu trả lời của bạn (chỉ điền số)">
+                    </div>
+                </div>
+
+            </div>
+            
+            <div class="navigation">
+                <button id="prevBtn" class="btn btn-secondary" onclick="prevQuestion()">Câu trước</button>
+                <button id="nextBtn" class="btn btn-primary" onclick="nextQuestion()">Câu tiếp</button>
+                <button id="submitBtn" class="btn btn-success" onclick="submitExam()" style="display: none;">Nộp bài</button>
+            </div>
+        </div>
+        
+        <div id="results-container" class="results">
+            <h2>Hoàn thành bài kiểm tra!</h2>
+            <p>Họ và tên: <span id="resultName"></span></p>
+            <p>Lớp: <span id="resultClass"></span></p>
+            <p>Điểm số của bạn là:</p>
+            <div class="score" id="score"></div>
+            <p id="submission-status"></p>
+            <button class="btn btn-primary" onclick="location.reload()">Làm lại bài</button>
+        </div>
+    </div>
+
+    <script>
+        // --- CÁC BIẾN TOÀN CỤC ---
+        let currentQuestionIndex = 0;
+        let questions = [];
+        let timerInterval;
+        let userAnswers = {};
+
+        // --- ĐÁP ÁN ---
+        const correctAnswers = {
+            q1: 'D', q2: 'B', q3: 'B', q4: 'D', q5: 'C', q6: 'D', q7: 'B', q8: 'C', q9: 'A', q10: 'C',
+            q11: 'C', q12: 'D', q13: 'A', q14: 'C', q15: 'D', q16: 'D', q17: 'B', q18: 'B',
+            q19a: 'true', q19b: 'true', q19c: 'false', q19d: 'false',
+            q20a: 'false', q20b: 'false', q20c: 'true', q20d: 'true',
+            q21a: 'true', q21b: 'false', q21c: 'true', q21d: 'false',
+            q22a: 'true', q22b: 'false', q22c: 'true', q22d: 'false',
+            q23: '3', q24: '3', q25: '3', q26: '7', q27: '4', q28: '50'
+        };
+
+        // --- CÁC HÀM XỬ LÝ ---
+
+        function startExam() {
+            const studentName = document.getElementById('studentName').value.trim();
+            const studentClass = document.getElementById('studentClass').value.trim();
+            const studentEmail = document.getElementById('studentEmail').value.trim();
+
+            if (!studentName || !studentClass || !studentEmail) {
+                // Sử dụng một thông báo tùy chỉnh thay vì alert
+                alert('Vui lòng điền đầy đủ thông tin.');
+                return;
+            }
+            
+            document.getElementById('student-form').style.display = 'none';
+            document.getElementById('exam-container').style.display = 'block';
+            
+            initializeExam();
+        }
+
+        function initializeExam() {
+            questions = document.querySelectorAll('.question-container');
+            createQuestionNav();
+            showQuestion(0);
+            startTimer(45 * 60);
+            
+            questions.forEach((q, index) => {
+                const inputs = q.querySelectorAll('input');
+                inputs.forEach(input => {
+                    input.addEventListener('change', () => {
+                        markQuestionAsAnswered(index);
+                    });
+                     input.addEventListener('keyup', () => { // For text inputs
+                        markQuestionAsAnswered(index);
+                    });
+                });
+            });
+        }
+
+        function showQuestion(index) {
+            questions.forEach(q => q.classList.remove('active'));
+            if (questions[index]) {
+                questions[index].classList.add('active');
+                currentQuestionIndex = index;
+                updateNavigationButtons();
+                updateProgressBar();
+                updateQuestionNavHighlight();
+            }
+        }
+
+        function nextQuestion() {
+            if (currentQuestionIndex < questions.length - 1) {
+                showQuestion(currentQuestionIndex + 1);
+            }
+        }
+
+        function prevQuestion() {
+            if (currentQuestionIndex > 0) {
+                showQuestion(currentQuestionIndex - 1);
+            }
+        }
+        
+        function goToQuestion(index) {
+            showQuestion(index);
+        }
+
+        function updateNavigationButtons() {
+            document.getElementById('prevBtn').disabled = (currentQuestionIndex === 0);
+            document.getElementById('nextBtn').style.display = (currentQuestionIndex === questions.length - 1) ? 'none' : 'inline-block';
+            document.getElementById('submitBtn').style.display = (currentQuestionIndex === questions.length - 1) ? 'inline-block' : 'none';
+        }
+
+        function updateProgressBar() {
+            const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
+            document.getElementById('progress').style.width = `${progress}%`;
+        }
+        
+        function createQuestionNav() {
+            const navContainer = document.getElementById('questionNav');
+            navContainer.innerHTML = ''; // Clear previous nav
+            questions.forEach((_, index) => {
+                const btn = document.createElement('button');
+                btn.className = 'question-btn';
+                btn.textContent = index + 1;
+                btn.onclick = () => goToQuestion(index);
+                navContainer.appendChild(btn);
+            });
+        }
+        
+        function markQuestionAsAnswered(index) {
+            const navBtns = document.querySelectorAll('.question-btn');
+            if (navBtns[index]) {
+                 const questionDiv = questions[index];
+                 const inputs = questionDiv.querySelectorAll('input');
+                 let isAnswered = false;
+                 inputs.forEach(input => {
+                     if ((input.type === 'radio' || input.type === 'checkbox') && input.checked) {
+                         isAnswered = true;
+                     }
+                     if (input.type === 'text' && input.value.trim() !== '') {
+                         isAnswered = true;
+                     }
+                 });
+
+                 if(isAnswered) {
+                    navBtns[index].classList.add('answered');
+                 } else {
+                    // Check if all radio buttons in a group are unchecked
+                    let isGroupUnchecked = true;
+                    const radioGroups = {};
+                    inputs.forEach(input => {
+                        if (input.type === 'radio') {
+                            if (!radioGroups[input.name]) radioGroups[input.name] = [];
+                            radioGroups[input.name].push(input.checked);
+                        }
+                    });
+                    for(const group in radioGroups) {
+                        if(radioGroups[group].some(checked => checked)) {
+                            isGroupUnchecked = false;
+                            break;
+                        }
+                    }
+                    if(isGroupUnchecked) {
+                        navBtns[index].classList.remove('answered');
+                    }
+                 }
+            }
+        }
+        
+        function updateQuestionNavHighlight() {
+            const navBtns = document.querySelectorAll('.question-btn');
+            navBtns.forEach((btn, index) => {
+                btn.classList.toggle('current', index === currentQuestionIndex);
+            });
+        }
+
+        function startTimer(duration) {
+            let timer = duration;
+            const timerDisplay = document.getElementById('timer');
+            
+            timerInterval = setInterval(() => {
+                let minutes = parseInt(timer / 60, 10);
+                let seconds = parseInt(timer % 60, 10);
+
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                timerDisplay.textContent = minutes + ":" + seconds;
+
+                if (--timer < 0) {
+                    clearInterval(timerInterval);
+                    // alert("Hết giờ làm bài! Bài của bạn sẽ được nộp tự động.");
+                    submitExam();
+                }
+            }, 1000);
+        }
+        
+        function submitExam() {
+            clearInterval(timerInterval);
+            let score = 0;
+            const totalPoints = Object.keys(correctAnswers).length;
+            const studentAnswers = [];
+
+            // Lặp qua tất cả câu hỏi để lấy câu trả lời và tính điểm
+            for (let i = 1; i <= questions.length; i++) {
+                if (i <= 18) { // Trắc nghiệm nhiều lựa chọn
+                    const questionName = `q${i}`;
+                    const selectedOption = document.querySelector(`input[name="${questionName}"]:checked`);
+                    const answer = selectedOption ? selectedOption.value : "N/A";
+                    studentAnswers.push(`Câu ${i}: ${answer}`);
+                    if (selectedOption && selectedOption.value === correctAnswers[questionName]) {
+                        score++;
+                    }
+                } else if (i >= 19 && i <= 22) { // Trắc nghiệm đúng/sai
+                    const subQuestions = ['a', 'b', 'c', 'd'];
+                    subQuestions.forEach(sub => {
+                        const questionName = `q${i}${sub}`;
+                        const selectedOption = document.querySelector(`input[name="${questionName}"]:checked`);
+                        const answer = selectedOption ? selectedOption.value : "N/A";
+                        studentAnswers.push(`Câu ${i}${sub}: ${answer}`);
+                        if (selectedOption && selectedOption.value === correctAnswers[questionName]) {
+                            score++;
+                        }
+                    });
+                } else { // Trả lời ngắn
+                    const questionName = `q${i}`;
+                    const inputElement = document.getElementById(`${questionName}_answer`);
+                    const answer = inputElement ? inputElement.value.trim() : "N/A";
+                    studentAnswers.push(`Câu ${i}: ${answer}`);
+                    if (inputElement && answer.toLowerCase() === correctAnswers[questionName].toLowerCase()) {
+                        score++;
+                    }
+                }
+            }
+            
+            const finalScore = ((score / totalPoints) * 10).toFixed(2);
+            
+            submitToGoogleForm(finalScore, studentAnswers.join('; '));
+            showResults(finalScore);
+        }
+        
+        async function submitToGoogleForm(score, answers) {
+            const formUrl = "https://docs.google.com/forms/d/e/1FAIpQLSex8wY7NsTNLpY-Yw0bzsg5bOwbJ4H0nk5aDK8bu1kGNlcXJQ/formResponse";
+            
+            const formData = new FormData();
+            formData.append("entry.2117417", document.getElementById('studentName').value);
+            formData.append("entry.1962297453", document.getElementById('studentClass').value);
+            formData.append("entry.1413115865", document.getElementById('studentEmail').value);
+            formData.append("entry.400917259", score);
+            formData.append("entry.1899292280", answers);
+
+            try {
+                await fetch(formUrl, {
+                    method: 'POST',
+                    body: formData,
+                    mode: 'no-cors' // Quan trọng: để tránh lỗi CORS
+                });
+                document.getElementById('submission-status').textContent = "Kết quả của bạn đã được gửi đi thành công!";
+            } catch (error) {
+                console.error('Error submitting to Google Form:', error);
+                document.getElementById('submission-status').textContent = "Không thể gửi kết quả. Vui lòng kiểm tra lại kết nối.";
+            }
+        }
+        
+        function showResults(finalScore) {
+            document.getElementById('exam-container').style.display = 'none';
+            document.getElementById('results-container').style.display = 'block';
+            
+            document.getElementById('resultName').textContent = document.getElementById('studentName').value;
+            document.getElementById('resultClass').textContent = document.getElementById('studentClass').value;
+            document.getElementById('score').textContent = finalScore;
+        }
+
+    </script>
+</body>
+</html>
