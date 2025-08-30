@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chuyên đề: Ôn tập chương 6 - Kim loại</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.7;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f5f7;
+            color: #3d3d3d;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 25px auto;
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+        .header {
+            text-align: center;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            color: #003049;
+            margin: 0;
+        }
+        h2 {
+            background-color: #d62828;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            margin-top: 40px;
+        }
+        .knowledge-point {
+            background-color: #f8f9fa;
+            border-left: 5px solid #f77f00;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        .activity-series {
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.1em;
+            padding: 15px;
+            background-color: #e9ecef;
+            border-radius: 8px;
+        }
+        .exercise-block {
+            margin-bottom: 25px;
+            padding: 20px;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            background-color: #ffffff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .question-title {
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-top: 0;
+        }
+        .options label {
+            display: block;
+            margin: 10px 0;
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            border: 1px solid #ddd;
+        }
+        .options label:hover {
+            background-color: #eaf4f4;
+            border-color: #0096c7;
+        }
+        input[type="radio"] {
+            margin-right: 12px;
+        }
+        input[type="text"] {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100px;
+        }
+        .solution {
+            display: none;
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #e9f5db;
+            border-left: 5px solid #7cb518;
+            border-radius: 5px;
+        }
+        .btn {
+            background-color: #6c757d;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            margin-top: 10px;
+            transition: background-color 0.3s, transform 0.1s;
+        }
+        .btn:hover {
+            background-color: #5a6268;
+            transform: translateY(-2px);
+        }
+        .button-container {
+            text-align: center;
+            margin-top: 40px;
+        }
+        .check-all-btn {
+            background-color: #0077b6;
+            font-size: 1.2em;
+            padding: 15px 30px;
+        }
+        .check-all-btn:hover {
+            background-color: #023e8a;
+        }
+        .correct {
+            background-color: #d1f7c4 !important;
+            border-color: #4caf50 !important;
+            color: #1b5e20;
+        }
+        .incorrect {
+            background-color: #ffcdd2 !important;
+            border-color: #f44336 !important;
+            color: #b71c1c;
+        }
+        .feedback {
+            font-weight: bold;
+            margin-left: 15px;
+            color: #1b5e20;
+        }
+        .chemical-formula {
+            font-family: 'Consolas', 'Courier New', monospace;
+            background-color: #e9ecef;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+            color: #c9184a;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">
+            <h1>ÔN TẬP CHƯƠNG 6: KIM LOẠI</h1>
+        </div>
+
+        <form id="quiz-form">
+            <h2>PHẦN I: KIẾN THỨC CẦN NHỚ</h2>
+            <div class="knowledge-point"><strong>1. Tính chất vật lí chung:</strong> Tính dẻo (Au dẻo nhất), tính dẫn điện, tính dẫn nhiệt (Ag tốt nhất), và có ánh kim.</div>
+            <div class="knowledge-point"><strong>2. Tính chất hóa học:</strong> Tác dụng với phi kim, nước, acid, dung dịch muối.</div>
+            <div class="knowledge-point">
+                <strong>3. Dãy hoạt động hóa học và Ý nghĩa:</strong>
+                <div class="activity-series">K > Na > Ba > Ca > Mg > Al > Zn > Fe > Ni > Sn > Pb > (H) > Cu > Hg > Ag > Pt > Au</div>
+                <p style="margin-top:10px;">Dãy hoạt động hóa học cho biết mức độ hoạt động của các kim loại giảm dần từ trái sang phải, từ đó suy ra:</p>
+                <ul style="padding-left: 20px; list-style-type: '✓ '; margin:0;">
+                    <li><strong>Phản ứng với nước:</strong> Các kim loại đứng trước Mg (K, Na, Ba, Ca) tác dụng với nước ở điều kiện thường.</li>
+                    <li><strong>Phản ứng với acid:</strong> Kim loại đứng trước (H) phản ứng với HCl, H₂SO₄ loãng giải phóng H₂.</li>
+                    <li><strong>Phản ứng với muối:</strong> Từ Mg trở đi, kim loại đứng trước đẩy kim loại đứng sau ra khỏi dung dịch muối.</li>
+                </ul>
+            </div>
+            <div class="knowledge-point"><strong>4. Phương pháp tách kim loại:</strong> Điện phân nóng chảy (kim loại mạnh), Nhiệt luyện (kim loại trung bình), Thủy luyện (kim loại yếu).</div>
+            <div class="knowledge-point"><strong>5. Hợp kim:</strong> Là vật liệu kim loại chứa kim loại cơ bản và các nguyên tố khác, thường có tính chất ưu việt hơn.</div>
+            <div class="knowledge-point"><strong>6. Gang và Thép:</strong> Là hợp kim của Sắt (Fe) với Carbon (C) và một số nguyên tố khác.</div>
+            <div class="knowledge-point"><strong>7. Sự khác nhau giữa kim loại và phi kim:</strong> Khác biệt về tính dẫn điện, dẫn nhiệt, tính dẻo, và xu hướng cho/nhận electron.</div>
+
+            <h2>PHẦN II: BÀI TẬP TỰ LUẬN TÍNH TOÁN</h2>
+            <div class="exercise-block">
+                <p class="question-title"><b>Bài toán:</b> Cho 13 gam kẽm (Zn) tác dụng với 200 ml dung dịch đồng(II) sulfate (<span class="chemical-formula">CuSO₄</span>) 0.5M.
+                <br>a. Viết phương trình hóa học.
+                <br>b. Sau phản ứng, chất nào còn dư và dư bao nhiêu gam?
+                <br>c. Tính khối lượng chất rắn thu được sau phản ứng.
+                <br><i>(Cho: Zn=65, Cu=64, S=32, O=16)</i></p>
+                <button type="button" class="btn" onclick="toggleElementVisibility(this.nextElementSibling)">Xem hướng dẫn giải</button>
+                <div class="solution">
+                    <p><b>Hướng dẫn giải:</b></p>
+                    <p><b>Bước 1: Viết PTHH và tính số mol các chất ban đầu.</b></p>
+                    <ul>
+                        <li>Phương trình hóa học: <span class="chemical-formula">Zn + CuSO₄ → ZnSO₄ + Cu</span></li>
+                        <li>Số mol Zn: <span class="chemical-formula">n<sub>Zn</sub> = 13 / 65 = 0,2 (mol)</span>.</li>
+                        <li>Số mol CuSO₄: <span class="chemical-formula">n<sub>CuSO₄</sub> = C<sub>M</sub> × V = 0,5 × 0,2 = 0,1 (mol)</span>.</li>
+                    </ul>
+                    <p><b>Bước 2: So sánh tỉ lệ và xác định chất dư (Câu b).</b></p>
+                    <ul>
+                        <li>Theo PTHH, tỉ lệ phản ứng là 1 mol Zn : 1 mol CuSO₄.</li>
+                        <li>So sánh: <span class="chemical-formula">n<sub>Zn</sub>/1 = 0,2</span> và <span class="chemical-formula">n<sub>CuSO₄</sub>/1 = 0,1</span>.</li>
+                        <li>Vì 0,2 > 0,1 nên Zn dư, CuSO₄ phản ứng hết. Mọi tính toán theo CuSO₄.</li>
+                        <li>Số mol Zn phản ứng = n<sub>CuSO₄</sub> = 0,1 (mol).</li>
+                        <li>Số mol Zn dư = 0,2 - 0,1 = 0,1 (mol).</li>
+                        <li>Khối lượng Zn dư = 0,1 × 65 = 6,5 (gam).</li>
+                    </ul>
+                    <p><b>Bước 3: Tính khối lượng chất rắn (Câu c).</b></p>
+                    <ul>
+                         <li>Chất rắn thu được sau phản ứng gồm Cu tạo thành và Zn dư.</li>
+                         <li>Số mol Cu tạo thành = n<sub>CuSO₄</sub> = 0,1 (mol).</li>
+                         <li>Khối lượng Cu = 0,1 × 64 = 6,4 (gam).</li>
+                         <li>Tổng khối lượng chất rắn = m<sub>Cu</sub> + m<sub>Zn dư</sub> = 6,4 + 6,5 = 12,9 (gam).</li>
+                    </ul>
+                    <p><b>Kết luận:</b> b) Zn dư <strong>6,5 gam</strong>; c) Khối lượng chất rắn là <strong>12,9 gam</strong>.</p>
+                </div>
+            </div>
+            
+            <h2>PHẦN III. CÂU TRẮC NGHIỆM NHIỀU PHƯƠNG ÁN LỰA CHỌN</h2>
+            <div id="mcq-container"></div>
+
+            <h2>PHẦN IV. CÂU TRẮC NGHIỆM ĐÚNG/SAI</h2>
+            <div id="tf-container"></div>
+            
+            <h2>PHẦN V. CÂU TRẮC NGHIỆM YÊU CẦU TRẢ LỜI NGẮN</h2>
+            <div id="sa-container"></div>
+
+            <div class="button-container">
+                <button type="button" class="btn check-all-btn" onclick="checkAllAnswers()">Kiểm tra toàn bộ bài</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        const mcqData = [
+            { q: "Câu 1. Tính chất vật lí nào sau đây không phải là tính chất chung của kim loại?", o: ["Tính dẻo", "Tính dẫn điện", "Tính cứng", "Ánh kim"], a: "C" },
+            { q: "Câu 2. Dãy kim loại nào sau đây được sắp xếp theo chiều hoạt động hóa học giảm dần?", o: ["K, Mg, Cu, Al", "K, Al, Mg, Cu", "K, Mg, Al, Cu", "Al, K, Mg, Cu"], a: "C" },
+            { q: "Câu 3. Kim loại nào sau đây tác dụng được với dung dịch H₂SO₄ loãng?", o: ["Cu", "Ag", "Fe", "Au"], a: "C" },
+            { q: "Câu 4. Cặp chất nào sau đây có thể xảy ra phản ứng?", o: ["Cu và dung dịch MgCl₂", "Ag và dung dịch HCl", "Fe và dung dịch CuSO₄", "Au và dung dịch H₂SO₄ loãng"], a: "C" },
+            { q: "Câu 5. Để tách Ag ra khỏi hỗn hợp gồm Fe, Cu, Ag, ta có thể ngâm hỗn hợp vào dung dịch nào sau đây?", o: ["HCl", "NaOH", "CuSO₄", "Fe₂(SO₄)₃"], a: "D" },
+            { q: "Câu 6. Kim loại nào sau đây được điều chế bằng phương pháp nhiệt luyện?", o: ["Na", "Ca", "Al", "Fe"], a: "D" }
+        ];
+
+        const tfData = [
+            { q: "Câu 1. Kim loại tác dụng với dung dịch acid luôn giải phóng khí H₂.", a: false },
+            { q: "Câu 2. Kim loại đứng trước Mg trong dãy hoạt động hóa học có thể đẩy Mg ra khỏi dung dịch muối.", a: false },
+            { q: "Câu 3. Hợp kim là vật liệu kim loại có chứa ít nhất một kim loại cơ bản và một số kim loại hoặc phi kim khác.", a: true },
+            { q: "Câu 4. Kim loại dẫn điện tốt còn phi kim thường không dẫn điện.", a: true },
+            { q: "Câu 5. Kim loại dẫn nhiệt tốt nhưng không vẫn kém phi kim.", a: false },
+            { q: "Câu 6. Các kim loại thường có khối lượng riêng nhỏ còn phi kim có khối lượng riêng lớn.", a: false }
+        ];
+
+        const saData = [
+            { q: "Câu 1. Cho các kim loại: Mg, Na, Fe, Ca, K. Có bao nhiêu kim loại tác dụng được với nước ở điều kiện thường tạo ra dung dịch base?", a: "4" },
+            { q: "Câu 2. Cho các kim loại: Na, Mg, K, Ca, Fe, Al. Có bao nhiêu kim loại đẩy được Cu ra khỏi dung dịch muối?", a: "5" },
+            { q: "Câu 3. Cho các hợp kim: gang, thép carbon, inox, đuy–ra, đồng thau. Có bao nhiêu hợp kim có kim loại cơ bản là Fe?", a: "3" },
+            { q: "Câu 4. Cho các kim loại: Na, K, Mg, Cu lần lượt tác dụng với khí O₂ và dung dịch HCl ở điều kiện thích hợp. Có bao nhiêu phản ứng xảy ra?", a: "7" },
+            { q: "Câu 5. Cho các thí nghiệm sau: (a) Điện phân nóng chảy NaCl. (b) Cho H₂ qua Fe₃O₄, đun nóng. (c) Cho CO qua ZnO, đun nóng. (d) Cho Cu tác dụng với dung dịch FeCl₂. (e) Cho Cu tác dụng với dung dịch AgNO₃. Có bao nhiêu thí nghiệm tách được kim loại?", a: "4" },
+            { q: "Câu 6. Cho các chất: Fe, Cu, Ag, dung dịch FeCl₂, dung dịch AgNO₃. Có tối đa bao nhiêu phản ứng hóa học có thể xảy ra giữa các chất trên?", a: "4" }
+        ];
+
+        function renderQuiz() {
+            const mcqContainer = document.getElementById('mcq-container');
+            mcqData.forEach((item, index) => {
+                const optionsHTML = item.o.map((opt, i) => `<label><input type="radio" name="q_mcq_${index}" value="${String.fromCharCode(65 + i)}"> ${String.fromCharCode(65 + i)}. ${opt}</label>`).join('');
+                mcqContainer.innerHTML += `<div class="exercise-block" data-answer="${item.a}"><p class="question-title">${item.q}</p><div class="options">${optionsHTML}</div></div>`;
+            });
+
+            const tfContainer = document.getElementById('tf-container');
+            tfData.forEach((item, index) => {
+                const optionsHTML = `<label><input type="radio" name="q_tf_${index}" value="true"> Đúng</label><label><input type="radio" name="q_tf_${index}" value="false"> Sai</label>`;
+                tfContainer.innerHTML += `<div class="exercise-block" data-answer="${item.a}"><p class="question-title">${item.q}</p><div class="options">${optionsHTML}</div></div>`;
+            });
+
+            const saContainer = document.getElementById('sa-container');
+            saData.forEach((item, index) => {
+                saContainer.innerHTML += `<div class="exercise-block" data-answer="${item.a}"><p class="question-title">${item.q}</p><label>Trả lời: <input type="text" name="q_sa_${index}"></label></div>`;
+            });
+        }
+
+        function checkAllAnswers() {
+            // Check MCQ
+            const mcqBlocks = document.querySelectorAll('#mcq-container .exercise-block');
+            mcqBlocks.forEach((block) => {
+                const correctAnswer = block.dataset.answer;
+                const selectedRadio = block.querySelector(`input[type="radio"]:checked`);
+                const options = block.querySelectorAll('.options label');
+                options.forEach(label => {
+                    label.classList.remove('correct', 'incorrect');
+                    const feedback = label.querySelector('.feedback');
+                    if (feedback) feedback.remove();
+                });
+                
+                if (selectedRadio) {
+                    const selectedLabel = selectedRadio.parentElement;
+                    if (selectedRadio.value === correctAnswer) {
+                        selectedLabel.classList.add('correct');
+                    } else {
+                        selectedLabel.classList.add('incorrect');
+                        options.forEach(label => {
+                            if (label.querySelector('input').value === correctAnswer) {
+                                label.innerHTML += ' <span class="feedback">(Đáp án đúng)</span>';
+                            }
+                        });
+                    }
+                }
+            });
+
+            // Check True/False
+            const tfBlocks = document.querySelectorAll('#tf-container .exercise-block');
+            tfBlocks.forEach((block) => {
+                const correctAnswer = block.dataset.answer;
+                const selectedRadio = block.querySelector(`input[type="radio"]:checked`);
+                const options = block.querySelectorAll('.options label');
+                options.forEach(label => {
+                    label.classList.remove('correct', 'incorrect');
+                    const feedback = label.querySelector('.feedback');
+                    if (feedback) feedback.remove();
+                });
+
+                if (selectedRadio) {
+                    const selectedLabel = selectedRadio.parentElement;
+                    if (selectedRadio.value === correctAnswer) {
+                        selectedLabel.classList.add('correct');
+                    } else {
+                        selectedLabel.classList.add('incorrect');
+                         options.forEach(label => {
+                            if (label.querySelector('input').value === correctAnswer) {
+                                label.innerHTML += ' <span class="feedback">(Đáp án đúng)</span>';
+                            }
+                        });
+                    }
+                }
+            });
+
+            // Check Short Answer
+            const saBlocks = document.querySelectorAll('#sa-container .exercise-block');
+            saBlocks.forEach((block) => {
+                const correctAnswer = block.dataset.answer;
+                const input = block.querySelector(`input[type="text"]`);
+                input.classList.remove('correct', 'incorrect');
+                const feedback = input.parentElement.querySelector('.feedback');
+                if (feedback) feedback.remove();
+
+                if (input.value.trim() === correctAnswer) {
+                    input.classList.add('correct');
+                } else {
+                    input.classList.add('incorrect');
+                    const newFeedback = document.createElement('span');
+                    newFeedback.className = 'feedback';
+                    newFeedback.textContent = ` (Đáp án đúng: ${correctAnswer})`;
+                    input.parentElement.appendChild(newFeedback);
+                }
+            });
+        }
+        
+        function toggleElementVisibility(element) {
+            const button = element.previousElementSibling;
+            if (element.style.display === 'block') {
+                element.style.display = 'none';
+                button.textContent = 'Xem hướng dẫn giải';
+            } else {
+                element.style.display = 'block';
+                button.textContent = 'Ẩn hướng dẫn giải';
+            }
+        }
+
+        window.onload = renderQuiz;
+    </script>
+</body>
+</html>
